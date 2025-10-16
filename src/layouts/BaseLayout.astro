@@ -1,0 +1,338 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+const { title = 'Edición Aular | 🚀 Agencia de SEO y Publicidad Digital 📈', description = 'Somos una agencia de publicidad digital especializada en SEO 📈, diseño web 💻, branding 🎨, producción audiovisual 🎥, gestión de Ads 📊 y mentoría 🧠. ¡Transforma tu marca! ✨' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page Title -->
+    <title>{title}</title>
+    
+    <!-- Meta Description -->
+    <meta name="description" content={description}>
+    <meta name="google-site-verification" content="1CWG9HSA1bg0q-_Qq2kOPN1rDgFWFYdh0BQ8I5fnklc" />
+    
+    <style>
+        /* Estilos críticos aquí */
+        .bringer-large-text {
+            font-size: var(--bringer-t-large-fs);
+            line-height: var(--bringer-t-content-lh);
+            color: var(--bringer-s-heading);
+        }
+    </style>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Config -->
+    <link type="text/css" rel="stylesheet" href="/css/config.css">
+    <!-- Libraries -->
+    <link type="text/css" rel="stylesheet" href="/css/libs.css">
+    <!-- Template Styles -->
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <!-- Responsive -->
+    <link type="text/css" rel="stylesheet" href="/css/responsive.css">
+    <!-- Light Mode Theme -->
+    <link type="text/css" rel="stylesheet" href="/css/theme-light.css">
+    <!-- Fullwidth Fix -->
+    <link type="text/css" rel="stylesheet" href="/css/fullwidth-fix.css">
+    <!-- CTA Gradient -->
+    <link type="text/css" rel="stylesheet" href="/css/cta-gradient.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/img/favicon (1).svg" sizes="32x32">
+    
+    <!-- Metadatos Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://edicionaular.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://edicionaular.com/img/social-edicion.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Metadatos Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://edicionaular.com/img/social-edicion.webp" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2CTQCP83WM"></script>
+    <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2CTQCP83WM');
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="bringer-header" class="is-frosted is-sticky" data-appear="fade-down" data-unload="fade-up">
+        <!-- Desktop Header -->
+        <div class="bringer-header-inner">
+            <!-- Header Logo -->
+            <div class="bringer-header-lp">
+                <a href="/" class="bringer-logo">
+                    <img src="/img/Edicion-Aular-Logo.svg" alt="Logo de Edición Aular, Agencia de Publicidad Digital" width="130" height="70">
+                </a>
+            </div>
+            
+            <!-- Main Menu -->
+            <div class="bringer-header-mp">
+                <nav class="bringer-nav">
+                    <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/nosotros">Nosotros</a>
+                        </li>
+                        <li>
+                            <a href="#">Servicios</a>
+                            <ul class="sub-menu">
+                                <li><a href="/lanzamientos-digitales">Lanzamientos</a></li>
+                                <li><a href="/diseno-web">Diseño Web</a></li>
+                                <li><a href="/branding">Branding</a></li>
+                                <li><a href="/produccion-audiovisual">Audiovisuales</a></li>
+                                <li><a href="/meta-ads-google-ads">Meta & Google Ads</a></li>
+                                <li><a href="/streaming">Streaming Profesional</a></li>
+                                <li><a href="/mentoria">Mentoría de Marca</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/portfolio">Portafolio</a>
+                        </li>
+                        <li>
+                            <a href="/blog">Blog</a>
+                        </li>
+                        <li>
+                            <a href="/contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Header Button -->
+            <div class="bringer-header-rp" style="display: flex; align-items: center;">
+                <a href="https://cal.com/edicion-aular-website" class="bringer-button">Agenda una Cita</a>
+                <ThemeToggle />
+            </div>
+        </div>
+
+        <!-- Mobile Header -->
+        <div class="bringer-mobile-header-inner">
+            <a href="/" class="bringer-logo">
+                <img src="/img/Edicion-Aular-Logo.svg" alt="Logo de Edición Aular, Agencia de Publicidad Digital" width="120" height="60">
+            </a>
+            <a href="#" class="bringer-mobile-menu-toggler">
+                <i class="bringer-menu-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Main -->
+    <main id="bringer-main">
+        <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer id="bringer-footer" data-appear="fade-up" data-unload="fade-down">
+        <!-- Footer Widgets Area -->
+        <div class="bringer-footer-widgets">
+            <div class="stg-container">
+                <div class="stg-row" data-stagger-appear="fade-left" data-stagger-delay="100">
+                    <div class="stg-col-5 stg-tp-col-12 stg-tp-bottom-gap-l">
+                        <div class="bringer-info-widget">
+                            <a href="/" class="bringer-logo footer-logo">
+                                <img src="/img/Edicion-Aular-Logo.png" alt="Logo de Edición Aular" width="130" height="70">
+                            </a>
+                            <div class="bringer-info-description">Somos un equipo de diseñadores, desarrolladores y estrategas de marketing comprometidos con llevar negocios de todos los tamaños al siguiente nivel. Con años de experiencia, diseñamos soluciones que conectan con audiencias y generan resultados.</div>
+                            <span class="bringer-label">Síguenos:</span>
+                            <ul class="bringer-socials-list" data-stagger-appear="fade-up" data-stagger-delay="75">
+                                <li><a href="https://www.facebook.com/edicionaular" target="_blank" class="bringer-socials-facebook"><i></i></a></li>
+                                <li><a href="https://www.instagram.com/edicion_aular/" target="_blank" class="bringer-socials-instagram"><i></i></a></li>
+                                <li><a href="https://vimeo.com/user67007640" target="_blank" class="bringer-socials-vimeo"><i></i></a></li>
+                                <li><a href="https://www.tiktok.com/@edicionaular8" target="_blank" class="bringer-socials-tiktok"><i></i></a></li>
+                                <li><a href="https://wa.link/tjepy5" target="_blank" class="bringer-socials-whatsapp"><i></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="stg-col-2 stg-offset-1 stg-tp-col-4 stg-m-col-4">
+                        <div class="bringer-widget">
+                            <h6>Servicios</h6>
+                            <div class="bringer-menu-widget">
+                                <ul>
+                                    <li><a href="/lanzamientos-digitales">Lanzamientos</a></li>
+                                    <li><a href="/diseno-web">Diseño Web</a></li>
+                                    <li><a href="/branding">Branding</a></li>
+                                    <li><a href="/produccion-audiovisual">Audiovisuales</a></li>
+                                    <li><a href="/meta-ads-google-ads">Meta & Google Ads</a></li>
+                                    <li><a href="/streaming">Streaming Profesional</a></li>
+                                    <li><a href="/mentoria">Mentoría de Marca</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stg-col-2 stg-tp-col-4 stg-m-col-4">
+                        <div class="bringer-widget">
+                            <h6>Nosotros</h6>
+                            <div class="bringer-menu-widget">
+                                <ul>
+                                    <li><a href="/nosotros">Acerca de</a></li>
+                                    <li><a href="#">Mi Equipo</a></li>
+                                    <li><a href="#">Testimonios</a></li>
+                                    <li><a href="/contacto">Contacto</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stg-col-2 stg-tp-col-4 stg-m-col-4">
+                        <div class="bringer-widget">
+                            <h6>Recursos</h6>
+                            <div class="bringer-menu-widget">
+                                <ul>
+                                    <li><a href="/blog">Blog</a></li>
+                                    <li><a href="/faq">Preguntas Frecuentes</a></li>
+                                    <li><a href="/servicios">Nuestros Servicios</a></li>
+                                    <li><a href="#">Términos y Condiciones</a></li>
+                                    <li><a href="#">Política de Privacidad</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Copyright Line -->
+        <div class="bringer-footer-line">
+            <div class="stg-container">
+                <div class="align-center">
+                    Copyright &copy; Edición Aular 2025. Todos los Derechos Reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Right Click Protection Block -->
+    <div class="bringer-rcp-wrap">
+        <div class="bringer-rcp-overlay"></div>
+        <div class="bringer-rcp-container">
+            <h2>Copiar datos de la página no esta permitido 😔</h2>
+            <p>Pero puedes seguir navegando y viendo el tiempo que tu quieras 😉</p>
+        </div>
+    </div>
+
+    <!-- Dynamic Backlight -->
+    <div class="bringer-backlight"></div>
+
+    <!-- Scripts -->
+    <script is:inline src="/js/lib/jquery.min.js"></script>
+    <script is:inline src="/js/lib/libs.js"></script>
+    <script is:inline src="/js/st-core.js"></script>
+    <script is:inline src="/js/classes.js"></script>
+    <script is:inline src="/js/main.js"></script>
+
+    <!-- Active Menu Script -->
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const menuItems = document.querySelectorAll('.main-menu > li');
+            const subMenuItems = document.querySelectorAll('.sub-menu li');
+            
+            // Remove all current-menu-item and current-menu-parent classes from main menu
+            menuItems.forEach(item => {
+                item.classList.remove('current-menu-item', 'current-menu-parent');
+            });
+            
+            // Remove all current-menu-item classes from submenu
+            subMenuItems.forEach(item => {
+                item.classList.remove('current-menu-item');
+            });
+            
+            // Check submenu items first
+            let submenuMatched = false;
+            subMenuItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (!link) return;
+                
+                const href = link.getAttribute('href');
+                
+                // Check if current page matches a submenu item
+                if (href === currentPath) {
+                    item.classList.add('current-menu-item');
+                    // Mark parent "Servicios" as current-menu-parent
+                    const servicesItem = Array.from(menuItems).find(mi => 
+                        mi.querySelector('a')?.textContent.trim() === 'Servicios'
+                    );
+                    if (servicesItem) {
+                        servicesItem.classList.add('current-menu-parent');
+                    }
+                    submenuMatched = true;
+                }
+            });
+            
+            // If no submenu matched, check main menu items
+            if (!submenuMatched) {
+                menuItems.forEach(item => {
+                    const link = item.querySelector('a');
+                    if (!link) return;
+                    
+                    const href = link.getAttribute('href');
+                    
+                    // Check for exact match
+                    if (href === currentPath || (currentPath === '/' && href === '/')) {
+                        item.classList.add('current-menu-item');
+                    } else if (currentPath.includes(href) && href !== '/' && href !== '#') {
+                        item.classList.add('current-menu-item');
+                    }
+                });
+            }
+
+            // FORCE pink color for active menu indicator in light mode
+            function updateMenuColors() {
+                const isLightMode = document.documentElement.classList.contains('light-mode');
+                if (isLightMode) {
+                    // Force pink color for main menu indicators
+                    const activeMenuLinks = document.querySelectorAll('.main-menu > li.current-menu-item > a, .main-menu > li.current-menu-parent > a');
+                    activeMenuLinks.forEach(link => {
+                        const style = document.createElement('style');
+                        style.textContent = `
+                            html.light-mode .main-menu > li.current-menu-item > a::after,
+                            html.light-mode .main-menu > li.current-menu-parent > a::after {
+                                background-color: #ff0080 !important;
+                                background: #ff0080 !important;
+                            }
+                        `;
+                        if (!document.getElementById('menu-pink-override')) {
+                            style.id = 'menu-pink-override';
+                            document.head.appendChild(style);
+                        }
+                    });
+                }
+            }
+
+            // Run on load
+            updateMenuColors();
+
+            // Also run when theme changes
+            const observer = new MutationObserver(updateMenuColors);
+            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+---
+// Componente Opcional: Widget de Posts Recientes
+// Puedes usar este componente en cualquier página para mostrar los últimos posts del blog
+
+import blogData from '../data/blog.json';
+
+// Props
+const { limit = 3, title = "Últimos Artículos del Blog" } = Astro.props;
+
+// Obtener posts más recientes
+const recentPosts = blogData
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, limit);
+---
+
+<section class="bringer-recent-posts-widget">
+    <div class="bringer-section-title stg-bottom-gap">
+        <h3>{title}<span class="bringer-accent">.</span></h3>
+    </div>
+
+    <div class="bringer-posts-list" data-stagger-appear="fade-up" data-stagger-delay="100">
+        {recentPosts.map((post) => (
+            <article class="bringer-post-item">
+                <a href={`/blog/${post.slug}`} class="bringer-post-item-link">
+                    <div class="bringer-post-item-image">
+                        <img 
+                            class="bringer-lazy" 
+                            src="/img/null.png" 
+                            data-src={post.image} 
+                            alt={post.title}
+                            width="400"
+                            height="300"
+                        >
+                        <span class="bringer-post-item-category">{post.category}</span>
+                    </div>
+                    <div class="bringer-post-item-content">
+                        <h5>{post.title}</h5>
+                        <p class="bringer-meta">
+                            {new Date(post.date).toLocaleDateString('es-ES', { 
+                                year: 'numeric', 
+                                month: 'short', 
+                                day: 'numeric' 
+                            })} • {post.readTime}
+                        </p>
+                    </div>
+                </a>
+            </article>
+        ))}
+    </div>
+
+    <div class="align-center stg-top-gap">
+        <a href="/blog" class="bringer-arrow-link">Ver todos los artículos</a>
+    </div>
+</section>
+
+<style>
+    .bringer-recent-posts-widget {
+        padding: 2rem 0;
+    }
+
+    .bringer-posts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .bringer-post-item {
+        background: var(--bringer-s-container-bg);
+        border-radius: var(--bringer-default-br);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid var(--bringer-s-border);
+    }
+
+    .bringer-post-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .bringer-post-item-link {
+        display: flex;
+        gap: 1.5rem;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .bringer-post-item-image {
+        position: relative;
+        flex-shrink: 0;
+        width: 180px;
+        height: 120px;
+        overflow: hidden;
+    }
+
+    .bringer-post-item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .bringer-post-item:hover .bringer-post-item-image img {
+        transform: scale(1.05);
+    }
+
+    .bringer-post-item-category {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        background: var(--bringer-s-accent);
+        color: var(--bringer-s-accented-text);
+        padding: 0.25rem 0.625rem;
+        border-radius: var(--bringer-small-br);
+        font-size: 0.75rem;
+        font-weight: 600;
+        z-index: 2;
+    }
+
+    .bringer-post-item-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem 1.5rem 1rem 0;
+        flex: 1;
+    }
+
+    .bringer-post-item-content h5 {
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+        color: var(--bringer-s-heading);
+        transition: color 0.3s ease;
+    }
+
+    .bringer-post-item:hover .bringer-post-item-content h5 {
+        color: var(--bringer-s-accent);
+    }
+
+    .bringer-post-item-content .bringer-meta {
+        font-size: 0.875rem;
+        color: var(--bringer-s-text);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .bringer-post-item-link {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .bringer-post-item-image {
+            width: 100%;
+            height: 200px;
+        }
+
+        .bringer-post-item-content {
+            padding: 0 1rem 1rem 1rem;
+        }
+    }
+</style>

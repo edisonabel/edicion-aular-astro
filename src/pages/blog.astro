@@ -1,0 +1,329 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import blogData from '../data/blog.json';
+
+// Ordenar posts por fecha (más recientes primero)
+const allPosts = blogData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const featuredPosts = allPosts.filter(p => p.featured);
+const recentPosts = allPosts.slice(0, 6);
+
+// Obtener categorías únicas
+const categories = [...new Set(blogData.map(p => p.category))];
+---
+
+<BaseLayout 
+    title="Blog | Edición Aular - Consejos de Marketing y Diseño" 
+    description="Descubre estrategias de marketing digital, diseño web, branding y más. Consejos prácticos para hacer crecer tu negocio online.">
+    
+    <div class="stg-container">
+        <!-- Hero Section -->
+        <section>
+            <div class="bringer-hero-block bringer-hero-type02">
+                <div class="stg-row">
+                    <div class="stg-col-8 stg-offset-2 align-center">
+                        <h1 class="bringer-page-title" data-split-appear="fade-up" data-split-unload="fade-up">
+                            Blog de Marketing Digital<span class="bringer-accent">.</span>
+                        </h1>
+                        <p class="bringer-large-text" data-appear="fade-up" data-delay="100" data-unload="fade-up">
+                            Estrategias, tendencias y consejos prácticos para llevar tu marca al siguiente nivel. 
+                            <span class="bringer-accent">Contenido creado por expertos, pensado para creadores.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Posts Section -->
+        {featuredPosts.length > 0 && (
+            <section class="backlight-top">
+                <div class="stg-row bringer-section-title">
+                    <div class="stg-col-8 stg-offset-2">
+                        <div class="align-center">
+                            <h2 data-appear="fade-up" data-unload="fade-up">Artículos Destacados</h2>
+                            <p class="bringer-large-text" data-appear="fade-up" data-unload="fade-up" data-delay="100">
+                                Los artículos más relevantes y populares de nuestro blog
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bringer-grid-3cols stg-bottom-gap-l" data-stagger-appear="zoom-in" data-stagger-delay="100">
+                    {featuredPosts.map((post) => (
+                        <div class="bringer-block bringer-blog-card">
+                            <div class="bringer-blog-card-image">
+                                <img class="bringer-lazy" src="/img/null.png" data-src={post.image} alt={post.title} width="800" height="600">
+                                <span class="bringer-blog-card-category">{post.category}</span>
+                            </div>
+                            <div class="bringer-blog-card-footer">
+                                <div class="bringer-blog-card-title">
+                                    <h5>{post.title}</h5>
+                                    <p>{post.excerpt}</p>
+                                </div>
+                                <div class="bringer-blog-card-meta">
+                                    <span class="bringer-meta">{post.date} • {post.readTime} lectura</span>
+                                </div>
+                            </div>
+                            <a href={`/blog/${post.slug}`}></a>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        <!-- All Posts Section -->
+        <section>
+            <div class="stg-row bringer-section-title">
+                <div class="stg-col-8 stg-offset-2">
+                    <div class="align-center">
+                        <h2 data-appear="fade-up" data-unload="fade-up">Todos los Artículos</h2>
+                        <p class="bringer-large-text" data-appear="fade-up" data-unload="fade-up" data-delay="100">
+                            Explora nuestro archivo completo de contenido
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Filter -->
+            <div class="bringer-filter-buttons align-center stg-bottom-gap" data-appear="fade-up">
+                <button class="bringer-filter-button is-active" data-filter="*">Todos</button>
+                {categories.map((category) => (
+                    <button class="bringer-filter-button" data-filter={`.category-${category.toLowerCase().replace(/\s+/g, '-')}`}>
+                        {category}
+                    </button>
+                ))}
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="bringer-grid-3cols bringer-isotope-grid" data-stagger-appear="zoom-in" data-stagger-delay="100">
+                {allPosts.map((post) => (
+                    <div class={`bringer-block bringer-blog-card category-${post.category.toLowerCase().replace(/\s+/g, '-')}`}>
+                        <div class="bringer-blog-card-image">
+                            <img class="bringer-lazy" src="/img/null.png" data-src={post.image} alt={post.title} width="800" height="600">
+                            <span class="bringer-blog-card-category">{post.category}</span>
+                        </div>
+                        <div class="bringer-blog-card-footer">
+                            <div class="bringer-blog-card-title">
+                                <h5>{post.title}</h5>
+                                <p>{post.excerpt}</p>
+                            </div>
+                            <div class="bringer-blog-card-meta">
+                                <div class="bringer-blog-card-author">
+                                    <div class="bringer-blog-card-author-name">
+                                        <h6>{post.author}</h6>
+                                        <span class="bringer-meta">{post.date}</span>
+                                    </div>
+                                </div>
+                                <span class="bringer-meta">{post.readTime} lectura</span>
+                            </div>
+                        </div>
+                        <a href={`/blog/${post.slug}`}></a>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- Newsletter CTA Section -->
+        <section class="divider-top backlight-top">
+            <div class="stg-row">
+                <div class="stg-col-6 stg-offset-3 align-center">
+                    <div class="bringer-block" data-appear="fade-up">
+                        <h3>Recibe Contenido Exclusivo<span class="bringer-accent">.</span></h3>
+                        <p class="bringer-large-text">
+                            Suscríbete a nuestro newsletter y recibe tips, estrategias y recursos 
+                            directamente en tu inbox cada semana.
+                        </p>
+                        <form class="bringer-contact-form stg-top-gap">
+                            <div class="bringer-form-content">
+                                <input 
+                                    type="email" 
+                                    placeholder="Tu correo electrónico" 
+                                    name="email" 
+                                    required
+                                    class="bringer-input"
+                                >
+                                <button type="submit" class="bringer-button">
+                                    Suscribirme
+                                </button>
+                            </div>
+                        </form>
+                        <p class="bringer-meta stg-top-gap-s">
+                            No spam. Solo contenido valioso. Cancela cuando quieras.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="divider-top">
+            <div class="bringer-bento-grid bringer-grid-cta">
+                <div class="is-large bringer-masked-block" data-appear="fade-left" data-unload="fade-left">
+                    <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
+                        <div class="bringer-grid-cta-heading">¿Listo Para Transformar Tu Marca?</div>
+                    </div>
+                    <div class="bringer-masked-content at-bottom-right">
+                        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Hablemos de tu proyecto →</p>
+                    </div>
+                </div>
+
+                <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
+                    <h3>Agenda una consultoría gratuita y descubre cómo podemos ayudarte.</h3>
+                </div>
+
+                <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
+                    <a href="https://cal.com/edicion-aular-website" class="bringer-square-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </a>
+                </div>
+
+                <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
+                    <img src="/img/cta/contact3.webp" alt="Contacto" width="960" height="960">
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>
+
+<style>
+    /* Blog Cards Styles */
+    .bringer-blog-card {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .bringer-blog-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .bringer-blog-card-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--bringer-default-br);
+        margin-bottom: 1.5rem;
+    }
+
+    .bringer-blog-card-category {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: var(--bringer-s-accent);
+        color: var(--bringer-s-accented-text);
+        padding: 0.5rem 1rem;
+        border-radius: var(--bringer-small-br);
+        font-size: 0.875rem;
+        font-weight: 600;
+        z-index: 5;
+    }
+
+    .bringer-blog-card-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .bringer-blog-card-title h5 {
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .bringer-blog-card-title p {
+        color: var(--bringer-s-text);
+        font-size: 0.9375rem;
+        line-height: 1.6;
+    }
+
+    /* ENLACE CLICKEABLE - Cubre toda la tarjeta */
+    .bringer-blog-card > a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        cursor: pointer;
+    }
+
+    .bringer-blog-card-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1rem;
+        border-top: 1px solid var(--bringer-s-border);
+    }
+
+    .bringer-blog-card-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .bringer-blog-card-author-name h6 {
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Filter Buttons */
+    .bringer-filter-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+    }
+
+    .bringer-filter-button {
+        background: var(--bringer-s-container-bg);
+        color: var(--bringer-s-text);
+        border: 1px solid var(--bringer-s-border);
+        padding: 0.625rem 1.25rem;
+        border-radius: var(--bringer-small-br);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .bringer-filter-button:hover,
+    .bringer-filter-button.is-active {
+        background: var(--bringer-s-accent);
+        color: var(--bringer-s-accented-text);
+        border-color: var(--bringer-s-accent);
+    }
+
+    /* Newsletter Form */
+    .bringer-contact-form .bringer-form-content {
+        display: flex;
+        gap: 1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .bringer-contact-form .bringer-input {
+        flex: 1;
+        background: var(--bringer-s-body-bg);
+        border: 2px solid var(--bringer-s-border);
+        color: var(--bringer-s-heading);
+        padding: 1rem 1.5rem;
+        border-radius: var(--bringer-small-br);
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .bringer-contact-form .bringer-input::placeholder {
+        color: var(--bringer-s-text);
+        opacity: 0.6;
+    }
+
+    .bringer-contact-form .bringer-input:focus {
+        border-color: var(--bringer-s-accent);
+        outline: none;
+        background: var(--bringer-s-container-bg);
+    }
+
+    @media (max-width: 768px) {
+        .bringer-contact-form .bringer-form-content {
+            flex-direction: column;
+        }
+    }
+</style>

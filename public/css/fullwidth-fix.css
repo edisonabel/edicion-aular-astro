@@ -1,0 +1,25 @@
+/* Fix para secciones fullwidth */
+.is-fullwidth {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    max-width: none !important;
+}
+
+.is-stretched {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Asegurar que el marquee ocupe todo */
+.bringer-marquee {
+    width: 100% !important;
+    overflow: hidden;
+}
+
+.bringer-marquee-inner {
+    width: 100% !important;
+}

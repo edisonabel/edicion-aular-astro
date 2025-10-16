@@ -1,0 +1,155 @@
+/* ========================================
+   LIGHT MODE THEME VARIABLES
+   ======================================== */
+
+html.light-mode {
+    /* Background Colors */
+    --bringer-s-body-bg: #F5F7FA;
+    --bringer-s-nav: #FFFFFFEE;
+    --bringer-s-container-bg: #FFFFFF;
+    --bringer-s-container-frosted: #FFFFFFEE;
+    
+    /* Text Colors */
+    --bringer-s-heading: #07090D;
+    --bringer-s-heading-fade: #07090DC0;
+    --bringer-s-text: #2A2D35;
+    
+    /* Accent Colors (mantener los mismos) */
+    --bringer-s-accent: #ff005f;
+    --bringer-button-hover-bg: #ff001f;
+    --bringer-s-text-accent: var(--bringer-s-accent);
+    
+    /* Menu Active Indicator - ROSA en light mode */
+    --bringer-c-menu-active: #ff0057;
+    
+    /* Borders & Effects */
+    --bringer-s-border: #07090D27;
+    --bringer-s-backlight: #07090D12;
+    
+    /* Shadow for light mode */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Light Mode Specific Adjustments */
+html.light-mode body {
+    background-color: var(--bringer-s-body-bg);
+    color: var(--bringer-s-text);
+}
+
+html.light-mode #bringer-header {
+    background-color: var(--bringer-s-nav);
+    border-bottom: 1px solid var(--bringer-s-border);
+}
+
+html.light-mode .bringer-block {
+    background-color: var(--bringer-s-container-bg);
+    border: 1px solid var(--bringer-s-border);
+}
+
+html.light-mode .bringer-button,
+html.light-mode .bringer-btn {
+    background: linear-gradient(135deg, var(--bringer-s-accent), var(--bringer-button-hover-bg));
+    color: #FFFFFF;
+}
+
+html.light-mode .bringer-footer-line {
+    background-color: var(--bringer-s-container-bg);
+    border-top: 1px solid var(--bringer-s-border);
+}
+
+/* Marquee siempre con letras blancas */
+html.light-mode .bringer-marquee h2 {
+    color: #FFFFFF !important;
+}
+
+/* Menu active indicator (barrita) en ROSA para light mode - MUY ESPECÍFICO */
+html.light-mode .bringer-nav .main-menu > li.current-menu-item > a::after,
+html.light-mode .bringer-nav .main-menu > li.current-menu-parent > a::after,
+html.light-mode .main-menu > li.current-menu-item > a::after,
+html.light-mode .main-menu > li.current-menu-parent > a::after {
+    background-color: #ff0080 !important;
+    background: #ff0080 !important;
+}
+
+/* Sombra rosa para el texto activo del menú */
+html.light-mode .main-menu > li.current-menu-item > a,
+html.light-mode .main-menu > li.current-menu-parent > a {
+    text-shadow: 0 0 10px rgba(255, 0, 128, 0.2);
+}
+
+/* Header con sombra rosa sutil en light mode */
+html.light-mode #bringer-header {
+    box-shadow: 0 2px 15px rgba(255, 0, 128, 0.08) !important;
+}
+
+/* Barrita del menú activo - ROSA con sombra rosa sutil en light mode */
+html.light-mode .bringer-active-menu-ind {
+    background-color: #ff0057 !important;
+    box-shadow: 0 2px 8px rgba(255, 0, 87, 0.15) !important;
+}
+
+/* Submenu - Sombra ROSA en light mode */
+html.light-mode .sub-menu {
+    box-shadow: 0 10px 40px rgba(255, 0, 128, 0.15) !important;
+}
+
+/* Submenu item activo - Barra izquierda ROSA en light mode */
+html.light-mode .sub-menu li.current-menu-item::before {
+    background-color: #ff0080 !important;
+}
+
+html.light-mode .sub-menu li.current-menu-item a {
+    color: #ff0080 !important;
+    font-weight: 600;
+}
+
+/* Botón "Agenda una Cita" en light mode - sin border negro y con sombra rosa */
+html.light-mode .bringer-button {
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+html.light-mode .bringer-button:hover {
+    box-shadow: 0 6px 20px rgba(255, 0, 128, 0.5) !important;
+}
+
+/* Texto BLANCO en áreas rosas - light mode */
+html.light-mode .bringer-counter-number,
+html.light-mode .bringer-masked-block.is-accented *,
+html.light-mode .bg-lava *,
+html.light-mode .bringer-grid-cta-media *,
+html.light-mode .bringer-block.is-accented *,
+html.light-mode [class*="bg-"] h1,
+html.light-mode [class*="bg-"] h2,
+html.light-mode [class*="bg-"] h3,
+html.light-mode [class*="bg-"] h4,
+html.light-mode [class*="bg-"] h5,
+html.light-mode [class*="bg-"] h6,
+html.light-mode [class*="bg-"] p,
+html.light-mode [class*="bg-"] span,
+html.light-mode [class*="bg-"] div {
+    color: #FFFFFF !important;
+}
+
+/* Flechas/iconos BLANCOS en áreas rosas */
+html.light-mode .bringer-icon.bringer-icon-explore,
+html.light-mode .bg-lava .bringer-icon,
+html.light-mode .is-accented .bringer-icon {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+}
+
+html.light-mode .bg-lava .bringer-icon::before,
+html.light-mode .is-accented .bringer-icon::before {
+    color: #FFFFFF !important;
+}
+
+/* Smooth transition when switching themes */
+html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

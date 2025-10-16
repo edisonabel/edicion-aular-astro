@@ -1,0 +1,15 @@
+# Configuración para Netlify
+
+[build]
+  command = "npm run build"
+  publish = "dist/"
+
+[build.environment]
+  # Asegura que se use una versión de Node.js compatible con Astro
+  NODE_VERSION = "18"
+
+# Redirección para manejar rutas dinámicas de Astro en SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

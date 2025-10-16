@@ -1,0 +1,62 @@
+/* CTA Gradient Animation - bg-lava */
+.bg-lava {
+    background: linear-gradient(135deg, #ff0080, #ff0055, #ff1744, #e91e63, #c2185b, #880e4f) !important;
+    background-size: 400% 400% !important;
+    animation: gradient-shift 8s ease infinite !important;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.bringer-grid-cta-heading {
+    position: relative;
+    z-index: 2;
+    color: #FFFFFF !important;
+    font-size: 3rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+}
+
+/* Full width copyright bar */
+.bringer-footer-line {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    max-width: none !important;
+    padding: 1.5rem 0;
+}
+
+/* Dark mode - fondo negro, texto blanco */
+.bringer-footer-line {
+    background-color: #07090D !important;
+}
+
+.bringer-footer-line .align-center {
+    color: #FFFFFF;
+}
+
+/* Light mode - fondo blanco, texto negro */
+html.light-mode .bringer-footer-line {
+    background-color: #FFFFFF !important;
+}
+
+html.light-mode .bringer-footer-line .align-center {
+    color: #07090D;
+}
+
+.bringer-footer-line .stg-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}

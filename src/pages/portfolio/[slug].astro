@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import portfolioData from '../../data/portfolio.json';
+
+export function getStaticPaths() {
+  return portfolioData.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout 
+    title={`${project.title} | Portafolio | Edición Aular 🚀✨`}
+    description={project.description}
+>
+    <div class="stg-container">
+        <!-- Section: Page Title -->
+        <section class="is-fullwidth">
+            <div class="stg-row stg-bottom-gap-l">
+                <div class="stg-col-8 stg-offset-2 align-center">
+                    <span class="bringer-label" data-appear="fade-up">{project.category}</span>
+                    <h1 class="bringer-page-title" data-appear="fade-up" data-delay="100">{project.title}</h1>
+                    <p class="bringer-large-text" data-appear="fade-up" data-delay="200">{project.description}</p>
+                </div>
+            </div>
+            <div class="bringer-parallax-media" data-parallax-speed="20" data-appear="fade-up" data-delay="300">
+                <img src={project.image} alt={project.title} width="1920" height="1080">
+            </div>
+        </section>
+
+        <!-- Section: Project Details -->
+        <section>
+            <div class="stg-row stg-large-gap stg-valign-middle">
+                <div class="stg-col-6 stg-tp-bottom-gap-l" data-appear="fade-right">
+                    <h2>Sobre el Proyecto</h2>
+                    <p class="bringer-large-text">{project.description}</p>
+                    <p>Este proyecto representa nuestra dedicación a crear experiencias digitales excepcionales que impulsan el crecimiento de nuestros clientes.</p>
+                </div>
+                <div class="stg-col-6" data-appear="fade-left" data-delay="100">
+                    <div class="bringer-grid-2cols bringer-m-grid-2cols stg-small-gap">
+                        <div class="bringer-counter" data-delay="1000">
+                            <div class="bringer-counter-number">100</div>
+                            <div class="bringer-counter-label">% Satisfacción</div>
+                        </div>
+                        <div class="bringer-counter" data-delay="1000">
+                            <div class="bringer-counter-number" data-suffix="+">50</div>
+                            <div class="bringer-counter-label">Horas de Trabajo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: CTA -->
+        <section class="divider-top">
+            <div class="align-center">
+                <h2 data-appear="fade-up">¿Listo para el siguiente proyecto?</h2>
+                <p class="bringer-large-text" data-appear="fade-up" data-delay="100">Trabajemos juntos para crear algo extraordinario</p>
+                <div data-appear="fade-up" data-delay="200">
+                    <a href="/contacto" class="bringer-button">Contáctanos</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>

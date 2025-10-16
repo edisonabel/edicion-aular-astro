@@ -1,0 +1,162 @@
+--- 
+// ARCHIVO RECONSTRUIDO DESDE CERO - PASO 1
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import blogData from '../../data/blog.json';
+
+// Lógica para obtener los datos del post
+export async function getStaticPaths() {
+    return blogData.map(post => ({
+        params: { slug: post.slug },
+        props: { post }
+    }));
+}
+
+const { post } = Astro.props;
+
+// Formatear fecha para la metadata
+const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-ES', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+};
+---
+
+<BaseLayout 
+    title={`${post.title} | Blog Edición Aular`}
+    description={post.excerpt}>
+
+    <div class="stg-container">
+        <!-- PASO 1: Encabezado del Artículo -->
+        <section>
+            <div class="bringer-page-intro stg-bottom-gap-l">
+                <div class="stg-row">
+                    <div class="stg-col-8 stg-offset-2">
+                        <!-- Breadcrumb -->
+                        <nav class="bringer-breadcrumb">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/blog">Blog</a></li>
+                                <li><span>{post.category}</span></li>
+                            </ul>
+                        </nav>
+
+                        <!-- Título -->
+                        <h1 class="bringer-page-title">
+                            {post.title}
+                        </h1>
+
+                        <!-- Meta Info -->
+                        <div class="bringer-post-meta">
+                            <div class="bringer-post-author">
+                                <span class="bringer-meta">Por <strong>{post.author}</strong></span>
+                            </div>
+                            <span class="bringer-meta">•</span>
+                            <span class="bringer-meta">{formatDate(post.date)}</span>
+                            <span class="bringer-meta">•</span>
+                            <span class="bringer-meta">{post.readTime} de lectura</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASO 2: Contenido Completo del Artículo -->
+        <section>
+            <div class="stg-row">
+                <div class="stg-col-8 stg-offset-2">
+                    <article class="bringer-post-content">
+                        <!-- Excerpt (Resumen) -->
+                        <div class="bringer-post-excerpt">
+                            <p class="bringer-large-text">{post.excerpt}</p>
+                        </div>
+
+                        <!-- Cuerpo del Post -->
+                        <div class="bringer-post-body">
+                            <h2>Introducción</h2>
+                            <p>{post.content}</p>
+
+                            <p>En el mundo digital actual, la competencia es feroz y la atención del usuario es cada vez más limitada. Por eso, es fundamental contar con estrategias bien definidas y ejecutadas de manera profesional.</p>
+
+                            <h3>Los Pilares Fundamentales</h3>
+                            <p>Para construir una presencia digital sólida, necesitas enfocarte en varios aspectos clave que trabajan en conjunto para crear una experiencia cohesiva y efectiva.</p>
+
+                            <blockquote class="bringer-blockquote">
+                                <p>"El éxito en el marketing digital no viene de hacer muchas cosas, sino de hacer las cosas correctas de manera consistente."</p>
+                                <cite>— Edison Aular, Fundador de Edición Aular</cite>
+                            </blockquote>
+
+                            <h3>Estrategia y Planificación</h3>
+                            <p>Antes de lanzarte a crear contenido o campañas, necesitas un plan claro. Esto incluye:</p>
+                            <ul>
+                                <li>Definir objetivos medibles y alcanzables</li>
+                                <li>Conocer profundamente a tu audiencia objetivo</li>
+                                <li>Identificar los canales más efectivos para tu negocio</li>
+                            </ul>
+
+                            <h2>Conclusión</h2>
+                            <p>El marketing digital exitoso es una combinación de creatividad, estrategia y análisis. Si quieres llevar tu marca al siguiente nivel, <a href="/contacto">hablemos de tu proyecto</a>.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASO 3: CTA (Call to Action) -->
+        <section class="divider-top">
+            <div class="stg-row">
+                <div class="stg-col-8 stg-offset-2">
+                    <div class="bringer-cta-box bringer-block align-center">
+                        <h3>¿Te Gustó Este Artículo?<span class="bringer-accent">.</span></h3>
+                        <p class="bringer-large-text">
+                            Agenda una consultoría gratuita y descubre cómo podemos ayudarte a implementar estas estrategias en tu negocio.
+                        </p>
+                        <div class="stg-top-gap">
+                            <a href="https://cal.com/edicion-aular-website" class="bringer-button">Agendar Consultoría</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</BaseLayout>
+
+<style>
+    /* Estilos mínimos para esta fase */
+    .bringer-breadcrumb ul {
+        display: flex;
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.5rem 0;
+        font-size: 0.875rem;
+    }
+    .bringer-breadcrumb li:not(:last-child)::after {
+        content: '/';
+        margin-left: 0.5rem;
+    }
+    .bringer-post-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--bringer-s-border);
+    }
+    .bringer-post-content {
+        font-size: 1.0625rem;
+        line-height: 1.8;
+    }
+    .bringer-post-body h2 {
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+    }
+    .bringer-post-body h3 {
+        margin-top: 2.5rem;
+        margin-bottom: 1.25rem;
+    }
+</style>

@@ -1,0 +1,532 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import portfolioData from '../data/portfolio.json';
+
+// Obtener solo los primeros 5 proyectos para mostrar en home
+const featuredProjects = portfolioData.filter(p => p.featured).slice(0, 5);
+---
+
+<BaseLayout>
+    <div class="stg-container">
+        <!-- Hero Section -->
+        <section>
+            <div class="bringer-hero-block bringer-hero-type01">
+                <!-- Main Line -->
+                <div class="stg-row stg-bottom-gap-l stg-m-bottom-gap-l">
+                    <div class="stg-col-9 stg-tp-col-8 stg-m-col-12">
+                        <!-- Title -->
+                        <h1 class="bringer-page-title" data-split-appear="fade-up" data-split-unload="fade-up">
+                            Creatividad para Alcanzar el Éxito.
+                        </h1>
+                    </div>
+
+                    <div class="stg-col-3 stg-tp-col-4 stg-m-col-12">
+                        <!-- Social Proof -->
+                        <div class="bringer-hero-social-proof">
+                            <div data-stagger-appear="fade-up" data-stagger-delay="100" data-stagger-unload="fade-up">
+                                <img src="/img/home/social proof 1.webp" alt="Cliente satisfecho 1 de Edición Aular">
+                                <img src="/img/home/social proof 2.webp" alt="Cliente satisfecho 2 de Edición Aular">
+                                <img src="/img/home/social proof 3.webp" alt="Cliente satisfecho 3 de Edición Aular">
+                                <a href="/testimonials">+479</a>
+                            </div>
+                            <p data-appear="fade-up" data-unload="fade-up" data-delay="200">Más de 479 Clientes Confían</p>
+                        </div>
+                    </div>
+                </div><!-- .stg-row -->
+
+                <!-- Masked Media Container -->
+                <div class="bringer-hero-media-wrap bringer-masked-bottom-right bringer-masked-block stg-bottom-gap-l" 
+                     data-appear="zoom-out" data-unload="zoom-out">
+                    <!-- Masked Media -->
+                    <div class="bringer-hero-media bringer-masked-media" 
+                         data-appear="fade-right" data-unload="fade-left" data-delay="150" data-threshold="0">
+                        <video src="https://tresmarketing.s3.us-east-1.amazonaws.com/Hero+1080.webm" 
+                               poster="/img/home/home03-hero2.jpg" 
+                               playsinline muted loop autoplay preload="none"></video>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="bringer-masked-content at-bottom-right">
+                        <a href="#page01" class="bringer-square-button" data-appear="fade-left">
+                            <span class="bringer-icon bringer-icon-arrow-down"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Additional Information Line -->
+                <div class="stg-row stg-valign-bottom">
+                    <div class="stg-col-3 stg-tp-col-3 stg-m-col-6" data-appear="fade-up" data-delay="200" data-unload="fade-up">
+                        <div class="bringer-counter bringer-small-counter" data-delay="3000">
+                            <div class="bringer-counter-number">1500</div>
+                            <div class="bringer-counter-label">Proyectos Completados</div>
+                        </div>
+                    </div>
+
+                    <div class="stg-col-3 stg-tp-col-3 stg-m-col-6" data-appear="fade-up" data-delay="300" data-unload="fade-up">
+                        <div class="bringer-counter bringer-small-counter" data-delay="3000">
+                            <div class="bringer-counter-number" data-suffix="+">12</div>
+                            <div class="bringer-counter-label">Años de Experiencia</div>
+                        </div>
+                    </div>
+
+                    <div class="stg-col-6 stg-tp-col-6 stg-m-col-12 stg-m-top-gap" data-appear="fade-up" data-delay="400" data-unload="fade-up">
+                        <p class="bringer-large-text">
+                            <strong>Solo tienes una oportunidad para conectar.</strong><br>
+                            Diseñamos estrategias visuales que transforman tu marca en un éxito, 
+                            capturando la atención, generando emociones y entregando resultados excepcionales.
+                            <span class="bringer-accent"></span>
+                        </p>
+                    </div>
+                </div><!-- .stg-row -->
+            </div><!-- .bringer-hero-block -->
+        </section>
+
+        <!-- Section: About Us (¿Qué Esperas...) -->
+        <section class="backlight-top">
+            <div class="stg-row stg-large-gap stg-m-normal-gap">
+                <div class="stg-col-6 stg-tp-bottom-gap-l stg-m-bottom-gap" data-unload="fade-left">
+                    <div class="bringer-parallax-media">
+                        <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/jolu mockup.webp" alt="Mockup de Jolu creado por Edición Aular" width="960" height="960">
+                    </div>
+                </div>
+
+                <div class="stg-col-6 stg-vertical-space-between" data-unload="fade-right">
+                    <div>
+                        <h3>¿Qué Esperas de Una Agencia Creativa?</h3>
+
+                        <p class="bringer-large-text">¿Pagas a un experto para que te solucione un problema o para que te diga cómo hacerlo?</p>
+                        <p>Nos encargamos de todo. Con un brief claro, transformamos tus objetivos en soluciones, mientras tú te enfocas en lo que importa: hacer crecer tu negocio.</p>
+
+                        <p class="bringer-large-text">¿Esperas soluciones rápidas o estrategias que trasciendan?</p>
+                        <p>Las estrategias sólidas trascienden. Diseñamos soluciones que no solo impactan, sino que crecen contigo a largo plazo.</p>
+
+                        <p class="bringer-large-text">¿Quieres un diseño bonito o uno que conecte y funcione?</p>
+                        <p>Los diseños que funcionan conectan. Creamos proyectos que despiertan emociones y generan acción de manera auténtica y estratégica.</p>
+                    </div>
+
+                    <a href="/nosotros" class="bringer-icon-link">
+                        <div class="bringer-icon-wrap">
+                            <i class="bringer-icon bringer-icon-explore"></i>
+                        </div>
+                        <div class="bringer-icon-link-content">
+                            <h6>Conoce<br>Nuestro Equipo</h6>
+                            <span class="bringer-label">¿Qué nos Apasiona?</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Section: Marquee -->
+    <section class="is-fullwidth is-stretched" data-padding="none">
+        <div class="bringer-marquee" data-type="scroll" data-speed="50000">
+            <div class="bringer-marquee-inner">
+                <ul class="bringer-marquee-list">
+                    <li><h2>Branding</h2></li>
+                    <li><h2>Marketing</h2></li>
+                    <li><h2>Graphic Design</h2></li>
+                    <li><h2>Web Design</h2></li>
+                    <li><h2>UX/UI</h2></li>
+                    <li><h2>SEO</h2></li>
+                    <li><h2>Lanzamientos</h2></li>
+                    <li><h2>Productos Digitales</h2></li>
+                    <li><h2>Audiovisuales</h2></li>
+                    <li><h2>Streaming</h2></li>
+                    <li><h2>Meta & Google ADS</h2></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="stg-container">
+        <!-- Section: Nosotros -->
+        <section>
+            <div class="stg-row">
+                <div class="stg-col-4 stg-tp-bottom-gap-l" data-unload="fade-left">
+                    <div class="bringer-sticky-block">
+                        <h3>La Creatividad Es la Inteligencia Divirtiéndose.</h3>
+                        <p class="bringer-large-text">Nos divertimos creando soluciones que conectan y generan resultados. Cada diseño, cada estrategia, cada historia tiene un propósito: emocionar y convertir.</p>
+                        <div class="align-right">
+                            <a href="https://cal.com/edicion-aular-website" class="bringer-arrow-link">Hagamos que tu marca destaque</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stg-col-8">
+                    <div class="bringer-grid-2cols" data-stagger-appear="zoom-in" data-stagger-unload="zoom-out" data-threshold="0.5" data-stagger-delay="150">
+                        <!-- Card 1 -->
+                        <div class="bringer-price-card-item bringer-block">
+                            <div class="bringer-price-card-title">
+                                <div class="bringer-parallax-media">
+                                    <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/amar.svg" alt="Icono de pasión" width="100" height="100">
+                                </div>
+                                <h5>Nos encanta lo que hacemos<span class="bringer-accent">.</span></h5>
+                                <p>Resolver problemas con creatividad nos apasiona.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bringer-price-card-item bringer-block">
+                            <div class="bringer-price-card-title">
+                                <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/efectos-especiales.svg" alt="Icono de especialistas" width="100" height="100">
+                                <h5>Especialistas en cada área<span class="bringer-accent">.</span></h5>
+                                <p>Aquí no hay todólogos; cada proyecto tiene su experto.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bringer-price-card-item bringer-block">
+                            <div class="bringer-price-card-title">
+                                <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/pluma.svg" alt="Icono de diseño de historias" width="100" height="100">
+                                <h5>Diseños que cuentan historias<span class="bringer-accent">.</span></h5>
+                                <p>Porque si no conecta, no funciona.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="bringer-price-card-item bringer-block">
+                            <div class="bringer-price-card-title">
+                                <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/un-resultado-positivo-de-la-prueba-de-la-escuela.svg" alt="Icono de resultados positivos" width="100" height="100">
+                                <h5>Resultados que importan<span class="bringer-accent">.</span></h5>
+                                <p>Más de 479 marcas han confiado en nosotros porque entregamos impacto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Section: Portfolio Carousel -->
+    <section class="is-fullwidth is-stretched">
+        <!-- Section Title -->
+        <div class="stg-row bringer-section-title is-boxed">
+            <div class="stg-col-8 stg-offset-2">
+                <div class="align-center">
+                    <h2 data-appear="fade-up" data-unload="fade-up">Nuestro Portafolio</h2>
+                    <p class="bringer-large-text" data-appear="fade-up" data-unload="fade-up" data-delay="100">No creemos en hablar demasiado de lo que hacemos. Mejor, déjanos mostrarte.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio Carousel -->
+        <div class="swiper bringer-carousel stg-bottom-gap-l" data-appear="fade-up" data-unload="fade-up" data-delay="200" data-count="4" data-m-count="1.5">
+            <div class="swiper-wrapper">
+                {featuredProjects.map((project) => (
+                    <div class="bringer-block bringer-portfolio-card swiper-slide">
+                        <div class="bringer-portfolio-card-image">
+                            <img class="bringer-lazy" src="/img/null.png" data-src={project.image} alt={`Proyecto ${project.title} por Edición Aular`} width="1200" height="1200">
+                        </div>
+                        <div class="bringer-portfolio-card-footer">
+                            <div class="bringer-portfolio-card-title">
+                                <span class="bringer-meta">{project.category}</span>
+                                <h6>{project.title}</h6>
+                            </div>
+                            <span class="bringer-icon bringer-icon-explore"></span>
+                        </div>
+                        <a href={`/portfolio/${project.slug}`}></a>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Pagination -->
+            <div class="swiper-pagination bringer-dots"></div>
+        </div>
+
+        <div class="align-center" data-appear="fade-up" data-unload="fade-up" data-delay="100">
+            <a href="/portfolio" class="bringer-button">Explora nuestro trabajo aquí</a>
+        </div>
+    </section>
+
+    <!-- Section: Nuestros Servicios (AL FINAL) -->
+    <section class="backlight-top">
+        <div class="stg-container">
+            <!-- Section Title -->
+            <div class="stg-row bringer-section-title">
+                <div class="stg-col-8 stg-offset-2">
+                    <div class="align-center">
+                        <h2 data-appear="fade-up" data-unload="fade-up">Nuestros Servicios</h2>
+                        <p class="bringer-large-text" data-appear="fade-up" data-unload="fade-up" data-delay="100">Ofrecemos una amplia gama de servicios creativos para ayudar a empresas de todos los tamaños a alcanzar sus metas. Nuestros servicios incluyen:</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services List -->
+            <div class="bringer-detailed-list-wrap" data-appear="fade-up" data-unload="fade-up" data-delay="200">
+                <ul class="bringer-detailed-list">
+                <li data-stagger-appear="fade-up" data-stagger-delay="100">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Lanzamientos de Productos Digitales<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>Cada lanzamiento es una oportunidad para impactar. Diseñamos campañas que capturan la atención desde el primer clic hasta la conversión, asegurándonos de que tu audiencia no solo vea, sino que actúe. 
+                        <span class="bringer-accent">Tu lanzamiento merece ser tan grande como tu visión.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/lanzamientos-digitales"></a>
+                </li>
+
+                <li data-stagger-appear="fade-up" data-stagger-delay="100">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Diseño de Sitios Web y Landing Pages<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>Creamos plataformas que no solo se ven bien, sino que trabajan por ti. Optimizadas para SEO y diseñadas para convertir, nuestras webs transforman visitantes curiosos en clientes fieles.
+                        <span class="bringer-accent">Es más que diseño, es conexión y resultados.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/diseno-web"></a>
+                </li>
+
+                <li data-stagger-appear="fade-up" data-stagger-delay="100">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Branding e Identidad Visual<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>Una marca fuerte es más que un logotipo. Diseñamos identidades que despiertan emociones y crean conexiones profundas con tu audiencia, dejando una impresión que perdura.
+                        <span class="bringer-accent">Porque tu marca debe ser recordada, no solo vista.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/branding"></a>
+                </li>
+
+                <li data-stagger-appear="fade-up" data-stagger-delay="100">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Producción Audiovisual<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>Las historias bien contadas marcan la diferencia. Creamos videos que inspiran y venden, diseñados para transmitir tu mensaje con claridad y creatividad.
+                        <span class="bringer-accent">Tu historia merece ser contada como nunca antes.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/produccion-audiovisual"></a>
+                </li>
+
+                <li data-stagger-appear="fade-up" data-stagger-delay="100">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Gestión de Meta Ads y Google Ads<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>¿Listo para atraer a los clientes ideales? Potenciamos tus campañas publicitarias en Meta y Google con estrategias que conectan y convierten. Desde la segmentación precisa hasta la optimización continua,
+                        <span class="bringer-accent">garantizamos que cada dólar invertido genere resultados medibles y escalables.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/meta-ads-google-ads"></a>
+                </li>
+
+                <li data-stagger-appear="fade-up" data-stagger-delay="100">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Streaming Profesional<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>Nuestras transmisiones en vivo destacan por su calidad y enfoque estratégico, ideales para que tu marca conecte en tiempo real.
+                        <span class="bringer-accent">Haz que tu audiencia se sienta parte de la experiencia.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/streaming"></a>
+                </li>
+
+                <li data-stagger-appear="fade-up" data-stagger-delay="100">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Mentoría de Marca Personal y Negocio Digital<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>Transforma tu marca y negocio en una historia de éxito. A través de sesiones personalizadas, te ayudamos a construir una identidad poderosa, conectar con tu audiencia y diseñar estrategias digitales que generan resultados reales.
+                        <span class="bringer-accent">Descubre el poder detrás de tu marca.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/mentoria"></a>
+                </li>
+            </ul>
+            </div><!-- .bringer-detailed-list-wrap -->
+
+            <div class="align-center stg-top-gap" data-appear="fade-up" data-unload="zoom-out" data-delay="100">
+                <a href="https://cal.com/edicion-aular-website" class="bringer-button">Agenda tu cita virtual y transforma tu marca</a>
+            </div>
+        </div><!-- .stg-container -->
+    </section>
+
+    <div class="stg-container">
+        <!-- Section: Why Choose Us -->
+        <section>
+            <div class="stg-row stg-large-gap">
+                <div class="stg-col-6 stg-tp-bottom-gap-l" data-unload="fade-left">
+                    <div class="bringer-sticky-block">
+                        <h2>¿Por qué Elegirnos?</h2>
+                        <p class="bringer-large-text">Somos apasionados por ayudar a empresas como la tuya a destacarse en el mercado. Aquí te explicamos por qué somos la mejor opción para ti</p>
+                        <div class="align-right">
+                            <a href="/nosotros" class="bringer-arrow-link">Acerca de Nosotros</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stg-col-6">
+                    <div class="bringer-grid-1col stg-normal-gap" data-stagger-appear="zoom-in" data-stagger-unload="zoom-out" data-threshold="0.5" data-stagger-delay="150">
+                        <!-- Card 1 -->
+                        <div class="bringer-block">
+                            <h4>Creamos experiencias <span class="bringer-accent">visuales impactantes</span><span class="bringer-accent">.</span></h4>
+                            <p>Nos especializamos en diseñar imágenes profesionales que capturan la atención en los primeros segundos.</p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bringer-block">
+                            <h4>Resultados <span class="bringer-accent">comprobados</span> en campañas<span class="bringer-accent">.</span></h4>
+                            <p>Nuestra experiencia nos ha permitido lograr resultados excepcionales en campañas para nuestros clientes.</p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bringer-block">
+                            <h4>Comunicación <span class="bringer-accent">clara y cercana</span><span class="bringer-accent">.</span></h4>
+                            <p>Valoramos la comunicación clara con nuestros clientes y trabajamos en estrecha colaboración contigo.</p>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="bringer-block">
+                            <h4>Nuestro <span class="bringer-accent">compromiso</span><span class="bringer-accent">.</span></h4>
+                            <ul>
+                                <li>Entendemos tus objetivos para crear soluciones personalizadas.</li>
+                                <li>Creamos imágenes que capturan la atención y conectan.</li>
+                                <li>Trabajamos para lograr resultados excepcionales.</li>
+                                <li>Mantenemos comunicación clara en todo momento.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Testimonials -->
+        <section class="backlight-top">
+            <div class="bringer-expand-on-scroll">
+                <img src="/img/home/mokcup 1 home.webp" alt="Testimonios" data-unload="fade-up">
+            </div>
+
+            <div class="stg-row stg-large-gap stg-top-gap-l">
+                <div class="stg-col-6 stg-tp-bottom-gap-l" data-unload="fade-left">
+                    <div class="bringer-sticky-block">
+                        <h2>Lo Que Dicen Nuestros Clientes</h2>
+                        <p class="bringer-large-text">Las historias que hemos creado no solo son visuales, también son reales.</p>
+                        <div class="align-right">
+                            <a href="#" class="bringer-arrow-link">Descubre más de nuestras historias de éxito</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stg-col-6">
+                    <div class="bringer-grid-1col stg-normal-gap">
+                        <!-- Testimonial 1 -->
+                        <div class="bringer-block bringer-tetimonials-card" data-appear="zoom-out" data-unload="fade-right" data-threshold="0.75">
+                            <div class="bringer-tetimonials-card-descr">
+                                Recomendado siempre. Trabajos impecables y con seguridad y responsabilidad siempre en sus entregas.
+                            </div>
+                            <div class="bringer-tetimonials-card-footer">
+                                <div class="bringer-tetimonials-card-name">
+                                    <h6>Karem Mendez</h6>
+                                    <span class="bringer-meta">CEO de Bloom Eco-Spa</span>
+                                </div>
+                                <div class="bringer-tetimonials-card-rate">
+                                    <span class="bringer-tetimonials-stars5"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="bringer-block bringer-tetimonials-card" data-appear="zoom-out" data-unload="fade-right" data-threshold="0.75" data-delay="100">
+                            <div class="bringer-tetimonials-card-descr">
+                                Excelente empresa. Estoy muy encantada con su tiempo de entrega con el proyecto. Muy ágiles y formales, aparte que están contigo en todo el proceso enviando información de cómo van, eso es genial.Me encanta la muchas opciones que tienen para brindar sus productos.
+                            </div>
+                            <div class="bringer-tetimonials-card-footer">
+                                <div class="bringer-tetimonials-card-name">
+                                    <h6>Katiuska Ortiz</h6>
+                                    <span class="bringer-meta">VP de Marketing, Tech Inc.</span>
+                                </div>
+                                <div class="bringer-tetimonials-card-rate">
+                                    <span class="bringer-tetimonials-stars5"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="bringer-block bringer-tetimonials-card" data-appear="zoom-out" data-unload="fade-right" data-threshold="0.75" data-delay="200">
+                            <div class="bringer-tetimonials-card-descr">
+                                Siempre he confiado en las capacidades y profesionalismo de Edison! La calidad de sus trabajos, entrega, y sus aportes, lo han convertido en mi aliado para cada uno de mis proyectos de negocio, campañas publicitarias y más. Sin duda, un recurso invaluable a la hora de elegir quien va a desarrollar la publicidad y página web de mis proyectos y el de mis amistades. ¡Te aplaudo de pie!
+                            </div>
+                            <div class="bringer-tetimonials-card-footer">
+                                <div class="bringer-tetimonials-card-name">
+                                    <h6>Norman A Alcantara</h6>
+                                    <span class="bringer-meta">CEO de Norman Cargo Service & Multi Services</span>
+                                </div>
+                                <div class="bringer-tetimonials-card-rate">
+                                    <span class="bringer-tetimonials-stars4"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 4 -->
+                        <div class="bringer-block bringer-tetimonials-card" data-appear="zoom-out" data-unload="fade-right" data-threshold="0.75" data-delay="300">
+                            <div class="bringer-tetimonials-card-descr">
+                                No solo nos entregaron diseño, nos entregaron una estrategia completa que nos hizo crecer.
+                            </div>
+                            <div class="bringer-tetimonials-card-footer">
+                                <div class="bringer-tetimonials-card-name">
+                                    <h6>Carolina Diaz</h6>
+                                    <span class="bringer-meta">CTO de Greentech Solutions</span>
+                                </div>
+                                <div class="bringer-tetimonials-card-rate">
+                                    <span class="bringer-tetimonials-stars4"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: CTA -->
+        <section class="divider-top">
+            <div class="bringer-bento-grid bringer-grid-cta">
+                <!-- Card grande izquierda con gradiente animado -->
+                <div class="is-large bringer-masked-block" data-appear="fade-left" data-unload="fade-left">
+                    <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
+                        <div class="bringer-grid-cta-heading">¿Estás Listo Para El Cambio?</div>
+                    </div>
+                    <div class="bringer-masked-content at-bottom-right">
+                        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Agenda tu cita hoy mismo →</p>
+                    </div>
+                </div>
+
+                <!-- Card mediano arriba derecha -->
+                <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
+                    <h3>Solo tienes una oportunidad para conectar. Hagamos que cuente.</h3>
+                </div>
+
+                <!-- Card pequeño botón abajo izquierda -->
+                <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
+                    <a href="https://cal.com/edicion-aular-website" class="bringer-square-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </a>
+                </div>
+
+                <!-- Card pequeño imagen abajo derecha -->
+                <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
+                    <img src="/img/cta/contact3.webp" alt="Mockups de celulares" width="960" height="960">
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>

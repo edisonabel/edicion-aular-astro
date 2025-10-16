@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Prompts para Imágenes de Blog</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #eee; background-color: #121212; margin: 0; padding: 2rem; }
+        .container { max-width: 900px; margin: 2rem auto; padding: 2rem; background-color: #1e1e1e; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #bb86fc; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #333; }
+        th { background-color: #333; color: #bb86fc; }
+        tr:nth-of-type(even) { background-color: #242424; }
+        button { background-color: #bb86fc; color: #121212; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background-color 0.3s; }
+        button:hover { background-color: #3700b3; }
+        .prompt-col { max-width: 400px; word-wrap: break-word; }
+        .toast { position: fixed; top: 20px; right: 20px; background-color: #03dac6; color: #121212; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 1000; opacity: 0; transition: opacity 0.5s; }
+        .toast.show { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎨 Generador de Prompts para Imágenes</h1>
+        <p style="text-align:center; color: #b0b0b0;">Copia los prompts para crear imágenes únicas para cada post de tu blog usando una IA generativa.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Título del Post</th>
+                    <th class="prompt-col">Prompt Sugerido</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="prompts-table-body"></tbody>
+        </table>
+    </div>
+
+    <div id="toast" class="toast">Prompt copiado al portapapeles</div>
+
+    <script>
+        async function loadPrompts() {
+            try {
+                const response = await fetch('./src/data/blog.json');
+                const blogData = await response.json();
+                const tableBody = document.getElementById('prompts-table-body');
+
+                blogData.forEach(post => {
+                    const prompt = createPrompt(post);
+                    const row = `
+                        <tr>
+                            <td>${post.title}</td>
+                            <td class="prompt-col">${prompt}</td>
+                            <td><button onclick="copyToClipboard('${prompt}')">Copiar</button></td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error('Error cargando el blog.json:', error);
+                const tableBody = document.getElementById('prompts-table-body');
+                tableBody.innerHTML = '<tr><td colspan="3" style="text-align:center; color: #cf6679;">No se pudo cargar el archivo blog.json. Asegúrate de que la ruta es correcta.</td></tr>';
+            }
+        }
+
+        function createPrompt(post) {
+            const baseStyle = "Fotografía cinematográfica, estilo editorial, colores vibrantes, iluminación profesional, alta definición 4K, enfocado en un concepto abstracto que representa";
+            const theme = `el tema de '${post.title}'.`;
+            const elements = `Elementos visuales clave: ${post.tags.join(', ')}.`;
+            const mood = `La atmósfera debe ser ${getMood(post.category)}.`;
+            const composition = "Composición minimalista con espacio negativo.";
+            
+            return `${baseStyle} ${theme} ${elements} ${mood} ${composition} --ar 16:9`;
+        }
+
+        function getMood(category) {
+            switch(category.toLowerCase()) {
+                case 'marketing digital': return 'moderna y dinámica';
+                case 'diseño web': return 'limpia y estructurada';
+                case 'branding': return 'elegante y memorable';
+                case 'copywriting': return 'persuasiva e intelectual';
+                default: return 'profesional y enfocada';
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }).catch(err => {
+                console.error('Error al copiar el prompt: ', err);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadPrompts);
+    </script>
+
+</body>
+</html>
