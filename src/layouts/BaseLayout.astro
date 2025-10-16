@@ -1,12 +1,10 @@
 ---
-import { SEO } from 'astro-seo';
 import ThemeToggle from '../components/ThemeToggle.astro';
 
 const { 
     title = 'Edición Aular | 🚀 Agencia de SEO y Publicidad Digital 📈', 
     description = 'Somos una agencia de publicidad digital especializada en SEO 📈, diseño web 💻, branding 🎨, producción audiovisual 🎥, gestión de Ads 📊 y mentoría 🧠. ¡Transforma tu marca! ✨',
-    image = '/img/social-edicion.webp', // Imagen por defecto
-    canonical = Astro.url.href // URL canónica por defecto
+    image = '/img/social-edicion.webp' // Imagen por defecto
 } = Astro.props;
 
 const socialImage = new URL(image, Astro.site).href;
@@ -18,50 +16,15 @@ const socialImage = new URL(image, Astro.site).href;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <SEO 
-        title={title}
-        description={description}
-        canonical={canonical}
-        openGraph={{
-            basic: {
-                title: title,
-                type: 'website',
-                image: socialImage,
-                url: Astro.url.href
-            }
-        }}
-        twitter={{
-            card: 'summary_large_image',
-            title: title,
-            description: description,
-            image: socialImage
-        }}
-        extend={{
-            meta: [
-                {
-                    name: 'google-site-verification',
-                    content: '1CWG9HSA1bg0q-_Qq2kOPN1rDgFWFYdh0BQ8I5fnklc'
-                }
-            ]
-        }}
-    />
-    <meta name="google-site-verification" content="1CWG9HSA1bg0q-_Qq2kOPN1rDgFWFYdh0BQ8I5fnklc" />
+    <!-- Page Title -->
+    <title>{title}</title>
     
-    <style>
-        /* Estilos críticos aquí */
-        .bringer-large-text {
-            font-size: var(--bringer-t-large-fs);
-            line-height: var(--bringer-t-content-lh);
-            color: var(--bringer-s-heading);
-        }
+    <!-- Meta Description -->
+    <meta name="description" content={description}>
 
-        /* FIX: Asegurar que las imágenes del portafolio cubran su contenedor */
-        .bringer-portfolio-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url.href} />
+    <meta name="google-site-verification" content="1CWG9HSA1bg0q-_Qq2kOPN1rDgFWFYdh0BQ8I5fnklc" />
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -84,7 +47,21 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Favicon -->
     <link rel="icon" href="/img/favicon (1).svg" sizes="32x32">
     
-    <!-- El componente SEO ya maneja las etiquetas Open Graph y Twitter, por lo que las originales se pueden eliminar -->
+    <!-- Metadatos Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Edición Aular" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Metadatos Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2CTQCP83WM"></script>
@@ -94,6 +71,15 @@ const socialImage = new URL(image, Astro.site).href;
         gtag('js', new Date());
         gtag('config', 'G-2CTQCP83WM');
     </script>
+    
+    <!-- Critical CSS -->
+    <style>
+        .bringer-large-text {
+            font-size: var(--bringer-t-large-fs);
+            line-height: var(--bringer-t-content-lh);
+            color: var(--bringer-s-heading);
+        }
+    </style>
 </head>
 
 <body>
@@ -260,6 +246,25 @@ const socialImage = new URL(image, Astro.site).href;
             <p>Pero puedes seguir navegando y viendo el tiempo que tu quieras 😉</p>
         </div>
     </div>
+
+    <!-- Portfolio Images Fix -->
+    <script is:inline>
+        function fixPortfolioImages() {
+            document.querySelectorAll('.bringer-portfolio-card-image').forEach(c => {
+                c.style.cssText = 'position:relative!important;aspect-ratio:1/1!important;overflow:hidden!important';
+            });
+            document.querySelectorAll('.bringer-portfolio-card-image .st-lazy-wrapper').forEach(w => {
+                w.style.cssText = 'position:absolute!important;inset:0!important;width:100%!important;height:100%!important';
+            });
+            document.querySelectorAll('.bringer-portfolio-card-image img,.bringer-portfolio-card-image video').forEach(i => {
+                i.removeAttribute('width');
+                i.removeAttribute('height');
+                i.style.cssText = 'position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important';
+            });
+        }
+        if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fixPortfolioImages)}else{fixPortfolioImages()}
+        setTimeout(fixPortfolioImages,800);
+    </script>
 
     <!-- Dynamic Backlight -->
     <div class="bringer-backlight"></div>
