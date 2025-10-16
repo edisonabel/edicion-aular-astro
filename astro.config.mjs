@@ -1,5 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import sitemap from '@astrojs/sitemap';
+import seo from 'astro-seo';
+
 // https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://edicionaular.com',
+  integrations: [sitemap(), seo()]
+});
