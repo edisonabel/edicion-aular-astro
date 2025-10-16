@@ -54,6 +54,13 @@ const socialImage = new URL(image, Astro.site).href;
             line-height: var(--bringer-t-content-lh);
             color: var(--bringer-s-heading);
         }
+
+        /* FIX: Asegurar que las imágenes del portafolio cubran su contenedor */
+        .bringer-portfolio-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
     
     <!-- Google Fonts -->
