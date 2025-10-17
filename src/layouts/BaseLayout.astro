@@ -26,6 +26,11 @@ const socialImage = new URL(image, Astro.site).href;
     <link rel="canonical" href={Astro.url.href} />
     <meta name="google-site-verification" content="1CWG9HSA1bg0q-_Qq2kOPN1rDgFWFYdh0BQ8I5fnklc" />
     
+    <!-- Preconnect para Google Fonts (optimización) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preconnect para video S3 -->
+    <link rel="preconnect" href="https://tresmarketing.s3.us-east-1.amazonaws.com">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
@@ -37,12 +42,17 @@ const socialImage = new URL(image, Astro.site).href;
     <link type="text/css" rel="stylesheet" href="/css/style.css">
     <!-- Responsive -->
     <link type="text/css" rel="stylesheet" href="/css/responsive.css">
-    <!-- Light Mode Theme -->
-    <link type="text/css" rel="stylesheet" href="/css/theme-light.css">
-    <!-- Fullwidth Fix -->
-    <link type="text/css" rel="stylesheet" href="/css/fullwidth-fix.css">
-    <!-- CTA Gradient -->
-    <link type="text/css" rel="stylesheet" href="/css/cta-gradient.css">
+    <!-- Light Mode Theme (async load) -->
+    <link rel="stylesheet" href="/css/theme-light.css" media="print" onload="this.media='all'">
+    <!-- Fullwidth Fix (async load) -->
+    <link rel="stylesheet" href="/css/fullwidth-fix.css" media="print" onload="this.media='all'">
+    <!-- CTA Gradient (async load) -->
+    <link rel="stylesheet" href="/css/cta-gradient.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="/css/theme-light.css">
+        <link rel="stylesheet" href="/css/fullwidth-fix.css">
+        <link rel="stylesheet" href="/css/cta-gradient.css">
+    </noscript>
     
     <!-- Favicon -->
     <link rel="icon" href="/img/favicon (1).svg" sizes="32x32">
