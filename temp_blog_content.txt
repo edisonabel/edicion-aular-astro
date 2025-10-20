@@ -1,0 +1,35 @@
+
+<section>
+  <h2>Poner precio con serenidad (y método)</h2>
+  <p>Mi primer servicio de consultoría lo cobré en $50 la hora. Estaba aterrorizado de pedir más. En una barbería de lujo, pagué $40 por un corte y entendí todo: el precio también habla. Comunica calidad, confianza y posicionamiento. Dejé de cobrar por horas (castiga la eficiencia) y empecé a cobrar por <strong>transformación</strong> y por la responsabilidad sobre el resultado.</p>
+  <p>Alex Hormozi dice: "No puedes ser el más barato y el mejor al mismo tiempo". El precio es un filtro. Un precio alto filtra a los malos clientes y atrae a los que están comprometidos con el resultado.</p>
+
+  <h3>La Escalera de Acceso (Tu Matriz de Precios)</h3>
+  <p>El precio está ligado al nivel de acceso y al esfuerzo que debe hacer el cliente. Cuanto menos esfuerzo haga el cliente (porque lo haces tú por él), más alto el precio.</p>
+  <ul>
+    <li><strong>Hazlo-tú-mismo (DIY):</strong> Curso, libro o plantillas. Es lo más barato. El cliente hace todo el trabajo.</li>
+    <li><strong>Hecho-contigo (Acompañado):</strong> Un bootcamp grupal, sesiones de preguntas y respuestas. Precio medio.</li>
+    <li><strong>Hecho-por-ti (Servicio Premium):</strong> Consultoría 1 a 1, agencia. Es lo más caro. Tú garantizas el resultado.</li>
+  </ul>
+  <p>Debes tener opciones para que el cliente elija su nivel de inversión y esfuerzo.</p>
+
+  <h3>Cómo subir tus precios sin perder el piso</h3>
+  <p>Subir el precio no es solo cambiar un número. Es *justificar* ese número con un aumento masivo de valor percibido. Aquí está el método:</p>
+  <ol>
+    <li><strong>1. Apila el Valor (Value Stack):</strong> Desglosa tu oferta. No vendes "un curso". Vendes: "El curso ($1000) + Comunidad privada ($500) + 4 Sesiones en vivo ($1000) + Plantillas ($300)". (Ver post sobre Stack de Valor).</li>
+    <li><strong>2. Invierte el Riesgo (Garantía):</strong> Un precio alto necesita una garantía fuerte. Una garantía potente (ej. "Si no consigues X, te devolvemos el dinero + $100") justifica un precio premium.</li>
+    <li><strong>3. Añade Escasez (Real):</strong> "Solo 10 cupos por mes" o "Las sesiones en vivo son solo para esta generación".</li>
+    <li><strong>4. Mejora el Onboarding:</strong> Una experiencia de bienvenida premium (un video personalizado, un kit de bienvenida) valida la decisión de compra de alto valor.</li>
+  </ol>
+
+  <h4>La Táctica del Anclaje Práctico</h4>
+  <p>Nunca presentes tu precio en solitario. Usa el anclaje. En tu página de ventas, presenta siempre primero la opción más cara.</p>
+  <p><strong>Ejemplo:</strong><br>
+1. Servicio "Hecho-por-ti": $5,000<br>
+2. Programa "Hecho-contigo": $997 (Tu opción recomendada)</p>
+  <p>Al lado del paquete de $5,000, el de $997 parece una oferta increíblemente razonable. El cerebro no sabe de precios, solo sabe de comparaciones.</p>
+
+  <h3>Error Común: Competir por Precio</h3>
+  <p>Competir por ser el más barato es una carrera directa hacia el fondo. Siempre habrá alguien dispuesto a hacerlo por menos. Compite en *valor*, no en precio. El cliente que paga más, suele ser el que más caso te hace y el que mejores resultados obtiene.</p>
+  
+</section>

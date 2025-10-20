@@ -1,0 +1,8 @@
+
+
+===== OL #1 =====
+<ol>
+    <li><strong>Hook (Gancho):</strong> “El error que casi me hace cerrar mi negocio…” o “Cómo logré X sin necesidad de Y…”.</li>
+    <li><strong>Story (Historia):</strong> Contexto breve (estaba frustrado) → El tropiezo (qué falló) → La epifanía (qué descubrí) → Mini-pasos (cómo lo solucioné) → Resultado (qué logré).</li>
+    <li><strong>Offer (Oferta):</strong> “Si quieres implementar esto sin cometer los errores que yo cometí, he preparado [Nombre del Producto] que incluye [Bono 1] + [Bono 2]. Tienes una garantía de 7 días.”</li>
+  </ol>

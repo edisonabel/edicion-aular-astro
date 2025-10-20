@@ -88,21 +88,8 @@ const formatDate = (dateString: string) => {
 
                         <!-- Contenido Principal -->
                         <div class="bringer-post-body">
-                            {/* Párrafos dinámicos del contenido */}
-                            <div set:html={
-                                (() => {
-                                    const sentences = post.content.split('. ').filter(s => s.trim());
-                                    const paragraphs = [];
-                                    
-                                    for (let i = 0; i < sentences.length; i += 3) {
-                                        const chunk = sentences.slice(i, i + 3);
-                                        const text = chunk.join('. ') + (chunk.length > 0 && !chunk[chunk.length-1].endsWith('.') ? '.' : '');
-                                        paragraphs.push(`<p>${text}</p>`);
-                                    }
-                                    
-                                    return paragraphs.join('\n');
-                                })()
-                            } />
+                            {/* Contenido HTML directo desde el JSON */}
+                            <div set:html={post.content} />
 
                             <div class="stg-top-gap-l">
                                 <blockquote class="bringer-blockquote">
@@ -370,7 +357,7 @@ const formatDate = (dateString: string) => {
 </style>
 
 <script is:inline>
-// Forzar espaciado de títulos h2/h3 para evitar que estén pegados
+// Forzar espaciado de títulos h2/h3/h4 para evitar que estén pegados
 (function() {
     function applySpacing() {
         const postBody = document.querySelector('.bringer-post-body');
@@ -378,6 +365,7 @@ const formatDate = (dateString: string) => {
         
         const h2Elements = postBody.querySelectorAll('section h2');
         const h3Elements = postBody.querySelectorAll('section h3');
+        const h4Elements = postBody.querySelectorAll('section h4');
         
         // Aplicar espaciado a h2 (excepto el primero)
         h2Elements.forEach((h2, index) => {
@@ -391,6 +379,22 @@ const formatDate = (dateString: string) => {
         h3Elements.forEach((h3) => {
             h3.style.setProperty('margin-top', '6rem', 'important');
             h3.style.setProperty('padding-top', '1.5rem', 'important');
+        });
+        
+        // Aplicar espaciado a h4
+        h4Elements.forEach((h4) => {
+            h4.style.setProperty('margin-top', '5rem', 'important');
+            h4.style.setProperty('padding-top', '1rem', 'important');
+        });
+        
+        // LIMPIAR <p></p> VACÍOS EN LISTAS (causa saltos de línea innecesarios)
+        postBody.querySelectorAll('ol, ul').forEach((list) => {
+            list.querySelectorAll('p').forEach((p) => {
+                // Si el <p> está vacío o solo tiene espacios/saltos
+                if (p.innerHTML.trim() === '' || p.textContent.trim() === '') {
+                    p.remove();
+                }
+            });
         });
     }
     
