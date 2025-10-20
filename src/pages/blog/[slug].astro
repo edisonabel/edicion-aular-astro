@@ -203,27 +203,79 @@ const formatDate = (dateString: string) => {
         line-height: 1.9; /* Aumentado de 1.8 a 1.9 */
     }
     
-    /* Títulos con espaciado UX/UI optimizado */
+    /* Títulos con espaciado UX/UI optimizado - FORZAR CON !important */
     .bringer-post-body h2 {
-        margin-top: 5rem; /* Aumentado de 4rem */
-        margin-bottom: 2rem; /* Aumentado de 1.5rem */
-        padding-top: 1.5rem; /* Aumentado de 1rem */
-        line-height: 1.3;
+        margin-top: 5rem !important;
+        margin-bottom: 2rem !important;
+        padding-top: 1.5rem !important;
+        line-height: 1.3 !important;
     }
     
     .bringer-post-body h3 {
-        margin-top: 4rem; /* Aumentado de 3.5rem */
-        margin-bottom: 1.75rem; /* Aumentado de 1.25rem */
-        padding-top: 1rem; /* Aumentado de 0.75rem */
-        line-height: 1.4;
+        margin-top: 4rem !important;
+        margin-bottom: 1.75rem !important;
+        padding-top: 1rem !important;
+        line-height: 1.4 !important;
     }
     
     .bringer-post-body h4 {
-        margin-top: 3.5rem; /* Aumentado de 3rem */
-        margin-bottom: 1.5rem; /* Aumentado de 1rem */
-        padding-top: 0.75rem; /* Aumentado de 0.5rem */
-        line-height: 1.4;
+        margin-top: 3.5rem !important;
+        margin-bottom: 1.5rem !important;
+        padding-top: 0.75rem !important;
+        line-height: 1.4 !important;
     }
+    
+    /* Espacio extra cuando títulos vienen después de listas o párrafos */
+    /* Targeting section context through any wrapper divs */
+    .bringer-post-body section ul + h2,
+    .bringer-post-body section ol + h2,
+    .bringer-post-body section p + h2,
+    .bringer-post-body div section ul + h2,
+    .bringer-post-body div section ol + h2,
+    .bringer-post-body div section p + h2 {
+        margin-top: 7rem !important;
+        padding-top: 2rem !important;
+    }
+    
+    .bringer-post-body section ul + h3,
+    .bringer-post-body section ol + h3,
+    .bringer-post-body section p + h3,
+    .bringer-post-body div section ul + h3,
+    .bringer-post-body div section ol + h3,
+    .bringer-post-body div section p + h3 {
+        margin-top: 6rem !important;
+        padding-top: 1.5rem !important;
+    }
+    
+    /* Títulos después de items de lista individuales */
+    .bringer-post-body section li:last-child + h2,
+    .bringer-post-body section li:last-child + h3,
+    .bringer-post-body div section li:last-child + h2,
+    .bringer-post-body div section li:last-child + h3 {
+        margin-top: 6.5rem !important;
+        padding-top: 2rem !important;
+    }
+    
+    /* H2 y H3 dentro de section (regla general adicional) */
+    .bringer-post-body section h2,
+    .bringer-post-body div section h2 {
+        margin-top: 7rem !important;
+        padding-top: 2rem !important;
+    }
+    
+    .bringer-post-body section h3,
+    .bringer-post-body div section h3 {
+        margin-top: 6rem !important;
+        padding-top: 1.5rem !important;
+    }
+    
+    /* Excepción: primer h2 de la section */
+    .bringer-post-body section > h2:first-child,
+    .bringer-post-body div section > h2:first-child {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
     /* Efecto de expansión al scroll - UX/UI Premium */
     .st-expandable-wrap {
         overflow: hidden;
@@ -315,3 +367,41 @@ const formatDate = (dateString: string) => {
         margin: 3rem 0; /* Más espacio arriba y abajo */
         padding: 2rem 2.5rem; /* Más padding interno */
     }
+</style>
+
+<script is:inline>
+// Forzar espaciado de títulos h2/h3 para evitar que estén pegados
+(function() {
+    function applySpacing() {
+        const postBody = document.querySelector('.bringer-post-body');
+        if (!postBody) return;
+        
+        const h2Elements = postBody.querySelectorAll('section h2');
+        const h3Elements = postBody.querySelectorAll('section h3');
+        
+        // Aplicar espaciado a h2 (excepto el primero)
+        h2Elements.forEach((h2, index) => {
+            if (index > 0) {
+                h2.style.setProperty('margin-top', '7rem', 'important');
+                h2.style.setProperty('padding-top', '2rem', 'important');
+            }
+        });
+        
+        // Aplicar espaciado a h3
+        h3Elements.forEach((h3) => {
+            h3.style.setProperty('margin-top', '6rem', 'important');
+            h3.style.setProperty('padding-top', '1.5rem', 'important');
+        });
+    }
+    
+    // Ejecutar al cargar
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applySpacing);
+    } else {
+        applySpacing();
+    }
+    
+    // Re-aplicar por seguridad
+    setTimeout(applySpacing, 500);
+})();
+</script>
