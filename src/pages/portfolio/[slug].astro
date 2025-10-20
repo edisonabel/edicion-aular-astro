@@ -3,65 +3,168 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import portfolioData from '../../data/portfolio.json';
 
 export function getStaticPaths() {
-  return portfolioData.map((project) => ({
+  return portfolioData.map((project, index) => ({
     params: { slug: project.slug },
-    props: { project }
+    props: { 
+      project,
+      nextProject: portfolioData[(index + 1) % portfolioData.length]
+    }
   }));
 }
 
-const { project } = Astro.props;
+const { project, nextProject } = Astro.props;
 ---
 
 <BaseLayout 
-    title={`${project.title} | Portafolio | Edición Aular 🚀✨`}
+    title={`${project.title} | Portafolio | Edición Aular`}
     description={project.description}
 >
     <div class="stg-container">
         <!-- Section: Page Title -->
-        <section class="is-fullwidth">
-            <div class="stg-row stg-bottom-gap-l">
-                <div class="stg-col-8 stg-offset-2 align-center">
-                    <span class="bringer-label" data-appear="fade-up">{project.category}</span>
-                    <h1 class="bringer-page-title" data-appear="fade-up" data-delay="100">{project.title}</h1>
-                    <p class="bringer-large-text" data-appear="fade-up" data-delay="200">{project.description}</p>
+        <section>
+            <div class="stg-row stg-bottom-gap-l stg-tp-bottom-gap">
+                <div class="stg-col-6 stg-tp-bottom-gap">
+                    <h1 class="bringer-post-title" data-appear="fade-up" data-unload="fade-left">{project.title}</h1>
+                </div>
+                <div class="stg-col-6 stg-tp-col-9 stg-tp-offset-3 align-right" data-appear="fade-up" data-delay="100" data-unload="fade-right">
+                    <p>{project.description}</p>
                 </div>
             </div>
-            <div class="bringer-parallax-media" data-parallax-speed="20" data-appear="fade-up" data-delay="300">
-                <img src={project.image} alt={project.title} width="1920" height="1080">
-            </div>
+
+            <!-- Hero Slider -->
+            {project.images?.hero && (
+                <div class="bringer-slider-wrapper bringer-masked-block" data-appear="fade-up" data-delay="200" data-unload="fade-up">
+                    <div class="swiper bringer-slider bringer-masked-media" data-autoplay="4000" data-duration="800">
+                        <div class="swiper-wrapper">
+                            {project.images.hero.map((img) => (
+                                <div class="swiper-slide">
+                                    <img src={img} alt={project.title} width="1920" height="1080">
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
 
-        <!-- Section: Project Details -->
-        <section>
-            <div class="stg-row stg-large-gap stg-valign-middle">
-                <div class="stg-col-6 stg-tp-bottom-gap-l" data-appear="fade-right">
-                    <h2>Sobre el Proyecto</h2>
-                    <p class="bringer-large-text">{project.description}</p>
-                    <p>Este proyecto representa nuestra dedicación a crear experiencias digitales excepcionales que impulsan el crecimiento de nuestros clientes.</p>
-                </div>
-                <div class="stg-col-6" data-appear="fade-left" data-delay="100">
-                    <div class="bringer-grid-2cols bringer-m-grid-2cols stg-small-gap">
-                        <div class="bringer-counter" data-delay="1000">
-                            <div class="bringer-counter-number">100</div>
-                            <div class="bringer-counter-label">% Satisfacción</div>
-                        </div>
-                        <div class="bringer-counter" data-delay="1000">
-                            <div class="bringer-counter-number" data-suffix="+">50</div>
-                            <div class="bringer-counter-label">Horas de Trabajo</div>
-                        </div>
+        <!-- Section: Project Meta -->
+        <section class="backlight-top">
+            <div class="bringer-hero-block">
+                <div class="bringer-hero-info-line" data-stagger-appear="fade-up" data-delay="200" data-stagger-delay="100" data-unload="fade-up">
+                    <div class="bringer-meta">
+                        Cliente: <span>{project.client}</span>
+                    </div>
+                    <div class="bringer-meta">
+                        Servicio: <span>{project.service}</span>
+                    </div>
+                    <div class="bringer-meta">
+                        Año: <span>{project.year}</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section: CTA -->
-        <section class="divider-top">
-            <div class="align-center">
-                <h2 data-appear="fade-up">¿Listo para el siguiente proyecto?</h2>
-                <p class="bringer-large-text" data-appear="fade-up" data-delay="100">Trabajemos juntos para crear algo extraordinario</p>
-                <div data-appear="fade-up" data-delay="200">
-                    <a href="/contacto" class="bringer-button">Contáctanos</a>
+        <!-- Section: El Desafío -->
+        {project.content?.challenge && (
+            <section data-padding="top" class="backlight-top">
+                <div class="stg-row stg-bottom-gap-l">
+                    <div class="stg-col-6 stg-tp-bottom-gap" data-appear="fade-right" data-unload="fade-left">
+                        <h2>El Desafío</h2>
+                    </div>
+                    <div class="stg-col-6 stg-tp-col-10 stg-tp-offset-2" data-appear="fade-left" data-unload="fade-right">
+                        <p class="bringer-large-text">{project.content.challenge}</p>
+                    </div>
                 </div>
+                {project.images?.gallery && project.images.gallery[0] && (
+                    <div class="stg-row" data-appear="fade-up" data-unload="zoom-out">
+                        <div class="stg-col-6 stg-offset-3 stg-tp-col-8 stg-tp-offset-2">
+                            <img src={project.images.gallery[0]} alt={project.title} width="1200" height="1200">
+                        </div>
+                    </div>
+                )}
+            </section>
+        )}
+
+        <!-- Section: Nuestro Enfoque -->
+        {project.content?.approach && (
+            <section data-padding="top">
+                <div class="stg-row stg-bottom-gap">
+                    <div class="stg-col-6">
+                        <h2 data-appear="fade-up" data-unload="fade-left">Nuestro Enfoque</h2>
+                    </div>
+                </div>
+                <div class="stg-row stg-bottom-gap-l" data-appear="fade-up" data-delay="100" data-unload="fade-right">
+                    <div class="stg-col-9 stg-offset-3 stg-tp-col-10 stg-tp-offset-2">
+                        <p class="bringer-large-text">{project.content.approach}</p>
+                    </div>
+                </div>
+                {project.images?.gallery && project.images.gallery[1] && (
+                    <div class="stg-row" data-appear="fade-left" data-unload="fade-left">
+                        <div class="stg-col-9">
+                            <img src={project.images.gallery[1]} alt={project.title} width="1200" height="1200">
+                        </div>
+                    </div>
+                )}
+            </section>
+        )}
+
+        <!-- Section: La Solución -->
+        {project.content?.solution && (
+            <section data-padding="top">
+                <div class="stg-row stg-bottom-gap-l">
+                    <div class="stg-col-6 stg-tp-bottom-gap" data-appear="fade-right" data-unload="fade-left">
+                        <h2>La Solución</h2>
+                    </div>
+                    <div class="stg-col-6 stg-tp-col-10 stg-tp-offset-2" data-appear="fade-left" data-unload="fade-right">
+                        <p class="bringer-large-text">{project.content.solution}</p>
+                    </div>
+                </div>
+
+                <!-- Gallery -->
+                {project.images?.gallery && project.images.gallery.length >= 5 && (
+                    <div class="bringer-grid-3cols" data-stagger-appear="fade-up" data-stagger-unload="fade-left">
+                        <div>
+                            <img src={project.images.gallery[2]} alt={project.title} width="800" height="1200">
+                        </div>
+                        <div>
+                            <img src={project.images.gallery[3]} alt={project.title} width="800" height="1200">
+                        </div>
+                        <div>
+                            <img src={project.images.gallery[4]} alt={project.title} width="800" height="1200">
+                        </div>
+                    </div>
+                )}
+            </section>
+        )}
+
+        <!-- Section: Resultados e Impacto -->
+        {project.content?.results && (
+            <section>
+                <div class="stg-row stg-bottom-gap">
+                    <div class="stg-col-6" data-appear="fade-up" data-unload="fade-left">
+                        <h2>Resultados e Impacto</h2>
+                    </div>
+                </div>
+                <div class="stg-row" data-appear="fade-up" data-delay="100" data-unload="fade-right">
+                    <div class="stg-col-10 stg-offset-2">
+                        <p class="bringer-large-text">{project.content.results}</p>
+                    </div>
+                </div>
+            </section>
+        )}
+
+        <!-- Section: Next Project -->
+        <section class="divider-top">
+            <div class="align-center" data-unload="zoom-in">
+                <a href={`/portfolio/${nextProject.slug}`} class="bringer-icon-link bringer-next-post">
+                    <div class="bringer-icon-link-content">
+                        <h6>Próximo Proyecto</h6>
+                        <h2>{nextProject.title}</h2>
+                    </div>
+                    <div class="bringer-icon-wrap">
+                        <i class="bringer-icon bringer-icon-explore"></i>
+                    </div>
+                </a>
             </div>
         </section>
     </div>

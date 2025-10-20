@@ -272,16 +272,17 @@ const socialImage = new URL(image, Astro.site).href;
                 c.style.cssText = 'position:relative!important;aspect-ratio:1/1!important;overflow:hidden!important';
             });
             document.querySelectorAll('.bringer-portfolio-card-image .st-lazy-wrapper').forEach(w => {
-                w.style.cssText = 'position:absolute!important;inset:0!important;width:100%!important;height:100%!important';
+                w.style.cssText = 'position:absolute!important;inset:0!important;width:100%!important;height:100%!important;opacity:1!important;visibility:visible!important;display:block!important;min-height:300px!important';
             });
             document.querySelectorAll('.bringer-portfolio-card-image img,.bringer-portfolio-card-image video').forEach(i => {
                 i.removeAttribute('width');
                 i.removeAttribute('height');
-                i.style.cssText = 'position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important';
+                i.style.cssText = 'position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;opacity:1!important;visibility:visible!important;display:block!important';
             });
         }
         if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fixPortfolioImages)}else{fixPortfolioImages()}
         setTimeout(fixPortfolioImages,800);
+        setTimeout(fixPortfolioImages,1500);
     </script>
 
     <!-- Dynamic Backlight -->
@@ -292,7 +293,28 @@ const socialImage = new URL(image, Astro.site).href;
     <script is:inline src="/js/lib/libs.js"></script>
     <script is:inline src="/js/st-core.js"></script>
     <script is:inline src="/js/classes.js"></script>
-    <script is:inline src="/js/main.js"></script>
+    
+    <!-- Main.js con espera a DOM ready -->
+    <script is:inline>
+        (function() {
+            function initApp() {
+                // Cargar main.js solo cuando el DOM esté listo
+                var script = document.createElement('script');
+                script.src = '/js/main.js?v=astro2025';
+                document.body.appendChild(script);
+            }
+            
+            // Para navegación inicial
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initApp);
+            } else {
+                initApp();
+            }
+            
+            // Para transiciones de Astro (si las hay)
+            document.addEventListener('astro:page-load', initApp);
+        })();
+    </script>
 
     <!-- Active Menu Script -->
     <script is:inline>

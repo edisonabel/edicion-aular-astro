@@ -3,63 +3,230 @@
     "id": "agrosupreme",
     "title": "Agro Supreme",
     "category": "Branding e Identidad Visual",
-    "description": "Identidad visual completa para empresa del sector agrícola, incluyendo diseño de logo, paleta de colores y aplicaciones de marca.",
-    "image": "/img/portfolio/portfolio01/agrosupreme 1.webp",
+    "description": "Más allá de la agricultura: construyendo una marca que conecta con la tierra, la comunidad y el futuro. Colaboramos con Agro Supreme para crear una experiencia transformadora en agricultura sostenible.",
+    "image": "/img/portfolio/proyecto jolu.webp",
     "slug": "agrosupreme",
-    "featured": true
+    "featured": true,
+    "client": "Agro Supreme",
+    "service": "Branding e Identidad Visual",
+    "year": "2023",
+    "images": {
+      "hero": [
+        "/img/portfolio/portfolio01/agrosupreme 1.webp",
+        "/img/portfolio/portfolio01/agrosupreme 2.webp",
+        "/img/portfolio/portfolio01/agrosupreme 3.webp"
+      ],
+      "gallery": [
+        "/img/portfolio/portfolio01/agrosupreme 4.webp",
+        "/img/portfolio/portfolio01/agrosupreme 5.webp",
+        "/img/portfolio/portfolio01/agrosupreme 6.webp",
+        "/img/portfolio/portfolio01/agrosupreme 7.webp",
+        "/img/portfolio/portfolio01/agrosupreme 8.webp",
+        "/img/portfolio/portfolio01/agrosupreme 9.webp",
+        "/img/portfolio/portfolio01/agrosupreme 10.webp",
+        "/img/portfolio/portfolio01/agrosupreme 11.webp"
+      ]
+    },
+    "content": {
+      "challenge": "Agro Supreme, un líder emergente en agricultura sostenible, buscaba revitalizar su identidad de marca. A pesar de destacar en prácticas agrícolas ecoamigables, su comunicación visual carecía de la conexión emocional y la narrativa visionaria que alinearan con su misión.",
+      "approach": "Comenzamos con un profundo entendimiento de los valores fundamentales y el posicionamiento de Agro Supreme en el mercado. A través de talleres, investigación y colaboración con su equipo, identificamos la esencia de su marca: sostenibilidad y comunidad.",
+      "solution": "El nuevo logo de Agro Supreme se centra en una gota de agua, un símbolo universal de vida y crecimiento, con líneas curvas que representan la tierra y una espiga de trigo que simboliza abundancia y agricultura.",
+      "results": "La nueva identidad ha fortalecido su presencia en ferias agrícolas y mercados comunitarios, aumentando el reconocimiento de marca en un 40% en seis meses."
+    }
   },
   {
     "id": "cazon",
     "title": "Cazón",
     "category": "Branding e Identidad Visual",
-    "description": "Desarrollo de marca completo para producto premium, con enfoque en packaging y presentación visual moderna.",
-    "image": "/img/portfolio/portfolio02/cazon 1.webp",
+    "description": "Representando el espíritu playero venezolano a través de la cultura, el deporte y la naturaleza.",
+    "image": "/img/portfolio/cazon.webp",
     "slug": "cazon",
-    "featured": true
+    "featured": true,
+    "client": "Cazón",
+    "service": "Branding e Identidad Visual",
+    "year": "2023",
+    "images": {
+      "hero": [
+        "/img/portfolio/portfolio02/cazon 1.webp",
+        "/img/portfolio/portfolio02/cazon 2.webp",
+        "/img/portfolio/portfolio02/cazon 3.webp"
+      ],
+      "gallery": [
+        "/img/portfolio/portfolio02/cazon 4.webp",
+        "/img/portfolio/portfolio02/cazon 5.webp",
+        "/img/portfolio/portfolio02/cazon 6.webp",
+        "/img/portfolio/portfolio02/cazon 7.webp",
+        "/img/portfolio/portfolio02/cazon 8.webp",
+        "/img/portfolio/portfolio02/cazon 9.webp",
+        "/img/portfolio/portfolio02/cazon 10.webp",
+        "/img/portfolio/portfolio02/cazon 11.webp"
+      ]
+    },
+    "content": {
+      "challenge": "Cazón buscaba una marca que representara auténticamente la cultura y el lifestyle playero venezolano, conectando con deportistas y amantes de la naturaleza.",
+      "approach": "Trabajamos junto a los fundadores para entender su visión, creando una identidad que celebra el surf, la cultura caribeña y la conexión con el océano.",
+      "solution": "Diseño de logo moderno con elementos playeros, paleta de colores vibrantes inspirada en el mar y aplicaciones versátiles para ropa y accesorios.",
+      "results": "Lanzamiento exitoso de línea de ropa deportiva con gran aceptación en la comunidad surfista venezolana."
+    }
   },
   {
     "id": "drjarod",
     "title": "Dr Jarod Ward",
     "category": "Diseño Web",
-    "description": "Sitio web profesional para consultoría médica, con diseño limpio y fácil navegación para pacientes.",
-    "image": "/img/portfolio/portfolio03/drjarod 1.webp",
+    "description": "Dr. Jarod Ward, un destacado quiropráctico en el suroeste de Florida, se especializa en atención holística y medicina funcional, empoderando a los pacientes para lograr una salud óptima.",
+    "image": "/img/portfolio/dr jarod.webp",
     "slug": "drjarod",
-    "featured": true
+    "featured": true,
+    "client": "Dr. Jarod Ward",
+    "service": "Diseño Web",
+    "year": "2023",
+    "images": {
+      "hero": [
+        "/img/portfolio/portfolio03/drjarod 1.webp",
+        "/img/portfolio/portfolio03/drjarod 2.webp",
+        "/img/portfolio/portfolio03/drjarod 3.webp"
+      ],
+      "gallery": [
+        "/img/portfolio/portfolio03/drjarod 4.webp",
+        "/img/portfolio/portfolio03/drjarod 5.webp",
+        "/img/portfolio/portfolio03/drjarod 6.webp",
+        "/img/portfolio/portfolio03/drjarod 7.webp",
+        "/img/portfolio/portfolio03/drjarod 8.webp"
+      ]
+    },
+    "content": {
+      "challenge": "Dr. Jarod Ward necesitaba un sitio web que reflejara su enfoque holístico y facilitara el contacto con pacientes potenciales en el área de Florida.",
+      "approach": "Diseñamos una experiencia web centrada en el usuario, con navegación intuitiva, información clara de servicios y sistema de citas en línea.",
+      "solution": "Sitio web responsivo con diseño profesional, testimonios de pacientes, blog educativo y integración de sistema de reservas.",
+      "results": "Aumento del 60% en consultas online y mejora significativa en la experiencia del usuario."
+    }
   },
   {
     "id": "bee",
     "title": "Bee Roofing & Restoration",
     "category": "Branding e Identidad Visual",
-    "description": "Identidad corporativa completa para empresa de construcción y restauración, con enfoque en profesionalismo y confianza.",
-    "image": "/img/portfolio/portfolio04/bee 1.webp",
+    "description": "Transformamos la identidad de Bee Roofing & Restoration en un símbolo de profesionalismo, confianza y excelencia en el sector de techos y restauración.",
+    "image": "/img/portfolio/bee roofing proyecto.webp",
     "slug": "bee",
-    "featured": true
+    "featured": true,
+    "client": "Bee Roofing & Restoration",
+    "service": "Branding e Identidad Visual",
+    "year": "2023",
+    "images": {
+      "hero": [
+        "/img/portfolio/portfolio04/bee 1.webp",
+        "/img/portfolio/portfolio04/bee 2.webp",
+        "/img/portfolio/portfolio04/bee 3.webp"
+      ],
+      "gallery": [
+        "/img/portfolio/portfolio04/bee 4.webp",
+        "/img/portfolio/portfolio04/bee 5.webp",
+        "/img/portfolio/portfolio04/bee 6.webp",
+        "/img/portfolio/portfolio04/bee 7.webp",
+        "/img/portfolio/portfolio04/bee 8.webp"
+      ]
+    },
+    "content": {
+      "challenge": "Bee Roofing necesitaba una identidad corporativa que transmitiera confianza, profesionalismo y calidad en un mercado competitivo de construcción.",
+      "approach": "Desarrollamos una marca robusta que combina elementos de la naturaleza (abeja) con diseño industrial, comunicando trabajo en equipo y excelencia.",
+      "solution": "Logo memorable con la abeja como símbolo central, paleta de colores profesionales, uniformes de trabajo brandados y material promocional impactante.",
+      "results": "Mayor reconocimiento de marca en el área de Florida y aumento en solicitudes de cotización."
+    }
   },
   {
     "id": "popwarner",
-    "title": "Pop Warner",
+    "title": "South Bend Bulldogs",
     "category": "Diseño Web",
-    "description": "Plataforma web deportiva con gestión de eventos y estadísticas en tiempo real.",
-    "image": "/img/portfolio/portfolio05/pop warner.webp",
+    "description": "Olvida los diseños aburridos y las interfaces anticuadas. Descubre cómo revitalizamos la presencia en línea de South Bend Bulldogs, transformando su sitio web en un dinámico centro para los entusiastas de los deportes juveniles.",
+    "image": "/img/portfolio/pop warner.webp",
     "slug": "popwarner",
-    "featured": true
+    "featured": true,
+    "client": "South Bend Bulldogs Pop Warner",
+    "service": "Diseño Web",
+    "year": "2023",
+    "images": {
+      "hero": [
+        "/img/portfolio/portfolio05/pop warner 1.webp",
+        "/img/portfolio/portfolio05/pop warner 2.webp",
+        "/img/portfolio/portfolio05/pop warner 3.webp"
+      ],
+      "gallery": [
+        "/img/portfolio/portfolio05/pop warner 4.webp",
+        "/img/portfolio/portfolio05/pop warner 5.webp",
+        "/img/portfolio/portfolio05/pop warner 6.webp",
+        "/img/portfolio/portfolio05/pop warner 7.webp",
+        "/img/portfolio/portfolio05/pop warner 8.webp"
+      ]
+    },
+    "content": {
+      "challenge": "South Bend Bulldogs necesitaba modernizar su presencia digital para atraer nuevos jugadores, mantener a las familias informadas y celebrar los logros del equipo.",
+      "approach": "Diseñamos una plataforma web dinámica con gestión de eventos, calendario de juegos, galería de fotos y sistema de noticias actualizable.",
+      "solution": "Sitio web deportivo moderno con integración de redes sociales, sistema de registro en línea, estadísticas de jugadores y sección de noticias.",
+      "results": "Aumento en inscripciones de jugadores y mayor engagement de padres y seguidores."
+    }
   },
   {
     "id": "ecosolares",
     "title": "Ecosolares",
     "category": "Diseño Web Ecommerce",
-    "description": "Tienda online completa para productos de energía solar, con carrito de compras integrado y pasarela de pagos.",
-    "image": "/img/portfolio/portfolio06/ecosolares 1.webp",
+    "description": "Descubre cómo transformamos la presencia digital de Ecosolares, llevando un mensaje de energía renovable a cada rincón del Perú.",
+    "image": "/img/portfolio/ecosolares.webp",
     "slug": "ecosolares",
-    "featured": true
+    "featured": true,
+    "client": "Ecosolares Perú",
+    "service": "Diseño Web Ecommerce",
+    "year": "2023",
+    "images": {
+      "hero": [
+        "/img/portfolio/portfolio06/ecosolares 1.webp",
+        "/img/portfolio/portfolio06/ecosolares 2.webp",
+        "/img/portfolio/portfolio06/ecosolares 3.webp"
+      ],
+      "gallery": [
+        "/img/portfolio/portfolio06/ecosolares 4.webp",
+        "/img/portfolio/portfolio06/ecosolares 5.webp",
+        "/img/portfolio/portfolio06/ecosolares 6.webp",
+        "/img/portfolio/portfolio06/ecosolares 7.webp",
+        "/img/portfolio/portfolio06/ecosolares 8.webp"
+      ]
+    },
+    "content": {
+      "challenge": "Ecosolares necesitaba una plataforma ecommerce que facilitara la venta de paneles solares y productos de energía renovable en todo Perú.",
+      "approach": "Desarrollamos una tienda online completa con catálogo de productos, calculadora de ahorro energético, carrito de compras y pasarela de pagos segura.",
+      "solution": "Plataforma ecommerce con diseño intuitivo, sistema de cotización automática, integración con logística y panel de administración completo.",
+      "results": "Expansión del negocio a nivel nacional con ventas online representando el 45% del total."
+    }
   },
   {
     "id": "americahvac",
     "title": "America HVAC Supply",
     "category": "Diseño Web Ecommerce",
-    "description": "Ecommerce B2B para distribuidora de equipos HVAC, con catálogo extenso y sistema de cotizaciones.",
-    "image": "/img/portfolio/portfolio07/america hvac 3.webp",
+    "description": "Descubre cómo transformamos el sitio de America HVAC Supply en una plataforma de e-commerce que simplifica el acceso a suministros HVAC para profesionales y propietarios.",
+    "image": "/img/portfolio/america hvac supply.webp",
     "slug": "americahvac",
-    "featured": true
+    "featured": true,
+    "client": "America HVAC Supply",
+    "service": "Diseño Web Ecommerce",
+    "year": "2023",
+    "images": {
+      "hero": [
+        "/img/portfolio/portfolio07/america hvac 1.webp",
+        "/img/portfolio/portfolio07/america hvac 2.webp",
+        "/img/portfolio/portfolio07/america hvac 3.webp"
+      ],
+      "gallery": [
+        "/img/portfolio/portfolio07/america hvac 4.webp",
+        "/img/portfolio/portfolio07/america hvac 5.webp",
+        "/img/portfolio/portfolio07/america hvac 6.webp",
+        "/img/portfolio/portfolio07/america hvac 7.webp",
+        "/img/portfolio/portfolio07/america hvac 8.webp"
+      ]
+    },
+    "content": {
+      "challenge": "America HVAC Supply necesitaba modernizar su plataforma B2B para facilitar pedidos de equipos HVAC a contratistas y profesionales del sector.",
+      "approach": "Diseñamos un ecommerce robusto con catálogo extenso de productos, sistema de precios por cliente, cotizaciones automáticas y gestión de inventario en tiempo real.",
+      "solution": "Plataforma B2B completa con portal de clientes, sistema de órdenes recurrentes, tracking de envíos y herramientas de gestión para el equipo de ventas.",
+      "results": "Reducción del 50% en tiempo de procesamiento de pedidos y aumento significativo en satisfacción del cliente."
+    }
   }
 ]

@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import portfolioData from '../data/portfolio.json';
 
-// Obtener solo los primeros 5 proyectos para mostrar en home
-const featuredProjects = portfolioData.filter(p => p.featured).slice(0, 5);
+// Obtener TODOS los proyectos featured para mostrar en home
+const featuredProjects = portfolioData.filter(p => p.featured);
 ---
 
 <BaseLayout>
@@ -213,12 +213,12 @@ const featuredProjects = portfolioData.filter(p => p.featured).slice(0, 5);
         </div>
 
         <!-- Portfolio Carousel -->
-        <div class="swiper bringer-carousel stg-bottom-gap-l" data-appear="fade-up" data-unload="fade-up" data-delay="200" data-count="4" data-m-count="1.5">
+        <div class="swiper bringer-carousel stg-bottom-gap-l" data-count="4" data-m-count="1.5" data-autoplay="3000">
             <div class="swiper-wrapper">
                 {featuredProjects.map((project) => (
                     <div class="bringer-block bringer-portfolio-card swiper-slide">
                         <div class="bringer-portfolio-card-image">
-                            <img class="bringer-lazy" src="/img/null.png" data-src={project.image} alt={`Proyecto ${project.title} por Edición Aular`} width="1200" height="1200">
+                            <img src={project.image} alt={`Proyecto ${project.title} por Edición Aular`} width="1200" height="1200">
                         </div>
                         <div class="bringer-portfolio-card-footer">
                             <div class="bringer-portfolio-card-title">
