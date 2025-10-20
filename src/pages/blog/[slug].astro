@@ -63,12 +63,14 @@ const formatDate = (dateString: string) => {
             </div>
         </section>
 
-        <!-- IMAGEN DEL BLOG -->
-        <section class="is-fullwidth" style="padding: 0; margin: 0;">
+        <!-- IMAGEN DEL BLOG CON ANIMACIÓN -->
+        <section class="is-fullwidth" style="padding: 2rem 0 3rem 0;">
             <div class="stg-row">
-                <div class="stg-col-10 stg-offset-1">
-                    <div class="bringer-post-image" style="margin-bottom: 3rem;">
-                        <img src={post.image} alt={post.title} width="1200" height="630" />
+                <div class="stg-col-8 stg-offset-2">
+                    <div class="st-expandable-wrap">
+                        <div class="bringer-expand-on-scroll">
+                            <img src={post.image} alt={post.title} width="1200" height="630" data-unload="fade-up" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,6 +150,31 @@ const formatDate = (dateString: string) => {
 
 </BaseLayout>
 
+<script>
+    // Efecto de expansión de imagen al hacer scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        const expandableImages = document.querySelectorAll('.bringer-expand-on-scroll');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-init');
+                }
+            });
+        }, observerOptions);
+
+        expandableImages.forEach(img => {
+            imageObserver.observe(img);
+        });
+    });
+</script>
+
 <style>
     /* Estilos mínimos para esta fase */
     .bringer-breadcrumb ul {
@@ -183,16 +210,37 @@ const formatDate = (dateString: string) => {
         margin-top: 2.5rem;
         margin-bottom: 1.25rem;
     }
-    .bringer-post-image {
-        border-radius: 12px;
+    /* Efecto de expansión al scroll - UX/UI Premium */
+    .st-expandable-wrap {
         overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        clip-path: inset(0% round 18px);
+        border-radius: 18px;
     }
-    .bringer-post-image img {
+    
+    .bringer-expand-on-scroll {
+        transform: scale(1.08);
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+    }
+    
+    .bringer-expand-on-scroll.is-init {
+        transform: scale(1);
+    }
+    
+    .st-expandable-wrap img {
         width: 100%;
         height: auto;
         display: block;
         object-fit: cover;
+        border-radius: 18px;
+    }
+    
+    /* Fallback para navegadores sin clip-path */
+    @supports not (clip-path: inset(0% round 18px)) {
+        .st-expandable-wrap {
+            border-radius: 18px;
+            overflow: hidden;
+        }
     }
     .bringer-post-excerpt {
         margin-bottom: 2.5rem;
