@@ -7,9 +7,10 @@
     "image": "/img/portfolio/proyecto jolu.webp",
     "slug": "agrosupreme",
     "featured": true,
+    "layout": "simple",
     "client": "Agro Supreme",
     "service": "Branding e Identidad Visual",
-    "year": "2023",
+    "year": "Agosto 2024",
     "images": {
       "hero": [
         "/img/portfolio/portfolio01/agrosupreme 1.webp",
@@ -42,9 +43,10 @@
     "image": "/img/portfolio/cazon.webp",
     "slug": "cazon",
     "featured": true,
+    "layout": "bento",
     "client": "Cazón",
-    "service": "Branding e Identidad Visual",
-    "year": "2023",
+    "service": "Desarrollo de marca y comunicación visual",
+    "year": "Enero 2025",
     "images": {
       "hero": [
         "/img/portfolio/portfolio02/cazon 1.webp",
@@ -77,9 +79,10 @@
     "image": "/img/portfolio/dr jarod.webp",
     "slug": "drjarod",
     "featured": true,
+    "layout": "masked",
     "client": "Dr. Jarod Ward",
-    "service": "Diseño Web",
-    "year": "2023",
+    "service": "Diseño y desarrollo web",
+    "year": "Octubre de 2023",
     "images": {
       "hero": [
         "/img/portfolio/portfolio03/drjarod 1.webp",
@@ -109,9 +112,10 @@
     "image": "/img/portfolio/bee roofing proyecto.webp",
     "slug": "bee",
     "featured": true,
+    "layout": "simple",
     "client": "Bee Roofing & Restoration",
-    "service": "Branding e Identidad Visual",
-    "year": "2023",
+    "service": "Manual de identidad de marca y diseño corporativo",
+    "year": "Diciembre 2024",
     "images": {
       "hero": [
         "/img/portfolio/portfolio04/bee 1.webp",
@@ -141,21 +145,22 @@
     "image": "/img/portfolio/pop warner.webp",
     "slug": "popwarner",
     "featured": true,
-    "client": "South Bend Bulldogs Pop Warner",
-    "service": "Diseño Web",
-    "year": "2023",
+    "layout": "bento",
+    "client": "South Bend Bulldogs",
+    "service": "Diseño y desarrollo de sitio web",
+    "year": "Octubre 2021",
+    "website": "https://southbendbulldogs.org/",
     "images": {
       "hero": [
-        "/img/portfolio/portfolio05/pop warner 1.webp",
-        "/img/portfolio/portfolio05/pop warner 2.webp",
-        "/img/portfolio/portfolio05/pop warner 3.webp"
+        "/img/portfolio/portfolio05/pop warner 5.webp",
+        "/img/portfolio/portfolio05/pop warner 3.webp",
+        "/img/portfolio/portfolio05/pop warner 2.webp"
       ],
       "gallery": [
+        "/img/portfolio/portfolio05/pop warner.webp",
         "/img/portfolio/portfolio05/pop warner 4.webp",
-        "/img/portfolio/portfolio05/pop warner 5.webp",
         "/img/portfolio/portfolio05/pop warner 6.webp",
-        "/img/portfolio/portfolio05/pop warner 7.webp",
-        "/img/portfolio/portfolio05/pop warner 8.webp"
+        "/img/portfolio/portfolio05/pop warner 7.webp"
       ]
     },
     "content": {
@@ -170,12 +175,13 @@
     "title": "Ecosolares",
     "category": "Diseño Web Ecommerce",
     "description": "Descubre cómo transformamos la presencia digital de Ecosolares, llevando un mensaje de energía renovable a cada rincón del Perú.",
-    "image": "/img/portfolio/ecosolares.webp",
+    "image": "/img/portfolio/portfolio06/ecosolares 1.webp",
     "slug": "ecosolares",
     "featured": true,
-    "client": "Ecosolares Perú",
-    "service": "Diseño Web Ecommerce",
-    "year": "2023",
+    "layout": "masked",
+    "client": "Ecosolares",
+    "service": "Diseño y desarrollo web",
+    "year": "Julio 2022",
     "images": {
       "hero": [
         "/img/portfolio/portfolio06/ecosolares 1.webp",
@@ -186,8 +192,7 @@
         "/img/portfolio/portfolio06/ecosolares 4.webp",
         "/img/portfolio/portfolio06/ecosolares 5.webp",
         "/img/portfolio/portfolio06/ecosolares 6.webp",
-        "/img/portfolio/portfolio06/ecosolares 7.webp",
-        "/img/portfolio/portfolio06/ecosolares 8.webp"
+        "/img/portfolio/portfolio06/ecosolares 7.webp"
       ]
     },
     "content": {
@@ -205,9 +210,10 @@
     "image": "/img/portfolio/america hvac supply.webp",
     "slug": "americahvac",
     "featured": true,
+    "layout": "simple",
     "client": "America HVAC Supply",
-    "service": "Diseño Web Ecommerce",
-    "year": "2023",
+    "service": "Diseño y desarrollo de e-commerce",
+    "year": "Octubre 2023",
     "images": {
       "hero": [
         "/img/portfolio/portfolio07/america hvac 1.webp",
