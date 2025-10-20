@@ -30,8 +30,8 @@ const formatDate = (dateString: string) => {
 
     <div class="stg-container">
         <!-- PASO 1: Encabezado del Artículo -->
-        <section>
-            <div class="bringer-page-intro stg-bottom-gap-l">
+        <section style="padding-bottom: 1rem;">
+            <div class="bringer-page-intro">
                 <div class="stg-row">
                     <div class="stg-col-8 stg-offset-2">
                         <!-- Breadcrumb -->
@@ -64,10 +64,10 @@ const formatDate = (dateString: string) => {
         </section>
 
         <!-- IMAGEN DEL BLOG -->
-        <section>
+        <section class="is-fullwidth" style="padding: 0; margin: 0;">
             <div class="stg-row">
                 <div class="stg-col-10 stg-offset-1">
-                    <div class="bringer-post-image stg-bottom-gap-l">
+                    <div class="bringer-post-image" style="margin-bottom: 3rem;">
                         <img src={post.image} alt={post.title} width="1200" height="630" />
                     </div>
                 </div>
@@ -75,7 +75,7 @@ const formatDate = (dateString: string) => {
         </section>
 
         <!-- CONTENIDO DEL ARTÍCULO -->
-        <section>
+        <section style="padding-top: 0;">
             <div class="stg-row">
                 <div class="stg-col-8 stg-offset-2">
                     <article class="bringer-post-content">
@@ -86,13 +86,21 @@ const formatDate = (dateString: string) => {
 
                         <!-- Contenido Principal -->
                         <div class="bringer-post-body">
-                            {post.content.split('. ').map((sentence, index) => {
-                                // Cada 3 oraciones = 1 párrafo (más legible)
-                                if (index % 3 === 0 && index !== 0) {
-                                    return `</p><p>${sentence}.`;
-                                }
-                                return index === 0 ? `<p>${sentence}.` : ` ${sentence}.`;
-                            }).join('')}</p>
+                            {/* Párrafos dinámicos del contenido */}
+                            <div set:html={
+                                (() => {
+                                    const sentences = post.content.split('. ').filter(s => s.trim());
+                                    const paragraphs = [];
+                                    
+                                    for (let i = 0; i < sentences.length; i += 3) {
+                                        const chunk = sentences.slice(i, i + 3);
+                                        const text = chunk.join('. ') + (chunk.length > 0 && !chunk[chunk.length-1].endsWith('.') ? '.' : '');
+                                        paragraphs.push(`<p>${text}</p>`);
+                                    }
+                                    
+                                    return paragraphs.join('\n');
+                                })()
+                            } />
 
                             <div class="stg-top-gap-l">
                                 <blockquote class="bringer-blockquote">

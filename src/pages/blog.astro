@@ -290,12 +290,14 @@ const categories = [...new Set(blogData.map(p => p.category))];
         border-color: var(--bringer-s-accent);
     }
 
-    /* Newsletter Form */
+    /* Newsletter Form - Diseño UX/UI Profesional */
     .bringer-contact-form .bringer-form-content {
         display: flex;
         gap: 1rem;
         max-width: 600px;
         margin: 0 auto;
+        flex-direction: row;
+        align-items: center;
     }
 
     .bringer-contact-form .bringer-input {
@@ -303,11 +305,13 @@ const categories = [...new Set(blogData.map(p => p.category))];
         background: var(--bringer-s-body-bg);
         border: 2px solid var(--bringer-s-border);
         color: var(--bringer-s-heading);
-        padding: 1rem 1.5rem;
+        padding: 1.125rem 1.5rem;
         border-radius: var(--bringer-small-br);
         font-size: 1rem;
         font-family: inherit;
         transition: all 0.3s ease;
+        height: 56px; /* Altura fija para alineación perfecta */
+        line-height: 1.5;
     }
 
     .bringer-contact-form .bringer-input::placeholder {
@@ -319,11 +323,83 @@ const categories = [...new Set(blogData.map(p => p.category))];
         border-color: var(--bringer-s-accent);
         outline: none;
         background: var(--bringer-s-container-bg);
+        box-shadow: 0 0 0 3px rgba(var(--bringer-s-accent-rgb), 0.1);
+    }
+
+    .bringer-contact-form .bringer-button {
+        white-space: nowrap;
+        padding: 1.125rem 2.5rem;
+        flex-shrink: 0;
+        height: 56px; /* Misma altura que el input */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        letter-spacing: 0.025em;
     }
 
     @media (max-width: 768px) {
         .bringer-contact-form .bringer-form-content {
             flex-direction: column;
         }
+        
+        .bringer-contact-form .bringer-button {
+            width: 100%;
+            padding: 1.25rem;
+        }
     }
 </style>
+
+<script>
+    // Filtrado dinámico de blogs
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterButtons = document.querySelectorAll('.bringer-filter-button');
+        const blogCards = document.querySelectorAll('.bringer-blog-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remover clase activa de todos los botones
+                filterButtons.forEach(btn => btn.classList.remove('is-active'));
+                
+                // Agregar clase activa al botón clickeado
+                button.classList.add('is-active');
+
+                // Obtener el filtro
+                const filter = button.getAttribute('data-filter');
+
+                // Mostrar/ocultar tarjetas
+                blogCards.forEach(card => {
+                    if (filter === '*') {
+                        // Mostrar todas
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease-in';
+                    } else {
+                        // Filtrar por categoría
+                        if (card.classList.contains(filter.replace('.', ''))) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-in';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    });
+
+    // Animación de fade in
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
