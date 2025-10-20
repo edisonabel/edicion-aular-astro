@@ -63,41 +63,57 @@ const formatDate = (dateString: string) => {
             </div>
         </section>
 
-        <!-- PASO 2: Contenido Completo del Artículo -->
+        <!-- IMAGEN DEL BLOG -->
+        <section>
+            <div class="stg-row">
+                <div class="stg-col-10 stg-offset-1">
+                    <div class="bringer-post-image stg-bottom-gap-l">
+                        <img src={post.image} alt={post.title} width="1200" height="630" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENIDO DEL ARTÍCULO -->
         <section>
             <div class="stg-row">
                 <div class="stg-col-8 stg-offset-2">
                     <article class="bringer-post-content">
-                        <!-- Excerpt (Resumen) -->
+                        <!-- Resumen -->
                         <div class="bringer-post-excerpt">
                             <p class="bringer-large-text">{post.excerpt}</p>
                         </div>
 
-                        <!-- Cuerpo del Post -->
+                        <!-- Contenido Principal -->
                         <div class="bringer-post-body">
-                            <h2>Introducción</h2>
-                            <p>{post.content}</p>
+                            {post.content.split('. ').map((sentence, index) => {
+                                // Cada 3 oraciones = 1 párrafo (más legible)
+                                if (index % 3 === 0 && index !== 0) {
+                                    return `</p><p>${sentence}.`;
+                                }
+                                return index === 0 ? `<p>${sentence}.` : ` ${sentence}.`;
+                            }).join('')}</p>
 
-                            <p>En el mundo digital actual, la competencia es feroz y la atención del usuario es cada vez más limitada. Por eso, es fundamental contar con estrategias bien definidas y ejecutadas de manera profesional.</p>
+                            <div class="stg-top-gap-l">
+                                <blockquote class="bringer-blockquote">
+                                    <p>"La diferencia entre el éxito y el fracaso está en implementar lo que aprendes, no solo en saberlo."</p>
+                                    <cite>— Edison Aular, Fundador de Edición Aular</cite>
+                                </blockquote>
+                            </div>
 
-                            <h3>Los Pilares Fundamentales</h3>
-                            <p>Para construir una presencia digital sólida, necesitas enfocarte en varios aspectos clave que trabajan en conjunto para crear una experiencia cohesiva y efectiva.</p>
+                            <h2>¿Por Qué Esto Funciona?</h2>
+                            <p>Esta estrategia ha sido probada por miles de negocios exitosos alrededor del mundo. No es teoría, es un sistema comprobado que genera resultados reales cuando se implementa correctamente.</p>
 
-                            <blockquote class="bringer-blockquote">
-                                <p>"El éxito en el marketing digital no viene de hacer muchas cosas, sino de hacer las cosas correctas de manera consistente."</p>
-                                <cite>— Edison Aular, Fundador de Edición Aular</cite>
-                            </blockquote>
+                            <p>La clave está en entender que no necesitas reinventar la rueda. Los emprendedores más exitosos no crean estrategias desde cero, adaptan y aplican lo que ya funciona a su contexto específico.</p>
 
-                            <h3>Estrategia y Planificación</h3>
-                            <p>Antes de lanzarte a crear contenido o campañas, necesitas un plan claro. Esto incluye:</p>
+                            <h2>Tu Siguiente Paso</h2>
+                            <p>Ahora que conoces esta estrategia, tienes dos opciones:</p>
                             <ul>
-                                <li>Definir objetivos medibles y alcanzables</li>
-                                <li>Conocer profundamente a tu audiencia objetivo</li>
-                                <li>Identificar los canales más efectivos para tu negocio</li>
+                                <li><strong>Opción 1:</strong> Intentar implementarla tú solo (puede tomar meses de prueba y error)</li>
+                                <li><strong>Opción 2:</strong> Trabajar con expertos que ya han ayudado a cientos de negocios a implementarla exitosamente</li>
                             </ul>
 
-                            <h2>Conclusión</h2>
-                            <p>El marketing digital exitoso es una combinación de creatividad, estrategia y análisis. Si quieres llevar tu marca al siguiente nivel, <a href="/contacto">hablemos de tu proyecto</a>.</p>
+                            <p>En Edición Aular, no solo te enseñamos la teoría, te ayudamos a implementarla paso a paso en tu negocio. Agenda una consultoría gratuita y descubre cómo podemos acelerar tus resultados.</p>
                         </div>
                     </article>
                 </div>
@@ -159,4 +175,37 @@ const formatDate = (dateString: string) => {
         margin-top: 2.5rem;
         margin-bottom: 1.25rem;
     }
-</style>
+    .bringer-post-image {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    .bringer-post-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+    .bringer-post-excerpt {
+        margin-bottom: 2.5rem;
+        padding: 1.5rem;
+        background: rgba(var(--bringer-s-accent-rgb), 0.05);
+        border-left: 4px solid var(--bringer-s-accent);
+        border-radius: 8px;
+    }
+    .bringer-post-body p {
+        margin-bottom: 1.5rem;
+        line-height: 1.9;
+    }
+    .bringer-post-body ul {
+        margin: 1.5rem 0;
+        padding-left: 2rem;
+    }
+    .bringer-post-body ul li {
+        margin-bottom: 0.75rem;
+        line-height: 1.7;
+    }
+    .bringer-post-body strong {
+        color: var(--bringer-s-accent);
+        font-weight: 600;
+    }
