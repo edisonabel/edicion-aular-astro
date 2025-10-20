@@ -457,9 +457,13 @@ jQuery(function ($) {
                         $this.attr('data-id', core.utils.generateID());
                     }
                     let this_id = $this.attr('data-id');
+                    
+                    // Contar slides reales (no duplicados)
+                    let slidesCount = $this.find('.swiper-slide:not(.swiper-slide-duplicate)').length;
+                    
                     let options = {
                         direction: 'horizontal',
-                        loop: true,
+                        loop: false, // Desactivado por defecto
                         speed: $this.attr('data-duration') !== undefined ? parseInt($this.attr('data-duration'), 10) : 500,
                         autoHeight: false,
                         grabCursor: true,
@@ -501,6 +505,12 @@ jQuery(function ($) {
                                 centeredSlides: $this.attr('data-centered') !== undefined ? parseInt($this.attr('data-centered'), 10) : true,
                             }
                         };
+                        
+                        // Activar loop solo si hay suficientes slides
+                        let maxSlidesPerView = parseFloat($this.attr('data-count')) || 3;
+                        if (slidesCount >= maxSlidesPerView * 2) {
+                            options.loop = true;
+                        }
                     }
                     
                     // SLIDER
@@ -661,6 +671,43 @@ jQuery(function ($) {
 
                     // Init Swiper
                     template.swiper[this_id] = new Swiper(this, options);
+                    
+                    // FIX: Forzar lazy loading DESPUÉS de inicializar Swiper
+                    let swiperInstance = template.swiper[this_id];
+                    setTimeout(function() {
+                        // Cargar imágenes visibles inmediatamente
+                        jQuery(swiperInstance.el).find('.swiper-slide-active img[data-src], .swiper-slide-next img[data-src], .swiper-slide-prev img[data-src]').each(function() {
+                            let $img = jQuery(this);
+                            let dataSrc = $img.attr('data-src');
+                            if (dataSrc && $img.attr('src') !== dataSrc) {
+                                $img.removeClass('bringer-lazy');
+                                let tempImg = new Image();
+                                tempImg.onload = function() {
+                                    $img.attr('src', dataSrc);
+                                    $img.closest('.st-lazy-wrapper').addClass('is-loaded');
+                                };
+                                tempImg.src = dataSrc;
+                            }
+                        });
+                    }, 150);
+                    
+                    // Cargar imágenes al cambiar slide
+                    swiperInstance.on('slideChange', function() {
+                        setTimeout(function() {
+                            jQuery(swiperInstance.el).find('.swiper-slide-active img[data-src], .swiper-slide-next img[data-src], .swiper-slide-prev img[data-src]').each(function() {
+                                let $img = jQuery(this);
+                                let dataSrc = $img.attr('data-src');
+                                if (dataSrc && $img.attr('src') !== dataSrc) {
+                                    let tempImg = new Image();
+                                    tempImg.onload = function() {
+                                        $img.attr('src', dataSrc);
+                                        $img.closest('.st-lazy-wrapper').addClass('is-loaded');
+                                    };
+                                    tempImg.src = dataSrc;
+                                }
+                            });
+                        }, 50);
+                    });
                 });
             }
 
