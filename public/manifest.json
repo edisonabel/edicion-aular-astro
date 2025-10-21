@@ -1,0 +1,17 @@
+{
+  "name": "Edición Aular - Agencia de Publicidad Digital",
+  "short_name": "Edición Aular",
+  "description": "Agencia de SEO, diseño web, branding, producción audiovisual y gestión de Ads",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ff0080",
+  "icons": [
+    {
+      "src": "/img/favicon (1).svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

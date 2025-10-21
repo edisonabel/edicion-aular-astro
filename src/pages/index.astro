@@ -40,9 +40,10 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                     <!-- Masked Media -->
                     <div class="bringer-hero-media bringer-masked-media" 
                          data-appear="fade-right" data-unload="fade-left" data-delay="150" data-threshold="0">
-                        <video src="https://tresmarketing.s3.us-east-1.amazonaws.com/Hero+1080.webm" 
+                        <video id="heroVideo"
+                               data-src="https://tresmarketing.s3.us-east-1.amazonaws.com/Hero+1080.webm"
                                poster="/img/home/home03-hero2.jpg" 
-                               playsinline muted loop autoplay preload="none" 
+                               playsinline muted loop preload="none" 
                                width="1920" height="1080"></video>
                     </div>
 
@@ -119,10 +120,10 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         </section>
     </div>
 
-    <!-- Section: Marquee -->
-    <section class="is-fullwidth is-stretched" data-padding="none">
+    <!-- Section: Marquee con will-change para GPU acceleration -->
+    <section class="is-fullwidth is-stretched" data-padding="none" style="will-change: transform;">
         <div class="bringer-marquee" data-type="scroll" data-speed="50000">
-            <div class="bringer-marquee-inner">
+            <div class="bringer-marquee-inner" style="will-change: transform;">
                 <ul class="bringer-marquee-list">
                     <li><h2>Branding</h2></li>
                     <li><h2>Marketing</h2></li>
@@ -214,18 +215,16 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         <!-- Portfolio Carousel -->
         <div class="swiper bringer-carousel stg-bottom-gap-l" data-count="4" data-m-count="1.5" data-autoplay="3000">
             <div class="swiper-wrapper">
-                {featuredProjects.map((project, index) => (
+                {featuredProjects.map((project) => (
                     <div class="bringer-block bringer-portfolio-card swiper-slide">
                         <div class="bringer-portfolio-card-image">
                             <img 
-                                src={index < 4 ? project.image : '/img/null.png'} 
-                                data-src={project.image}
+                                src={project.image} 
                                 alt={`Proyecto ${project.title} por Edición Aular`} 
                                 width="1200" 
                                 height="1200" 
-                                loading={index < 4 ? 'eager' : 'lazy'} 
-                                decoding="async"
-                                class={index >= 4 ? 'bringer-lazy' : ''}>
+                                loading="lazy" 
+                                decoding="async">
                         </div>
                         <div class="bringer-portfolio-card-footer">
                             <div class="bringer-portfolio-card-title">
@@ -539,3 +538,54 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         </section>
     </div>
 </BaseLayout>
+
+<script>
+    // Intersection Observer para hero video (carga inteligente)
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo && 'IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const video = entry.target;
+                    const src = video.getAttribute('data-src');
+                    if (src && !video.src) {
+                        video.src = src;
+                        video.load();
+                        video.play().catch(() => {});
+                        videoObserver.unobserve(video);
+                    }
+                }
+            });
+        }, { threshold: 0.25 });
+        
+        videoObserver.observe(heroVideo);
+    } else if (heroVideo) {
+        // Fallback sin IO
+        heroVideo.src = heroVideo.getAttribute('data-src');
+        heroVideo.play().catch(() => {});
+    }
+    
+    // Optimizar scroll performance con passive listeners
+    if ('addEventListener' in window) {
+        const passiveSupported = (function() {
+            let supported = false;
+            try {
+                const options = {
+                    get passive() {
+                        supported = true;
+                        return false;
+                    }
+                };
+                window.addEventListener('test', null, options);
+                window.removeEventListener('test', null, options);
+            } catch(err) {}
+            return supported;
+        })();
+        
+        if (passiveSupported) {
+            document.addEventListener('touchstart', function(){}, { passive: true });
+            document.addEventListener('touchmove', function(){}, { passive: true });
+        }
+    }
+</script>
+

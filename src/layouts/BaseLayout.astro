@@ -43,20 +43,17 @@ const socialImage = new URL(image, Astro.site).href;
             <link rel="preload" as="style" href="/css/style.css">
         </>
     )}
-    <!-- Google Fonts (optimizado con font-display swap) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Google Fonts (optimizado con preload + font-display swap) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     </noscript>
     
-    <!-- Config -->
-    <link type="text/css" rel="stylesheet" href="/css/config.css">
-    <!-- Libraries -->
-    <link type="text/css" rel="stylesheet" href="/css/libs.css">
-    <!-- Template Styles -->
-    <link type="text/css" rel="stylesheet" href="/css/style.css">
-    <!-- Responsive -->
-    <link type="text/css" rel="stylesheet" href="/css/responsive.css">
+    <!-- CSS crítico inline en HEAD, resto async -->
+    <link rel="stylesheet" href="/css/config.css">
+    <link rel="stylesheet" href="/css/libs.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css" media="all">
     <!-- Light Mode Theme (async load) -->
     <link rel="stylesheet" href="/css/theme-light.css" media="print" onload="this.media='all'">
     <!-- Fullwidth Fix (async load) -->
@@ -69,8 +66,10 @@ const socialImage = new URL(image, Astro.site).href;
         <link rel="stylesheet" href="/css/cta-gradient.css">
     </noscript>
     
-    <!-- Favicon -->
+    <!-- Favicon y PWA -->
     <link rel="icon" href="/img/favicon (1).svg" sizes="32x32">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ff0080">
     
     <!-- Metadatos Open Graph -->
     <meta property="og:title" content={title} />
@@ -88,23 +87,108 @@ const socialImage = new URL(image, Astro.site).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2CTQCP83WM"></script>
-    <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-2CTQCP83WM');
+    <!-- Google tag (gtag.js) - Carga diferida -->
+    <script>
+        window.addEventListener('load', function() {
+            const script = document.createElement('script');
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-2CTQCP83WM';
+            script.async = true;
+            document.head.appendChild(script);
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-2CTQCP83WM');
+        });
     </script>
     
-    <!-- Critical CSS -->
+    <!-- Critical CSS para prevenir CLS -->
     <style>
         .bringer-large-text {
             font-size: var(--bringer-t-large-fs);
             line-height: var(--bringer-t-content-lh);
             color: var(--bringer-s-heading);
         }
+        
+        /* Prevenir Layout Shift en imágenes */
+        img[width][height] {
+            height: auto;
+            aspect-ratio: attr(width) / attr(height);
+        }
+        
+        /* Hero video container */
+        .bringer-hero-media video {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+        }
+        
+        /* Portfolio cards */
+        .bringer-portfolio-card-image {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+        
+        .bringer-portfolio-card-image img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Skeleton loading para mejor UX */
+        .bringer-lazy[data-src]:not([src]) {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Optimización de fuentes para mejor render */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        /* GPU acceleration para elementos animados */
+        [data-appear], 
+        .swiper-slide,
+        .bringer-carousel {
+            will-change: transform, opacity;
+        }
+        
+        /* Contenido above-the-fold visible inmediatamente */
+        .bringer-page-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1.2;
+        }
     </style>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('✅ SW registered'))
+                    .catch(err => console.log('❌ SW error:', err));
+            });
+        }
+    </script>
+    
+    <!-- Prefetch páginas comunes para navegación instantánea -->
+    {Astro.url.pathname === '/' && (
+        <>
+            <link rel="prefetch" href="/nosotros" as="document">
+            <link rel="prefetch" href="/portfolio" as="document">
+        </>
+    )}
 </head>
 
 <body>
