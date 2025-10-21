@@ -20,13 +20,7 @@ export default defineConfig({
   vite: {
     build: {
       cssCodeSplit: true, // Code splitting para CSS
-      minify: 'terser', // Minificación avanzada
-      terserOptions: {
-        compress: {
-          drop_console: true, // Remover console.log en producción
-          passes: 2
-        }
-      }
+      minify: 'esbuild', // Minificación (esbuild es más rápido y viene incluido)
     }
   },
   
@@ -38,13 +32,10 @@ export default defineConfig({
         // Prioridades por tipo de página
         if (item.url.includes('/blog/')) {
           item.priority = 0.8;
-          item.changefreq = 'weekly';
         } else if (item.url.endsWith('/')) {
           item.priority = 1.0;
-          item.changefreq = 'monthly';
         } else {
           item.priority = 0.6;
-          item.changefreq = 'monthly';
         }
         return item;
       }

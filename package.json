@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "verificar": "node verificar.js",
+    "prebuild": "node verificar.js"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
