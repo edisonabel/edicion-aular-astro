@@ -21,6 +21,20 @@ export default defineConfig({
     build: {
       cssCodeSplit: true, // Code splitting para CSS
       minify: 'esbuild', // Minificación (esbuild es más rápido y viene incluido)
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            // Separar vendor chunks para mejor caché
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+          }
+        }
+      }
+    },
+    // CSS optimization
+    css: {
+      devSourcemap: false
     }
   },
   

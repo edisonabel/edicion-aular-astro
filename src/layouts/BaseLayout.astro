@@ -53,18 +53,20 @@ const socialImage = new URL(image, Astro.site).href;
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     </noscript>
     
-    <!-- CSS crítico inline en HEAD, resto async -->
+    <!-- CSS crítico (solo config y style) -->
     <link rel="stylesheet" href="/css/config.css">
-    <link rel="stylesheet" href="/css/libs.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/responsive.css" media="all">
-    <!-- Light Mode Theme (async load) -->
-    <link rel="stylesheet" href="/css/theme-light.css" media="print" onload="this.media='all'">
-    <!-- Fullwidth Fix (async load) -->
-    <link rel="stylesheet" href="/css/fullwidth-fix.css" media="print" onload="this.media='all'">
-    <!-- CTA Gradient (async load) -->
-    <link rel="stylesheet" href="/css/cta-gradient.css" media="print" onload="this.media='all'">
+    
+    <!-- CSS NO crítico (async load) -->
+    <link rel="preload" href="/css/libs.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/theme-light.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/fullwidth-fix.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/cta-gradient.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
     <noscript>
+        <link rel="stylesheet" href="/css/libs.css">
+        <link rel="stylesheet" href="/css/responsive.css">
         <link rel="stylesheet" href="/css/theme-light.css">
         <link rel="stylesheet" href="/css/fullwidth-fix.css">
         <link rel="stylesheet" href="/css/cta-gradient.css">

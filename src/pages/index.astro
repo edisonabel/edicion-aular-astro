@@ -24,9 +24,9 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <!-- Social Proof -->
                         <div class="bringer-hero-social-proof">
                             <div data-stagger-appear="fade-up" data-stagger-delay="100" data-stagger-unload="fade-up">
-                                <img src="/img/home/social proof 1.webp" alt="Cliente satisfecho 1 de Edición Aular" width="48" height="48" loading="lazy">
-                                <img src="/img/home/social proof 2.webp" alt="Cliente satisfecho 2 de Edición Aular" width="48" height="48" loading="lazy">
-                                <img src="/img/home/social proof 3.webp" alt="Cliente satisfecho 3 de Edición Aular" width="48" height="48" loading="lazy">
+                                <img src="/img/home/social proof 1.webp" alt="Cliente satisfecho 1 de Edición Aular" width="48" height="48" loading="eager" fetchpriority="high" decoding="async">
+                                <img src="/img/home/social proof 2.webp" alt="Cliente satisfecho 2 de Edición Aular" width="48" height="48" loading="eager" fetchpriority="high" decoding="async">
+                                <img src="/img/home/social proof 3.webp" alt="Cliente satisfecho 3 de Edición Aular" width="48" height="48" loading="eager" fetchpriority="high" decoding="async">
                                 <a href="/testimonials">+479</a>
                             </div>
                             <p data-appear="fade-up" data-unload="fade-up" data-delay="200">Más de 479 Clientes Confían</p>
@@ -224,7 +224,8 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                                 width="1200" 
                                 height="1200" 
                                 loading="lazy" 
-                                decoding="async">
+                                decoding="async"
+                                fetchpriority="low">
                         </div>
                         <div class="bringer-portfolio-card-footer">
                             <div class="bringer-portfolio-card-title">
