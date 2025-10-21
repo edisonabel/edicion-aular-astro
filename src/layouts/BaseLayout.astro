@@ -26,15 +26,22 @@ const socialImage = new URL(image, Astro.site).href;
     <link rel="canonical" href={Astro.url.href} />
     <meta name="google-site-verification" content="1CWG9HSA1bg0q-_Qq2kOPN1rDgFWFYdh0BQ8I5fnklc" />
     
-    <!-- Preconnect para Google Fonts (optimización) -->
+    <!-- DNS Prefetch y Preconnect optimizados -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://tresmarketing.s3.us-east-1.amazonaws.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preconnect para video S3 -->
     <link rel="preconnect" href="https://tresmarketing.s3.us-east-1.amazonaws.com">
     
-    <!-- Preload crítico para HOME hero poster -->
+    <!-- Preload crítico para HOME hero poster y CSS -->
     {Astro.url.pathname === '/' && (
-        <link rel="preload" as="image" href="/img/home/home03-hero2.jpg" fetchpriority="high">
+        <>
+            <link rel="preload" as="image" href="/img/home/home03-hero2.jpg" fetchpriority="high">
+            <link rel="preload" as="style" href="/css/config.css">
+            <link rel="preload" as="style" href="/css/style.css">
+        </>
     )}
     <!-- Google Fonts (optimizado con font-display swap) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -288,7 +295,7 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Dynamic Backlight -->
     <div class="bringer-backlight"></div>
 
-    <!-- Scripts -->
+    <!-- Scripts (mantener orden por dependencias) -->
     <script is:inline src="/js/lib/jquery.min.js"></script>
     <script is:inline src="/js/lib/libs.js"></script>
     <script is:inline src="/js/st-core.js"></script>

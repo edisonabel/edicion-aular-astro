@@ -24,9 +24,9 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <!-- Social Proof -->
                         <div class="bringer-hero-social-proof">
                             <div data-stagger-appear="fade-up" data-stagger-delay="100" data-stagger-unload="fade-up">
-                                <img src="/img/home/social proof 1.webp" alt="Cliente satisfecho 1 de Edición Aular" width="48" height="48">
-                                <img src="/img/home/social proof 2.webp" alt="Cliente satisfecho 2 de Edición Aular" width="48" height="48">
-                                <img src="/img/home/social proof 3.webp" alt="Cliente satisfecho 3 de Edición Aular" width="48" height="48">
+                                <img src="/img/home/social proof 1.webp" alt="Cliente satisfecho 1 de Edición Aular" width="48" height="48" loading="lazy">
+                                <img src="/img/home/social proof 2.webp" alt="Cliente satisfecho 2 de Edición Aular" width="48" height="48" loading="lazy">
+                                <img src="/img/home/social proof 3.webp" alt="Cliente satisfecho 3 de Edición Aular" width="48" height="48" loading="lazy">
                                 <a href="/testimonials">+479</a>
                             </div>
                             <p data-appear="fade-up" data-unload="fade-up" data-delay="200">Más de 479 Clientes Confían</p>
@@ -42,8 +42,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                          data-appear="fade-right" data-unload="fade-left" data-delay="150" data-threshold="0">
                         <video src="https://tresmarketing.s3.us-east-1.amazonaws.com/Hero+1080.webm" 
                                poster="/img/home/home03-hero2.jpg" 
-                               playsinline muted loop autoplay preload="metadata" 
-                               fetchpriority="high"
+                               playsinline muted loop autoplay preload="none" 
                                width="1920" height="1080"></video>
                     </div>
 
@@ -88,7 +87,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
             <div class="stg-row stg-large-gap stg-m-normal-gap">
                 <div class="stg-col-6 stg-tp-bottom-gap-l stg-m-bottom-gap" data-unload="fade-left">
                     <div class="bringer-parallax-media">
-                        <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/jolu mockup.webp" alt="Mockup de Jolu creado por Edición Aular" width="960" height="960">
+                        <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/jolu mockup.webp" alt="Mockup de Jolu creado por Edición Aular" width="960" height="960" loading="lazy">
                     </div>
                 </div>
 
@@ -215,10 +214,18 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         <!-- Portfolio Carousel -->
         <div class="swiper bringer-carousel stg-bottom-gap-l" data-count="4" data-m-count="1.5" data-autoplay="3000">
             <div class="swiper-wrapper">
-                {featuredProjects.map((project) => (
+                {featuredProjects.map((project, index) => (
                     <div class="bringer-block bringer-portfolio-card swiper-slide">
                         <div class="bringer-portfolio-card-image">
-                            <img src={project.image} alt={`Proyecto ${project.title} por Edición Aular`} width="1200" height="1200">
+                            <img 
+                                src={index < 4 ? project.image : '/img/null.png'} 
+                                data-src={project.image}
+                                alt={`Proyecto ${project.title} por Edición Aular`} 
+                                width="1200" 
+                                height="1200" 
+                                loading={index < 4 ? 'eager' : 'lazy'} 
+                                decoding="async"
+                                class={index >= 4 ? 'bringer-lazy' : ''}>
                         </div>
                         <div class="bringer-portfolio-card-footer">
                             <div class="bringer-portfolio-card-title">
@@ -415,7 +422,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         <!-- Section: Testimonials -->
         <section class="backlight-top">
             <div class="bringer-expand-on-scroll">
-                <img src="/img/home/mokcup 1 home.webp" alt="Testimonios" data-unload="fade-up" width="1920" height="1080">
+                <img src="/img/home/mokcup 1 home.webp" alt="Testimonios" data-unload="fade-up" width="1920" height="1080" loading="lazy" decoding="async">
             </div>
 
             <div class="stg-row stg-large-gap stg-top-gap-l">
@@ -526,7 +533,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
 
                 <!-- Card pequeño imagen abajo derecha -->
                 <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
-                    <img src="/img/cta/contact3.webp" alt="Mockups de celulares" width="960" height="960">
+                    <img src="/img/cta/contact3.webp" alt="Mockups de celulares" width="960" height="960" loading="lazy" decoding="async">
                 </div>
             </div>
         </section>
