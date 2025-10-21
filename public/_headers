@@ -1,8 +1,16 @@
-# Cache headers para assets estáticos (Netlify/Vercel compatible)
+# Cache + Compression Headers (Netlify/Vercel/Cloudflare)
 
-# Imágenes - 1 año de caché
+# COMPRESIÓN GLOBAL (CRÍTICO para GTmetrix)
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Imágenes - 1 año de caché + compression
 /img/*
   Cache-Control: public, max-age=31536000, immutable
+  Content-Encoding: gzip
 
 # CSS y JS - 1 año de caché
 /css/*

@@ -1,4 +1,4 @@
-# Configuración para Netlify
+# Configuración para Netlify con Performance Optimization
 
 [build]
   command = "npm run build"
@@ -7,6 +7,65 @@
 [build.environment]
   # Asegura que se use una versión de Node.js compatible con Astro
   NODE_VERSION = "18"
+
+# COMPRESIÓN BROTLI + GZIP (GTmetrix Fix)
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+# Headers globales para compresión
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Habilitar compresión
+    Content-Encoding = "br, gzip, deflate"
+    # Vary header para cache correcto
+    Vary = "Accept-Encoding"
+    # Security headers
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache largo para assets estáticos
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Sin cache para HTML
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Redirección para manejar rutas dinámicas de Astro en SPA
 [[redirects]]
