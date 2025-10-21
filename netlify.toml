@@ -26,14 +26,10 @@
 [build.processing.images]
   compress = true
 
-# Headers globales para compresión
+# Headers globales para seguridad
 [[headers]]
   for = "/*"
   [headers.values]
-    # Habilitar compresión
-    Content-Encoding = "br, gzip, deflate"
-    # Vary header para cache correcto
-    Vary = "Accept-Encoding"
     # Security headers
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
