@@ -108,8 +108,12 @@ try {
         console.log('  ✅ Cache versioning implementado');
     }
     
-    if (sw.includes('STATIC_ASSETS')) {
-        console.log('  ✅ Assets estáticos definidos');
+    if (sw.includes('IMAGE_CACHE') && sw.includes('FONT_CACHE')) {
+        console.log('  ✅ Múltiples caches configurados');
+    }
+    
+    if (sw.includes('Cache-first') || sw.includes('cache.match')) {
+        console.log('  ✅ Estrategias de caché implementadas');
     }
     
     if (sw.includes('addEventListener')) {
@@ -118,6 +122,44 @@ try {
 } catch (e) {
     console.log('  ❌ Error leyendo sw.js');
     errors++;
+}
+
+// 6. Verificar Cache Headers
+console.log('\n📦 Verificando headers de caché...');
+const headerFiles = ['public/_headers', '.htaccess'];
+let hasHeaders = false;
+
+headerFiles.forEach(file => {
+    if (existsSync(file)) {
+        console.log(`  ✅ ${file} encontrado`);
+        hasHeaders = true;
+    }
+});
+
+if (!hasHeaders) {
+    console.log('  ⚠️  Sin archivos de headers (opcional)');
+    warnings++;
+}
+
+// 7. Verificar Mobile Optimizations
+console.log('\n📱 Verificando optimizaciones mobile...');
+try {
+    const layout = readFileSync('src/layouts/BaseLayout.astro', 'utf8');
+    
+    if (layout.includes('user-scalable=no')) {
+        console.log('  ✅ Viewport optimizado para mobile');
+    }
+    
+    if (layout.includes('touch-action') || layout.includes('tap-highlight')) {
+        console.log('  ✅ Touch optimizations implementadas');
+    }
+    
+    if (layout.includes('prefers-reduced-motion')) {
+        console.log('  ✅ Accesibilidad motion implementada');
+    }
+} catch (e) {
+    console.log('  ⚠️  Error verificando mobile optimizations');
+    warnings++;
 }
 
 // Resumen

@@ -14,7 +14,10 @@ const socialImage = new URL(image, Astro.site).href;
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Page Title -->
     <title>{title}</title>
@@ -38,9 +41,10 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Preload crítico para HOME hero poster y CSS -->
     {Astro.url.pathname === '/' && (
         <>
-            <link rel="preload" as="image" href="/img/home/home03-hero2.jpg" fetchpriority="high">
+            <link rel="preload" as="image" href="/img/home/home03-hero2.jpg" fetchpriority="high" importance="high">
             <link rel="preload" as="style" href="/css/config.css">
             <link rel="preload" as="style" href="/css/style.css">
+            <link rel="preload" as="script" href="/js/lib/jquery.min.js">
         </>
     )}
     <!-- Google Fonts (optimizado con preload + font-display swap) -->
@@ -102,7 +106,7 @@ const socialImage = new URL(image, Astro.site).href;
         });
     </script>
     
-    <!-- Critical CSS para prevenir CLS -->
+    <!-- Critical CSS para prevenir CLS y optimización mobile -->
     <style>
         .bringer-large-text {
             font-size: var(--bringer-t-large-fs);
@@ -168,6 +172,49 @@ const socialImage = new URL(image, Astro.site).href;
         .bringer-page-title {
             font-size: clamp(2rem, 5vw, 4rem);
             line-height: 1.2;
+        }
+        
+        /* OPTIMIZACIONES MOBILE-FIRST */
+        
+        /* Touch targets mínimos 44x44px (WCAG) */
+        a, button, input, select, textarea {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Mejorar tap highlights */
+        * {
+            -webkit-tap-highlight-color: rgba(255, 0, 128, 0.2);
+            tap-highlight-color: rgba(255, 0, 128, 0.2);
+        }
+        
+        /* Prevenir zoom en inputs (mobile) */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+        
+        /* Optimizar scroll en mobile */
+        html {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        
+        /* Reducir motion para usuarios sensibles */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Container queries para componentes responsive */
+        @supports (container-type: inline-size) {
+            .bringer-portfolio-card {
+                container-type: inline-size;
+            }
         }
     </style>
     

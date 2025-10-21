@@ -1,0 +1,35 @@
+# Cache headers para assets estáticos (Netlify/Vercel compatible)
+
+# Imágenes - 1 año de caché
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS y JS - 1 año de caché
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fuentes - 1 año de caché
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML - Sin caché (siempre fresco)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Service Worker - Sin caché
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Manifest - 1 día
+/manifest.json
+  Cache-Control: public, max-age=86400
+
+# Assets de Astro (generados con hash)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
