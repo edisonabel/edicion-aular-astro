@@ -28,6 +28,20 @@ const categories = [...new Set(blogData.map(p => p.category))];
                             Estrategias, tendencias y consejos prácticos para llevar tu marca al siguiente nivel. 
                             <span class="bringer-accent">Contenido creado por expertos, pensado para creadores.</span>
                         </p>
+
+                        <!-- Search Bar -->
+                        <div class="bringer-blog-search" style="margin-top: 2rem; opacity: 1;">
+                            <div class="bringer-search-form" style="position: relative;">
+                                <input 
+                                    type="text" 
+                                    id="blogSearch" 
+                                    placeholder="Buscar artículos... (ej. 'funnel', 'webinar', 'ofertas')"
+                                    style="width: 100%; padding: 1rem 3rem 1rem 1.5rem; font-size: 1rem; border: 2px solid rgba(255,255,255,0.1); border-radius: 50px; background: rgba(255,255,255,0.05); color: #fff; transition: all 0.3s ease;"
+                                />
+                                <span class="bringer-search-icon" style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); opacity: 0.5; pointer-events: none;">🔍</span>
+                            </div>
+                            <p id="searchResults" style="margin-top: 1rem; color: var(--accent-color); font-size: 0.9rem;"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -402,4 +416,54 @@ const categories = [...new Set(blogData.map(p => p.category))];
         }
     `;
     document.head.appendChild(style);
+
+    // Search funcionalidad
+    const searchInput = document.getElementById('blogSearch');
+    const searchResults = document.getElementById('searchResults');
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query.length === 0) {
+                // Reset
+                blogCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+                searchResults.textContent = '';
+                return;
+            }
+            
+            let visibleCount = 0;
+            
+            blogCards.forEach(card => {
+                const title = card.querySelector('.bringer-blog-card-title')?.textContent.toLowerCase() || '';
+                const excerpt = card.querySelector('.bringer-blog-card-excerpt')?.textContent.toLowerCase() || '';
+                const category = card.querySelector('.bringer-meta')?.textContent.toLowerCase() || '';
+                
+                if (title.includes(query) || excerpt.includes(query) || category.includes(query)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease-in';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            searchResults.textContent = visibleCount === 0 
+                ? `No se encontraron resultados para "${query}"` 
+                : `${visibleCount} artículo${visibleCount > 1 ? 's' : ''} encontrado${visibleCount > 1 ? 's' : ''}`;
+        });
+
+        // Focus effect
+        searchInput.addEventListener('focus', (e) => {
+            e.target.style.borderColor = 'var(--accent-color)';
+            e.target.style.background = 'rgba(255,255,255,0.08)';
+        });
+
+        searchInput.addEventListener('blur', (e) => {
+            e.target.style.borderColor = 'rgba(255,255,255,0.1)';
+            e.target.style.background = 'rgba(255,255,255,0.05)';
+        });
+    }
 </script>

@@ -218,31 +218,5 @@
       "psicología de ventas",
       "ofertas"
     ]
-  },
-  {
-    "title": "Asistente de IA en tu Web: 7 Días para Convertir Tráfico en Prospectos Calificados",
-    "slug": "asistente-ia-funnel-web-7-dias",
-    "excerpt": "Inspirado en Paul Roetzer (Marketing AI Institute): cómo instalar un asistente de IA en tu sitio para calificar leads, reducir fricción y alimentar tu funnel sin dormir en el intento.",
-    "content": "<section>\n  <h2>Tu web como vendedora 24/7 (con cabeza fría y proceso)</h2>\n  <p>La primera vez que puse un chat con IA en una web me pasó algo curioso: la gente hablaba más que en el formulario clásico, pero dejaba menos datos. Aprendí la lección a lo Roetzer: <strong>la IA no es magia, es operación</strong>. Si le enseñas tu propuesta de valor, tus objeciones frecuentes y el siguiente paso claro del embudo, la IA no solo conversa: <em>convierte</em>.</p>\n\n  <h3>Arquitectura mínima viable (MVP) para un funnel con IA</h3>\n  <ul>\n    <li><strong>Widget de chat</strong> en la web (flotante, visible en móvil y desktop).</li>\n    <li><strong>Base de conocimiento</strong>: 10–20 respuestas canónicas (FAQ, beneficios, garantías, precios).</li>\n    <li><strong>Guion de calificación</strong> con 5–7 preguntas (presupuesto, urgencia, uso, tamaño, autoridad).</li>\n    <li><strong>Integración al CRM</strong> (HubSpot/Pipedrive): crea contacto, puntúa (lead score) y asigna responsable.</li>\n    <li><strong>CTA de acción</strong>: reservar llamada en Calendly/Google y/o enviar a WhatsApp con contexto.</li>\n  </ul>\n\n  <h3>Guion práctico de calificación (6 preguntas que separan curiosos de compradores)</h3>\n  <ol>\n    <li><strong>Meta</strong>: ¿Qué resultado quieres lograr en los próximos 30–90 días?</li>\n    <li><strong>Situación</strong>: ¿Cómo lo haces hoy? (herramientas, equipo, tráfico, presupuesto)</li>\n    <li><strong>Bloqueo</strong>: ¿Qué te frena? (tiempo, conocimiento, implementación)</li>\n    <li><strong>Autoridad</strong>: ¿Quién decide la compra?</li>\n    <li><strong>Urgencia</strong>: ¿Hay una fecha límite u oportunidad específica?</li>\n    <li><strong>Presupuesto</strong>: ¿Cuál es tu rango de inversión para resolverlo?</li>\n  </ol>\n\n  <h3>KPI que sí importan (según embudos reales)</h3>\n  <ul>\n    <li><strong>Tasa de conversación→lead</strong>: % de chats que dejan datos (objetivo inicial: 15–25%).</li>\n    <li><strong>Lead score promedio</strong>: 0–100; por encima de 60 = prioridad para ventas.</li>\n    <li><strong>Tiempo a la reserva</strong>: minutos entre primer mensaje y agendar (apunta a &lt;10 min).</li>\n    <li><strong>Ratio MQL→SQL</strong>: del marketing qualified al sales qualified (busca 35–50% con buen guion).</li>\n  </ul>\n\n  <h3>Plan de 7 días (instala, enseña, prueba y mide)</h3>\n  <ol>\n    <li><strong>Día 1</strong>: Define 1 oferta principal y tu <em>one-liner</em> (quién, qué, resultado, plazo).</li>\n    <li><strong>Día 2</strong>: Escribe 12 FAQs y 6 objeciones con respuestas cortas (120–180 caracteres cada una).</li>\n    <li><strong>Día 3</strong>: Configura el chat y la base de conocimiento; limita el tono a claro, directo y empático.</li>\n    <li><strong>Día 4</strong>: Implementa el guion de 6 preguntas y el <em>handoff</em> al CRM (campo de origen: \"chat-ia\").</li>\n    <li><strong>Día 5</strong>: Añade CTA doble: <em>Reservar demo</em> o <em>Hablar por WhatsApp</em> con resumen automático.</li>\n    <li><strong>Día 6</strong>: Corre 3 tests: saludo (A/B), ubicación del widget (derecha vs. izquierda) y pregunta de apertura.</li>\n    <li><strong>Día 7</strong>: Revisa KPIs, ajusta el guion y define reglas: cuando score ≥70 → tarea inmediata al closer.</li>\n  </ol>\n\n  <h4>Errores comunes (que yo ya cometí para que tú no)</h4>\n  <ul>\n    <li><strong>IA sin siguiente paso</strong>: la conversación termina en nada. Siempre cierra con agenda/WhatsApp.</li>\n    <li><strong>FAQ sin negocio</strong>: respuestas muy técnicas, poco valor. Conecta todo a beneficio y caso de uso.</li>\n    <li><strong>Sin CRM</strong>: datos perdidos = dinero perdido. Integra desde el día 1.</li>\n  </ul>\n\n  <p><strong>Conclusión:</strong> la IA en tu web no reemplaza el embudo; lo <em>aceita</em>. Si entrenas al asistente con tu oferta, objeciones y próximos pasos, se vuelve un compañero de ventas incansable que califica, agenda y prepara el terreno para cerrar.</p>\n</section>\n",
-    "image": "/img/blog/1761021610743-marketing-con-ia.webp",
-    "category": "Marketing con IA",
-    "author": "Edison Aular",
-    "authorImage": "/img/team/edison.jpg",
-    "date": "2025-10-21",
-    "readTime": "7 min",
-    "featured": false,
-    "tags": [
-      "paul roetzer",
-      "marketing ai institute",
-      "marketing con ia",
-      "asistente de ia",
-      "chatbot ia",
-      "calificación de leads",
-      "crm",
-      "hubspot",
-      "embudos de ventas",
-      "captura de leads"
-    ],
-    "id": 12
   }
 ]

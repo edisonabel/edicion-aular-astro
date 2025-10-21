@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog CMS - Edición Aular</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        .sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-right: 1px solid #e9ecef;
+        }
+
+        .sidebar button {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .sidebar button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .sidebar button.secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .main {
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: calc(100vh - 200px);
+        }
+
+        .posts-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .post-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+            transition: box-shadow 0.2s;
+        }
+
+        .post-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .post-image {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .post-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .post-info p {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge.featured {
+            background: #f6ad55;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-edit {
+            background: #4299e1;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #3182ce;
+        }
+
+        .btn-delete {
+            background: #fc8181;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #f56565;
+        }
+
+        .form-container {
+            display: none;
+            max-width: 900px;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input[type="file"] {
+            padding: 0.5rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-save {
+            flex: 1;
+            padding: 1rem;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            flex: 1;
+            padding: 1rem;
+            background: #e2e8f0;
+            color: #2d3748;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tags-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            min-height: 50px;
+        }
+
+        .tag-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .tag-item button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .tag-input-field {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .preview-image {
+            max-width: 300px;
+            margin-top: 1rem;
+            border-radius: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #718096;
+        }
+
+        .success-message {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: #48bb78;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Blog CMS - Edición Aular</h1>
+            <p>Gestiona tus artículos de blog sin hacer deploy</p>
+        </div>
+
+        <div class="content">
+            <div class="sidebar">
+                <button onclick="showPosts()">📚 Ver Todos los Posts</button>
+                <button onclick="showNewPostForm()">➕ Crear Nuevo Post</button>
+                <button class="secondary" onclick="reloadBlog()">🔄 Recargar Blog</button>
+            </div>
+
+            <div class="main">
+                <!-- Posts List View -->
+                <div id="postsView" class="posts-list">
+                    <div class="loading">Cargando posts...</div>
+                </div>
+
+                <!-- New/Edit Post Form -->
+                <div id="formView" class="form-container">
+                    <h2 id="formTitle">Crear Nuevo Post</h2>
+                    <form id="postForm" onsubmit="savePost(event)">
+                        <input type="hidden" id="postId">
+                        
+                        <div class="form-group">
+                            <label>Título *</label>
+                            <input type="text" id="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Slug (URL) *</label>
+                            <input type="text" id="slug" required placeholder="ej: mi-articulo-increible">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Excerpt (Resumen corto) *</label>
+                            <textarea id="excerpt" required rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Contenido (HTML) *</label>
+                            <textarea id="content" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Imagen (sube archivo o pega URL) *</label>
+                            <input type="file" id="imageFile" accept="image/*" onchange="previewImage(this)">
+                            <input type="text" id="image" placeholder="/img/blog/mi-imagen.webp" style="margin-top: 0.5rem;">
+                            <img id="imagePreview" class="preview-image" style="display:none;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Categoría *</label>
+                            <select id="category" required>
+                                <option value="">Selecciona categoría</option>
+                                <option value="Marketing Digital">Marketing Digital</option>
+                                <option value="Copywriting">Copywriting</option>
+                                <option value="Estrategia de Negocios">Estrategia de Negocios</option>
+                                <option value="Autoridad y Liderazgo">Autoridad y Liderazgo</option>
+                                <option value="Generación de Tráfico">Generación de Tráfico</option>
+                                <option value="Webinars y Ventas">Webinars y Ventas</option>
+                                <option value="Optimización de Funnels">Optimización de Funnels</option>
+                                <option value="Personal Branding">Personal Branding</option>
+                                <option value="Estrategia de Ventas">Estrategia de Ventas</option>
+                                <option value="Estrategia de Precios">Estrategia de Precios</option>
+                                <option value="Copywriting y Ventas">Copywriting y Ventas</option>
+                                <option value="Marketing con IA">Marketing con IA</option>
+                                <option value="Direct Response y Embudos">Direct Response y Embudos</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Autor *</label>
+                            <input type="text" id="author" value="Edison Aular" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Imagen del Autor</label>
+                            <input type="text" id="authorImage" value="/img/team/edison.jpg">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fecha *</label>
+                            <input type="date" id="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tiempo de Lectura *</label>
+                            <input type="text" id="readTime" placeholder="ej: 7 min" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="featured"> Post Destacado
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tags (presiona Enter para agregar)</label>
+                            <div class="tags-input" id="tagsContainer" onclick="focusTagInput()">
+                                <input type="text" class="tag-input-field" id="tagInput" 
+                                       onkeydown="handleTagInput(event)" 
+                                       placeholder="Escribe un tag y presiona Enter">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">💾 Guardar Post</button>
+                            <button type="button" class="btn-cancel" onclick="showPosts()">❌ Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let blogData = [];
+        let currentTags = [];
+        const API_URL = 'http://localhost:3001/api';
+
+        // Load blog data on page load
+        window.onload = function() {
+            loadBlogData();
+        };
+
+        async function loadBlogData() {
+            try {
+                const response = await fetch(`${API_URL}/posts`);
+                const data = await response.json();
+                if (data.success) {
+                    blogData = data.posts;
+                    showPosts();
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (error) {
+                console.error('Error loading blog:', error);
+                document.getElementById('postsView').innerHTML = 
+                    '<div class="loading">❌ Error cargando el blog. ¿Está corriendo el servidor CMS en puerto 3001?</div>';
+            }
+        }
+
+        function showPosts() {
+            document.getElementById('postsView').classList.remove('active');
+            document.getElementById('formView').classList.remove('active');
+            document.getElementById('postsView').style.display = 'block';
+            document.getElementById('formView').style.display = 'none';
+
+            const stats = `
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>${blogData.length}</h3>
+                        <p>Total Posts</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${blogData.filter(p => p.featured).length}</h3>
+                        <p>Posts Destacados</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${[...new Set(blogData.map(p => p.category))].length}</h3>
+                        <p>Categorías</p>
+                    </div>
+                </div>
+            `;
+
+            const postsHTML = blogData.map(post => `
+                <div class="post-card">
+                    <img src="${post.image}" alt="${post.title}" class="post-image" onerror="this.src='/img/blog/placeholder.webp'">
+                    <div class="post-info">
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt.substring(0, 100)}...</p>
+                        <div class="post-meta">
+                            <span class="badge">${post.category}</span>
+                            ${post.featured ? '<span class="badge featured">⭐ Destacado</span>' : ''}
+                            <span class="badge" style="background: #4a5568;">${post.date}</span>
+                            <span class="badge" style="background: #718096;">${post.readTime}</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn btn-edit" onclick="editPost(${post.id})">✏️ Editar</button>
+                        <button class="btn btn-delete" onclick="deletePost(${post.id})">🗑️ Eliminar</button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('postsView').innerHTML = stats + postsHTML;
+        }
+
+        function showNewPostForm() {
+            document.getElementById('postsView').style.display = 'none';
+            document.getElementById('formView').style.display = 'block';
+            document.getElementById('formTitle').textContent = 'Crear Nuevo Post';
+            document.getElementById('postForm').reset();
+            document.getElementById('postId').value = '';
+            currentTags = [];
+            document.getElementById('date').valueAsDate = new Date();
+            renderTags();
+        }
+
+        function editPost(id) {
+            const post = blogData.find(p => p.id === id);
+            if (!post) return;
+
+            document.getElementById('postsView').style.display = 'none';
+            document.getElementById('formView').style.display = 'block';
+            document.getElementById('formTitle').textContent = 'Editar Post';
+
+            document.getElementById('postId').value = post.id;
+            document.getElementById('title').value = post.title;
+            document.getElementById('slug').value = post.slug;
+            document.getElementById('excerpt').value = post.excerpt;
+            document.getElementById('content').value = post.content;
+            document.getElementById('image').value = post.image;
+            document.getElementById('category').value = post.category;
+            document.getElementById('author').value = post.author;
+            document.getElementById('authorImage').value = post.authorImage;
+            document.getElementById('date').value = post.date;
+            document.getElementById('readTime').value = post.readTime;
+            document.getElementById('featured').checked = post.featured;
+            
+            currentTags = post.tags || [];
+            renderTags();
+
+            if (post.image) {
+                document.getElementById('imagePreview').src = post.image;
+                document.getElementById('imagePreview').style.display = 'block';
+            }
+        }
+
+        async function deletePost(id) {
+            if (!confirm('¿Estás seguro de eliminar este post?')) return;
+
+            try {
+                const response = await fetch(`${API_URL}/posts/${id}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    await loadBlogData();
+                    showSuccess('Post eliminado correctamente');
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                alert('Error al eliminar el post: ' + error.message);
+            }
+        }
+
+        function handleTagInput(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const input = e.target;
+                const tag = input.value.trim();
+                if (tag && !currentTags.includes(tag)) {
+                    currentTags.push(tag);
+                    renderTags();
+                    input.value = '';
+                }
+            }
+        }
+
+        function removeTag(tag) {
+            currentTags = currentTags.filter(t => t !== tag);
+            renderTags();
+        }
+
+        function renderTags() {
+            const container = document.getElementById('tagsContainer');
+            const input = document.getElementById('tagInput');
+            const tagsHTML = currentTags.map(tag => `
+                <div class="tag-item">
+                    <span>${tag}</span>
+                    <button type="button" onclick="removeTag('${tag}')">×</button>
+                </div>
+            `).join('');
+            
+            container.innerHTML = tagsHTML;
+            container.appendChild(input);
+        }
+
+        function focusTagInput() {
+            document.getElementById('tagInput').focus();
+        }
+
+        async function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                    document.getElementById('imagePreview').style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+
+                // Subir imagen al servidor
+                const formData = new FormData();
+                formData.append('image', input.files[0]);
+
+                try {
+                    const response = await fetch(`${API_URL}/upload-image`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        document.getElementById('image').value = data.imageUrl;
+                        showSuccess('Imagen subida correctamente');
+                    }
+                } catch (error) {
+                    console.error('Error uploading image:', error);
+                    alert('Error al subir la imagen');
+                }
+            }
+        }
+
+        async function savePost(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('postId').value;
+            const postData = {
+                title: document.getElementById('title').value,
+                slug: document.getElementById('slug').value,
+                excerpt: document.getElementById('excerpt').value,
+                content: document.getElementById('content').value,
+                image: document.getElementById('image').value,
+                category: document.getElementById('category').value,
+                author: document.getElementById('author').value,
+                authorImage: document.getElementById('authorImage').value,
+                date: document.getElementById('date').value,
+                readTime: document.getElementById('readTime').value,
+                featured: document.getElementById('featured').checked,
+                tags: currentTags
+            };
+
+            try {
+                let response;
+                if (id) {
+                    // Update existing
+                    response = await fetch(`${API_URL}/posts/${id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(postData)
+                    });
+                } else {
+                    // Create new
+                    response = await fetch(`${API_URL}/posts`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(postData)
+                    });
+                }
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    await loadBlogData();
+                    showPosts();
+                    showSuccess(id ? 'Post actualizado correctamente' : 'Post creado correctamente');
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (error) {
+                console.error('Error saving post:', error);
+                alert('Error al guardar el post: ' + error.message);
+            }
+        }
+
+        function reloadBlog() {
+            loadBlogData();
+            showSuccess('Blog recargado');
+        }
+
+        function showSuccess(message) {
+            const div = document.createElement('div');
+            div.className = 'success-message';
+            div.textContent = '✅ ' + message;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 3000);
+        }
+    </script>
+</body>
+</html>

@@ -14,5 +14,10 @@
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.14.5",
     "astro-seo": "^0.8.4"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
   }
 }

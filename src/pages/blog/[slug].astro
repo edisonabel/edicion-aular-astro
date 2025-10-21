@@ -22,11 +22,28 @@ const formatDate = (dateString: string) => {
         day: 'numeric' 
     });
 };
+
+// Obtener artículos relacionados (misma categoría o recientes)
+const relatedPosts = blogData
+    .filter(p => p.id !== post.id) // Excluir el post actual
+    .filter(p => p.category === post.category || p.featured) // Misma categoría o destacados
+    .slice(0, 6); // Máximo 6 posts
+
+// Si no hay suficientes de la misma categoría, rellenar con otros recientes
+if (relatedPosts.length < 3) {
+    const otherPosts = blogData
+        .filter(p => p.id !== post.id && !relatedPosts.includes(p))
+        .slice(0, 6 - relatedPosts.length);
+    relatedPosts.push(...otherPosts);
+}
 ---
 
 <BaseLayout 
     title={`${post.title} | Blog Edición Aular`}
     description={post.excerpt}>
+
+    <!-- Progress Bar de Lectura -->
+    <div id="readingProgressBar" style="position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(90deg, var(--accent-color), #ff4d91); z-index: 9999; transition: width 0.1s ease;"></div>
 
     <div class="stg-container">
         <!-- PASO 1: Encabezado del Artículo -->
@@ -133,6 +150,61 @@ const formatDate = (dateString: string) => {
                 </div>
             </div>
         </section>
+
+        <!-- Carousel de Artículos Relacionados -->
+        {relatedPosts.length > 0 && (
+            <section class="backlight-bottom" style="margin-top: 6rem;">
+                <div class="stg-row bringer-section-title">
+                    <div class="stg-col-8 stg-offset-2">
+                        <div class="align-center">
+                            <h2 data-appear="fade-up" data-unload="fade-up">Artículos Relacionados<span class="bringer-accent">.</span></h2>
+                            <p class="bringer-large-text" data-appear="fade-up" data-unload="fade-up" data-delay="100">
+                                Continúa aprendiendo con estos artículos
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper bringer-carousel" data-appear="fade-up" data-delay="200" data-unload="fade-up">
+                    <div class="swiper-wrapper">
+                        {relatedPosts.map((relatedPost) => (
+                            <div class="bringer-block bringer-blog-card swiper-slide">
+                                <div class="bringer-blog-card-image">
+                                    <img src={relatedPost.image} alt={relatedPost.title} width="800" height="450" loading="lazy" decoding="async" />
+                                </div>
+                                <div class="bringer-blog-card-footer">
+                                    <div class="bringer-blog-card-caption">
+                                        <span class="bringer-meta">{relatedPost.category}</span>
+                                        <h5 class="bringer-blog-card-title">{relatedPost.title}</h5>
+                                        <p class="bringer-blog-card-excerpt">{relatedPost.excerpt}</p>
+                                        <div class="bringer-blog-card-meta">
+                                            <span class="bringer-meta">{formatDate(relatedPost.date)}</span>
+                                            <span class="bringer-meta">•</span>
+                                            <span class="bringer-meta">{relatedPost.readTime}</span>
+                                        </div>
+                                    </div>
+                                    <span class="bringer-icon bringer-icon-arrow-nav"></span>
+                                </div>
+                                <a href={`/blog/${relatedPost.slug}`}></a>
+                            </div>
+                        ))}
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="swiper-navigation">
+                        <div class="bringer-button-prev">
+                            <span class="bringer-icon bringer-icon-arrow-prev"></span>
+                        </div>
+                        <div class="bringer-button-next">
+                            <span class="bringer-icon bringer-icon-arrow-next"></span>
+                        </div>
+                    </div>
+
+                    <!-- Scrollbar -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </section>
+        )}
     </div>
 
 </BaseLayout>
@@ -407,5 +479,84 @@ const formatDate = (dateString: string) => {
     
     // Re-aplicar por seguridad
     setTimeout(applySpacing, 500);
+})();
+
+// Progress Bar de Lectura
+(function() {
+    const progressBar = document.getElementById('readingProgressBar');
+    
+    if (!progressBar) return;
+    
+    function updateProgressBar() {
+        // Calcular el progreso de scroll
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Calcular porcentaje
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+        
+        // Actualizar ancho del progress bar
+        progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+    }
+    
+    // Actualizar en scroll
+    window.addEventListener('scroll', updateProgressBar, { passive: true });
+    
+    // Actualizar al cargar
+    updateProgressBar();
+})();
+
+// Inicializar Carousel de Artículos Relacionados
+(function() {
+    // Esperar a que Swiper esté disponible
+    function initRelatedCarousel() {
+        if (typeof Swiper === 'undefined') {
+            setTimeout(initRelatedCarousel, 100);
+            return;
+        }
+
+        const carousel = document.querySelector('.bringer-carousel');
+        if (!carousel) return;
+
+        new Swiper(carousel, {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            speed: 600,
+            grabCursor: true,
+            navigation: {
+                nextEl: '.bringer-button-next',
+                prevEl: '.bringer-button-prev',
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                draggable: true,
+            },
+            breakpoints: {
+                // Mobile
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                // Tablet
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                // Desktop
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                }
+            }
+        });
+    }
+
+    // Iniciar cuando DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRelatedCarousel);
+    } else {
+        initRelatedCarousel();
+    }
 })();
 </script>
