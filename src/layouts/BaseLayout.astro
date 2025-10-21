@@ -14,10 +14,7 @@ const socialImage = new URL(image, Astro.site).href;
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Page Title -->
     <title>{title}</title>
@@ -41,10 +38,9 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Preload crítico para HOME hero poster y CSS -->
     {Astro.url.pathname === '/' && (
         <>
-            <link rel="preload" as="image" href="/img/home/home03-hero2.jpg" fetchpriority="high" importance="high">
+            <link rel="preload" as="image" href="/img/home/home03-hero2.jpg" fetchpriority="high">
             <link rel="preload" as="style" href="/css/config.css">
             <link rel="preload" as="style" href="/css/style.css">
-            <link rel="preload" as="script" href="/js/lib/jquery.min.js">
         </>
     )}
     <!-- Google Fonts (optimizado con preload + font-display swap) -->
@@ -53,20 +49,18 @@ const socialImage = new URL(image, Astro.site).href;
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     </noscript>
     
-    <!-- CSS crítico (solo config y style) -->
+    <!-- CSS crítico inline en HEAD, resto async -->
     <link rel="stylesheet" href="/css/config.css">
+    <link rel="stylesheet" href="/css/libs.css">
     <link rel="stylesheet" href="/css/style.css">
-    
-    <!-- CSS NO crítico (async load) -->
-    <link rel="preload" href="/css/libs.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="/css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="/css/theme-light.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="/css/fullwidth-fix.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="/css/cta-gradient.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
+    <link rel="stylesheet" href="/css/responsive.css" media="all">
+    <!-- Light Mode Theme (async load) -->
+    <link rel="stylesheet" href="/css/theme-light.css" media="print" onload="this.media='all'">
+    <!-- Fullwidth Fix (async load) -->
+    <link rel="stylesheet" href="/css/fullwidth-fix.css" media="print" onload="this.media='all'">
+    <!-- CTA Gradient (async load) -->
+    <link rel="stylesheet" href="/css/cta-gradient.css" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="/css/libs.css">
-        <link rel="stylesheet" href="/css/responsive.css">
         <link rel="stylesheet" href="/css/theme-light.css">
         <link rel="stylesheet" href="/css/fullwidth-fix.css">
         <link rel="stylesheet" href="/css/cta-gradient.css">
@@ -426,16 +420,34 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Dynamic Backlight -->
     <div class="bringer-backlight"></div>
 
-    <!-- Scripts DEFER para reducir JS execution time (GTmetrix fix) -->
-    <script defer src="/js/lib/jquery.min.js"></script>
-    <script defer src="/js/lib/libs.js"></script>
-    <script defer src="/js/st-core.js"></script>
-    <script defer src="/js/classes.js"></script>
-    <script defer src="/js/main.js"></script>
+    <!-- Scripts (mantener orden por dependencias) -->
+    <script is:inline src="/js/lib/jquery.min.js"></script>
+    <script is:inline src="/js/lib/libs.js"></script>
+    <script is:inline src="/js/st-core.js"></script>
+    <script is:inline src="/js/classes.js"></script>
     
+    <!-- Main.js con espera a DOM ready -->
+    <script is:inline>
+        (function() {
+            function initApp() {
+                // Cargar main.js solo cuando el DOM esté listo
+                const script = document.createElement('script');
+                script.src = '/js/main.js';
+                script.defer = true;
+                document.body.appendChild(script);
+            }
+
+            // Esperar a que el DOM esté completamente cargado
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initApp);
+            } else {
+                initApp();
+            }
+        })();
+    </script>
 
     <!-- Active Menu Script -->
-    <script defer>
+    <script is:inline>
         document.addEventListener('DOMContentLoaded', function() {
             const currentPath = window.location.pathname;
             const menuItems = document.querySelectorAll('.main-menu > li');
