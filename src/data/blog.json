@@ -270,5 +270,31 @@
       "b2b marketing"
     ],
     "id": 13
+  },
+  {
+    "title": "AI Agents en tu Embudo: por qué están en tendencia (y cómo montarlos en 7 días)",
+    "slug": "ai-agents-embudo-tendencia-2025",
+    "excerpt": "Los AI agents se perfilan como la tendencia #1 para marketing en 2025. Te explico, en lenguaje sencillo, qué son, dónde aportan en el embudo y cómo implementar un MVP en 7 días para captar y calificar leads desde tu web.",
+    "content": "<section>\n  <h2>Por qué todos hablan de <em>AI agents</em> (y qué tienen que ver con tus ventas)</h2>\n  <p>En simple: un <strong>AI agent</strong> es un asistente que no solo conversa; <em>toma acciones</em> por ti (califica, agenda, crea registros en el CRM). El ruido viene porque, bien usado, reduce fricción y convierte tráfico en citas sin aumentar el gasto en ads.</p>\n  <p>Traducción a negocio: si hoy se te escapan leads tibios por formularios largos o tiempos de respuesta, un agente en tu web puede levantarlos, calificarlos y pasarlos a ventas con <em>contexto</em>.</p>\n\n  <h3>Qué puede hacer un agent dentro del embudo</h3>\n  <ul>\n    <li><strong>TOFU (awareness):</strong> Responde dudas frecuentes y orienta a la página correcta.</li>\n    <li><strong>MOFU (consideración):</strong> Hace <em>discovery</em> con 5–7 preguntas, puntúa (<em>lead score</em>) y ofrece demo.</li>\n    <li><strong>BOFU (decisión):</strong> Agenda en Calendly/Google, envía resumen al CRM y deja nota para el closer.</li>\n  </ul>\n\n  <h3>Blueprint de 7 días (MVP realista)</h3>\n  <ol>\n    <li><strong>Día 1:</strong> Define una única oferta y tu <em>one-liner</em> (quién + problema + resultado + plazo).</li>\n    <li><strong>Día 2:</strong> Escribe 12 FAQs y 6 objeciones con respuestas de 120–180 caracteres.</li>\n    <li><strong>Día 3:</strong> Crea el <em>playbook</em> de calificación (meta, situación, bloqueo, autoridad, urgencia, presupuesto).</li>\n    <li><strong>Día 4:</strong> Implementa el widget en la web y conéctalo al CRM (campo de origen: <code>agent-web</code>).</li>\n    <li><strong>Día 5:</strong> Handoff automático: si <em>score</em> ≥ 70 → agenda + WhatsApp con resumen; si &lt; 70 → nurtura por email.</li>\n    <li><strong>Día 6:</strong> A/B testea: saludo del agente, primera pregunta y ubicación del widget (derecha vs. izquierda).</li>\n    <li><strong>Día 7:</strong> Revisa métricas y ajusta el guion; documenta lo que funcionó para iterar semanalmente.</li>\n  </ol>\n\n  <h3>Métricas que sí miden impacto</h3>\n  <ul>\n    <li><strong>Conversación → lead:</strong> objetivo inicial 15–25%.</li>\n    <li><strong>MQL → SQL:</strong> 35–50% con buen guion y score.</li>\n    <li><strong>Tiempo a la reserva:</strong> &lt; 10 minutos desde el primer mensaje.</li>\n    <li><strong>No-show rate de demos:</strong> intenta &lt; 20% con recordatorios automáticos del agente.</li>\n  </ul>\n\n  <h3>Guion de calificación (copia-pega y adapta)</h3>\n  <ol>\n    <li><strong>Meta:</strong> “¿Qué resultado te gustaría lograr en 30–90 días?”</li>\n    <li><strong>Situación:</strong> “¿Cómo lo resuelves hoy? (herramientas/equipo/presupuesto)”</li>\n    <li><strong>Bloqueo:</strong> “¿Qué te frena ahora mismo?”</li>\n    <li><strong>Autoridad:</strong> “¿Quién decide la compra?”</li>\n    <li><strong>Urgencia:</strong> “¿Hay una fecha límite u oportunidad?”</li>\n    <li><strong>Presupuesto:</strong> “¿Rango de inversión estimado?”</li>\n  </ol>\n\n  <h3>Riesgos y cómo evitarlos</h3>\n  <ul>\n    <li><strong>Agente sin siguiente paso:</strong> siempre termina en <em>agenda</em> o WhatsApp con contexto.</li>\n    <li><strong>“Agent-washing”:</strong> evita prometer autonomía total; empieza con tareas claras y medibles.</li>\n    <li><strong>Gobernanza:</strong> guía de tono, claims permitidos y revisión humana en ofertas y precios.</li>\n  </ul>\n\n  <h4>Stack rápido para implementarlo</h4>\n  <p>Web en Next.js/Astro, widget de chat con SDK de IA, integración nativa a tu CRM (HubSpot/Pipedrive), Calendly/Google Calendar y eventos de conversión (Pixel/GA4) etiquetados desde el agente.</p>\n\n  <p><strong>Conclusión:</strong> los <em>AI agents</em> están en tendencia porque resuelven fricción real en el embudo. Empieza simple, mide semanalmente y deja que los datos te guíen a más autonomía.</p>\n</section>\n",
+    "image": "/img/blog/1761102990491-ia-robot.webp",
+    "category": "Marketing con IA",
+    "author": "Edison Aular",
+    "authorImage": "/img/team/edison.jpg",
+    "date": "2025-10-22",
+    "readTime": "6 min",
+    "featured": false,
+    "tags": [
+      "ai agents",
+      "marketing con ia",
+      "embudos de ventas",
+      "asistente de ia",
+      "calificación de leads",
+      "hubspot",
+      "crm",
+      "agenda automática",
+      "mql a sql",
+      "conversión en landing"
+    ],
+    "id": 14
   }
 ]
