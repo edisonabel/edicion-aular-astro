@@ -110,6 +110,16 @@ const socialImage = new URL(image, Astro.site).href;
             color: var(--bringer-s-heading);
         }
         
+        /* Logo en light mode - NEGRO COMPLETO */
+        html.light-mode .bringer-logo img {
+            filter: brightness(0) saturate(100%) !important;
+        }
+        
+        /* Hamburguesa BLANCA en light mode */
+        html.light-mode .bringer-menu-toggler-icon span {
+            background-color: #ffffff !important;
+        }
+        
         /* Prevenir Layout Shift en imágenes */
         img[width][height] {
             height: auto;
@@ -291,13 +301,16 @@ const socialImage = new URL(image, Astro.site).href;
             <a href="/" class="bringer-logo">
                 <img src="/img/Edicion-Aular-Logo.svg" alt="Logo de Edición Aular, Agencia de Publicidad Digital" width="120" height="60">
             </a>
-            <a href="#" class="bringer-mobile-menu-toggler">
-                <i class="bringer-menu-toggler-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </i>
-            </a>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <ThemeToggle />
+                <a href="#" class="bringer-mobile-menu-toggler">
+                    <i class="bringer-menu-toggler-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </i>
+                </a>
+            </div>
         </div>
     </header>
 

@@ -2,7 +2,7 @@
 // Theme Toggle Component - Switch between light and dark mode
 ---
 
-<button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle theme" title="Cambiar tema">
+<button class="theme-toggle-button" aria-label="Toggle theme" title="Cambiar tema">
     <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="5"/>
         <line x1="12" y1="1" x2="12" y2="3"/>
@@ -70,32 +70,38 @@
         .theme-toggle-button {
             width: 40px;
             height: 40px;
+            margin-left: 0;
         }
     }
 </style>
 
-<script is:inline>
-    // Theme Toggle Logic
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
+<script>
+    // Theme Toggle Logic - Maneja desktop Y mobile
+    document.addEventListener('DOMContentLoaded', () => {
+        const html = document.documentElement;
+        const themeToggles = document.querySelectorAll('.theme-toggle-button');
 
-    // Check for saved theme preference or default to 'dark'
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    
-    if (currentTheme === 'light') {
-        html.classList.add('light-mode');
-    }
+        // Check for saved theme preference or default to 'dark'
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        if (currentTheme === 'light') {
+            html.classList.add('light-mode');
+        }
 
-    themeToggle?.addEventListener('click', () => {
-        html.classList.toggle('light-mode');
-        
-        const newTheme = html.classList.contains('light-mode') ? 'light' : 'dark';
-        localStorage.setItem('theme', newTheme);
-        
-        // Trigger animation
-        themeToggle.style.transform = 'rotate(360deg) scale(1.2)';
-        setTimeout(() => {
-            themeToggle.style.transform = '';
-        }, 300);
+        // Agregar listener a CADA botón (desktop + mobile)
+        themeToggles.forEach(button => {
+            button.addEventListener('click', () => {
+                html.classList.toggle('light-mode');
+                
+                const newTheme = html.classList.contains('light-mode') ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                
+                // Trigger animation en el botón clickeado
+                button.style.transform = 'rotate(360deg) scale(1.2)';
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 300);
+            });
+        });
     });
 </script>
