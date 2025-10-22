@@ -42,8 +42,8 @@ if (relatedPosts.length < 3) {
     title={`${post.title} | Blog Edición Aular`}
     description={post.excerpt}>
 
-    <!-- Progress Bar de Lectura -->
-    <div id="readingProgressBar" style="position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(90deg, var(--accent-color), #ff4d91); z-index: 9999; transition: width 0.1s ease;"></div>
+    <!-- Progress Bar de Lectura (Rosa, ARRIBA - Justo debajo del header) -->
+    <div id="readingProgressBar" style="position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(90deg, #ff4d91, #ff69b4, #ff1493); z-index: 99999; transition: width 0.15s ease; box-shadow: 0 2px 10px rgba(255, 77, 145, 0.5);"></div>
 
     <div class="stg-container">
         <!-- PASO 1: Encabezado del Artículo -->
@@ -115,19 +115,10 @@ if (relatedPosts.length < 3) {
                                 </blockquote>
                             </div>
 
-                            <h2>¿Por Qué Esto Funciona?</h2>
-                            <p>Esta estrategia ha sido probada por miles de negocios exitosos alrededor del mundo. No es teoría, es un sistema comprobado que genera resultados reales cuando se implementa correctamente.</p>
+                            <h2>¿Por Qué Funciona y Cómo Aplicarlo?</h2>
+                            <p>Esta estrategia ha sido probada por miles de negocios exitosos. La clave está en adaptar lo que ya funciona a tu contexto específico, sin reinventar la rueda.</p>
 
-                            <p>La clave está en entender que no necesitas reinventar la rueda. Los emprendedores más exitosos no crean estrategias desde cero, adaptan y aplican lo que ya funciona a su contexto específico.</p>
-
-                            <h2>Tu Siguiente Paso</h2>
-                            <p>Ahora que conoces esta estrategia, tienes dos opciones:</p>
-                            <ul>
-                                <li><strong>Opción 1:</strong> Intentar implementarla tú solo (puede tomar meses de prueba y error)</li>
-                                <li><strong>Opción 2:</strong> Trabajar con expertos que ya han ayudado a cientos de negocios a implementarla exitosamente</li>
-                            </ul>
-
-                            <p>En Edición Aular, no solo te enseñamos la teoría, te ayudamos a implementarla paso a paso en tu negocio. Agenda una consultoría gratuita y descubre cómo podemos acelerar tus resultados.</p>
+                            <p><strong>Tu siguiente paso:</strong> Puedes intentarlo solo o trabajar con expertos que aceleren tus resultados. En Edición Aular te ayudamos a implementarlo paso a paso. <a href="https://cal.com/edicion-aular-website" style="color: var(--accent-color); text-decoration: underline;">Agenda una consultoría gratuita →</a></p>
                         </div>
                     </article>
                 </div>
@@ -169,39 +160,34 @@ if (relatedPosts.length < 3) {
                     <div class="swiper-wrapper">
                         {relatedPosts.map((relatedPost) => (
                             <div class="bringer-block bringer-blog-card swiper-slide">
-                                <div class="bringer-blog-card-image">
-                                    <img src={relatedPost.image} alt={relatedPost.title} width="800" height="450" loading="lazy" decoding="async" />
-                                </div>
-                                <div class="bringer-blog-card-footer">
-                                    <div class="bringer-blog-card-caption">
-                                        <span class="bringer-meta">{relatedPost.category}</span>
-                                        <h5 class="bringer-blog-card-title">{relatedPost.title}</h5>
-                                        <p class="bringer-blog-card-excerpt">{relatedPost.excerpt}</p>
-                                        <div class="bringer-blog-card-meta">
-                                            <span class="bringer-meta">{formatDate(relatedPost.date)}</span>
-                                            <span class="bringer-meta">•</span>
-                                            <span class="bringer-meta">{relatedPost.readTime}</span>
-                                        </div>
+                                <a href={`/blog/${relatedPost.slug}`} style="display: block; height: 100%; text-decoration: none; color: inherit;">
+                                    <div class="bringer-blog-card-image">
+                                        <img src={relatedPost.image} alt={relatedPost.title} width="800" height="450" loading="lazy" decoding="async" />
                                     </div>
-                                    <span class="bringer-icon bringer-icon-arrow-nav"></span>
-                                </div>
-                                <a href={`/blog/${relatedPost.slug}`}></a>
+                                    <div class="bringer-blog-card-footer">
+                                        <div class="bringer-blog-card-caption">
+                                            <span class="bringer-meta">{relatedPost.category}</span>
+                                            <h5 class="bringer-blog-card-title">{relatedPost.title}</h5>
+                                            <p class="bringer-blog-card-excerpt">{relatedPost.excerpt}</p>
+                                            <div class="bringer-blog-card-meta">
+                                                <span class="bringer-meta">{formatDate(relatedPost.date)}</span>
+                                                <span class="bringer-meta">•</span>
+                                                <span class="bringer-meta">{relatedPost.readTime}</span>
+                                            </div>
+                                        </div>
+                                        <!-- SVG Arrow Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.7; color: var(--accent-color);">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </div>
+                                </a>
                             </div>
                         ))}
                     </div>
 
-                    <!-- Navigation -->
-                    <div class="swiper-navigation">
-                        <div class="bringer-button-prev">
-                            <span class="bringer-icon bringer-icon-arrow-prev"></span>
-                        </div>
-                        <div class="bringer-button-next">
-                            <span class="bringer-icon bringer-icon-arrow-next"></span>
-                        </div>
-                    </div>
-
-                    <!-- Scrollbar -->
-                    <div class="swiper-scrollbar"></div>
+                    <!-- Pagination Dots -->
+                    <div class="swiper-pagination bringer-dots"></div>
                 </div>
             </section>
         )}
@@ -422,9 +408,90 @@ if (relatedPosts.length < 3) {
     }
     
     /* Blockquote con más aire */
-    .bringer-blockquote {
+    .bringer-cta-card {
         margin: 3rem 0; /* Más espacio arriba y abajo */
         padding: 2rem 2.5rem; /* Más padding interno */
+    }
+
+    /* Progress Bar siempre visible */
+    #readingProgressBar {
+        pointer-events: none;
+        will-change: width;
+    }
+
+    /* 🎯 Igualar alturas de cards del carousel */
+    .bringer-carousel .swiper-slide {
+        height: auto;
+        display: flex;
+    }
+
+    .bringer-carousel .bringer-blog-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .bringer-carousel .bringer-blog-card a {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .bringer-carousel .bringer-blog-card-footer {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+    }
+
+    .bringer-carousel .bringer-blog-card-caption {
+        flex-grow: 1;
+    }
+
+    /* 🎯 Pagination dots - Visible y elegante */
+    .swiper-pagination.bringer-dots {
+        position: relative !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 2rem !important;
+        padding: 1rem 0;
+    }
+
+    .swiper-pagination.bringer-dots .swiper-pagination-bullet {
+        width: 12px !important;
+        height: 12px !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        opacity: 1 !important;
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        cursor: pointer;
+        margin: 0 !important;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .swiper-pagination.bringer-dots .swiper-pagination-bullet-active {
+        background: var(--accent-color) !important;
+        width: 14px !important;
+        height: 14px !important;
+        box-shadow: 0 0 15px rgba(255, 77, 145, 0.8);
+        border-color: var(--accent-color);
+    }
+
+    .swiper-pagination.bringer-dots .swiper-pagination-bullet:hover {
+        background: rgba(255, 255, 255, 0.7) !important;
+        transform: scale(1.15);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* SVG en cards del carousel */
+    .bringer-blog-card-footer svg {
+        transition: transform 0.3s ease;
+    }
+
+    .bringer-blog-card:hover .bringer-blog-card-footer svg {
+        transform: translateX(5px);
     }
 </style>
 
@@ -522,15 +589,21 @@ if (relatedPosts.length < 3) {
         new Swiper(carousel, {
             slidesPerView: 1,
             spaceBetween: 30,
-            speed: 600,
+            speed: 800,
             grabCursor: true,
-            navigation: {
-                nextEl: '.bringer-button-next',
-                prevEl: '.bringer-button-prev',
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
             },
-            scrollbar: {
-                el: '.swiper-scrollbar',
-                draggable: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: false,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '"></span>';
+                }
             },
             breakpoints: {
                 // Mobile

@@ -30,22 +30,43 @@ const categories = [...new Set(blogData.map(p => p.category))];
                         </p>
 
                         <!-- Search Bar -->
-                        <div class="bringer-blog-search" style="margin-top: 2rem; opacity: 1;">
-                            <div class="bringer-search-form" style="position: relative;">
+                        <div class="bringer-blog-search" data-appear="fade-up" data-delay="200" data-unload="fade-up" style="margin-top: 2rem;">
+                            <div class="bringer-search-form" style="position: relative; max-width: 800px; margin: 0 auto;">
                                 <input 
                                     type="text" 
                                     id="blogSearch" 
                                     placeholder="Buscar artículos... (ej. 'funnel', 'webinar', 'ofertas')"
-                                    style="width: 100%; padding: 1rem 3rem 1rem 1.5rem; font-size: 1rem; border: 2px solid rgba(255,255,255,0.1); border-radius: 50px; background: rgba(255,255,255,0.05); color: #fff; transition: all 0.3s ease;"
+                                    style="width: 100%; padding: 1rem 3.5rem 1rem 1.5rem; font-size: 1rem; border: 2px solid rgba(255,255,255,0.1); border-radius: 50px; background: rgba(255,255,255,0.05); color: #fff; transition: all 0.3s ease;"
                                 />
-                                <span class="bringer-search-icon" style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); opacity: 0.5; pointer-events: none;">🔍</span>
+                                <!-- SVG Icon Lupa -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); opacity: 0.6; pointer-events: none; color: var(--accent-color);">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.35-4.35"></path>
+                                </svg>
                             </div>
-                            <p id="searchResults" style="margin-top: 1rem; color: var(--accent-color); font-size: 0.9rem;"></p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- 🔍 SECCIÓN DE RESULTADOS DE BÚSQUEDA (Justo debajo de la barra) -->
+        <section id="searchResultsSection" style="display: none; margin-top: -3rem; padding: 2rem 0 4rem 0;">
+            <div class="stg-row">
+                <div class="stg-col-10 stg-offset-1">
+                    <!-- Header de Resultados -->
+                    <div style="text-align: center; margin-bottom: 2.5rem;">
+                        <p id="searchResultsText" style="color: var(--accent-color); font-size: 1.1rem; font-weight: 600;"></p>
+                    </div>
+                    
+                    <!-- Grid de Posts Filtrados -->
+                    <div id="searchResultsGrid" class="stg-row stg-bottom-gap" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem;">
+                        <!-- Los posts se insertarán aquí dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Featured Posts Section -->
         {featuredPosts.length > 0 && (
@@ -362,46 +383,23 @@ const categories = [...new Set(blogData.map(p => p.category))];
             padding: 1.25rem;
         }
     }
+
+    /* 🎯 UX MEJORAS - Hover en "Leer artículo" */
+    .bringer-blog-card:hover .read-more-link {
+        gap: 0.75rem !important;
+    }
+
+    .bringer-blog-card:hover .read-more-link svg {
+        transform: translateX(3px);
+    }
+
+    .read-more-link svg {
+        transition: transform 0.3s ease;
+    }
 </style>
 
-<script>
-    // Filtrado dinámico de blogs
-    document.addEventListener('DOMContentLoaded', () => {
-        const filterButtons = document.querySelectorAll('.bringer-filter-button');
-        const blogCards = document.querySelectorAll('.bringer-blog-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remover clase activa de todos los botones
-                filterButtons.forEach(btn => btn.classList.remove('is-active'));
-                
-                // Agregar clase activa al botón clickeado
-                button.classList.add('is-active');
-
-                // Obtener el filtro
-                const filter = button.getAttribute('data-filter');
-
-                // Mostrar/ocultar tarjetas
-                blogCards.forEach(card => {
-                    if (filter === '*') {
-                        // Mostrar todas
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeIn 0.5s ease-in';
-                    } else {
-                        // Filtrar por categoría
-                        if (card.classList.contains(filter.replace('.', ''))) {
-                            card.style.display = 'block';
-                            card.style.animation = 'fadeIn 0.5s ease-in';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-            });
-        });
-    });
-
-    // Animación de fade in
+<script define:vars={{ allPosts: allPosts }}>
+    // 🎨 Animación de fade in
     const style = document.createElement('style');
     style.textContent = `
         @keyframes fadeIn {
@@ -414,56 +412,168 @@ const categories = [...new Set(blogData.map(p => p.category))];
                 transform: translateY(0);
             }
         }
+        .search-result-card {
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
+        }
+        .search-result-card:nth-child(1) { animation-delay: 0.05s; }
+        .search-result-card:nth-child(2) { animation-delay: 0.1s; }
+        .search-result-card:nth-child(3) { animation-delay: 0.15s; }
+        .search-result-card:nth-child(4) { animation-delay: 0.2s; }
+        .search-result-card:nth-child(5) { animation-delay: 0.25s; }
+        .search-result-card:nth-child(6) { animation-delay: 0.3s; }
     `;
     document.head.appendChild(style);
 
-    // Search funcionalidad
-    const searchInput = document.getElementById('blogSearch');
-    const searchResults = document.getElementById('searchResults');
-    
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            
-            if (query.length === 0) {
-                // Reset
-                blogCards.forEach(card => {
-                    card.style.display = 'block';
-                });
-                searchResults.textContent = '';
-                return;
-            }
-            
-            let visibleCount = 0;
-            
-            blogCards.forEach(card => {
-                const title = card.querySelector('.bringer-blog-card-title')?.textContent.toLowerCase() || '';
-                const excerpt = card.querySelector('.bringer-blog-card-excerpt')?.textContent.toLowerCase() || '';
-                const category = card.querySelector('.bringer-meta')?.textContent.toLowerCase() || '';
-                
-                if (title.includes(query) || excerpt.includes(query) || category.includes(query)) {
-                    card.style.display = 'block';
-                    card.style.animation = 'fadeIn 0.5s ease-in';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-            
-            searchResults.textContent = visibleCount === 0 
-                ? `No se encontraron resultados para "${query}"` 
-                : `${visibleCount} artículo${visibleCount > 1 ? 's' : ''} encontrado${visibleCount > 1 ? 's' : ''}`;
-        });
+    // Datos de posts disponibles desde Astro
+    const postsData = allPosts;
 
-        // Focus effect
-        searchInput.addEventListener('focus', (e) => {
-            e.target.style.borderColor = 'var(--accent-color)';
-            e.target.style.background = 'rgba(255,255,255,0.08)';
-        });
-
-        searchInput.addEventListener('blur', (e) => {
-            e.target.style.borderColor = 'rgba(255,255,255,0.1)';
-            e.target.style.background = 'rgba(255,255,255,0.05)';
-        });
+    // 🔍 Función para crear card de resultado
+    function createResultCard(post) {
+        return `
+            <div class="bringer-block bringer-blog-card search-result-card">
+                <a href="/blog/${post.slug}" style="display: block; text-decoration: none; color: inherit; height: 100%;">
+                    <div class="bringer-blog-card-image">
+                        <img src="${post.image}" alt="${post.title}" width="800" height="450" loading="lazy" />
+                    </div>
+                    <div class="bringer-blog-card-footer">
+                        <div class="bringer-blog-card-caption">
+                            <span class="bringer-meta">${post.category}</span>
+                            <h5 class="bringer-blog-card-title">${post.title}</h5>
+                            <p class="bringer-blog-card-excerpt">${post.excerpt}</p>
+                            <div class="bringer-blog-card-meta" style="margin-bottom: 1rem;">
+                                <span class="bringer-meta">${new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                                <span class="bringer-meta">•</span>
+                                <span class="bringer-meta">${post.readTime}</span>
+                            </div>
+                            <div class="read-more-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-color); font-size: 0.9rem; font-weight: 600; margin-top: 0.5rem; transition: gap 0.3s ease;">
+                                <span>Leer artículo</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `;
     }
+
+    // Inicializar cuando DOM esté listo
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterButtons = document.querySelectorAll('.bringer-filter-button');
+        const blogCards = document.querySelectorAll('.bringer-blog-card');
+        const searchInput = document.getElementById('blogSearch');
+        const searchResultsSection = document.getElementById('searchResultsSection');
+        const searchResultsText = document.getElementById('searchResultsText');
+        const searchResultsGrid = document.getElementById('searchResultsGrid');
+
+        console.log('✅ Posts cargados:', postsData.length);
+
+        // FILTRADO POR CATEGORÍAS (mantener funcionalidad original)
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('is-active'));
+                button.classList.add('is-active');
+
+                const filter = button.getAttribute('data-filter');
+
+                // Limpiar búsqueda
+                if (searchInput) searchInput.value = '';
+                if (searchResultsSection) searchResultsSection.style.display = 'none';
+
+                blogCards.forEach(card => {
+                    if (filter === '*') {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease-in';
+                    } else {
+                        if (card.classList.contains(filter.replace('.', ''))) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-in';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // 🚀 BÚSQUEDA EN TIEMPO REAL - NUEVA IMPLEMENTACIÓN
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                
+                if (query.length === 0) {
+                    // Ocultar sección de resultados
+                    searchResultsSection.style.display = 'none';
+                    searchResultsGrid.innerHTML = '';
+                    return;
+                }
+                
+                // Filtrar posts
+                const filteredPosts = postsData.filter(post => {
+                    const title = post.title.toLowerCase();
+                    const excerpt = post.excerpt.toLowerCase();
+                    const category = post.category.toLowerCase();
+                    const tags = post.tags ? post.tags.join(' ').toLowerCase() : '';
+                    
+                    return title.includes(query) || 
+                           excerpt.includes(query) || 
+                           category.includes(query) ||
+                           tags.includes(query);
+                });
+                
+                // Mostrar resultados
+                if (filteredPosts.length === 0) {
+                    searchResultsText.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem; color: var(--accent-color);">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                        No se encontraron resultados para "<strong>${query}</strong>"
+                    `;
+                    searchResultsGrid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: rgba(255,255,255,0.6);">
+                            <p style="font-size: 1.1rem;">Intenta con otras palabras clave como:</p>
+                            <p style="margin-top: 1rem; color: var(--accent-color);">funnel, marketing, diseño, webinar, copywriting</p>
+                        </div>
+                    `;
+                } else {
+                    searchResultsText.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem; color: var(--accent-color);">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="9 11 12 14 16 10"></polyline>
+                        </svg>
+                        ${filteredPosts.length} artículo${filteredPosts.length > 1 ? 's' : ''} encontrado${filteredPosts.length > 1 ? 's' : ''} para "<strong>${query}</strong>"
+                    `;
+                    searchResultsGrid.innerHTML = filteredPosts.map(post => createResultCard(post)).join('');
+                }
+                
+                // Mostrar sección
+                searchResultsSection.style.display = 'block';
+                
+                // Scroll suave a resultados
+                setTimeout(() => {
+                    searchResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+                
+                console.log('🔍 Búsqueda:', query, '| Resultados:', filteredPosts.length);
+            });
+
+            // Efectos de focus
+            searchInput.addEventListener('focus', (e) => {
+                e.target.style.borderColor = 'var(--accent-color)';
+                e.target.style.background = 'rgba(255,255,255,0.08)';
+                e.target.style.boxShadow = '0 0 0 3px rgba(255, 77, 145, 0.1)';
+            });
+
+            searchInput.addEventListener('blur', (e) => {
+                e.target.style.borderColor = 'rgba(255,255,255,0.1)';
+                e.target.style.background = 'rgba(255,255,255,0.05)';
+                e.target.style.boxShadow = 'none';
+            });
+        }
+    });
 </script>
