@@ -42,8 +42,8 @@ if (relatedPosts.length < 3) {
     title={`${post.title} | Blog Edición Aular`}
     description={post.excerpt}>
 
-    <!-- Reading Progress Bar - Fixed Top -->
-    <div id="reading-progress-bar"></div>
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress-bar" style="position: fixed !important; bottom: 0 !important; left: 0 !important; width: 0% !important; height: 4px !important; background: linear-gradient(90deg, #ff1493, #ff69b4) !important; z-index: 999999999 !important; pointer-events: none !important; box-shadow: 0 -2px 12px rgba(255, 77, 145, 0.8) !important;"></div>
 
     <div class="stg-container">
         <!-- PASO 1: Encabezado del Artículo -->
@@ -229,45 +229,24 @@ if (relatedPosts.length < 3) {
         console.log('✅ Animación aplicada a:', contentImages.length + 1, 'imágenes');
     });
 
-    // 📊 Reading Progress Bar - Best Practices UX/UI
-    (function initReadingProgressBar() {
-        'use strict';
-        
+    // 📊 Reading Progress Bar - SIMPLE Y LIMPIO
+    (function() {
         const progressBar = document.getElementById('reading-progress-bar');
         if (!progressBar) return;
 
-        // Configuración
-        const config = {
-            throttleDelay: 16, // ~60fps
-            animationDuration: 200
-        };
-
         let ticking = false;
 
-        // Calcular progreso de lectura
-        function calculateReadingProgress() {
-            // Obtener altura del documento
+        function updateProgressBar() {
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
             const scrollableHeight = documentHeight - windowHeight;
-            
-            // Obtener posición actual
             const scrolled = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Calcular porcentaje (0-100)
             const progress = Math.min(Math.max((scrolled / scrollableHeight) * 100, 0), 100);
             
-            return progress;
-        }
-
-        // Actualizar barra
-        function updateProgressBar() {
-            const progress = calculateReadingProgress();
             progressBar.style.width = `${progress}%`;
             ticking = false;
         }
 
-        // Throttle con requestAnimationFrame
         function requestTick() {
             if (!ticking) {
                 window.requestAnimationFrame(updateProgressBar);
@@ -275,14 +254,10 @@ if (relatedPosts.length < 3) {
             }
         }
 
-        // Eventos
         window.addEventListener('scroll', requestTick, { passive: true });
         window.addEventListener('resize', requestTick, { passive: true });
-
-        // Inicializar
+        
         updateProgressBar();
-
-        console.log('✅ Reading Progress Bar initialized');
     })();
 </script>
 
@@ -491,31 +466,11 @@ if (relatedPosts.length < 3) {
         padding: 2rem 2.5rem; /* Más padding interno */
     }
 
-    /* 📊 Reading Progress Bar - Best Practices UX/UI */
+    /* 📊 Reading Progress Bar - BOTTOM (inline styles tienen prioridad) */
     #reading-progress-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #ff4d91 0%, #ff69b4 50%, #ff1493 100%);
-        z-index: 10000;
+        /* Todos los estilos están inline para máxima prioridad */
         transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 0 10px rgba(255, 77, 145, 0.5);
-        pointer-events: none;
         will-change: width;
-    }
-
-    /* Animación de pulso cuando está activa */
-    #reading-progress-bar::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 20px;
-        height: 3px;
-        background: rgba(255, 77, 145, 0.5);
-        filter: blur(8px);
     }
 
     /* 🎯 Igualar alturas de cards del carousel */
