@@ -244,5 +244,31 @@
       "captura de leads"
     ],
     "id": 12
+  },
+  {
+    "title": "Adopción de IA al Estilo Paul Roetzer: Prioriza Proyectos que Mueven el Embudo",
+    "slug": "adopcion-ia-embudos-marketing",
+    "excerpt": "De la curiosidad a la ejecución: cómo elegir 5 casos de uso de IA que impacten awareness, captura y cierre. Marco simple, métricas claras y checklist para empezar hoy.",
+    "content": "<section>\n  <h2>IA con propósito: menos juguete, más pipeline</h2>\n  <p>He visto equipos pasar semanas probando herramientas y cero impacto en ventas. La brújula que me funciona (inspirada en Paul Roetzer) es esta: <strong>elige IA por impacto en el embudo</strong>, no por novedad. Si no mejora tráfico calificado, capturas o cierres, no es prioridad.</p>\n\n  <h3>Marco de priorización (2×2 sencillo)</h3>\n  <ul>\n    <li><strong>Impacto en revenue</strong> (alto/bajo): ¿sube leads calificados, valor promedio o tasa de cierre?</li>\n    <li><strong>Esfuerzo</strong> (alto/bajo): tiempo de implementación, dependencia técnica, cambio cultural.</li>\n  </ul>\n  <p>Empieza por proyectos <strong>alto impacto / bajo esfuerzo</strong>. Cuando eso esté estable, avanza al resto.</p>\n\n  <h3>5 casos de uso que sí mueven el embudo</h3>\n  <ol>\n    <li><strong>Research y mensajes</strong>: generar <em>personas</em>, dolores y <em>hooks</em> para anuncios y landing.</li>\n    <li><strong>Copy y contenidos</strong>: titulares, secciones de valor, FAQs y emails con tono y pruebas sociales.</li>\n    <li><strong>Asistente onsite</strong>: guía de producto + calificación + reserva de demo (ver post del asistente de IA).</li>\n    <li><strong>Personalización</strong>: bloques dinámicos en landing según fuente de tráfico/sector.</li>\n    <li><strong>Lead scoring</strong>: puntaje automático según respuestas, comportamiento y fuente.</li>\n  </ol>\n\n  <h3>Métricas norte (para no perderte)</h3>\n  <ul>\n    <li><strong>CTR en anuncios</strong> de nuevos <em>hooks</em> (+15–30% vs. control inicial).</li>\n    <li><strong>CVR en landing</strong> tras copy IA (+10–20%).</li>\n    <li><strong>Tasa de chat→lead</strong> con asistente (+15–25%).</li>\n    <li><strong>MQL→SQL</strong> con lead scoring (+20–35%).</li>\n  </ul>\n\n  <h3>Checklist de despliegue (semana 1)</h3>\n  <ol>\n    <li>Define 1 oferta y 1 segmento. Escribe un <em>one-liner</em> y 3 promesas medibles.</li>\n    <li>Crea 10 preguntas de investigación y genera 5 titulares por dolor.</li>\n    <li>Redacta landing y 3 emails (bienvenida, caso de uso, demo) con IA + edición humana.</li>\n    <li>Activa asistente en web con 6 preguntas de calificación y conexión al CRM.</li>\n    <li>Configura lead scoring, tarea al vendedor y reporte semanal de KPIs.</li>\n  </ol>\n\n  <h4>Gobernanza (lo que te ahorra dolores de cabeza)</h4>\n  <ul>\n    <li><strong>Estilo y límites de marca</strong> (tono, claims permitidos, palabras prohibidas).</li>\n    <li><strong>Revisión humana</strong> en piezas clave (promesas, precios, garantías).</li>\n    <li><strong>Datos</strong>: nada sensible en prompts; usa repositorios limpios y actualizados.</li>\n  </ul>\n\n  <p><strong>Cierre:</strong> adopta IA con cabeza de negocio: prioriza por impacto, mide cada semana y repite lo que funciona. Lo demás, al backlog.</p>\n</section>\n",
+    "image": "/img/blog/1761099621647-marketing-con-ia-2.webp",
+    "category": "Marketing con IA",
+    "author": "Edison Aular",
+    "authorImage": "/img/team/edison.jpg",
+    "date": "2025-10-22",
+    "readTime": "6 min",
+    "featured": false,
+    "tags": [
+      "paul roetzer",
+      "adopción de ia",
+      "priorización ia",
+      "funnels",
+      "lead scoring",
+      "personalización web",
+      "copy con ia",
+      "kpis de marketing",
+      "growth marketing",
+      "b2b marketing"
+    ],
+    "id": 13
   }
 ]

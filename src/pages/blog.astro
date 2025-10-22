@@ -396,6 +396,33 @@ const categories = [...new Set(blogData.map(p => p.category))];
     .read-more-link svg {
         transition: transform 0.3s ease;
     }
+
+    /* 🎯 MIN-HEIGHT para igualar cards de búsqueda */
+    #searchResultsGrid .search-result-card {
+        min-height: 580px;
+    }
+
+    #searchResultsGrid .bringer-blog-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    #searchResultsGrid .bringer-blog-card a {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    #searchResultsGrid .bringer-blog-card-footer {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    #searchResultsGrid .bringer-blog-card-caption {
+        flex-grow: 1;
+    }
 </style>
 
 <script define:vars={{ allPosts: allPosts }}>

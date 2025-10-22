@@ -42,8 +42,8 @@ if (relatedPosts.length < 3) {
     title={`${post.title} | Blog Edición Aular`}
     description={post.excerpt}>
 
-    <!-- Progress Bar de Lectura (Rosa, ARRIBA - Justo debajo del header) -->
-    <div id="readingProgressBar" style="position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(90deg, #ff4d91, #ff69b4, #ff1493); z-index: 99999; transition: width 0.15s ease; box-shadow: 0 2px 10px rgba(255, 77, 145, 0.5);"></div>
+    <!-- Reading Progress Bar - Fixed Top -->
+    <div id="reading-progress-bar"></div>
 
     <div class="stg-container">
         <!-- PASO 1: Encabezado del Artículo -->
@@ -196,9 +196,11 @@ if (relatedPosts.length < 3) {
 </BaseLayout>
 
 <script>
-    // Efecto de expansión de imagen al hacer scroll
+    // 🖼️ Efecto de expansión de TODAS las imágenes al hacer scroll
     document.addEventListener('DOMContentLoaded', () => {
-        const expandableImages = document.querySelectorAll('.bringer-expand-on-scroll');
+        // Seleccionar imagen hero Y todas las imágenes del contenido
+        const heroImage = document.querySelector('.bringer-expand-on-scroll');
+        const contentImages = document.querySelectorAll('.bringer-post-body img');
         
         const observerOptions = {
             root: null,
@@ -214,10 +216,74 @@ if (relatedPosts.length < 3) {
             });
         }, observerOptions);
 
-        expandableImages.forEach(img => {
+        // Observar imagen hero
+        if (heroImage) {
+            imageObserver.observe(heroImage);
+        }
+
+        // Observar TODAS las imágenes del contenido
+        contentImages.forEach(img => {
             imageObserver.observe(img);
         });
+
+        console.log('✅ Animación aplicada a:', contentImages.length + 1, 'imágenes');
     });
+
+    // 📊 Reading Progress Bar - Best Practices UX/UI
+    (function initReadingProgressBar() {
+        'use strict';
+        
+        const progressBar = document.getElementById('reading-progress-bar');
+        if (!progressBar) return;
+
+        // Configuración
+        const config = {
+            throttleDelay: 16, // ~60fps
+            animationDuration: 200
+        };
+
+        let ticking = false;
+
+        // Calcular progreso de lectura
+        function calculateReadingProgress() {
+            // Obtener altura del documento
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollableHeight = documentHeight - windowHeight;
+            
+            // Obtener posición actual
+            const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Calcular porcentaje (0-100)
+            const progress = Math.min(Math.max((scrolled / scrollableHeight) * 100, 0), 100);
+            
+            return progress;
+        }
+
+        // Actualizar barra
+        function updateProgressBar() {
+            const progress = calculateReadingProgress();
+            progressBar.style.width = `${progress}%`;
+            ticking = false;
+        }
+
+        // Throttle con requestAnimationFrame
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateProgressBar);
+                ticking = true;
+            }
+        }
+
+        // Eventos
+        window.addEventListener('scroll', requestTick, { passive: true });
+        window.addEventListener('resize', requestTick, { passive: true });
+
+        // Inicializar
+        updateProgressBar();
+
+        console.log('✅ Reading Progress Bar initialized');
+    })();
 </script>
 
 <style>
@@ -328,14 +394,26 @@ if (relatedPosts.length < 3) {
         border-radius: 18px;
     }
     
-    .bringer-expand-on-scroll {
+    /* 🖼️ Expansión de imágenes - Hero y contenido */
+    .bringer-expand-on-scroll,
+    .bringer-post-body img {
         transform: scale(1.08);
         transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         will-change: transform;
     }
     
-    .bringer-expand-on-scroll.is-init {
+    .bringer-expand-on-scroll.is-init,
+    .bringer-post-body img.is-init {
         transform: scale(1);
+    }
+
+    /* Contenedor para imágenes del contenido */
+    .bringer-post-body img {
+        border-radius: 12px;
+        overflow: hidden;
+        display: block;
+        max-width: 100%;
+        height: auto;
     }
     
     .st-expandable-wrap img {
@@ -413,10 +491,31 @@ if (relatedPosts.length < 3) {
         padding: 2rem 2.5rem; /* Más padding interno */
     }
 
-    /* Progress Bar siempre visible */
-    #readingProgressBar {
+    /* 📊 Reading Progress Bar - Best Practices UX/UI */
+    #reading-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, #ff4d91 0%, #ff69b4 50%, #ff1493 100%);
+        z-index: 10000;
+        transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 0 10px rgba(255, 77, 145, 0.5);
         pointer-events: none;
         will-change: width;
+    }
+
+    /* Animación de pulso cuando está activa */
+    #reading-progress-bar::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 20px;
+        height: 3px;
+        background: rgba(255, 77, 145, 0.5);
+        filter: blur(8px);
     }
 
     /* 🎯 Igualar alturas de cards del carousel */
@@ -448,41 +547,38 @@ if (relatedPosts.length < 3) {
         flex-grow: 1;
     }
 
-    /* 🎯 Pagination dots - Visible y elegante */
+    /* 🎯 Pagination dots - MUY VISIBLES */
     .swiper-pagination.bringer-dots {
-        position: relative !important;
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-        gap: 0.75rem;
-        margin-top: 2rem !important;
-        padding: 1rem 0;
+        text-align: center !important;
+        margin-top: 3rem !important;
+        padding: 1.5rem 0 !important;
     }
 
     .swiper-pagination.bringer-dots .swiper-pagination-bullet {
-        width: 12px !important;
-        height: 12px !important;
-        background: rgba(255, 255, 255, 0.4) !important;
+        width: 14px !important;
+        height: 14px !important;
+        background: rgba(255, 255, 255, 0.6) !important;
         opacity: 1 !important;
-        transition: all 0.3s ease;
-        border-radius: 50%;
-        cursor: pointer;
-        margin: 0 !important;
-        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease !important;
+        border-radius: 50% !important;
+        cursor: pointer !important;
+        margin: 0 8px !important;
+        border: 2px solid rgba(255, 255, 255, 0.4) !important;
+        display: inline-block !important;
     }
 
     .swiper-pagination.bringer-dots .swiper-pagination-bullet-active {
         background: var(--accent-color) !important;
-        width: 14px !important;
-        height: 14px !important;
-        box-shadow: 0 0 15px rgba(255, 77, 145, 0.8);
-        border-color: var(--accent-color);
+        width: 18px !important;
+        height: 18px !important;
+        box-shadow: 0 0 20px rgba(255, 77, 145, 1) !important;
+        border-color: var(--accent-color) !important;
     }
 
     .swiper-pagination.bringer-dots .swiper-pagination-bullet:hover {
-        background: rgba(255, 255, 255, 0.7) !important;
-        transform: scale(1.15);
-        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.9) !important;
+        transform: scale(1.2) !important;
+        border-color: rgba(255, 255, 255, 0.7) !important;
     }
 
     /* SVG en cards del carousel */
@@ -548,32 +644,6 @@ if (relatedPosts.length < 3) {
     setTimeout(applySpacing, 500);
 })();
 
-// Progress Bar de Lectura
-(function() {
-    const progressBar = document.getElementById('readingProgressBar');
-    
-    if (!progressBar) return;
-    
-    function updateProgressBar() {
-        // Calcular el progreso de scroll
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Calcular porcentaje
-        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-        
-        // Actualizar ancho del progress bar
-        progressBar.style.width = Math.min(scrollPercent, 100) + '%';
-    }
-    
-    // Actualizar en scroll
-    window.addEventListener('scroll', updateProgressBar, { passive: true });
-    
-    // Actualizar al cargar
-    updateProgressBar();
-})();
-
 // Inicializar Carousel de Artículos Relacionados
 (function() {
     // Esperar a que Swiper esté disponible
@@ -586,12 +656,12 @@ if (relatedPosts.length < 3) {
         const carousel = document.querySelector('.bringer-carousel');
         if (!carousel) return;
 
-        new Swiper(carousel, {
+        const swiperInstance = new Swiper(carousel, {
             slidesPerView: 1,
             spaceBetween: 30,
             speed: 800,
             grabCursor: true,
-            loop: true,
+            loop: false,
             autoplay: {
                 delay: 4000,
                 disableOnInteraction: false,
@@ -601,8 +671,11 @@ if (relatedPosts.length < 3) {
                 el: '.swiper-pagination',
                 clickable: true,
                 dynamicBullets: false,
-                renderBullet: function (index, className) {
-                    return '<span class="' + className + '"></span>';
+                type: 'bullets'
+            },
+            on: {
+                slideChange: function() {
+                    console.log('Slide changed:', this.realIndex);
                 }
             },
             breakpoints: {
