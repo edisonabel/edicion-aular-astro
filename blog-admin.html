@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a0a0a;
             min-height: 100vh;
             padding: 2rem;
         }
@@ -21,17 +21,19 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: white;
+            background: #1a1a1a;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             overflow: hidden;
+            border: 1px solid #2a2a2a;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
             color: white;
             padding: 2rem;
             text-align: center;
+            border-bottom: 2px solid #3b82f6;
         }
 
         .header h1 {
@@ -52,9 +54,9 @@
         }
 
         .sidebar {
-            background: #f8f9fa;
+            background: #141414;
             padding: 2rem;
-            border-right: 1px solid #e9ecef;
+            border-right: 1px solid #2a2a2a;
         }
 
         .sidebar button {
@@ -63,29 +65,39 @@
             margin-bottom: 1rem;
             border: none;
             border-radius: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: white;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .sidebar button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
         }
 
         .sidebar button.secondary {
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
+            background: #1a1a1a;
+            color: #94a3b8;
+            border: 2px solid #475569;
+        }
+        
+        .sidebar button.secondary:hover {
+            background: #242424;
+            border-color: #64748b;
+            color: #cbd5e1;
         }
 
         .main {
             padding: 2rem;
             overflow-y: auto;
             max-height: calc(100vh - 200px);
+            background: #1a1a1a;
         }
 
         .posts-list {
@@ -94,10 +106,11 @@
         }
 
         .post-card {
-            background: white;
-            border: 1px solid #e9ecef;
+            background: #242424;
+            border: 1px solid #333;
             border-radius: 10px;
             padding: 1.5rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
             display: grid;
             grid-template-columns: 120px 1fr auto;
             gap: 1.5rem;
@@ -106,7 +119,8 @@
         }
 
         .post-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
         }
 
         .post-image {
@@ -119,11 +133,12 @@
         .post-info h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: #2d3748;
+            color: #ffffff;
+            font-weight: 600;
         }
 
         .post-info p {
-            color: #718096;
+            color: #999;
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
@@ -137,7 +152,7 @@
         .badge {
             display: inline-block;
             padding: 0.25rem 0.75rem;
-            background: #667eea;
+            background: #475569;
             color: white;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -145,7 +160,16 @@
         }
 
         .badge.featured {
-            background: #f6ad55;
+            background: #10b981;
+            color: #fff;
+        }
+        
+        .badge.category {
+            background: #3b82f6;
+        }
+        
+        .badge.date {
+            background: #6b7280;
         }
 
         .post-actions {
@@ -156,11 +180,14 @@
         .btn {
             padding: 0.5rem 1rem;
             border: none;
-            border-radius: 6px;
-            cursor: pointer;
+            border-radius: 8px;
             font-size: 0.9rem;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-edit {
@@ -170,6 +197,7 @@
 
         .btn-edit:hover {
             background: #3182ce;
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
         }
 
         .btn-delete {
@@ -179,26 +207,48 @@
 
         .btn-delete:hover {
             background: #f56565;
+            box-shadow: 0 4px 12px rgba(252, 129, 129, 0.4);
         }
 
         .form-container {
             display: none;
             max-width: 900px;
+            background: #242424;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #333;
         }
 
         .form-container.active {
             display: block;
         }
+        
+        .form-container h2 {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: -2.5rem -2.5rem 2rem -2.5rem;
+            padding: 1.5rem 2.5rem;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-bottom: 2px solid #3b82f6;
+            letter-spacing: -0.025em;
+            border-radius: 12px 12px 0 0;
+        }
 
         .form-group {
             margin-bottom: 1.5rem;
+        }
+        
+        .form-group:first-of-type {
+            margin-top: 1rem;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #ffffff;
         }
 
         .form-group input,
@@ -206,7 +256,9 @@
         .form-group select {
             width: 100%;
             padding: 0.75rem;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #333;
+            background: #242424;
+            color: #ffffff;
             border-radius: 8px;
             font-size: 1rem;
             font-family: inherit;
@@ -217,7 +269,8 @@
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .form-group textarea {
@@ -246,6 +299,9 @@
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-save:hover {
@@ -255,13 +311,22 @@
         .btn-cancel {
             flex: 1;
             padding: 1rem;
-            background: #e2e8f0;
-            color: #2d3748;
-            border: none;
+            background: #2a2a2a;
+            color: #ffffff;
+            border: 2px solid #444;
             border-radius: 10px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-cancel:hover {
+            background: #333;
+            border-color: #666;
         }
 
         .tags-input {
@@ -269,29 +334,43 @@
             flex-wrap: wrap;
             gap: 0.5rem;
             padding: 0.5rem;
-            border: 2px solid #e2e8f0;
+            border: 2px solid #333;
+            background: #242424;
             border-radius: 8px;
             min-height: 50px;
         }
 
         .tag-item {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            background: #667eea;
+            background: #475569;
             color: white;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .tag-item button {
-            background: none;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
             color: white;
             cursor: pointer;
             font-size: 1.2rem;
             line-height: 1;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        
+        .tag-item button:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .tag-input-field {
@@ -300,6 +379,12 @@
             outline: none;
             padding: 0.5rem;
             font-size: 1rem;
+            background: transparent;
+            color: #ffffff;
+        }
+        
+        .tag-input-field::placeholder {
+            color: #666;
         }
 
         .preview-image {
@@ -311,7 +396,7 @@
         .loading {
             text-align: center;
             padding: 3rem;
-            color: #718096;
+            color: #999;
         }
 
         .success-message {
@@ -319,12 +404,13 @@
             top: 2rem;
             right: 2rem;
             padding: 1rem 2rem;
-            background: #48bb78;
+            background: #10b981;
             color: white;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
             animation: slideIn 0.3s ease;
             z-index: 1000;
+            border: 1px solid #34d399;
         }
 
         @keyframes slideIn {
@@ -346,11 +432,12 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
             color: white;
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
+            border: 1px solid #3b82f6;
         }
 
         .stat-card h3 {
@@ -367,15 +454,40 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📝 Blog CMS - Edición Aular</h1>
+            <h1>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Blog CMS - Edición Aular
+            </h1>
             <p>Gestiona tus artículos de blog sin hacer deploy</p>
         </div>
 
         <div class="content">
             <div class="sidebar">
-                <button onclick="showPosts()">📚 Ver Todos los Posts</button>
-                <button onclick="showNewPostForm()">➕ Crear Nuevo Post</button>
-                <button class="secondary" onclick="reloadBlog()">🔄 Recargar Blog</button>
+                <button onclick="showPosts()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                    Ver Todos los Posts
+                </button>
+                <button onclick="showNewPostForm()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    Crear Nuevo Post
+                </button>
+                <button class="secondary" onclick="location.reload()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                        <polyline points="23 4 23 10 17 10"/>
+                        <polyline points="1 20 1 14 7 14"/>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                    </svg>
+                    Recargar Blog
+                </button>
             </div>
 
             <div class="main">
@@ -386,7 +498,13 @@
 
                 <!-- New/Edit Post Form -->
                 <div id="formView" class="form-container">
-                    <h2 id="formTitle">Crear Nuevo Post</h2>
+                    <h2 id="formTitle">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.75rem;">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        Crear Nuevo Post
+                    </h2>
                     <form id="postForm" onsubmit="savePost(event)">
                         <input type="hidden" id="postId">
                         
@@ -464,17 +582,40 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Tags (presiona Enter para agregar)</label>
+                            <label>Tags (Enter, comas o saltos de línea)</label>
                             <div class="tags-input" id="tagsContainer" onclick="focusTagInput()">
                                 <input type="text" class="tag-input-field" id="tagInput" 
-                                       onkeydown="handleTagInput(event)" 
+                                       onkeydown="handleTagInput(event)"
+                                       onpaste="handleTagPaste(event)"
                                        placeholder="Escribe un tag y presiona Enter">
                             </div>
+                            <small style="color: #999; display: block; margin-top: 0.5rem;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.25rem;">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="16" x2="12" y2="12"/>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                                </svg>
+                                <strong>Tip:</strong> Puedes pegar múltiples tags separados por comas o saltos de línea.<br>
+                                Ejemplo: "tag1, tag2, tag3" o pega una lista con Enter entre cada uno.
+                            </small>
                         </div>
 
                         <div class="form-actions">
-                            <button type="submit" class="btn-save">💾 Guardar Post</button>
-                            <button type="button" class="btn-cancel" onclick="showPosts()">❌ Cancelar</button>
+                            <button type="submit" class="btn-save">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                    <polyline points="17 21 17 13 7 13 7 21"/>
+                                    <polyline points="7 3 7 8 15 8"/>
+                                </svg>
+                                Guardar Post
+                            </button>
+                            <button type="button" class="btn-cancel" onclick="showPosts()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                                    <line x1="18" y1="6" x2="6" y2="18"/>
+                                    <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                                Cancelar
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -540,14 +681,26 @@
                         <p>${post.excerpt.substring(0, 100)}...</p>
                         <div class="post-meta">
                             <span class="badge">${post.category}</span>
-                            ${post.featured ? '<span class="badge featured">⭐ Destacado</span>' : ''}
+                            ${post.featured ? '<span class="badge featured">Destacado</span>' : ''}
                             <span class="badge" style="background: #4a5568;">${post.date}</span>
                             <span class="badge" style="background: #718096;">${post.readTime}</span>
                         </div>
                     </div>
                     <div class="post-actions">
-                        <button class="btn btn-edit" onclick="editPost(${post.id})">✏️ Editar</button>
-                        <button class="btn btn-delete" onclick="deletePost(${post.id})">🗑️ Eliminar</button>
+                        <button class="btn btn-edit" onclick="editPost(${post.id})">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.25rem;">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                            </svg>
+                            Editar
+                        </button>
+                        <button class="btn btn-delete" onclick="deletePost(${post.id})">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.25rem;">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                            </svg>
+                            Eliminar
+                        </button>
                     </div>
                 </div>
             `).join('');
@@ -558,7 +711,13 @@
         function showNewPostForm() {
             document.getElementById('postsView').style.display = 'none';
             document.getElementById('formView').style.display = 'block';
-            document.getElementById('formTitle').textContent = 'Crear Nuevo Post';
+            document.getElementById('formTitle').innerHTML = `
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.75rem;">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Crear Nuevo Post
+            `;
             document.getElementById('postForm').reset();
             document.getElementById('postId').value = '';
             currentTags = [];
@@ -572,7 +731,13 @@
 
             document.getElementById('postsView').style.display = 'none';
             document.getElementById('formView').style.display = 'block';
-            document.getElementById('formTitle').textContent = 'Editar Post';
+            document.getElementById('formTitle').innerHTML = `
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.75rem;">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                Editar Post
+            `;
 
             document.getElementById('postId').value = post.id;
             document.getElementById('title').value = post.title;
@@ -618,15 +783,35 @@
         }
 
         function handleTagInput(e) {
+            // Manejar Enter
             if (e.key === 'Enter') {
                 e.preventDefault();
                 const input = e.target;
-                const tag = input.value.trim();
-                if (tag && !currentTags.includes(tag)) {
-                    currentTags.push(tag);
-                    renderTags();
-                    input.value = '';
-                }
+                addTagsFromInput(input.value);
+                input.value = '';
+                return;
+            }
+        }
+        
+        function handleTagPaste(e) {
+            e.preventDefault();
+            const pastedText = e.clipboardData.getData('text');
+            addTagsFromInput(pastedText);
+            e.target.value = '';
+        }
+        
+        function addTagsFromInput(text) {
+            if (!text) return;
+            
+            // Separar por comas, saltos de línea, y múltiples espacios
+            const newTags = text
+                .split(/[,\n]/)  // Separar por comas O saltos de línea
+                .map(tag => tag.trim())
+                .filter(tag => tag && !currentTags.includes(tag));
+            
+            if (newTags.length > 0) {
+                currentTags.push(...newTags);
+                renderTags();
             }
         }
 

@@ -211,7 +211,7 @@
     "authorImage": "/img/team/edison.jpg",
     "date": "2025-01-16",
     "readTime": "5 min",
-    "featured": false,
+    "featured": true,
     "tags": [
       "alex hormozi",
       "stack de valor",
@@ -296,5 +296,57 @@
       "conversión en landing"
     ],
     "id": 14
+  },
+  {
+    "title": "Landing Page Optimization al estilo Tim Ash: 12 palancas para duplicar conversiones sin más tráfico",
+    "slug": "landing-page-optimization-tim-ash-12-palancas",
+    "excerpt": "Te lo cuento fácil: cómo aplicar el enfoque de Tim Ash para quitar fricción, aumentar claridad y hacer que tu landing convierta sin meter más pauta. Incluye checklist de 48 h y métricas simples.",
+    "content": "<section>\n  <h2>El día que el color del botón no salvó la venta</h2>\n  <p>Una vez me pidieron “¿verde o rojo?”. Hicimos test del botón… y nada. ¿La razón? El formulario pedía demasiados datos y el titular no decía <strong>qué ganaba</strong> el usuario. A lo <em>Tim Ash</em>, entendí que primero es <strong>claridad</strong> y <strong>baja fricción</strong>; el color viene después.</p>\n\n  <h3>Los 4 pilares que mueven la aguja</h3>\n  <ul>\n    <li><strong>Claridad:</strong> que en 5 segundos se entienda qué ofreces y para quién.</li>\n    <li><strong>Relevancia:</strong> que el mensaje conecte con la intención del visitante (fuente de tráfico).</li>\n    <li><strong>Confianza/Ansiedad:</strong> prueba real y garantías que bajen el miedo.</li>\n    <li><strong>Foco:</strong> quitar distracciones, fugas y decisiones innecesarias.</li>\n  </ul>\n\n  <h3>Above the fold: 5 piezas en 5 segundos</h3>\n  <ul>\n    <li><strong>Titular de beneficio</strong> (resultado + plazo si aplica).</li>\n    <li><strong>Subtítulo</strong> que explica el mecanismo en una frase.</li>\n    <li><strong>Prueba</strong>: logos, números o mini testimonio.</li>\n    <li><strong>CTA único</strong> con verbo de acción (“Reserva tu demo”).</li>\n    <li><strong>Riesgo invertido</strong>: línea de garantía/privacidad bajo el CTA.</li>\n  </ul>\n\n  <h3>Bloque de beneficios (sin humo)</h3>\n  <ul>\n    <li>Empieza cada bullet con un <strong>verbo</strong> y cierra con un <strong>resultado medible</strong>.</li>\n    <li>Usa 3–5 bullets y un ejemplo concreto (“+32% leads en 21 días”).</li>\n  </ul>\n\n  <h3>Prueba social que sí convence</h3>\n  <ul>\n    <li>Testimonios con <strong>nombre, cargo y contexto</strong> (antes→después).</li>\n    <li>Casos breves con gráfico/simple table y el número clave destacado.</li>\n  </ul>\n\n  <h3>Menos fricción = más conversión</h3>\n  <ul>\n    <li><strong>Formulario corto</strong> (nombre, email, teléfono). Lo demás, luego.</li>\n    <li><strong>Validación en línea</strong> + mensajes de ayuda (“Nunca compartimos tu info”).</li>\n    <li><strong>Autocompletar</strong> y <strong>progresivo</strong> si necesitas más datos.</li>\n  </ul>\n\n  <h3>Foco total en una acción</h3>\n  <p>Un objetivo por landing. Enlaces secundarios van al pie o se esconden en móvil. El usuario no debería preguntarse “¿y ahora?”.</p>\n\n  <h3>Checklist Tim Ash (48 horas)</h3>\n  <ol>\n    <li>Titular de beneficio claro y específico.</li>\n    <li>Subtítulo que explica el “cómo”.</li>\n    <li>CTA único y visible arriba y abajo.</li>\n    <li>Prueba social verificable (logos, casos, datos).</li>\n    <li>Formulario de 3 campos con validación.</li>\n    <li>Garantía/privacidad bajo el CTA.</li>\n    <li>Quita menús y fugas en el hero.</li>\n    <li>Carga rápida (&lt;2 s) y legibilidad en móvil.</li>\n  </ol>\n\n  <h3>Métricas simples para decidir</h3>\n  <ul>\n    <li><strong>CVR de la landing</strong> (objetivo/visita) – línea base y objetivo semanal.</li>\n    <li><strong>CTR al CTA</strong> – si sube pero CVR no, el problema es el formulario/onboarding.</li>\n    <li><strong>Tiempo hasta la acción</strong> – busca menos de 30–60 s.</li>\n  </ul>\n\n  <h4>Errores que vemos todos los días</h4>\n  <ul>\n    <li><strong>Promesa vaga</strong>: sin número/plazo nadie recuerda tu oferta.</li>\n    <li><strong>Demasiadas opciones</strong>: tres CTAs compiten; deja uno.</li>\n    <li><strong>Más campos “por si acaso”</strong>: cada campo extra cuesta conversiones.</li>\n  </ul>\n\n  <p><strong>Cierre:</strong> primero arregla claridad y fricción; el color del botón viene después. Eso es jugar a ganar.</p>\n</section>\n",
+    "image": "/img/blog/1761362140707-Landing-Page-Optimization.webp",
+    "category": "Optimización de Funnels",
+    "author": "Edison Aular",
+    "authorImage": "/img/team/edison.jpg",
+    "date": "2025-10-25",
+    "readTime": "6 min",
+    "featured": true,
+    "tags": [
+      "tim ash",
+      "landing page optimization",
+      "cro",
+      "claridad",
+      "friccion",
+      "prueba social",
+      "cta",
+      "formularios",
+      "garantia",
+      "conversiones"
+    ],
+    "id": 15
+  },
+  {
+    "title": "CRO con sistema al estilo Peep Laja: investigación, priorización y tests que pagan las cuentas",
+    "slug": "cro-sistema-peep-laja-experimentos-que-pagan",
+    "excerpt": "Deja los “trucos” sueltos: monta un programa de CRO como en CXL. Te cuento el proceso de investigación→hipótesis→priorización→A/B y cómo documentar aprendizajes que escalan.",
+    "content": "<section>\n  <h2>Cuando el “cámbiame el hero” no era el problema</h2>\n  <p>Un equipo quería rediseño total. Antes de tocar píxeles hicimos tarea a lo <em>Peep Laja</em>: mirar datos, escuchar usuarios y entender el <strong>posicionamiento</strong>. Descubrimos que la gente no entendía <em>para quién</em> era el producto. Cambiamos el mensaje, no la paleta… y subió la conversión.</p>\n\n  <h3>El sistema CXL en limpio</h3>\n  <ol>\n    <li><strong>Investigación</strong> (cuantitativa + cualitativa): analytics, mapas de calor, grabaciones, encuestas post-compra, entrevistas cortas.</li>\n    <li><strong>Ideación</strong>: hipótesis basadas en evidencia (“Si aclaramos X, entonces Y sube”).</li>\n    <li><strong>Priorizar</strong> (PXL/ICE): impacto esperado, confianza en la evidencia, facilidad/esfuerzo.</li>\n    <li><strong>Experimentar</strong>: A/B con métrica norte clara y tamaño de muestra suficiente.</li>\n    <li><strong>Aprender y documentar</strong>: qué funcionó, dónde y por qué; convertir hallazgos en guías.</li>\n  </ol>\n\n  <h3>Posicionamiento primero, diseño después</h3>\n  <ul>\n    <li><strong>Para quién</strong> (segmento) y <strong>por qué tú</strong> (diferenciador) en el <em>hero</em>.</li>\n    <li>Mensajes que atacan <strong>dolores específicos</strong> del segmento, no genéricos.</li>\n  </ul>\n\n  <h3>Cómo escribir una hipótesis útil</h3>\n  <p><em>“Si [cambio] en [página/elemento] para [segmento], entonces [métrica] mejorará porque [insight de investigación].”</em></p>\n\n  <h3>Priorizar sin pelearse (matriz práctica)</h3>\n  <ul>\n    <li><strong>Impacto</strong>: ¿cuántos verán el cambio y cuánto puede mover?</li>\n    <li><strong>Confianza</strong>: evidencia que respalda la hipótesis.</li>\n    <li><strong>Esfuerzo</strong>: horas/recursos necesarios.</li>\n  </ul>\n\n  <h3>Diseño del experimento</h3>\n  <ul>\n    <li><strong>Métrica norte</strong> (CVR, revenue por visitante, activación…).</li>\n    <li><strong>Criterios</strong>: duración mínima, tamaño de muestra y significancia.</li>\n    <li><strong>Segmentos</strong>: tráfico frío vs. marca, móvil vs. desktop.</li>\n  </ul>\n\n  <h3>Plan de 30 días para montar el programa</h3>\n  <ol>\n    <li><strong>Semana 1:</strong> Auditoría de datos + encuesta 1-pregunta (“¿Qué te detuvo?”).</li>\n    <li><strong>Semana 2:</strong> 10 hipótesis y priorización rápida; define 2–3 tests.</li>\n    <li><strong>Semana 3:</strong> Ejecuta el primer A/B y un test de copy en hero.</li>\n    <li><strong>Semana 4:</strong> Analiza resultados y documenta un “playbook” de mensajería.</li>\n  </ol>\n\n  <h3>Métricas que importan (y cuándo parar)</h3>\n  <ul>\n    <li><strong>CVR y revenue/visitante</strong> como métrica principal.</li>\n    <li><strong>Lift por experimento</strong> y <strong>tasa de éxito</strong> (ganadores/total).</li>\n    <li><strong>Aprendizajes reutilizables</strong> documentados por categoría (copy, diseño, oferta).</li>\n  </ul>\n\n  <h4>Errores típicos (y su cura)</h4>\n  <ul>\n    <li><strong>Testing al azar</strong>: sin investigación, el A/B es lotería.</li>\n    <li><strong>Declarar victoria temprano</strong>: corta antes del tamaño de muestra.</li>\n    <li><strong>No documentar</strong>: el equipo repite errores porque nadie guardó lo aprendido.</li>\n  </ul>\n\n  <p><strong>Cierre:</strong> con Peep Laja la magia es el <em>sistema</em>: investiga, prioriza, prueba y documenta. Repite. Eso paga las cuentas.</p>\n</section>\n",
+    "image": "/img/blog/1761363135976-CRO-con-sistema-al-estilo-Peep-Laja-investigaciÃ³n.webp",
+    "category": "Optimización de Funnels",
+    "author": "Edison Aular",
+    "authorImage": "/img/team/edison.jpg",
+    "date": "2025-10-24",
+    "readTime": "7 min",
+    "featured": false,
+    "tags": [
+      "peep laja",
+      "cxl",
+      "cro",
+      "investigacion",
+      "priorizacion",
+      "experimentacion",
+      "posicionamiento",
+      "hipotesis",
+      "ab testing",
+      "kpis"
+    ],
+    "id": 16
   }
 ]
