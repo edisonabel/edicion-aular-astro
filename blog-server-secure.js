@@ -8,16 +8,24 @@ import bcryptjs from 'bcryptjs';
 import rateLimit from 'express-rate-limit';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 
 // Cargar variables de entorno
-config({ path: '.env.cms' });
+console.log('🔍 [DEBUG] Cargando variables de entorno...');
+dotenv.config({ path: '.env.cms' });
+console.log('✅ [DEBUG] Variables cargadas');
+console.log('🔍 [DEBUG] USER:', process.env.CMS_ADMIN_USER);
+console.log('🔍 [DEBUG] PASSWORD existe:', !!process.env.CMS_ADMIN_PASSWORD);
+console.log('🔍 [DEBUG] SECRET existe:', !!process.env.SESSION_SECRET);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+console.log('🔍 [DEBUG] __dirname:', __dirname);
 
+console.log('🔍 [DEBUG] Creando app Express...');
 const app = express();
 const PORT = 3001;
+console.log('✅ [DEBUG] Express creado, PORT:', PORT);
 
 // ========================================
 // CONFIGURACIÓN DE SEGURIDAD
@@ -62,11 +70,23 @@ app.use(express.static('public'));
 // CREDENCIALES (Hasheadas con bcrypt)
 // ========================================
 
+console.log('🔍 [DEBUG] Configurando credenciales...');
+
+if (!process.env.CMS_ADMIN_USER || !process.env.CMS_ADMIN_PASSWORD) {
+    console.error('❌ ERROR: Credenciales no encontradas en .env.cms');
+    console.error('   Asegúrate de que existe el archivo .env.cms con:');
+    console.error('   CMS_ADMIN_USER=admin_ea_2024');
+    console.error('   CMS_ADMIN_PASSWORD=EA@Secure2024!Blog#Admin');
+    process.exit(1);
+}
+
 const ADMIN_CREDENTIALS = {
     username: process.env.CMS_ADMIN_USER,
     // Hashear la contraseña (en producción, esto debería estar en una DB)
     passwordHash: bcryptjs.hashSync(process.env.CMS_ADMIN_PASSWORD, 10)
 };
+
+console.log('✅ [DEBUG] Credenciales configuradas para usuario:', ADMIN_CREDENTIALS.username);
 
 // ========================================
 // MIDDLEWARE DE AUTENTICACIÓN
@@ -91,8 +111,14 @@ app.post('/api/auth/login', loginLimiter, async (req, res) => {
     try {
         const { username, password } = req.body;
 
+        console.log('🔍 [DEBUG LOGIN] Intento de login recibido');
+        console.log('🔍 [DEBUG LOGIN] Usuario recibido:', username);
+        console.log('🔍 [DEBUG LOGIN] Usuario esperado:', ADMIN_CREDENTIALS.username);
+        console.log('🔍 [DEBUG LOGIN] Contraseña recibida length:', password ? password.length : 0);
+
         // Validar que vengan los datos
         if (!username || !password) {
+            console.log('❌ [DEBUG LOGIN] Faltan datos');
             return res.status(400).json({ 
                 success: false, 
                 error: 'Usuario y contraseña son requeridos' 
@@ -101,21 +127,29 @@ app.post('/api/auth/login', loginLimiter, async (req, res) => {
 
         // Verificar usuario
         if (username !== ADMIN_CREDENTIALS.username) {
+            console.log('❌ [DEBUG LOGIN] Usuario no coincide');
             return res.status(401).json({ 
                 success: false, 
                 error: 'Credenciales incorrectas' 
             });
         }
 
+        console.log('✅ [DEBUG LOGIN] Usuario correcto, verificando contraseña...');
+
         // Verificar contraseña con bcrypt
         const passwordMatch = await bcryptjs.compare(password, ADMIN_CREDENTIALS.passwordHash);
         
+        console.log('🔍 [DEBUG LOGIN] Resultado bcrypt.compare:', passwordMatch);
+        
         if (!passwordMatch) {
+            console.log('❌ [DEBUG LOGIN] Contraseña incorrecta');
             return res.status(401).json({ 
                 success: false, 
                 error: 'Credenciales incorrectas' 
             });
         }
+
+        console.log('✅ [DEBUG LOGIN] Login exitoso!');
 
         // Crear sesión
         req.session.authenticated = true;
@@ -310,20 +344,33 @@ app.post('/api/upload-image', requireAuth, upload.single('image'), (req, res) =>
 
 // Página de login
 app.get('/admin/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'blog-login.html'));
+    console.log('🔍 [DEBUG] GET /admin/login - Sirviendo página de login');
+    const loginPath = path.join(__dirname, 'blog-login.html');
+    console.log('🔍 [DEBUG] Ruta del archivo:', loginPath);
+    res.sendFile(loginPath, (err) => {
+        if (err) {
+            console.error('❌ [ERROR] No se pudo enviar blog-login.html:', err);
+            res.status(500).send('Error al cargar la página de login');
+        }
+    });
 });
 
 // Admin panel (redirige a login si no está autenticado)
 app.get('/admin', (req, res) => {
+    console.log('🔍 [DEBUG] GET /admin - Sesión:', req.session.authenticated ? 'AUTENTICADO' : 'NO AUTENTICADO');
     if (!req.session.authenticated) {
+        console.log('🔍 [DEBUG] Redirigiendo a /admin/login');
         return res.redirect('/admin/login');
     }
+    console.log('🔍 [DEBUG] Sirviendo blog-admin.html');
     res.sendFile(path.join(__dirname, 'blog-admin.html'));
 });
 
 // ========================================
 // INICIAR SERVIDOR
 // ========================================
+// Iniciar servidor
+console.log('🔍 [DEBUG] Intentando iniciar servidor en puerto', PORT, '...');
 
 app.listen(PORT, () => {
     console.log(`
