@@ -488,6 +488,14 @@
                     </svg>
                     Recargar Blog
                 </button>
+                <button class="secondary" onclick="handleLogout()" style="border-color: #fc8181; color: #fc8181;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Cerrar Sesión
+                </button>
             </div>
 
             <div class="main">
@@ -628,15 +636,58 @@
         let currentTags = [];
         const API_URL = 'http://localhost:3001/api';
 
-        // Load blog data on page load
-        window.onload = function() {
+        // Verificar sesión al cargar
+        window.onload = async function() {
+            await checkSession();
             loadBlogData();
+        }
+
+        // Verificar sesión
+        async function checkSession() {
+            try {
+                const response = await fetch(`${API_URL}/auth/check`, {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                if (!data.authenticated) {
+                    window.location.href = '/admin/login';
+                }
+            } catch (error) {
+                console.error('Error verificando sesión:', error);
+                window.location.href = '/admin/login';
+            }
+        }
+
+        // Cerrar sesión
+        async function handleLogout() {
+            if (!confirm('¿Estás seguro que deseas cerrar sesión?')) {
+                return;
+            }
+
+            try {
+                await fetch(`${API_URL}/auth/logout`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                window.location.href = '/admin/login';
+            } catch (error) {
+                console.error('Error al cerrar sesión:', error);
+                alert('Error al cerrar sesión');
+            }
         };
 
         async function loadBlogData() {
             try {
-                const response = await fetch(`${API_URL}/posts`);
+                const response = await fetch(`${API_URL}/posts`, {
+                    credentials: 'include'
+                });
                 const data = await response.json();
+                
+                if (response.status === 401) {
+                    window.location.href = '/admin/login';
+                    return;
+                }
                 if (data.success) {
                     blogData = data.posts;
                     showPosts();
@@ -766,7 +817,8 @@
 
             try {
                 const response = await fetch(`${API_URL}/posts/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    credentials: 'include'
                 });
                 const data = await response.json();
                 
@@ -854,7 +906,8 @@
                 try {
                     const response = await fetch(`${API_URL}/upload-image`, {
                         method: 'POST',
-                        body: formData
+                        body: formData,
+                        credentials: 'include'
                     });
                     const data = await response.json();
                     
@@ -895,14 +948,16 @@
                     response = await fetch(`${API_URL}/posts/${id}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(postData)
+                        body: JSON.stringify(postData),
+                        credentials: 'include'
                     });
                 } else {
                     // Create new
                     response = await fetch(`${API_URL}/posts`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(postData)
+                        body: JSON.stringify(postData),
+                        credentials: 'include'
                     });
                 }
 
