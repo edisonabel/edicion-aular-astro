@@ -49,7 +49,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
 
                     <!-- Content -->
                     <div class="bringer-masked-content at-bottom-right">
-                        <a href="#page01" class="bringer-square-button" data-appear="fade-left">
+                        <a href="#solo-una-oportunidad" class="bringer-square-button scroll-down-btn" data-appear="fade-left">
                             <span class="bringer-icon bringer-icon-arrow-down"></span>
                         </a>
                     </div>
@@ -71,7 +71,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         </div>
                     </div>
 
-                    <div class="stg-col-6 stg-tp-col-6 stg-m-col-12 stg-m-top-gap" data-appear="fade-up" data-delay="400" data-unload="fade-up">
+                    <div class="stg-col-6 stg-tp-col-6 stg-m-col-12 stg-m-top-gap" data-appear="fade-up" data-delay="400" data-unload="fade-up" id="solo-una-oportunidad">
                         <p class="bringer-large-text">
                             <strong>Solo tienes una oportunidad para conectar.</strong><br>
                             Diseñamos estrategias visuales que transforman tu marca en un éxito, 
@@ -160,8 +160,8 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <!-- Card 1 -->
                         <div class="bringer-price-card-item bringer-block">
                             <div class="bringer-price-card-title">
-                                <div class="bringer-parallax-media">
-                                    <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/amar.svg" alt="Icono de pasión" width="100" height="100">
+                                <div class="bringer-icon-wrapper">
+                                    <img src="/img/home/amar.svg" alt="Icono de pasión" width="80" height="80" loading="lazy">
                                 </div>
                                 <h5>Nos encanta lo que hacemos<span class="bringer-accent">.</span></h5>
                                 <p>Resolver problemas con creatividad nos apasiona.</p>
@@ -171,7 +171,9 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <!-- Card 2 -->
                         <div class="bringer-price-card-item bringer-block">
                             <div class="bringer-price-card-title">
-                                <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/efectos-especiales.svg" alt="Icono de especialistas" width="100" height="100">
+                                <div class="bringer-icon-wrapper">
+                                    <img src="/img/home/efectos-especiales.svg" alt="Icono de especialistas" width="80" height="80" loading="lazy">
+                                </div>
                                 <h5>Especialistas en cada área<span class="bringer-accent">.</span></h5>
                                 <p>Aquí no hay todólogos; cada proyecto tiene su experto.</p>
                             </div>
@@ -180,7 +182,9 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <!-- Card 3 -->
                         <div class="bringer-price-card-item bringer-block">
                             <div class="bringer-price-card-title">
-                                <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/pluma.svg" alt="Icono de diseño de historias" width="100" height="100">
+                                <div class="bringer-icon-wrapper">
+                                    <img src="/img/home/pluma.svg" alt="Icono de diseño de historias" width="80" height="80" loading="lazy">
+                                </div>
                                 <h5>Diseños que cuentan historias<span class="bringer-accent">.</span></h5>
                                 <p>Porque si no conecta, no funciona.</p>
                             </div>
@@ -189,7 +193,9 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <!-- Card 4 -->
                         <div class="bringer-price-card-item bringer-block">
                             <div class="bringer-price-card-title">
-                                <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/un-resultado-positivo-de-la-prueba-de-la-escuela.svg" alt="Icono de resultados positivos" width="100" height="100">
+                                <div class="bringer-icon-wrapper">
+                                    <img src="/img/home/un-resultado-positivo-de-la-prueba-de-la-escuela.svg" alt="Icono de resultados positivos" width="80" height="80" loading="lazy">
+                                </div>
                                 <h5>Resultados que importan<span class="bringer-accent">.</span></h5>
                                 <p>Más de 479 marcas han confiado en nosotros porque entregamos impacto.</p>
                             </div>
@@ -539,6 +545,85 @@ const featuredProjects = portfolioData.filter(p => p.featured);
     </div>
 </BaseLayout>
 
+<style>
+    /* ========================================
+       ARREGLOS MODO CLARO/OSCURO - MÁXIMA ESPECIFICIDAD
+    ======================================== */
+    
+    /* 1. SOLO FLECHA BLANCA - MANTENER FONDO ROSA */
+    .bringer-hero-block .bringer-masked-content .bringer-square-button .bringer-icon,
+    .bringer-square-button.scroll-down-btn .bringer-icon,
+    .bringer-square-button .bringer-icon-arrow-down {
+        color: #ffffff !important;
+        fill: #ffffff !important;
+    }
+    
+    /* Light Mode - Flecha BLANCA también */
+    html.light-mode .bringer-hero-block .bringer-masked-content .bringer-square-button .bringer-icon,
+    html.light-mode .bringer-square-button.scroll-down-btn .bringer-icon {
+        color: #ffffff !important;
+        fill: #ffffff !important;
+    }
+    
+    /* 2. COUNTERS VISIBLES EN LIGHT MODE */
+    html.light-mode .bringer-counter-number {
+        color: #1a1a1a !important;
+    }
+    
+    html.light-mode .bringer-counter-label {
+        color: #4a4a4a !important;
+    }
+    
+    /* 3. ICONOS VISIBLES EN LAS TARJETAS */
+    .bringer-icon-wrapper {
+        margin-bottom: 1.5rem !important;
+        display: block !important;
+    }
+    
+    .bringer-icon-wrapper img {
+        opacity: 1 !important;
+        display: block !important;
+        max-width: 80px !important;
+        height: auto !important;
+    }
+    
+    /* Dark mode: invertir colores de iconos */
+    html:not(.light-mode) .bringer-icon-wrapper img {
+        filter: brightness(0) invert(1) !important;
+    }
+    
+    /* Light mode: iconos en color original */
+    html.light-mode .bringer-icon-wrapper img {
+        filter: none !important;
+    }
+    
+    /* 4. FLECHAS EN CTA - BLANCAS SIEMPRE EN FONDO ROSA */
+    /* Sobrescribir el ::before del icono-explore específicamente */
+    .bringer-grid-cta .bringer-square-button .bringer-icon-explore::before,
+    .bringer-grid-cta .is-small .bringer-square-button .bringer-icon::before {
+        color: #ffffff !important;
+        background: transparent !important;
+    }
+    
+    /* En light mode también BLANCO */
+    html.light-mode .bringer-grid-cta .bringer-square-button .bringer-icon-explore::before,
+    html.light-mode .bringer-grid-cta .is-small .bringer-square-button .bringer-icon::before {
+        color: #ffffff !important;
+        background: transparent !important;
+    }
+    
+    /* El span también por si acaso */
+    .bringer-grid-cta .bringer-square-button .bringer-icon-explore,
+    .bringer-grid-cta .bringer-square-button .bringer-icon {
+        color: #ffffff !important;
+    }
+    
+    html.light-mode .bringer-grid-cta .bringer-square-button .bringer-icon-explore,
+    html.light-mode .bringer-grid-cta .bringer-square-button .bringer-icon {
+        color: #ffffff !important;
+    }
+</style>
+
 <script>
     // Intersection Observer para hero video (carga inteligente)
     const heroVideo = document.getElementById('heroVideo');
@@ -564,6 +649,22 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         heroVideo.src = heroVideo.getAttribute('data-src');
         heroVideo.play().catch(() => {});
     }
+    
+    // SCROLL SUAVE AL HACER CLICK EN FLECHA
+    document.querySelectorAll('.scroll-down-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
     
     // Optimizar scroll performance con passive listeners
     if ('addEventListener' in window) {

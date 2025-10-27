@@ -268,3 +268,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </section>
     </div>
 </BaseLayout>
+
+<style>
+    /* ARREGLO: Counters visibles en modo claro */
+    html.light-mode .bringer-counter-number {
+        color: #1a1a1a !important;
+    }
+    
+    html.light-mode .bringer-counter-label {
+        color: #4a4a4a !important;
+    }
+    
+    /* Flechas en CTA blancas en fondo rosa */
+    .bringer-grid-cta .bringer-square-button .bringer-icon-explore::before {
+        color: #ffffff !important;
+    }
+    
+    html.light-mode .bringer-grid-cta .bringer-square-button .bringer-icon-explore::before {
+        color: #ffffff !important;
+    }
+</style>
