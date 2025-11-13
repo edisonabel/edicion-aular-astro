@@ -348,5 +348,31 @@
       "kpis"
     ],
     "id": 16
+  },
+  {
+    "title": "ChatGPT 5.1 explicado fácil: qué cambió, por qué importa y cómo sacarle jugo (sin ser técnico)",
+    "slug": "chatgpt-5-1-explicado-facil",
+    "excerpt": "Te lo cuento como a un amigo: qué trae ChatGPT 5.1, en qué es distinto a versiones anteriores y cómo evitar los errores típicos (pedirle “de todo”, prompts eternos, cero objetivo). Incluye guía rápida para usarlo bien desde hoy.",
+    "content": "<section>\n  <h2>El día que dejé de “pegarle gritos” a la IA</h2>\n  <p>Antes yo abría ChatGPT y le lanzaba un discurso de 30 líneas. Resultado: respuestas largas, poco concretas y cero acción. Con <strong>ChatGPT 5.1</strong> aprendí algo simple: es mejor decirle <em>qué quiero y cómo lo quiero</em>. Esta versión entiende mejor el contexto y ajusta el nivel de detalle, así que si tú eres claro, él también.</p>\n\n  <h3>¿Qué es ChatGPT 5.1 (en cristiano)?</h3>\n  <ul>\n    <li><strong>Es una actualización del “cerebro” de ChatGPT</strong>: entiende mejor la intención y conversa de forma más natural.</li>\n    <li>Viene en dos sabores: <strong>Instant</strong> (rápido, con razonamiento ligero) y <strong>Thinking</strong> (se toma más tiempo en tareas complejas).</li>\n    <li>Se está <strong>desplegando para usuarios</strong> (primero pagos) y ChatGPT puede elegir el modo adecuado según la tarea.</li>\n  </ul>\n\n  <h3>Qué notarás al usarlo (lo práctico de verdad)</h3>\n  <ul>\n    <li><strong>Mejor seguimiento de instrucciones</strong>: si le das formato, lo respeta (listas, pasos, tablas).</li>\n    <li><strong>Conversación más natural</strong>: menos jerga y más claridad al explicar.</li>\n    <li><strong>Tono más personalizable</strong>: puedes pedir “profesional y breve”, “amistoso y directo”, etc.</li>\n  </ul>\n\n  <h3>Errores comunes (y cómo los evita 5.1… si tú haces tu parte)</h3>\n  <ul>\n    <li><strong>Querer todo en un solo prompt</strong>: divide en tareas. Primero el esquema, luego el desarrollo.</li>\n    <li><strong>Prompts kilométricos</strong>: mejor un <em>brief</em> corto con objetivo, público y formato deseado.</li>\n    <li><strong>Objetivo difuso</strong>: di “quiero X para Y en Z formato” (ej.: “guión de 60s para Reels que termine en CTA a WhatsApp”).</li>\n    <li><strong>No revisar</strong>: la IA acierta más, pero tú cierras el partido. Relee, ajusta y pide versiones 2 y 3.</li>\n  </ul>\n\n  <h3>Guía rápida: cómo pedirle a 5.1 (plantilla copia-pega)</h3>\n  <ol>\n    <li><strong>Contexto (1 frase):</strong> “Soy [rol] y necesito [resultado] para [audiencia].”</li>\n    <li><strong>Formato:</strong> “Dámelo en [lista/tabla/pasos], máximo [longitud], con [tono]”.</li>\n    <li><strong>Contenido clave:</strong> 3–5 puntos que no puede olvidar (beneficios, objeciones, CTA).</li>\n    <li><strong>Calidad:</strong> “Si falta info, haz 3 preguntas y luego entrega la versión final.”</li>\n  </ol>\n\n  <h3>Ejemplos reales (para copiar hoy)</h3>\n  <p><strong>Blog básico (como este):</strong><br>\n  “Eres redactor. Objetivo: artículo sencillo para principiantes sobre [tema]. Formato: secciones con h2/h3, ejemplos, lista de errores típicos y checklist final. Tono: didáctico y cercano. Longitud: 700–900 palabras. Pide 3 preguntas si falta info y luego entrega el post.”</p>\n  <p><strong>Resumen con acción:</strong><br>\n  “Resume este PDF en 5 bullets y termina con 3 acciones concretas para emprendedores, en tono profesional y directo.”</p>\n\n  <h3>Checklist de uso inteligente (5 minutos)</h3>\n  <ul>\n    <li><strong>Define el norte:</strong> ¿qué vas a publicar o decidir con la respuesta?</li>\n    <li><strong>Fija el formato</strong> (tabla, pasos, bullets) y el <strong>tono</strong> (breve/amigable/profesional).</li>\n    <li><strong>Pide preguntas</strong> si falta info antes de que escriba.</li>\n    <li><strong>Itera</strong>: versión 1 para estructura, versión 2 para pulir, versión 3 para CTA.</li>\n    <li><strong>Revisa</strong> claims sensibles (precios, fechas, datos). Siempre.</li>\n  </ul>\n\n  <h3>¿Cuándo usar Instant vs. Thinking?</h3>\n  <ul>\n    <li><strong>Instant:</strong> respuestas rápidas, resúmenes cortos, ideas, copy breve, posts ligeros.</li>\n    <li><strong>Thinking:</strong> piezas largas, planes detallados, razonamiento paso a paso, comparar opciones.</li>\n  </ul>\n\n  <h4>Conclusión</h4>\n  <p><strong>ChatGPT 5.1</strong> no es “magia nueva”; es <em>mejor conversación + mejor obediencia</em>. Si tú aclaras el objetivo y el formato, él te devuelve algo publicable mucho más rápido. Menos gritos al teclado, más resultados.</p>\n</section>\n",
+    "image": "/img/blog/1763052385273-CHAT-G2.webp",
+    "category": "Marketing con IA",
+    "author": "Edison Aular",
+    "authorImage": "/img/team/edison.jpg",
+    "date": "2025-11-13",
+    "readTime": "6 min",
+    "featured": true,
+    "tags": [
+      "chatgpt 5.1",
+      "gpt-5.1",
+      "openai",
+      "razonamiento adaptativo",
+      "instant vs thinking",
+      "productividad",
+      "prompting",
+      "tono y estilo",
+      "guia rapida",
+      "principiantes"
+    ],
+    "id": 17
   }
 ]
