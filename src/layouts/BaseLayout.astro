@@ -83,9 +83,150 @@ const socialImage = new URL(image, Astro.site).href;
     
     <!-- Metadatos Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@edaborofficial" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    
+    <!-- Meta tags adicionales SEO -->
+    <meta property="og:locale" content="es_CO" />
+    <meta name="author" content="Edición Aular" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    
+    <!-- Meta tags de Geolocalización - Medellín, Colombia -->
+    <meta name="geo.region" content="CO-ANT" />
+    <meta name="geo.placename" content="Medellín, Antioquia, Colombia" />
+    <meta name="geo.position" content="6.2442;-75.5812" />
+    <meta name="ICBM" content="6.2442, -75.5812" />
+    
+    <!-- JSON-LD Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Edición Aular",
+        "alternateName": ["Edicion Aular", "Agencia Edición Aular Medellín"],
+        "url": "https://edicionaular.com",
+        "logo": "https://edicionaular.com/img/Edicion-Aular-Logo.png",
+        "description": "Agencia de diseño web y publicidad digital en Medellín. Especialistas en SEO, páginas web, branding, producción audiovisual y gestión de Ads.",
+        "foundingDate": "2020",
+        "sameAs": [
+            "https://www.facebook.com/edicionaular",
+            "https://www.instagram.com/edicion_aular/",
+            "https://www.tiktok.com/@edicionaular8",
+            "https://vimeo.com/user67007640"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "url": "https://edicionaular.com/contacto",
+            "telephone": "+57 3002730128",
+            "availableLanguage": ["Spanish", "English"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Medellín",
+            "addressRegion": "Antioquia",
+            "addressCountry": "CO"
+        },
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Medellín",
+                "sameAs": "https://es.wikipedia.org/wiki/Medell%C3%ADn"
+            },
+            {
+                "@type": "State",
+                "name": "Antioquia"
+            },
+            {
+                "@type": "Country",
+                "name": "Colombia"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- JSON-LD LocalBusiness Schema para SEO Local -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Edición Aular - Diseño Web Medellín",
+        "image": "https://edicionaular.com/img/Edicion-Aular-Logo.png",
+        "url": "https://edicionaular.com",
+        "telephone": "+57 3002730128",
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "El Poblado",
+            "addressLocality": "Medellín",
+            "addressRegion": "Antioquia",
+            "postalCode": "050021",
+            "addressCountry": "CO"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 6.2442,
+            "longitude": -75.5812
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+            }
+        ],
+        "sameAs": [
+            "https://www.facebook.com/edicionaular",
+            "https://www.instagram.com/edicion_aular/"
+        ],
+        "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 6.2442,
+                "longitude": -75.5812
+            },
+            "geoRadius": "50000"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios de Diseño Web y Marketing Digital",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Diseño de Páginas Web en Medellín"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "SEO y Posicionamiento Web"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Branding e Identidad Visual"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Gestión de Meta Ads y Google Ads"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
     
     <!-- Google tag (gtag.js) - Carga diferida -->
     <script>
@@ -103,7 +244,7 @@ const socialImage = new URL(image, Astro.site).href;
     </script>
     
     <!-- Critical CSS para prevenir CLS y optimización mobile -->
-    <style>
+    <style is:global>
         .bringer-large-text {
             font-size: var(--bringer-t-large-fs);
             line-height: var(--bringer-t-content-lh);
@@ -221,6 +362,68 @@ const socialImage = new URL(image, Astro.site).href;
             .bringer-portfolio-card {
                 container-type: inline-size;
             }
+        }
+        
+        /* ========================================
+           LIGHT MODE - Tarjetas con fondo accent/rosa
+           ======================================== */
+        html.light-mode .bringer-block.is-accented,
+        html.light-mode .bringer-masked-media.is-accented,
+        html.light-mode .bringer-masked-block .bringer-block.is-accented {
+            background-color: #ff005f !important;
+            background: #ff005f !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        html.light-mode .bringer-block.is-accented h5,
+        html.light-mode .bringer-block.is-accented p,
+        html.light-mode .bringer-block.is-accented .bringer-large-text,
+        html.light-mode .bringer-masked-media.is-accented h5,
+        html.light-mode .bringer-masked-media.is-accented p,
+        html.light-mode .bringer-masked-media.is-accented .bringer-large-text {
+            color: #FFFFFF !important;
+        }
+        
+        /* Quitar borde y sombra de todas las tarjetas en light mode */
+        html.light-mode .bringer-block {
+            border-color: rgba(0, 0, 0, 0.08) !important;
+            box-shadow: none !important;
+        }
+        
+        html.light-mode .bringer-masked-block .bringer-block.is-accented {
+            border-color: transparent !important;
+        }
+        
+        /* Barra de búsqueda en light mode */
+        html.light-mode input[type="text"],
+        html.light-mode input[type="search"],
+        html.light-mode .blog-search-input,
+        html.light-mode input[placeholder*="Buscar"] {
+            background-color: #FFFFFF !important;
+            border: 1px solid rgba(0, 0, 0, 0.15) !important;
+            color: #1a1a1a !important;
+        }
+        
+        html.light-mode input[type="text"]::placeholder,
+        html.light-mode input[type="search"]::placeholder,
+        html.light-mode .blog-search-input::placeholder {
+            color: #666666 !important;
+        }
+        
+        /* Barra de progreso de lectura - siempre visible */
+        #reading-progress-bar {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            z-index: 2147483647 !important; /* Máximo z-index posible */
+            isolation: isolate !important;
+        }
+        
+        /* Asegurar que el footer no cubra la barra */
+        #bringer-footer {
+            z-index: 20 !important;
         }
     </style>
     

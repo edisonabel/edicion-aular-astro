@@ -2,6 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
+<style>
+    /* Light mode - mantener fondo rosa/accent en las tarjetas */
+    html.light-mode .bringer-block.is-accented,
+    html.light-mode .bringer-masked-media.is-accented {
+        background-color: var(--bringer-s-accent) !important;
+        background: var(--bringer-s-accent) !important;
+    }
+    
+    html.light-mode .bringer-block.is-accented h5,
+    html.light-mode .bringer-block.is-accented p,
+    html.light-mode .bringer-masked-media.is-accented h5,
+    html.light-mode .bringer-masked-media.is-accented p {
+        color: #FFFFFF !important;
+    }
+</style>
+
 <BaseLayout 
     title="Lanzamientos Digitales | Edición Aular 🚀✨"
     description="Impulsa tus ventas masivas y construye autoridad con nuestros lanzamientos digitales 🚀✨. Estrategias efectivas en landing pages y marketing. ¡Agenda tu cita hoy! 🌟"

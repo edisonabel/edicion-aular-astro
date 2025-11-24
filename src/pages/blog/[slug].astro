@@ -40,10 +40,67 @@ if (relatedPosts.length < 3) {
 
 <BaseLayout 
     title={`${post.title} | Blog Edición Aular`}
-    description={post.excerpt}>
+    description={post.excerpt}
+    image={post.image}>
+
+    <!-- JSON-LD Article Schema para SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "description": post.excerpt,
+        "image": `https://edicionaular.com${post.image}`,
+        "author": {
+            "@type": "Person",
+            "name": post.author || "Edison Aular",
+            "url": "https://edicionaular.com/nosotros"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Edición Aular",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://edicionaular.com/img/Edicion-Aular-Logo.png"
+            }
+        },
+        "datePublished": post.date,
+        "dateModified": post.date,
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://edicionaular.com/blog/${post.slug}`
+        },
+        "articleSection": post.category,
+        "wordCount": post.readTime ? parseInt(post.readTime) * 200 : 1000
+    })} />
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://edicionaular.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://edicionaular.com/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.title,
+                "item": `https://edicionaular.com/blog/${post.slug}`
+            }
+        ]
+    })} />
 
     <!-- Reading Progress Bar -->
-    <div id="reading-progress-bar" style="position: fixed !important; bottom: 0 !important; left: 0 !important; width: 0% !important; height: 4px !important; background: linear-gradient(90deg, #ff1493, #ff69b4) !important; z-index: 999999999 !important; pointer-events: none !important; box-shadow: 0 -2px 12px rgba(255, 77, 145, 0.8) !important;"></div>
+    <div id="reading-progress-bar" style="position: fixed !important; bottom: 0 !important; left: 0 !important; width: 0% !important; height: 5px !important; background: linear-gradient(90deg, #ff1493, #ff69b4) !important; z-index: 999999999 !important; pointer-events: none !important; box-shadow: 0 -2px 12px rgba(255, 77, 145, 0.8) !important;"></div>
 
     <div class="stg-container">
         <!-- PASO 1: Encabezado del Artículo -->
@@ -233,6 +290,10 @@ if (relatedPosts.length < 3) {
     (function() {
         const progressBar = document.getElementById('reading-progress-bar');
         if (!progressBar) return;
+
+        // IMPORTANTE: Mover la barra al body para que position:fixed funcione correctamente
+        // (El main tiene transforms que rompen el position:fixed)
+        document.body.appendChild(progressBar);
 
         let ticking = false;
 
