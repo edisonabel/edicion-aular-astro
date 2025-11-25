@@ -11,7 +11,7 @@
   "categories": ["business", "marketing", "design"],
   "icons": [
     {
-      "src": "/img/favicon (1).svg",
+      "src": "/img/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
