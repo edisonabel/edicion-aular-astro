@@ -1,0 +1,388 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = "28 de noviembre de 2025";
+
+const sections = [
+    {
+        category: "Uso del Sitio",
+        questions: [
+            {
+                q: "Aceptación de los Términos",
+                a: "Al acceder y utilizar el sitio web de Edición Aular (edicionaular.com), usted acepta estar sujeto a estos Términos y Condiciones de Uso. Si no está de acuerdo con alguno de estos términos, le rogamos que no utilice nuestro sitio web ni nuestros servicios. Estos términos aplican a todos los visitantes, usuarios y clientes del sitio."
+            },
+            {
+                q: "Uso Permitido del Sitio Web",
+                a: "Usted se compromete a utilizar este sitio web únicamente para fines legales y de manera que no infrinja los derechos de terceros ni restrinja o inhiba el uso del sitio por parte de otros. Está prohibido: (a) reproducir, duplicar, copiar o revender cualquier parte del sitio; (b) acceder sin autorización a nuestros sistemas; (c) introducir virus, troyanos o cualquier código malicioso; (d) utilizar el sitio para enviar spam o contenido no solicitado."
+            },
+            {
+                q: "Propiedad Intelectual",
+                a: "Todo el contenido presente en este sitio web, incluyendo pero no limitado a: textos, gráficos, logotipos, iconos, imágenes, clips de audio, descargas digitales y software, es propiedad de Edición Aular o de sus proveedores de contenido y está protegido por las leyes de propiedad intelectual de Colombia y tratados internacionales."
+            }
+        ]
+    },
+    {
+        category: "Nuestros Servicios",
+        questions: [
+            {
+                q: "Descripción de Servicios",
+                a: "Edición Aular es una agencia de publicidad digital que ofrece servicios de: diseño web, branding e identidad visual, producción audiovisual, gestión de publicidad digital (Meta Ads, Google Ads), streaming profesional, lanzamientos digitales y mentoría de marca. Los servicios específicos, alcances y precios se acuerdan individualmente con cada cliente mediante propuestas formales."
+            },
+            {
+                q: "Contratación de Servicios",
+                a: "La contratación de nuestros servicios se formaliza mediante: (a) aceptación escrita de una propuesta comercial; (b) firma de contrato de servicios cuando aplique; (c) pago del anticipo acordado. Los proyectos requieren un anticipo mínimo del 50% para iniciar trabajos, salvo acuerdo diferente por escrito."
+            },
+            {
+                q: "Plazos de Entrega",
+                a: "Los plazos de entrega se establecen en cada propuesta comercial y comienzan a contar desde: (a) la recepción del anticipo acordado; (b) la entrega completa de los materiales necesarios por parte del cliente. Los retrasos causados por falta de respuesta del cliente, cambios en el alcance o solicitudes adicionales no son responsabilidad de Edición Aular."
+            },
+            {
+                q: "Revisiones y Cambios",
+                a: "Cada proyecto incluye un número determinado de rondas de revisión especificadas en la propuesta (generalmente 2-3 rondas). Las revisiones adicionales o cambios fuera del alcance original se cotizarán por separado. Los cambios solicitados después de la aprobación final del proyecto se consideran trabajo adicional."
+            }
+        ]
+    },
+    {
+        category: "Pagos y Cancelaciones",
+        questions: [
+            {
+                q: "Política de Pagos",
+                a: "Aceptamos pagos mediante: transferencia bancaria, PayPal, tarjetas de crédito/débito y criptomonedas. Los precios están expresados en dólares estadounidenses (USD) o pesos colombianos (COP) según se especifique. Los impuestos aplicables (IVA u otros) se calcularán según la jurisdicción del cliente."
+            },
+            {
+                q: "Cancelaciones y Reembolsos",
+                a: "El cliente puede cancelar un proyecto en cualquier momento notificando por escrito. En caso de cancelación: (a) los anticipos no son reembolsables; (b) se facturará el trabajo completado hasta la fecha de cancelación; (c) todos los materiales entregados hasta ese momento son propiedad del cliente según lo pagado."
+            }
+        ]
+    },
+    {
+        category: "Confidencialidad y Portafolio",
+        questions: [
+            {
+                q: "Confidencialidad",
+                a: "Ambas partes se comprometen a mantener la confidencialidad de toda información sensible compartida durante la relación comercial. Esto incluye estrategias de negocio, datos de clientes, información financiera y cualquier material marcado como confidencial. Esta obligación permanece vigente incluso después de terminada la relación comercial."
+            },
+            {
+                q: "Uso en Portafolio",
+                a: "Edición Aular se reserva el derecho de incluir los trabajos realizados en su portafolio y materiales promocionales, salvo acuerdo de confidencialidad firmado. Si desea que su proyecto no sea publicado, debe notificarlo por escrito antes del inicio del proyecto."
+            }
+        ]
+    },
+    {
+        category: "Responsabilidades Legales",
+        questions: [
+            {
+                q: "Limitación de Responsabilidad",
+                a: "Edición Aular no será responsable por: (a) daños indirectos, incidentales o consecuentes; (b) pérdida de beneficios, datos o uso; (c) resultados de campañas publicitarias, ya que estos dependen de múltiples factores externos; (d) contenido proporcionado por el cliente que infrinja derechos de terceros. Nuestra responsabilidad máxima se limita al monto pagado por el cliente."
+            },
+            {
+                q: "Indemnización",
+                a: "El cliente acepta indemnizar y mantener libre de responsabilidad a Edición Aular, sus directores, empleados y agentes, frente a cualquier reclamo, demanda o daño, incluyendo honorarios de abogados, que surjan del uso del sitio o servicios, violación de estos términos, o infracción de derechos de terceros."
+            },
+            {
+                q: "Ley Aplicable y Jurisdicción",
+                a: "Estos términos se rigen por las leyes de la República de Colombia. Para usuarios internacionales, estos términos también cumplen con estándares internacionales de comercio electrónico. Cualquier disputa será sometida a la jurisdicción de los tribunales de Medellín, Colombia."
+            }
+        ]
+    },
+    {
+        category: "Modificaciones y Contacto",
+        questions: [
+            {
+                q: "Modificaciones a estos Términos",
+                a: "Edición Aular se reserva el derecho de modificar estos términos en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación en el sitio web. El uso continuado del sitio después de dichos cambios constituye su aceptación de los nuevos términos."
+            },
+            {
+                q: "Información de Contacto",
+                a: "Para cualquier pregunta sobre estos Términos y Condiciones, puede contactarnos a través de: Email: info@edicionaular.com | Teléfono: +57 300 273 0128 | Dirección: Medellín, Antioquia, Colombia."
+            }
+        ]
+    }
+];
+---
+
+<BaseLayout 
+    title="Términos y Condiciones | Edición Aular"
+    description="Términos y condiciones de uso del sitio web y servicios de Edición Aular. Conozca sus derechos y obligaciones.">
+
+    <!-- Page Header -->
+    <div class="stg-container">
+        <section class="bringer-hero-block bringer-hero-type01">
+            <div class="stg-row stg-bottom-gap-l">
+                <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                    <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
+                        Términos y Condiciones<span class="bringer-accent">.</span>
+                    </h1>
+                    <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+                        Última actualización: {lastUpdated}
+                    </p>
+                    <p class="terms-intro-text" data-appear="fade-up" data-delay="150">
+                        Bienvenido a Edición Aular. Al utilizar nuestro sitio web y servicios, usted acepta cumplir con los siguientes términos y condiciones. Por favor, léalos detenidamente antes de utilizar nuestros servicios.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms Content -->
+        <section class="stg-bottom-gap-l">
+
+            {sections.map((section, sectionIndex) => (
+                <div class="faq-section" data-appear="fade-up" data-delay={sectionIndex * 50}>
+                    <h2 class="faq-category">{section.category}</h2>
+                    <div class="bringer-toggles-list">
+                        {section.questions.map((item, index) => (
+                            <div class="bringer-toggles-item">
+                                <div class="bringer-toggles-item-title">
+                                    <span>{item.q}</span>
+                                </div>
+                                <div class="bringer-toggles-item-content">
+                                    <p>{item.a}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </section>
+    </div>
+
+    <script is:inline>
+        (function() {
+            function initAccordion() {
+                const items = document.querySelectorAll('.bringer-toggles-item');
+                console.log('Accordion Init - Found items:', items.length);
+                
+                items.forEach((item, index) => {
+                    const title = item.querySelector('.bringer-toggles-item-title');
+                    
+                    if (title && !title.hasAttribute('data-faq-init')) {
+                        title.setAttribute('data-faq-init', 'true');
+                        title.style.cursor = 'pointer';
+                        
+                        title.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            const section = item.closest('.bringer-toggles-list');
+                            if (section) {
+                                section.querySelectorAll('.bringer-toggles-item.is-active').forEach(activeItem => {
+                                    if (activeItem !== item) {
+                                        activeItem.classList.remove('is-active');
+                                    }
+                                });
+                            }
+                            
+                            item.classList.toggle('is-active');
+                        });
+                    }
+                    
+                    // Mouse tracking para efecto glow
+                    item.addEventListener('mousemove', (e) => {
+                        const rect = item.getBoundingClientRect();
+                        item.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+                        item.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+                    });
+                });
+            }
+
+            // Run after a small delay to ensure DOM is ready
+            setTimeout(initAccordion, 100);
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(initAccordion, 100);
+                });
+            }
+        })();
+    </script>
+</BaseLayout>
+
+<style is:global>
+    .terms-intro-text {
+        margin-top: 1.5rem;
+        color: var(--bringer-s-content, #888);
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    html.light-mode .terms-intro-text {
+        color: #666;
+    }
+
+    /* Espaciado del hero */
+    .bringer-hero-block.bringer-hero-type01 {
+        padding-top: 3rem !important;
+        padding-bottom: 0 !important;
+    }
+    
+    .faq-section {
+        margin-bottom: 2.5rem;
+    }
+
+    .faq-category {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--bringer-s-accent);
+        color: var(--bringer-s-heading);
+    }
+
+    .bringer-toggles-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    /* Acordeón con estilo bringer-block y borde brillante */
+    .bringer-toggles-item {
+        position: relative;
+        margin-bottom: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        background: var(--bringer-s-block, rgba(255, 255, 255, 0.03));
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    /* Borde brillante como las cards */
+    .bringer-toggles-item::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        padding: 1px;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(255, 255, 255, 0.02) 100%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+
+    .bringer-toggles-item:hover::before {
+        opacity: 1;
+    }
+
+    /* Efecto glow en hover */
+    .bringer-toggles-item::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 0, 128, 0.06),
+            transparent 40%
+        );
+        pointer-events: none;
+    }
+
+    .bringer-toggles-item:hover::after {
+        opacity: 1;
+    }
+
+    .bringer-toggles-item-title {
+        position: relative;
+        z-index: 1;
+        cursor: pointer !important;
+        padding: 1.25rem 1.5rem;
+        background: transparent;
+        border-radius: var(--bringer-default-br, 16px);
+        transition: background 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+    }
+
+    .bringer-toggles-item.is-active .bringer-toggles-item-title {
+        border-radius: var(--bringer-default-br, 16px) var(--bringer-default-br, 16px) 0 0;
+    }
+
+    .bringer-toggles-item-title::after {
+        content: '+';
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: var(--bringer-s-accent, #ff0080);
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .bringer-toggles-item.is-active .bringer-toggles-item-title::after {
+        transform: rotate(45deg);
+    }
+
+    .bringer-toggles-item-title:hover {
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .bringer-toggles-item-title span {
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding-right: 1rem;
+        color: var(--bringer-s-heading, #fff);
+    }
+
+    .bringer-toggles-item-content {
+        position: relative;
+        z-index: 1;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding 0.3s ease;
+        padding: 0 1.5rem;
+        background: transparent;
+    }
+
+    .bringer-toggles-item.is-active .bringer-toggles-item-content {
+        max-height: 500px;
+        padding: 0 1.5rem 1.25rem 1.5rem;
+    }
+
+    .bringer-toggles-item-content p {
+        margin: 0;
+        color: var(--bringer-s-content, #aaa);
+        line-height: 1.7;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Light mode */
+    html.light-mode .bringer-toggles-item {
+        background: rgba(0, 0, 0, 0.02);
+    }
+
+    html.light-mode .bringer-toggles-item::before {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.04) 50%, rgba(0, 0, 0, 0.02) 100%);
+    }
+
+    html.light-mode .bringer-toggles-item::after {
+        background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 0, 128, 0.04), transparent 40%);
+    }
+
+    html.light-mode .bringer-toggles-item-title:hover {
+        background: rgba(0, 0, 0, 0.02);
+    }
+
+    html.light-mode .bringer-toggles-item-title span {
+        color: #1a1a1a;
+    }
+
+    html.light-mode .bringer-toggles-item-content p {
+        color: #444;
+        border-top-color: rgba(0, 0, 0, 0.08);
+    }
+
+    @media (max-width: 768px) {
+        .faq-category { font-size: 1.25rem; }
+        .bringer-toggles-item-title span { font-size: 1rem; }
+        .bringer-toggles-item-title { padding: 1rem 1.25rem; }
+    }
+</style>

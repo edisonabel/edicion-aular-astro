@@ -1,0 +1,413 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const packages = [
+    {
+        name: "Diseño Gráfico",
+        tagline: "Flyers, posts y piezas visuales para tu marca.",
+        price: "$35",
+        unit: "por pieza",
+        includes: [
+            "Diseño profesional personalizado",
+            "Entrega en 24-48 horas",
+            "Formatos optimizados para redes",
+            "1 ronda de revisiones incluida"
+        ],
+        accent: false
+    },
+    {
+        name: "Branding Completo",
+        tagline: "Tu identidad visual que conecta y perdura.",
+        price: "$350",
+        unit: "proyecto",
+        includes: [
+            "Diseño de logotipo principal",
+            "Paleta de colores y tipografías",
+            "Manual de identidad básico",
+            "Aplicaciones en redes sociales"
+        ],
+        accent: false
+    },
+    {
+        name: "Landing Page",
+        tagline: "Páginas que convierten visitantes en clientes.",
+        price: "$450",
+        unit: "proyecto",
+        includes: [
+            "Diseño UI/UX profesional",
+            "Optimización SEO básica",
+            "Responsive (móvil y desktop)",
+            "Formulario de contacto integrado"
+        ],
+        accent: true
+    },
+    {
+        name: "Sitio Web Completo",
+        tagline: "Tu presencia digital profesional y escalable.",
+        price: "$1,000",
+        unit: "proyecto",
+        includes: [
+            "Hasta 5 páginas personalizadas",
+            "Blog integrado (opcional)",
+            "SEO técnico optimizado",
+            "Panel de administración"
+        ],
+        accent: false
+    },
+    {
+        name: "Edición de Video",
+        tagline: "Videos profesionales que cuentan tu historia.",
+        price: "$50",
+        unit: "por minuto",
+        includes: [
+            "Edición profesional",
+            "Corrección de color",
+            "Música y efectos de sonido",
+            "Formatos para redes sociales"
+        ],
+        accent: false
+    },
+    {
+        name: "Meta & Google Ads",
+        tagline: "Campañas que conectan con tu cliente ideal.",
+        price: "$100",
+        unit: "mensual + ad spend",
+        includes: [
+            "Configuración de campañas",
+            "Segmentación estratégica",
+            "Optimización continua",
+            "Reportes de rendimiento"
+        ],
+        highlight: "No incluye creativos - se cotizan aparte",
+        accent: false
+    },
+    {
+        name: "Streaming Profesional",
+        tagline: "Transmisiones en vivo de alta calidad.",
+        price: "$600",
+        unit: "evento",
+        includes: [
+            "Producción multicámara",
+            "Gráficos en tiempo real",
+            "Streaming HD a múltiples plataformas",
+            "Soporte técnico durante el evento"
+        ],
+        accent: false
+    },
+    {
+        name: "Mentoría de Marca",
+        tagline: "8 sesiones para transformar tu negocio.",
+        price: "$1,000",
+        unit: "programa",
+        includes: [
+            "8 sesiones personalizadas",
+            "Estrategia de marca personal",
+            "Plan de contenidos",
+            "Acceso a recursos exclusivos"
+        ],
+        accent: true
+    },
+    {
+        name: "Lanzamientos Digitales",
+        tagline: "Llevamos tu producto al éxito.",
+        price: "50%",
+        unit: "profit share",
+        includes: [
+            "Estrategia completa de lanzamiento",
+            "Creación de funnels de venta",
+            "Campañas de email marketing",
+            "Inversión compartida 50/50"
+        ],
+        highlight: "O fee fijo de $5,000 USD",
+        accent: false
+    }
+];
+
+const principles = [
+    {
+        title: "Precios transparentes",
+        description: "Sin sorpresas ni costos ocultos. Sabrás exactamente en qué se invierte cada dólar de tu presupuesto."
+    },
+    {
+        title: "Soluciones a medida",
+        description: "No hay paquetes genéricos. Cada proyecto se adapta a tus necesidades específicas y objetivos."
+    },
+    {
+        title: "Inversión escalable",
+        description: "Ya seas emprendedor o empresa establecida, tenemos opciones que crecen contigo."
+    }
+];
+
+const faqs = [
+    {
+        question: "¿Los precios incluyen impuestos?",
+        answer: "Los precios mostrados son valores base. Dependiendo de tu ubicación, pueden aplicarse impuestos locales que se detallarán en la propuesta formal."
+    },
+    {
+        question: "¿Cómo funciona el proceso de pago?",
+        answer: "Trabajamos con un anticipo del 50% para iniciar el proyecto y el saldo restante se paga al momento de la entrega final. Para proyectos grandes, podemos acordar pagos por hitos."
+    },
+    {
+        question: "¿Qué pasa si necesito algo que no está en la lista?",
+        answer: "¡Perfecto! Estos son solo puntos de partida. Agenda una llamada y crearemos una propuesta personalizada para tu proyecto específico."
+    },
+    {
+        question: "¿Ofrecen planes de pago?",
+        answer: "Sí, para proyectos mayores a $500 USD podemos estructurar planes de pago que se adapten a tu flujo de caja. Conversemos sobre tus necesidades."
+    }
+];
+---
+
+<BaseLayout 
+    title="Inversión | Edición Aular"
+    description="Conoce nuestra inversión estimada para servicios de diseño web, branding, producción audiovisual y marketing digital. Precios transparentes para tu proyecto.">
+
+    <div class="stg-container">
+        <!-- Section: Page Title -->
+        <section class="backlight-bottom">
+            <div class="stg-row">
+                <div class="stg-col-6 stg-offset-3 align-center stg-tp-col-10 stg-tp-offset-1">
+                    <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">Inversión</h1>
+                    <p class="bringer-large-text" data-appear="fade-up" data-delay="100" data-unload="fade-up">Soluciones creativas premium para marcas que buscan resultados reales. Conoce nuestra inversión base y agenda una llamada para tu cotización personalizada.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Intro -->
+        <section>
+            <div class="stg-row stg-large-gap stg-m-normal-gap">
+                <div class="stg-col-6 stg-tp-bottom-gap-l stg-m-bottom-gap" data-appear="fade-right" data-unload="fade-left">
+                    <div class="bringer-parallax-media">
+                        <img src="/img/cta/contact3.webp" alt="Inversión en tu marca" width="1200" height="1200" loading="lazy">
+                    </div>
+                </div>
+                <div class="stg-col-6 stg-vertical-space-between" data-appear="fade-left" data-unload="fade-right">
+                    <div>
+                        <h2>Tu marca merece lo mejor</h2>
+                        <p class="bringer-large-text">Invertir en tu marca no es un gasto, es el combustible que impulsa tu crecimiento. Cada servicio está diseñado para generar resultados medibles.</p>
+                        <p>Los precios que ves son puntos de partida. Cada proyecto es único y merece una propuesta personalizada que se ajuste a tus objetivos y presupuesto.</p>
+                    </div>
+                    <div class="tp-align-right">
+                        <a href="https://cal.com/edicion-aular-website" target="_blank" class="bringer-icon-link">
+                            <div class="bringer-icon-wrap">
+                                <i class="bringer-icon bringer-icon-explore"></i>
+                            </div>
+                            <div class="bringer-icon-link-content">
+                                <h6>
+                                    Agenda tu
+                                    <br>
+                                    Llamada Gratis
+                                </h6>
+                                <span class="bringer-label">15 minutos para tu proyecto</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: How We Work -->
+        <section class="divider-top">
+            <!-- Section Title -->
+            <div class="stg-row stg-bottom-gap-l">
+                <div class="stg-col-6 stg-offset-3 align-center">
+                    <h2 data-appear="fade-up" data-unload="fade-up">Cómo trabajamos con tu inversión</h2>
+                </div>
+            </div>
+            <!-- Principles Grid -->
+            <div class="bringer-grid-3cols bringer-tp-grid-2cols bringer-tp-stretch-last-item" data-stagger-appear="fade-up" data-delay="100" data-stagger-unload="fade-up">
+                {principles.map((principle) => (
+                    <div class="bringer-block stg-aspect-square stg-vertical-space-between">
+                        <h5>{principle.title}<span class="bringer-accent">.</span></h5>
+                        <p class="bringer-large-text bringer-tp-normal-text">{principle.description}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- Section: Prices -->
+        <section class="divider-both tp-is-fullwidth tp-is-stretched">
+            <!-- Section Title -->
+            <div class="stg-row stg-bottom-gap" data-unload="fade-up">
+                <div class="stg-col-8 stg-offset-2 stg-tp-col-6 stg-tp-offset-3">
+                    <div class="align-center">
+                        <h2 data-appear="fade-up">¿Listo para transformar tu marca?</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="stg-row stg-bottom-gap-l" data-unload="fade-up" data-delay="100">
+                <div class="stg-col-6 stg-offset-3 stg-tp-col-6 stg-tp-offset-3">
+                    <div class="align-center">
+                        <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+                            Explora nuestros servicios y encuentra la inversión ideal para tu proyecto ✨
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Price Table Carousel -->
+            <div class="swiper bringer-carousel" data-appear="fade-up" data-delay="200" data-tp-count="2" data-unload="fade-up">
+                <div class="swiper-wrapper">
+                    {packages.map((pkg) => (
+                        <div class="bringer-block bringer-price-table swiper-slide">
+                            <h6>{pkg.name}<span class="bringer-accent">.</span></h6>
+                            <p>{pkg.tagline}</p>
+                            <div class="bringer-price-wrapper">
+                                <div class="bringer-label">A partir de</div>
+                                <h2>{pkg.price}</h2>
+                                <div class="bringer-label">{pkg.unit}</div>
+                            </div>
+                            <div class="bringer-label bringer-highlight">Qué incluye</div>
+                            <ul class="bringer-marked-list">
+                                {pkg.includes.map((item) => (
+                                    <li>{item}</li>
+                                ))}
+                            </ul>
+                            {pkg.note && (
+                                <p class="price-note">* {pkg.note}</p>
+                            )}
+                            {pkg.highlight && (
+                                <p class="price-highlight"><span class="bringer-highlight">{pkg.highlight}</span></p>
+                            )}
+                            <a href="https://cal.com/edicion-aular-website" target="_blank" class="bringer-button is-fullwidth">Cotizar Ahora</a>
+                        </div>
+                    ))}
+                </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination bringer-dots"></div>
+            </div>
+        </section>
+
+        <!-- Section: Important Note -->
+        <section>
+            <div class="bringer-block align-center" data-appear="fade-up">
+                <h4>💡 Importante</h4>
+                <p class="bringer-large-text">Estos precios son rangos de inversión base. El costo final depende de la complejidad, alcance y requerimientos específicos de tu proyecto. <strong>Agenda una llamada gratuita</strong> para recibir una propuesta personalizada.</p>
+                <a href="https://cal.com/edicion-aular-website" target="_blank" class="bringer-button stg-top-gap">Agendar Llamada Gratuita</a>
+            </div>
+        </section>
+
+        <!-- Section: FAQ -->
+        <section class="divider-top">
+            <!-- Section Title -->
+            <div class="stg-row stg-bottom-gap-l">
+                <div class="stg-col-8 stg-offset-2">
+                    <div class="align-center">
+                        <h2 data-appear="fade-up" data-unload="fade-up">Preguntas sobre inversión</h2>
+                        <p class="bringer-large-text" data-appear="fade-up" data-delay="100" data-unload="fade-up">Las dudas más comunes sobre nuestros precios y formas de pago:</p>
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ List - Pricing Style -->
+            <div class="bringer-faq-list">
+                {faqs.map((faq, index) => (
+                    <div class="bringer-toggles-item bringer-block" data-appear="fade-up" data-unload="fade-up">
+                        <div class="bringer-toggles-item--title">
+                            <span class="bringer-label">Inversión</span>
+                            <h4>
+                                <sup>{String(index + 1).padStart(2, '0')}.</sup>
+                                {faq.question}
+                            </h4>
+                        </div>
+                        <div class="bringer-toggles-item--content">
+                            <p>{faq.answer}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- Section: Grid CTA -->
+        <section class="divider-top">
+            <div class="bringer-bento-grid bringer-grid-cta">
+                <div class="is-large bringer-masked-block" data-appear="fade-right" data-unload="fade-left">
+                    <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
+                        <div class="bringer-grid-cta-heading">¿Listo Para Invertir En Tu Marca?</div>
+                    </div>
+                    <div class="bringer-masked-content at-bottom-right">
+                        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Conversemos sobre tu proyecto →</p>
+                    </div>
+                </div>
+                <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
+                    <h3>La inversión correcta hoy es el crecimiento de mañana.</h3>
+                </div>
+                <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
+                    <a href="https://cal.com/edicion-aular-website" target="_blank" class="bringer-square-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </a>
+                </div>
+                <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
+                    <img src="/img/home/CAZON-BRAND-MOCKUP-8-copia.webp" alt="Inversión en marca" width="960" height="960" loading="lazy">
+                </div>
+            </div>
+        </section>
+    </div>
+
+</BaseLayout>
+
+<style is:global>
+    /* Price table card - estructura flex */
+    .swiper-slide.bringer-block.bringer-price-table {
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: visible !important;
+    }
+
+    /* Botón DENTRO del price table - máxima especificidad */
+    .bringer-carousel .swiper-wrapper .swiper-slide.bringer-price-table a.bringer-button.is-fullwidth,
+    .bringer-block.bringer-price-table a.bringer-button.is-fullwidth,
+    div.bringer-price-table a.bringer-button.is-fullwidth {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        padding: 16px 24px !important;
+        margin: 0 !important;
+        background-color: #ff0080 !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        border: 1px solid #ff0080 !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        line-height: 1.4 !important;
+        text-decoration: none !important;
+        cursor: pointer !important;
+        box-sizing: border-box !important;
+        position: static !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        animation: none !important;
+        transition: background-color 0.3s ease !important;
+        float: none !important;
+        clear: both !important;
+    }
+
+    .bringer-price-table a.bringer-button.is-fullwidth:hover {
+        background-color: #e60073 !important;
+    }
+
+    /* Nota de precio adicional */
+    .bringer-price-table .price-note {
+        font-size: 0.85rem;
+        color: var(--bringer-s-accent, #ff0080);
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-style: italic;
+    }
+
+    /* Highlight amarillo para fee fijo */
+    .bringer-price-table .price-highlight {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .bringer-price-table .price-highlight .bringer-highlight {
+        color: #f5c518;
+        font-weight: 600;
+    }
+
+</style>

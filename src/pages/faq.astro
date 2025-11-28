@@ -1,0 +1,486 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+    {
+        category: "General",
+        questions: [
+            {
+                q: "¿Qué servicios ofrece Edición Aular?",
+                a: "Ofrecemos servicios integrales de marketing digital: Lanzamientos Digitales, Diseño Web, Branding, Producción Audiovisual, gestión de Meta Ads y Google Ads, Streaming Profesional y Mentoría de Marca."
+            },
+            {
+                q: "¿Trabajan con empresas de cualquier tamaño?",
+                a: "Sí, trabajamos con emprendedores, pequeñas y medianas empresas, así como marcas establecidas. Adaptamos nuestras soluciones a las necesidades y presupuesto de cada cliente."
+            },
+            {
+                q: "¿En qué ciudades operan?",
+                a: "Nuestra sede está en Medellín, Colombia, pero trabajamos con clientes de todo el mundo de forma remota. La comunicación es fluida a través de videollamadas y herramientas digitales."
+            },
+            {
+                q: "¿Cuánto tiempo toma un proyecto típico?",
+                a: "Depende del servicio: un sitio web toma 2-4 semanas, branding 2-3 semanas, un lanzamiento digital 4-8 semanas. Te damos un timeline detallado antes de iniciar."
+            }
+        ]
+    },
+    {
+        category: "Diseño Web",
+        questions: [
+            {
+                q: "¿Qué incluye el servicio de diseño web?",
+                a: "Incluye diseño personalizado, desarrollo responsive, optimización SEO básica, integración con redes sociales, formularios de contacto y capacitación para que puedas actualizar tu contenido."
+            },
+            {
+                q: "¿Puedo actualizar el contenido de mi web yo mismo?",
+                a: "¡Absolutamente! Entregamos tu sitio con un sistema de gestión fácil de usar y te capacitamos para que puedas hacer cambios básicos sin depender de nosotros."
+            },
+            {
+                q: "¿El sitio web será responsive (adaptable a móviles)?",
+                a: "Sí, todos nuestros sitios están optimizados para verse perfectamente en móviles, tablets y computadoras. Es un estándar no negociable."
+            }
+        ]
+    },
+    {
+        category: "Lanzamientos Digitales",
+        questions: [
+            {
+                q: "¿Qué es un lanzamiento digital?",
+                a: "Es una estrategia de marketing para introducir un producto o servicio al mercado con máximo impacto. Incluye estrategia, contenido, automatizaciones, publicidad y seguimiento de leads."
+            },
+            {
+                q: "¿Cuánto dura una campaña de lanzamiento?",
+                a: "Un lanzamiento típico dura entre 4-8 semanas, incluyendo fase de preparación, pre-lanzamiento, lanzamiento y post-lanzamiento."
+            },
+            {
+                q: "¿Necesito tener una audiencia grande para hacer un lanzamiento?",
+                a: "No necesariamente. Podemos ayudarte a construir audiencia desde cero con publicidad pagada y estrategias de captación de leads antes del lanzamiento."
+            }
+        ]
+    },
+    {
+        category: "Branding",
+        questions: [
+            {
+                q: "¿Qué incluye un proyecto de branding?",
+                a: "Incluye estrategia de marca, diseño de logo, paleta de colores, tipografías, manual de identidad visual y aplicaciones básicas como tarjetas de presentación y plantillas para redes."
+            },
+            {
+                q: "¿Cuántas propuestas de logo recibo?",
+                a: "Presentamos 3 conceptos diferentes de logo. Luego, trabajamos en las revisiones del concepto elegido hasta que estés 100% satisfecho."
+            },
+            {
+                q: "¿Puedo usar mi nuevo branding en cualquier lugar?",
+                a: "Sí, recibes todos los archivos en formatos editables y para web. Además, el manual de marca te guía sobre cómo aplicar correctamente tu identidad en cualquier medio."
+            }
+        ]
+    },
+    {
+        category: "Meta Ads y Google Ads",
+        questions: [
+            {
+                q: "¿Cuál es el presupuesto mínimo para publicidad?",
+                a: "Recomendamos un mínimo de $300-500 USD mensuales en inversión publicitaria para ver resultados significativos, además de nuestros honorarios de gestión."
+            },
+            {
+                q: "¿Cuánto tiempo toma ver resultados con publicidad?",
+                a: "Los primeros resultados se ven en 2-4 semanas. La optimización continua mejora el rendimiento mes a mes. Campañas maduras (3+ meses) tienen mejor ROI."
+            },
+            {
+                q: "¿Manejan tanto Meta (Facebook/Instagram) como Google?",
+                a: "Sí, somos expertos en ambas plataformas. Te recomendamos la mejor combinación según tu negocio, audiencia y objetivos."
+            }
+        ]
+    },
+    {
+        category: "Producción Audiovisual",
+        questions: [
+            {
+                q: "¿Qué tipo de videos producen?",
+                a: "Producimos videos corporativos, comerciales, contenido para redes sociales, videos de producto, testimoniales, reels y contenido para campañas publicitarias."
+            },
+            {
+                q: "¿Incluyen edición y postproducción?",
+                a: "Sí, el servicio es completo: desde la conceptualización, grabación, edición, colorización, motion graphics y entrega en formatos optimizados para cada plataforma."
+            }
+        ]
+    },
+    {
+        category: "Streaming Profesional",
+        questions: [
+            {
+                q: "¿Qué eventos pueden transmitir en vivo?",
+                a: "Transmitimos conferencias, webinars, lanzamientos de productos, eventos corporativos, conciertos y cualquier evento que necesite llegar a una audiencia remota."
+            },
+            {
+                q: "¿Qué plataformas soportan?",
+                a: "Transmitimos a YouTube, Facebook, Instagram, LinkedIn, Twitch y plataformas privadas. Podemos hacer multistreaming a varias plataformas simultáneamente."
+            }
+        ]
+    },
+    {
+        category: "Mentoría de Marca",
+        questions: [
+            {
+                q: "¿En qué consiste la mentoría?",
+                a: "Son sesiones personalizadas donde te guiamos en estrategia de marca, marketing digital, posicionamiento y crecimiento. Ideal si quieres aprender a manejar tu propia marca."
+            },
+            {
+                q: "¿Las sesiones son virtuales o presenciales?",
+                a: "Principalmente virtuales por videollamada para mayor flexibilidad. Si estás en Medellín, podemos coordinar sesiones presenciales."
+            }
+        ]
+    },
+    {
+        category: "Pagos y Garantías",
+        questions: [
+            {
+                q: "¿Cuáles son las formas de pago?",
+                a: "Aceptamos transferencias bancarias, PayPal, tarjetas de crédito y criptomonedas. Para proyectos grandes, ofrecemos planes de pago en cuotas."
+            },
+            {
+                q: "¿Ofrecen garantía de satisfacción?",
+                a: "Sí, trabajamos hasta que estés satisfecho. Incluimos rondas de revisiones en cada proyecto y mantenemos comunicación constante para asegurar que el resultado cumpla tus expectativas."
+            },
+            {
+                q: "¿Cómo inicio un proyecto con ustedes?",
+                a: "Agenda una llamada de descubrimiento gratuita. Analizamos tus necesidades, te presentamos una propuesta personalizada y, si decides avanzar, iniciamos con un anticipo del 50%."
+            }
+        ]
+    }
+];
+---
+
+<BaseLayout 
+    title="Preguntas Frecuentes | Edición Aular"
+    description="Resolvemos tus dudas sobre nuestros servicios de diseño web, branding, lanzamientos digitales, publicidad y más. FAQ de Edición Aular.">
+
+    <!-- Page Header -->
+    <div class="stg-container">
+        <section class="bringer-hero-block bringer-hero-type01">
+            <div class="stg-row stg-bottom-gap-l">
+                <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                    <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
+                        Preguntas Frecuentes<span class="bringer-accent">.</span>
+                    </h1>
+                    <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+                        Todo lo que necesitas saber antes de trabajar con nosotros. Si no encuentras tu respuesta, 
+                        <a href="/contacto" class="bringer-highlight">contáctanos</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Content -->
+        <section class="stg-bottom-gap-l">
+            {faqs.map((section, sectionIndex) => (
+                <div class="faq-section" data-appear="fade-up" data-delay={sectionIndex * 50}>
+                    <h2 class="faq-category">{section.category}</h2>
+                    <div class="bringer-toggles-list">
+                        {section.questions.map((faq, index) => (
+                            <div class="bringer-toggles-item">
+                                <div class="bringer-toggles-item-title">
+                                    <span>{faq.q}</span>
+                                </div>
+                                <div class="bringer-toggles-item-content">
+                                    <p>{faq.a}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </section>
+
+        <!-- CTA Section - Mismo estilo del Home -->
+        <section class="divider-top" data-appear="fade-up">
+            <div class="bringer-bento-grid bringer-grid-cta">
+                <!-- Card grande izquierda con gradiente animado -->
+                <div class="is-large bringer-masked-block" data-appear="fade-left" data-unload="fade-left">
+                    <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
+                        <div class="bringer-grid-cta-heading">¿Tienes Más Preguntas?</div>
+                    </div>
+                    <div class="bringer-masked-content at-bottom-right">
+                        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Agenda tu cita hoy mismo →</p>
+                    </div>
+                </div>
+
+                <!-- Card mediano arriba derecha -->
+                <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
+                    <h3>Estamos aquí para ayudarte. Conversemos sobre tu proyecto.</h3>
+                </div>
+
+                <!-- Card pequeño botón abajo izquierda -->
+                <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
+                    <a href="https://cal.com/edicion-aular-website" target="_blank" class="bringer-square-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </a>
+                </div>
+
+                <!-- Card pequeño imagen abajo derecha -->
+                <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
+                    <img src="/img/cta/contact3.webp" alt="Mockups de celulares" width="960" height="960" loading="lazy" decoding="async">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script is:inline>
+        (function() {
+            function initFAQ() {
+                const items = document.querySelectorAll('.bringer-toggles-item');
+                console.log('FAQ Init - Found items:', items.length);
+                
+                items.forEach((item, index) => {
+                    const title = item.querySelector('.bringer-toggles-item-title');
+                    
+                    if (title && !title.hasAttribute('data-faq-init')) {
+                        title.setAttribute('data-faq-init', 'true');
+                        title.style.cursor = 'pointer';
+                        
+                        title.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            console.log('Click on FAQ item:', index, item);
+                            
+                            const section = item.closest('.bringer-toggles-list');
+                            if (section) {
+                                section.querySelectorAll('.bringer-toggles-item.is-active').forEach(activeItem => {
+                                    if (activeItem !== item) {
+                                        activeItem.classList.remove('is-active');
+                                    }
+                                });
+                            }
+                            
+                            item.classList.toggle('is-active');
+                            console.log('Item classes after toggle:', item.className);
+                        });
+                    }
+                });
+            }
+
+            // Run after a small delay to ensure DOM is ready
+            setTimeout(initFAQ, 100);
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(initFAQ, 100);
+                });
+            }
+
+            // Mouse tracking para efecto glow
+            document.querySelectorAll('.bringer-toggles-item').forEach(item => {
+                item.addEventListener('mousemove', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    item.style.setProperty('--mouse-x', x + 'px');
+                    item.style.setProperty('--mouse-y', y + 'px');
+                });
+            });
+        })();
+    </script>
+</BaseLayout>
+
+<style is:global>
+    /* Espaciado del hero - más padding arriba */
+    .bringer-hero-block.bringer-hero-type01 {
+        padding-top: 3rem !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Reducir espacio entre título y contenido FAQ */
+    .stg-bottom-gap-l.bringer-hero-block + section,
+    section.stg-bottom-gap-l:has(.faq-section) {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
+    .faq-section {
+        margin-bottom: 2.5rem;
+    }
+
+    .faq-category {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--bringer-s-accent);
+        color: var(--bringer-s-heading);
+    }
+
+    .bringer-toggles-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    /* Acordeón con estilo bringer-block y borde brillante */
+    .bringer-toggles-item {
+        position: relative;
+        margin-bottom: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        background: var(--bringer-s-block, rgba(255, 255, 255, 0.03));
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    /* Borde brillante como las cards */
+    .bringer-toggles-item::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        padding: 1px;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(255, 255, 255, 0.02) 100%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+
+    .bringer-toggles-item:hover::before {
+        opacity: 1;
+    }
+
+    /* Efecto glow en hover */
+    .bringer-toggles-item::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 0, 128, 0.06),
+            transparent 40%
+        );
+        pointer-events: none;
+    }
+
+    .bringer-toggles-item:hover::after {
+        opacity: 1;
+    }
+
+    .bringer-toggles-item-title {
+        position: relative;
+        z-index: 1;
+        cursor: pointer !important;
+        padding: 1.25rem 1.5rem;
+        background: transparent;
+        border-radius: var(--bringer-default-br, 16px);
+        transition: background 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+    }
+
+    /* Cuando está activo, el título no tiene rounded abajo */
+    .bringer-toggles-item.is-active .bringer-toggles-item-title {
+        border-radius: var(--bringer-default-br, 16px) var(--bringer-default-br, 16px) 0 0;
+    }
+
+    .bringer-toggles-item-title::after {
+        content: '+';
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: var(--bringer-s-accent, #ff0080);
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .bringer-toggles-item.is-active .bringer-toggles-item-title::after {
+        transform: rotate(45deg);
+    }
+
+    .bringer-toggles-item-title:hover {
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .bringer-toggles-item-title span {
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding-right: 1rem;
+        color: var(--bringer-s-heading, #fff);
+    }
+
+    .bringer-toggles-item-content {
+        position: relative;
+        z-index: 1;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding 0.3s ease;
+        padding: 0 1.5rem;
+        background: transparent;
+    }
+
+    .bringer-toggles-item.is-active .bringer-toggles-item-content {
+        max-height: 500px;
+        padding: 0 1.5rem 1.25rem 1.5rem;
+    }
+
+    .bringer-toggles-item-content p {
+        margin: 0;
+        color: var(--bringer-s-content, #aaa);
+        line-height: 1.7;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Light mode adjustments */
+    html.light-mode .bringer-toggles-item {
+        background: rgba(0, 0, 0, 0.02);
+    }
+
+    html.light-mode .bringer-toggles-item::before {
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.08) 0%,
+            rgba(0, 0, 0, 0.04) 50%,
+            rgba(0, 0, 0, 0.02) 100%
+        );
+    }
+
+    html.light-mode .bringer-toggles-item::after {
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 0, 128, 0.04),
+            transparent 40%
+        );
+    }
+
+    html.light-mode .bringer-toggles-item-title:hover {
+        background: rgba(0, 0, 0, 0.02);
+    }
+
+    html.light-mode .bringer-toggles-item-title span {
+        color: #1a1a1a;
+    }
+
+    html.light-mode .bringer-toggles-item-content p {
+        color: #444;
+        border-top-color: rgba(0, 0, 0, 0.08);
+    }
+
+    @media (max-width: 768px) {
+        .faq-category {
+            font-size: 1.25rem;
+        }
+
+        .bringer-toggles-item-title span {
+            font-size: 1rem;
+        }
+
+        .bringer-toggles-item-title {
+            padding: 1rem 1.25rem;
+        }
+    }
+</style>

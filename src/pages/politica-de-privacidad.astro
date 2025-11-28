@@ -1,0 +1,389 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = "28 de noviembre de 2025";
+
+const sections = [
+    {
+        category: "Información General",
+        questions: [
+            {
+                q: "¿Quién es responsable de sus datos?",
+                a: "Edición Aular, con domicilio en Medellín, Antioquia, Colombia, es responsable del tratamiento de sus datos personales. Esta Política de Privacidad describe cómo recopilamos, utilizamos, almacenamos y protegemos su información personal de conformidad con la Ley 1581 de 2012 de Colombia, el GDPR de la Unión Europea, y otras normativas internacionales."
+            },
+            {
+                q: "¿Qué datos recopilamos?",
+                a: "Recopilamos: (a) Datos de identificación: nombre, apellido; (b) Datos de contacto: email, teléfono, dirección; (c) Datos profesionales: empresa, cargo; (d) Datos de navegación: IP, navegador, páginas visitadas; (e) Datos de transacción: historial de compras; (f) Datos de comunicación: mensajes enviados por formularios o email."
+            },
+            {
+                q: "¿Cómo recopilamos sus datos?",
+                a: "Obtenemos sus datos a través de: (a) Formularios de contacto en nuestro sitio web; (b) Comunicaciones directas por email, teléfono o WhatsApp; (c) Cookies y tecnologías de seguimiento; (d) Redes sociales cuando interactúa con nuestros perfiles; (e) Proveedores de servicios y socios comerciales."
+            }
+        ]
+    },
+    {
+        category: "Uso de sus Datos",
+        questions: [
+            {
+                q: "¿Para qué usamos sus datos?",
+                a: "Utilizamos sus datos para: (a) Prestar nuestros servicios; (b) Responder consultas y solicitudes; (c) Enviar información sobre servicios y novedades (con su consentimiento); (d) Mejorar nuestro sitio web; (e) Análisis estadísticos; (f) Cumplir obligaciones legales; (g) Prevenir fraudes; (h) Personalizar su experiencia."
+            },
+            {
+                q: "¿Cuál es la base legal del tratamiento?",
+                a: "El tratamiento se fundamenta en: (a) Su consentimiento expreso; (b) Ejecución de contrato; (c) Cumplimiento de obligaciones legales; (d) Nuestro interés legítimo; (e) Protección de intereses vitales. Puede retirar su consentimiento en cualquier momento."
+            }
+        ]
+    },
+    {
+        category: "Cookies y Seguimiento",
+        questions: [
+            {
+                q: "¿Qué cookies utilizamos?",
+                a: "Nuestro sitio utiliza: (a) Cookies esenciales: necesarias para el funcionamiento; (b) Cookies de rendimiento: Google Analytics para entender el uso del sitio; (c) Cookies de funcionalidad: recuerdan sus preferencias; (d) Cookies de marketing: para anuncios relevantes. Puede gestionar cookies desde su navegador."
+            }
+        ]
+    },
+    {
+        category: "Compartir y Transferir Datos",
+        questions: [
+            {
+                q: "¿Con quién compartimos sus datos?",
+                a: "Podemos compartir datos con: (a) Proveedores de servicios (hosting, email marketing, procesadores de pago); (b) Plataformas publicitarias (Meta, Google); (c) Autoridades cuando sea requerido por ley; (d) Asesores profesionales. No vendemos ni alquilamos sus datos a terceros."
+            },
+            {
+                q: "¿Se transfieren datos internacionalmente?",
+                a: "Sus datos pueden ser procesados en países fuera de Colombia, incluyendo Estados Unidos y la UE, donde se encuentran algunos proveedores. Garantizamos protección mediante cláusulas contractuales tipo y certificaciones de privacidad reconocidas internacionalmente."
+            }
+        ]
+    },
+    {
+        category: "Seguridad y Conservación",
+        questions: [
+            {
+                q: "¿Cómo protegemos sus datos?",
+                a: "Implementamos medidas de seguridad: (a) Cifrado SSL/TLS; (b) Acceso restringido solo a personal autorizado; (c) Firewalls y sistemas de detección de intrusos; (d) Copias de seguridad regulares; (e) Formación del personal en protección de datos."
+            },
+            {
+                q: "¿Cuánto tiempo conservamos sus datos?",
+                a: "Conservamos datos durante el tiempo necesario para los fines recopilados. Criterios: (a) Duración de la relación contractual; (b) Obligaciones legales (5-10 años para documentos fiscales); (c) Plazos de prescripción legal; (d) Sus instrucciones de eliminación."
+            }
+        ]
+    },
+    {
+        category: "Sus Derechos",
+        questions: [
+            {
+                q: "¿Cuáles son sus derechos (ARCO)?",
+                a: "Tiene derecho a: (a) ACCESO: conocer qué datos tenemos; (b) RECTIFICACIÓN: corregir datos inexactos; (c) CANCELACIÓN: solicitar eliminación; (d) OPOSICIÓN: oponerse al tratamiento; (e) PORTABILIDAD: recibir datos en formato estructurado; (f) LIMITACIÓN: restringir el tratamiento; (g) No ser objeto de decisiones automatizadas."
+            },
+            {
+                q: "¿Qué pasa con los datos de menores?",
+                a: "Nuestros servicios no están dirigidos a menores de 18 años. No recopilamos intencionalmente información de menores. Si descubrimos datos de un menor sin consentimiento parental, los eliminaremos. Si es padre/tutor, contáctenos inmediatamente."
+            }
+        ]
+    },
+    {
+        category: "Contacto y Cambios",
+        questions: [
+            {
+                q: "¿Cómo ejercer sus derechos?",
+                a: "Para ejercer sus derechos o eliminar sus datos, contáctenos: Email: info@edicionaular.com | Teléfono: +57 300 273 0128 | Dirección: Medellín, Antioquia, Colombia. Responderemos en máximo 15 días hábiles. Puede reclamar ante la Superintendencia de Industria y Comercio de Colombia."
+            },
+            {
+                q: "¿Puede cambiar esta política?",
+                a: "Nos reservamos el derecho de actualizar esta política en cualquier momento. Los cambios entran en vigor tras su publicación. La fecha de 'última actualización' indica las modificaciones más recientes. El uso continuado constituye aceptación de la política actualizada."
+            },
+            {
+                q: "Consentimiento",
+                a: "Al utilizar nuestro sitio web y proporcionar sus datos personales, usted declara haber leído y comprendido esta Política de Privacidad y consiente el tratamiento de sus datos según los términos descritos. Para comunicaciones comerciales, solicitaremos consentimiento expreso separado."
+            }
+        ]
+    }
+];
+---
+
+<BaseLayout 
+    title="Política de Privacidad | Edición Aular"
+    description="Política de privacidad y protección de datos personales de Edición Aular. Conozca cómo recopilamos, usamos y protegemos su información.">
+
+    <!-- Page Header -->
+    <div class="stg-container">
+        <section class="bringer-hero-block bringer-hero-type01">
+            <div class="stg-row stg-bottom-gap-l">
+                <div class="stg-col-8 stg-offset-2 stg-tp-col-10 stg-tp-offset-1">
+                    <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
+                        Política de Privacidad<span class="bringer-accent">.</span>
+                    </h1>
+                    <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+                        Última actualización: {lastUpdated}
+                    </p>
+                    <p class="terms-intro-text" data-appear="fade-up" data-delay="150">
+                        En Edición Aular nos comprometemos a proteger su privacidad y sus datos personales. Esta política describe cómo recopilamos, utilizamos y protegemos su información de acuerdo con las leyes colombianas e internacionales de protección de datos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Content -->
+        <section class="stg-bottom-gap-l">
+
+            {sections.map((section, sectionIndex) => (
+                <div class="faq-section" data-appear="fade-up" data-delay={sectionIndex * 50}>
+                    <h2 class="faq-category">{section.category}</h2>
+                    <div class="bringer-toggles-list">
+                        {section.questions.map((item, index) => (
+                            <div class="bringer-toggles-item">
+                                <div class="bringer-toggles-item-title">
+                                    <span>{item.q}</span>
+                                </div>
+                                <div class="bringer-toggles-item-content">
+                                    <p>{item.a}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </section>
+    </div>
+
+    <script is:inline>
+        (function() {
+            function initAccordion() {
+                const items = document.querySelectorAll('.bringer-toggles-item');
+                console.log('Accordion Init - Found items:', items.length);
+                
+                items.forEach((item, index) => {
+                    const title = item.querySelector('.bringer-toggles-item-title');
+                    
+                    if (title && !title.hasAttribute('data-faq-init')) {
+                        title.setAttribute('data-faq-init', 'true');
+                        title.style.cursor = 'pointer';
+                        
+                        title.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            const section = item.closest('.bringer-toggles-list');
+                            if (section) {
+                                section.querySelectorAll('.bringer-toggles-item.is-active').forEach(activeItem => {
+                                    if (activeItem !== item) {
+                                        activeItem.classList.remove('is-active');
+                                    }
+                                });
+                            }
+                            
+                            item.classList.toggle('is-active');
+                        });
+                    }
+                    
+                    // Mouse tracking para efecto glow
+                    item.addEventListener('mousemove', (e) => {
+                        const rect = item.getBoundingClientRect();
+                        item.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+                        item.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+                    });
+                });
+            }
+
+            // Run after a small delay to ensure DOM is ready
+            setTimeout(initAccordion, 100);
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(initAccordion, 100);
+                });
+            }
+        })();
+    </script>
+</BaseLayout>
+
+<style is:global>
+    .terms-intro-text {
+        margin-top: 1.5rem;
+        color: var(--bringer-s-content, #888);
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    html.light-mode .terms-intro-text {
+        color: #666;
+    }
+
+    /* Espaciado del hero */
+    .bringer-hero-block.bringer-hero-type01 {
+        padding-top: 3rem !important;
+        padding-bottom: 0 !important;
+    }
+    
+    .faq-section {
+        margin-bottom: 2.5rem;
+    }
+
+    .faq-category {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--bringer-s-accent);
+        color: var(--bringer-s-heading);
+    }
+
+    .bringer-toggles-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    /* Acordeón con estilo bringer-block y borde brillante */
+    .bringer-toggles-item {
+        position: relative;
+        margin-bottom: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        background: var(--bringer-s-block, rgba(255, 255, 255, 0.03));
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    /* Borde brillante como las cards */
+    .bringer-toggles-item::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        padding: 1px;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(255, 255, 255, 0.02) 100%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+
+    .bringer-toggles-item:hover::before {
+        opacity: 1;
+    }
+
+    /* Efecto glow en hover */
+    .bringer-toggles-item::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--bringer-default-br, 16px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 0, 128, 0.06),
+            transparent 40%
+        );
+        pointer-events: none;
+    }
+
+    .bringer-toggles-item:hover::after {
+        opacity: 1;
+    }
+
+    .bringer-toggles-item-title {
+        position: relative;
+        z-index: 1;
+        cursor: pointer !important;
+        padding: 1.25rem 1.5rem;
+        background: transparent;
+        border-radius: var(--bringer-default-br, 16px);
+        transition: background 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        user-select: none;
+    }
+
+    .bringer-toggles-item.is-active .bringer-toggles-item-title {
+        border-radius: var(--bringer-default-br, 16px) var(--bringer-default-br, 16px) 0 0;
+    }
+
+    .bringer-toggles-item-title::after {
+        content: '+';
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: var(--bringer-s-accent, #ff0080);
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .bringer-toggles-item.is-active .bringer-toggles-item-title::after {
+        transform: rotate(45deg);
+    }
+
+    .bringer-toggles-item-title:hover {
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .bringer-toggles-item-title span {
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding-right: 1rem;
+        color: var(--bringer-s-heading, #fff);
+    }
+
+    .bringer-toggles-item-content {
+        position: relative;
+        z-index: 1;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding 0.3s ease;
+        padding: 0 1.5rem;
+        background: transparent;
+    }
+
+    .bringer-toggles-item.is-active .bringer-toggles-item-content {
+        max-height: 500px;
+        padding: 0 1.5rem 1.25rem 1.5rem;
+    }
+
+    .bringer-toggles-item-content p {
+        margin: 0;
+        color: var(--bringer-s-content, #aaa);
+        line-height: 1.7;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Light mode */
+    html.light-mode .bringer-toggles-item {
+        background: rgba(0, 0, 0, 0.02);
+    }
+
+    html.light-mode .bringer-toggles-item::before {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.04) 50%, rgba(0, 0, 0, 0.02) 100%);
+    }
+
+    html.light-mode .bringer-toggles-item::after {
+        background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 0, 128, 0.04), transparent 40%);
+    }
+
+    html.light-mode .bringer-toggles-item-title:hover {
+        background: rgba(0, 0, 0, 0.02);
+    }
+
+    html.light-mode .bringer-toggles-item-title span {
+        color: #1a1a1a;
+    }
+
+    html.light-mode .bringer-toggles-item-content p {
+        color: #444;
+        border-top-color: rgba(0, 0, 0, 0.08);
+    }
+
+    @media (max-width: 768px) {
+        .faq-category { font-size: 1.25rem; }
+        .bringer-toggles-item-title span { font-size: 1rem; }
+        .bringer-toggles-item-title { padding: 1rem 1.25rem; }
+    }
+</style>

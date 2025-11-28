@@ -1,0 +1,230 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+    {
+        title: "Lanzamientos de Productos Digitales",
+        description: "Cada lanzamiento es una oportunidad para impactar. Diseñamos campañas que capturan la atención desde el primer clic hasta la conversión, asegurándonos de que tu audiencia no solo vea, sino que actúe.",
+        accent: "Tu lanzamiento merece ser tan grande como tu visión.",
+        link: "/lanzamientos-digitales"
+    },
+    {
+        title: "Diseño de Sitios Web y Landing Pages",
+        description: "Creamos plataformas que no solo se ven bien, sino que trabajan por ti. Optimizadas para SEO y diseñadas para convertir, nuestras webs transforman visitantes curiosos en clientes fieles.",
+        accent: "Es más que diseño, es conexión y resultados.",
+        link: "/diseno-web"
+    },
+    {
+        title: "Branding e Identidad Visual",
+        description: "Una marca fuerte es más que un logotipo. Diseñamos identidades que despiertan emociones y crean conexiones profundas con tu audiencia, dejando una impresión que perdura.",
+        accent: "Porque tu marca debe ser recordada, no solo vista.",
+        link: "/branding"
+    },
+    {
+        title: "Producción Audiovisual",
+        description: "Las historias bien contadas marcan la diferencia. Creamos videos que inspiran y venden, diseñados para transmitir tu mensaje con claridad y creatividad.",
+        accent: "Tu historia merece ser contada como nunca antes.",
+        link: "/produccion-audiovisual"
+    },
+    {
+        title: "Gestión de Meta Ads y Google Ads",
+        description: "¿Listo para atraer a los clientes ideales? Potenciamos tus campañas publicitarias en Meta y Google con estrategias que conectan y convierten. Desde la segmentación precisa hasta la optimización continua.",
+        accent: "Garantizamos que cada dólar invertido genere resultados medibles.",
+        link: "/meta-ads-google-ads"
+    },
+    {
+        title: "Streaming Profesional",
+        description: "Nuestras transmisiones en vivo destacan por su calidad y enfoque estratégico, ideales para que tu marca conecte en tiempo real.",
+        accent: "Haz que tu audiencia se sienta parte de la experiencia.",
+        link: "/streaming"
+    },
+    {
+        title: "Mentoría de Marca Personal y Negocio Digital",
+        description: "Transforma tu marca y negocio en una historia de éxito. A través de sesiones personalizadas, te ayudamos a construir una identidad poderosa, conectar con tu audiencia y diseñar estrategias digitales que generan resultados reales.",
+        accent: "Descubre el poder detrás de tu marca.",
+        link: "/mentoria"
+    }
+];
+
+const reasons = [
+    {
+        title: "Creamos",
+        accent: "Experiencias Memorables",
+        description: "Nuestro enfoque combina creatividad y calidad para diseñar imágenes y campañas que capturan la atención en segundos. No solo representamos tu marca; la conectamos emocionalmente con tu público, dejando una impresión duradera."
+    },
+    {
+        title: "Resultados que",
+        accent: "Hablan",
+        suffix: "por Sí Solos",
+        description: "Nuestra experiencia y habilidades nos han permitido superar expectativas en cada proyecto. Diseñamos estrategias que no solo impactan, sino que generan resultados tangibles y medibles para nuestros clientes."
+    },
+    {
+        title: "Comunicación",
+        accent: "Clara y Cercana",
+        description: "Sabemos lo importante que es sentirte escuchado. Trabajamos contigo de manera colaborativa, entendiendo tus necesidades y adaptando nuestras soluciones para alcanzar tus objetivos de manera efectiva y personalizada."
+    },
+    {
+        title: "Compromiso en",
+        accent: "Cada Paso",
+        description: "Nos enfocamos en comprender tus metas para crear estrategias a medida, diseñamos imágenes y campañas que generan impacto y conexión emocional, garantizamos resultados que van más allá de lo esperado."
+    }
+];
+
+const marqueeItems = ["Branding", "Marketing", "Graphic Design", "Web Design", "UX/UI", "SEO", "Lanzamientos", "Productos Digitales", "Audiovisuales", "Streaming", "Meta & Google ADS"];
+---
+
+<BaseLayout 
+    title="Servicios Digitales | Edición Aular"
+    description="Descubre los servicios digitales de Edición Aular. Expertos en SEO, diseño web, branding, producción audiovisual y más. ¡Impulsa tu negocio hoy!">
+
+    <div class="stg-container">
+        <!-- Section: Page Title -->
+        <section class="backlight-bottom">
+            <div class="stg-row">
+                <div class="stg-col-6 stg-offset-3 align-center stg-tp-col-10 stg-tp-offset-1">
+                    <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">Nuestros Servicios</h1>
+                    <p class="bringer-large-text" data-appear="fade-up" data-delay="100" data-unload="fade-up">Ofrecemos una amplia gama de servicios creativos ✨ para ayudar a empresas de todos los tamaños a alcanzar sus metas 🏆.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Intro -->
+        <section>
+            <!-- Section Image -->
+            <div class="bringer-parallax-media stg-bottom-gap-l" data-appear="fade-up" data-unload="fade-up">
+                <img src="/img/portfolio/portfolio02/cazon 3.webp" alt="Edición Aular Servicios" width="1920" height="960" loading="lazy">
+            </div>
+
+            <!-- Section Title -->
+            <div class="stg-row stg-bottom-gap">
+                <div class="stg-col-6" data-unload="fade-left">
+                    <h2 class="stg-bottom-gap" data-appear="fade-up">Descubre el poder de lo creativo con nuestros servicios.</h2>
+                </div>
+                <div class="stg-col-6"></div>
+            </div>
+
+            <!-- Section Content -->
+            <div class="stg-row stg-tp-column-reverse">
+                <div class="stg-col-6 stg-valign-bottom" data-unload="fade-left">
+                    <div class="align-right">
+                        <a href="/portfolio" class="bringer-icon-link" data-appear="fade-right">
+                            <div class="bringer-icon-link-content">
+                                <h6>
+                                    Visita nuestro
+                                    <br>
+                                    Portafolio
+                                </h6>
+                                <span class="bringer-label">Y observa como resolvemos <br>problemas de manera creativa.</span>
+                            </div>
+                            <div class="bringer-icon-wrap">
+                                <i class="bringer-icon bringer-icon-explore"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="stg-col-6 stg-tp-col-9 stg-tp-bottom-gap" data-appear="fade-left" data-unload="fade-right">
+                    <p class="bringer-large-text">Tu marca tiene un potencial increíble. Nosotros somos la chispa que necesitas para encender el fuego 🔥 y llevar tu marca al siguiente nivel. Desde estrategias innovadoras hasta ejecuciones impactantes, estamos aquí para ayudarte a destacar y cautivar al mundo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Our Services -->
+        <section class="backlight-top">
+            <!-- Section Title -->
+            <div class="stg-row bringer-section-title">
+                <div class="stg-col-10 stg-offset-1">
+                    <div class="align-center">
+                        <h2 data-appear="fade-up" data-unload="fade-up">El espectro completo con el que hacemos magia 🪄 con las marcas.</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services List -->
+            <div class="bringer-detailed-list-wrap" data-appear="fade-up" data-unload="fade-up" data-delay="200">
+                <ul class="bringer-detailed-list">
+                    {services.map((service) => (
+                        <li>
+                            <div class="bringer-detailed-list-title">
+                                <h4>{service.title}<span class="bringer-accent">.</span></h4>
+                            </div>
+                            <div class="bringer-detailed-list-description">
+                                <p>{service.description} <span class="bringer-accent">{service.accent}</span></p>
+                            </div>
+                            <div class="bringer-detailed-list-button">
+                                <span class="bringer-icon bringer-icon-explore"></span>
+                            </div>
+                            <a href={service.link}></a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            <div class="align-center stg-top-gap" data-appear="fade-up" data-unload="zoom-out" data-delay="100">
+                <a href="https://cal.com/edicion-aular-website" target="_blank" class="bringer-button">Agenda tu cita virtual y transforma tu marca</a>
+            </div>
+        </section>
+
+        <!-- Section: Marquee -->
+        <section class="is-fullwidth is-stretched" data-padding="none">
+            <div class="bringer-marquee" data-type="scroll" data-speed="50000">
+                <div class="bringer-marquee-inner">
+                    <ul class="bringer-marquee-list">
+                        {marqueeItems.map((item) => (
+                            <li>
+                                <h2>{item}</h2>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: What Makes Us Best -->
+        <section class="backlight-bottom">
+            <!-- Section Title -->
+            <div class="stg-row bringer-section-title">
+                <div class="stg-col-8 stg-offset-2">
+                    <div class="align-center">
+                        <h2 data-appear="fade-up" data-unload="fade-up">¿Por Qué Somos los Mejores?</h2>
+                        <p class="bringer-large-text" data-appear="fade-up" data-delay="100" data-unload="fade-up">Porque no solo hacemos el trabajo, lo hacemos con pasión y estrategia. Aquí te contamos por qué somos tu mejor opción:</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="bringer-grid-2cols bringer-tp-grid-1col" data-stagger-appear="zoom-in" data-stagger-delay="100" data-delay="100" data-unload="fade-up">
+                {reasons.map((reason) => (
+                    <div class="bringer-block">
+                        <h4>{reason.title} <span class="bringer-accent">{reason.accent}</span>{reason.suffix ? ` ${reason.suffix}` : ''}<span class="bringer-accent">.</span></h4>
+                        <p>{reason.description}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- Section: Grid CTA -->
+        <section class="divider-top">
+            <div class="bringer-bento-grid bringer-grid-cta">
+                <div class="is-large bringer-masked-block" data-appear="fade-right" data-unload="fade-left">
+                    <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
+                        <div class="bringer-grid-cta-heading">¿Estás Listo Para El Cambio?</div>
+                    </div>
+                    <div class="bringer-masked-content at-bottom-right">
+                        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Agenda tu cita hoy mismo →</p>
+                    </div>
+                </div>
+                <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
+                    <h3>Solo tienes una oportunidad para conectar. Hagamos que cuente.</h3>
+                </div>
+                <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
+                    <a href="https://cal.com/edicion-aular-website" target="_blank" class="bringer-square-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </a>
+                </div>
+                <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
+                    <img src="/img/cta/contact3.webp" alt="Mockups de celulares" width="960" height="960" loading="lazy">
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>

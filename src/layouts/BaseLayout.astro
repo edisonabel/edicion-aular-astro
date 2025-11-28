@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 
 const { 
     title = 'Edición Aular | 🚀 Agencia de SEO y Publicidad Digital 📈', 
@@ -488,6 +489,9 @@ const socialImage = new URL(image, Astro.site).href;
                             <a href="/blog">Blog</a>
                         </li>
                         <li>
+                            <a href="/inversion">Inversión</a>
+                        </li>
+                        <li>
                             <a href="/contacto">Contacto</a>
                         </li>
                     </ul>
@@ -586,8 +590,9 @@ const socialImage = new URL(image, Astro.site).href;
                                     <li><a href="/blog">Blog</a></li>
                                     <li><a href="/faq">Preguntas Frecuentes</a></li>
                                     <li><a href="/servicios">Nuestros Servicios</a></li>
-                                    <li><a href="#">Términos y Condiciones</a></li>
-                                    <li><a href="#">Política de Privacidad</a></li>
+                                    <li><a href="/inversion">Inversión</a></li>
+                                    <li><a href="/terminos-y-condiciones">Términos y Condiciones</a></li>
+                                    <li><a href="/politica-de-privacidad">Política de Privacidad</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -751,5 +756,8 @@ const socialImage = new URL(image, Astro.site).href;
             observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
         });
     </script>
+
+    <!-- WhatsApp Floating Button -->
+    <WhatsAppFloat />
 </body>
 </html>
