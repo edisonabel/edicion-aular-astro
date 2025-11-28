@@ -1211,8 +1211,8 @@ jQuery(function ($) {
             }
         });
 
-        // Firefox Back Button Fix
-        window.onunload = function(){};
+        // Firefox Back Button Fix (usando pagehide en lugar de unload obsoleto)
+        window.addEventListener('pagehide', function(){});
 
         // Safari Back Button Fix
         jQuery(window).on('pageshow', function(event) {
