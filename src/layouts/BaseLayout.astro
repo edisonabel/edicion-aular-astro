@@ -643,28 +643,44 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Dynamic Backlight -->
     <div class="bringer-backlight"></div>
 
-    <!-- Scripts (mantener orden por dependencias) -->
-    <script is:inline src="/js/lib/jquery.min.js"></script>
-    <script is:inline src="/js/lib/libs.js"></script>
-    <script is:inline src="/js/st-core.js"></script>
-    <script is:inline src="/js/classes.js"></script>
+    <!-- 🏝️ ASTRO ISLANDS APPROACH - Scripts por prioridad -->
     
-    <!-- Main.js con espera a DOM ready -->
+    <!-- ISLA 1: jQuery (crítico - base de todo) - carga inmediata pero no bloquea -->
+    <script src="/js/lib/jquery.min.js" defer></script>
+    
+    <!-- ISLA 2: Scripts secundarios cuando navegador idle -->
     <script is:inline>
         (function() {
-            function initApp() {
-                // Cargar main.js solo cuando el DOM esté listo
-                const script = document.createElement('script');
-                script.src = '/js/main.js';
-                script.defer = true;
-                document.body.appendChild(script);
+            // Esperar a que jQuery cargue, luego cargar el resto en idle
+            function loadSecondaryScripts() {
+                const scripts = ['/js/lib/libs.js', '/js/st-core.js', '/js/classes.js', '/js/main.js'];
+                let i = 0;
+                
+                function loadNext() {
+                    if (i >= scripts.length) return;
+                    const s = document.createElement('script');
+                    s.src = scripts[i];
+                    s.onload = () => { i++; loadNext(); };
+                    document.body.appendChild(s);
+                }
+                
+                // Esperar a jQuery
+                function waitForJQuery() {
+                    if (typeof jQuery !== 'undefined') {
+                        loadNext();
+                    } else {
+                        setTimeout(waitForJQuery, 50);
+                    }
+                }
+                waitForJQuery();
             }
-
-            // Esperar a que el DOM esté completamente cargado
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initApp);
+            
+            // Cargar cuando idle O después de 1 segundo (lo que pase primero)
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadSecondaryScripts, { timeout: 1500 });
             } else {
-                initApp();
+                // Fallback para Safari
+                setTimeout(loadSecondaryScripts, 100);
             }
         })();
     </script>
