@@ -24,9 +24,9 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <!-- Social Proof -->
                         <div class="bringer-hero-social-proof">
                             <div data-stagger-appear="fade-up" data-stagger-delay="100" data-stagger-unload="fade-up">
-                                <img src="/img/home/social proof 1.webp" alt="Cliente satisfecho 1 de Edición Aular" width="48" height="48" loading="lazy">
-                                <img src="/img/home/social proof 2.webp" alt="Cliente satisfecho 2 de Edición Aular" width="48" height="48" loading="lazy">
-                                <img src="/img/home/social proof 3.webp" alt="Cliente satisfecho 3 de Edición Aular" width="48" height="48" loading="lazy">
+                                <img src="/img/home/social proof 1.webp" alt="Cliente satisfecho 1 de Edición Aular" width="48" height="48" fetchpriority="high">
+                                <img src="/img/home/social proof 2.webp" alt="Cliente satisfecho 2 de Edición Aular" width="48" height="48">
+                                <img src="/img/home/social proof 3.webp" alt="Cliente satisfecho 3 de Edición Aular" width="48" height="48">
                                 <a href="/testimonials">+479</a>
                             </div>
                             <p data-appear="fade-up" data-unload="fade-up" data-delay="200">Más de 479 Clientes Confían</p>
@@ -44,7 +44,8 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                                data-src="https://tresmarketing.s3.us-east-1.amazonaws.com/Hero+1080.webm"
                                poster="/img/home/home03-hero2.jpg" 
                                playsinline muted loop preload="none" 
-                               width="1920" height="1080"></video>
+                               width="1920" height="1080"
+                               fetchpriority="high"></video>
                     </div>
 
                     <!-- Content -->
