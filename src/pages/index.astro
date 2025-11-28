@@ -41,7 +41,8 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                     <div class="bringer-hero-media bringer-masked-media" 
                          data-appear="fade-right" data-unload="fade-left" data-delay="150" data-threshold="0">
                         <video id="heroVideo"
-                               data-src="https://tresmarketing.s3.us-east-1.amazonaws.com/Hero+1080.webm"
+                               data-src-desktop="https://tresmarketing.s3.us-east-1.amazonaws.com/Hero+1080.webm"
+                               data-src-mobile="https://tresmarketing.s3.us-east-1.amazonaws.com/Hero+New.mp4"
                                poster="/img/home/home03-hero2.jpg" 
                                playsinline muted loop preload="none" 
                                width="1920" height="1080"
@@ -696,6 +697,28 @@ const featuredProjects = portfolioData.filter(p => p.featured);
             document.addEventListener('touchmove', function(){}, { passive: true });
         }
     }
+</script>
+
+<!-- Video responsive: diferente src para mobile vs desktop -->
+<script is:inline>
+(function() {
+    const video = document.getElementById('heroVideo');
+    if (!video) return;
+    
+    // Detectar si es móvil (< 768px)
+    const isMobile = window.innerWidth < 768;
+    
+    // Seleccionar video según dispositivo
+    const videoSrc = isMobile 
+        ? video.dataset.srcMobile 
+        : video.dataset.srcDesktop;
+    
+    if (videoSrc) {
+        video.src = videoSrc;
+        video.load();
+        video.play().catch(() => {});
+    }
+})();
 </script>
 
 
