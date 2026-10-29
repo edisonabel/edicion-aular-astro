@@ -4,6 +4,18 @@ import type { FAQ } from '../data/ia/soluciones';
 
 const abs = (path: string) => new URL(path, NEGOCIO.url).href;
 export const ORG_ID = `${NEGOCIO.url}/#organization`;
+export const SITE_ID = `${NEGOCIO.url}/#website`;
+
+export const webSite = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': SITE_ID,
+  name: NEGOCIO.nombre,
+  url: NEGOCIO.url,
+  description: NEGOCIO.propuesta,
+  publisher: { '@id': ORG_ID },
+  inLanguage: 'es-CO',
+});
 
 export const localBusiness = (areaServed: string[] = ['Medellín', 'Envigado', 'Itagüí', 'Sabaneta', 'Bello']) => ({
   '@context': 'https://schema.org',

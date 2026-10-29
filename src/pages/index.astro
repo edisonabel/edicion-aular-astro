@@ -2,12 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import portfolioData from '../data/portfolio.json';
 import JsonLd from '../components/geo/JsonLd.astro';
-import { localBusiness, webPage } from '../lib/schema';
+import { localBusiness, webPage, webSite } from '../lib/schema';
 
 const pageTitle = 'Edición Aular | Soluciones de IA y Marketing Digital en Medellín';
 const pageDesc = 'Agencia en Medellín especializada en soluciones de Inteligencia Artificial para empresas: agentes de WhatsApp 24/7, automatización de procesos, diseño web y SEO/GEO. Diagnóstico gratuito.';
 
-const homeSchema = [webPage({ name: pageTitle, description: pageDesc, path: '/' }), localBusiness()];
+const homeSchema = [webPage({ name: pageTitle, description: pageDesc, path: '/' }), webSite(), localBusiness()];
 
 // Obtener TODOS los proyectos featured para mostrar en home
 const featuredProjects = portfolioData.filter(p => p.featured);
