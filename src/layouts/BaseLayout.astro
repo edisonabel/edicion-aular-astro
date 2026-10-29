@@ -55,6 +55,7 @@ const socialImage = new URL(image, Astro.site).href;
     <link rel="stylesheet" href="/css/libs.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css" media="all">
+    <link rel="stylesheet" href="/css/geo-theme.css">
     <!-- Light Mode Theme (async load) -->
     <link rel="stylesheet" href="/css/theme-light.css" media="print" onload="this.media='all'">
     <!-- Fullwidth Fix (async load) -->
@@ -446,6 +447,8 @@ const socialImage = new URL(image, Astro.site).href;
             <link rel="prefetch" href="/portfolio" as="document">
         </>
     )}
+    <!-- Slot para JSON-LD y metadatos específicos de cada página (SEO/GEO) -->
+    <slot name="head" />
 </head>
 
 <body>
@@ -469,6 +472,18 @@ const socialImage = new URL(image, Astro.site).href;
                         </li>
                         <li>
                             <a href="/nosotros">Nosotros</a>
+                        </li>
+                        <li>
+                            <a href="/soluciones-ia" style="color: var(--color-accent, #ff0080); font-weight: 600;">Soluciones IA ✨</a>
+                            <ul class="sub-menu">
+                                <li><a href="/soluciones-ia/agentes-ia-whatsapp">Agentes de WhatsApp</a></li>
+                                <li><a href="/soluciones-ia/automatizacion-procesos-ia">Automatización de Procesos</a></li>
+                                <li><a href="/soluciones-ia/contenido-video-ia">Contenido y Video IA</a></li>
+                                <li><a href="/soluciones-ia/sitios-web-seo-geo">Webs SEO & GEO</a></li>
+                                <li><a href="/soluciones-ia/capacitacion-ia-empresas">Capacitación en IA</a></li>
+                                <li><a href="/medellin">Zonas de Medellín</a></li>
+                                <li><a href="/sectores">Por Sector</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#">Servicios</a>
@@ -556,6 +571,7 @@ const socialImage = new URL(image, Astro.site).href;
                             <h6>Servicios</h6>
                             <div class="bringer-menu-widget">
                                 <ul>
+                                    <li><a href="/soluciones-ia" style="color: var(--color-accent, #ff0080);">Soluciones con IA ✨</a></li>
                                     <li><a href="/lanzamientos-digitales">Lanzamientos</a></li>
                                     <li><a href="/diseno-web">Diseño Web</a></li>
                                     <li><a href="/branding">Branding</a></li>
@@ -589,6 +605,9 @@ const socialImage = new URL(image, Astro.site).href;
                                 <ul>
                                     <li><a href="/blog">Blog</a></li>
                                     <li><a href="/faq">Preguntas Frecuentes</a></li>
+                                    <li><a href="/medellin">Zonas de Medellín</a></li>
+                                    <li><a href="/sectores">Sectores Especializados</a></li>
+
                                     <li><a href="/servicios">Nuestros Servicios</a></li>
                                     <li><a href="/inversion">Inversión</a></li>
                                     <li><a href="/terminos-y-condiciones">Términos y Condiciones</a></li>

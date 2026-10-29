@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { ZONAS, type Zona } from '../../data/ia/zonas';
+import { SOLUCIONES } from '../../data/ia/soluciones';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, localBusiness, faqPage, webPage } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return ZONAS.map((zona) => ({
+    params: { zona: zona.slug },
+    props: { zona },
+  }));
+}
+
+interface Props {
+  zona: Zona;
+}
+
+const { zona } = Astro.props;
+const pageUrl = `/medellin/${zona.slug}`;
+const pageTitle = `Soluciones de IA en ${zona.nombre}, Medellín | Edición Aular`;
+const pageDesc = `Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en ${zona.nombre} (${zona.municipio}). Asesoría local.`;
+
+// Soluciones prioritarias para esta zona
+const solucionesZona = SOLUCIONES.filter((s) => zona.enfoque.includes(s.slug));
+
+// Otras zonas adyacentes para enlazado cruzado
+const otrasZonas = ZONAS.filter((z) => z.slug !== zona.slug).slice(0, 5);
+
+const schemaData = [
+  webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
+  localBusiness([`${zona.nombre}, ${zona.municipio}`]),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Medellín y Valle de Aburrá", href: "/medellin" },
+    { name: zona.nombre, href: pageUrl }
+  ]),
+  faqPage(zona.faqs)
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Medellín y Valle de Aburrá", href: "/medellin" },
+      { name: zona.nombre }
+    ]} />
+
+    <!-- Hero Local con Contexto Específico -->
+    <section class="stg-top-gap-m">
+      <div class="stg-row stg-large-gap stg-valign-middle">
+        <div class="stg-col-8">
+          <span class="bringer-label">{zona.tipo.toUpperCase()} · {zona.municipio}</span>
+          <h1 class="bringer-page-title stg-top-gap-s">
+            Soluciones de IA para negocios en {zona.nombre}<span class="bringer-accent">.</span>
+          </h1>
+
+          <div class="geo-answer-card">
+            <p>
+              <strong>Atención y automatización local:</strong> {zona.intro}
+            </p>
+          </div>
+        </div>
+
+        <div class="stg-col-4">
+          <div class="bringer-block is-accented">
+            <span class="bringer-label">Presencia en el sector</span>
+            <h4>Asesoría presencial o virtual en {zona.nombre}</h4>
+            <p style="font-size: 0.95rem;">Evaluamos la viabilidad técnica para tu comercio o empresa.</p>
+            <a href={NEGOCIO.agenda} class="geo-btn stg-top-gap-s">Agendar diagnóstico</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contexto Comercial y Ejes del Sector -->
+    <section class="geo-section">
+      <div class="stg-row stg-large-gap">
+        <div class="stg-col-6">
+          <h2>Dinámica comercial de {zona.nombre}</h2>
+          <p class="bringer-large-text">
+            Comprender las particularidades de {zona.nombre} permite diseñar flujos de atención que realmente encajen con los hábitos de tus clientes:
+          </p>
+
+          <div class="stg-top-gap-s">
+            <h4 style="font-size: 1.1rem; color: #fff;">Ejes y corredores principales:</h4>
+            <ul style="padding-left: 1.25rem; margin-top: 0.5rem; color: #cbd5e1; line-height: 1.8;">
+              {zona.ejes.map((eje) => (
+                <li>{eje}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="stg-col-6">
+          <div class="bringer-block">
+            <h4>Tipos de negocios predominantes</h4>
+            <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+              {zona.perfil.map((p) => (
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: #cbd5e1;">
+                  ✓ {p}
+                </li>
+              ))}
+            </ul>
+
+            <div class="stg-top-gap-m" style="background: rgba(255, 255, 255, 0.03); padding: 1.25rem; border-radius: 8px;">
+              <strong style="color: var(--color-accent, #ff0080); font-size: 0.9rem; text-transform: uppercase;">
+                Ejemplo real de aplicación:
+              </strong>
+              <p style="font-size: 0.95rem; color: #f1f5f9; margin-top: 0.5rem; line-height: 1.6;">
+                "{zona.caso}"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soluciones Más Demandadas en Esta Zona -->
+    <section class="geo-section">
+      <h2>Soluciones recomendadas para {zona.nombre}</h2>
+      <div class="bringer-grid-2cols stg-top-gap-s stg-normal-gap">
+        {solucionesZona.map((sol) => (
+          <div class="bringer-block stg-vertical-space-between">
+            <div>
+              <span class="bringer-label">{sol.tiempo}</span>
+              <h3 class="stg-top-gap-s">
+                <a href={`/soluciones-ia/${sol.slug}`} style="color: inherit; text-decoration: none;">
+                  {sol.nombre}
+                </a>
+              </h3>
+              <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {sol.respuesta}
+              </p>
+            </div>
+
+            <div class="stg-top-gap-m">
+              <a href={`/soluciones-ia/${sol.slug}`} class="bringer-arrow-link">
+                Ver alcance de {sol.nombre}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Enlazado Interno hacia Otras Zonas -->
+    <section class="geo-section">
+      <h2>Otras zonas del Valle de Aburrá con cobertura</h2>
+      <div class="bringer-grid-5cols stg-top-gap-s">
+        {otrasZonas.map((oz) => (
+          <div class="bringer-block" style="padding: 1rem; text-align: center;">
+            <a href={`/medellin/${oz.slug}`} style="color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem;">
+              {oz.nombre}
+            </a>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin: 0.25rem 0 0 0;">{oz.municipio}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Preguntas Frecuentes de la Zona -->
+    <FaqList faqs={zona.faqs} titulo={`Preguntas frecuentes sobre IA en ${zona.nombre}`} />
+
+    <!-- CTA -->
+    <Cta 
+      titulo={`¿Tienes una empresa en ${zona.nombre}?`}
+      texto="Conversemos 20 minutos: revisamos cómo optimizar tu atención por WhatsApp o automatizar tareas repetitivas."
+    />
+  </div>
+</BaseLayout>

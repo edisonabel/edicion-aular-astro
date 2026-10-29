@@ -1,0 +1,6 @@
+---
+// Inserta uno o varios bloques JSON-LD. Uso: <JsonLd slot="head" data={...} />
+const { data } = Astro.props;
+const items = Array.isArray(data) ? data : [data];
+---
+{items.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}

@@ -1,0 +1,23 @@
+---
+import { NORMATIVA } from '../../data/ia/negocio';
+type Clave = keyof typeof NORMATIVA;
+const { claves, nota } = Astro.props as { claves: Clave[]; nota?: string };
+---
+<section class="geo-section">
+  <h2>Normativa colombiana que aplicamos</h2>
+  {nota && <p class="geo-note">{nota}</p>}
+  <div class="geo-table-wrap">
+    <table class="geo-table">
+      <thead><tr><th scope="col">Norma</th><th scope="col">Qué exige y cómo la aplicamos</th></tr></thead>
+      <tbody>
+        {claves.map((k) => (
+          <tr>
+            <td><a href={NORMATIVA[k].url} target="_blank" rel="noopener">{NORMATIVA[k].nombre}</a></td>
+            <td>{NORMATIVA[k].resumen}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="geo-small">Información general, no constituye asesoría legal.</p>
+</section>

@@ -1,0 +1,12 @@
+---
+import { NEGOCIO } from '../../data/ia/negocio';
+const { titulo = '¿Tienes la herramienta pero no la solución?', texto = 'Agenda un diagnóstico gratuito: revisamos tu proceso y te decimos qué resolver primero con IA.' } = Astro.props;
+---
+<section class="geo-cta">
+  <h2>{titulo}</h2>
+  <p>{texto}</p>
+  <div class="geo-cta-actions">
+    <a class="geo-btn" href={NEGOCIO.agenda} rel="noopener">Agendar diagnóstico</a>
+    <a class="geo-btn is-outline" href={`${NEGOCIO.whatsapp}?text=${encodeURIComponent('Hola, quiero información sobre soluciones con IA')}`} rel="noopener">Escribir por WhatsApp</a>
+  </div>
+</section>

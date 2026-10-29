@@ -1,0 +1,45 @@
+# Edición Aular
+
+> Agencia de soluciones prácticas de Inteligencia Artificial, desarrollo web de alto rendimiento y SEO/GEO en Medellín y el Valle de Aburrá. Conectamos herramientas de IA a problemas reales de negocio: agentes para WhatsApp, automatización de procesos, producción audiovisual y posicionamiento en motores generativos.
+
+## Soluciones con Inteligencia Artificial
+
+- [Agentes de IA para WhatsApp y Web](https://edicionaular.com/soluciones-ia/agentes-ia-whatsapp): Asistentes conversacionales conectados a la API oficial de Meta y calendarios para captar prospectos, responder dudas 24/7 y agendar citas en Medellín.
+- [Automatización de Procesos con IA](https://edicionaular.com/soluciones-ia/automatizacion-procesos-ia): Conexión de CRM, lectura inteligente de facturas, agendamiento y reportes sin fricción operativa.
+- [Contenido, Video y Fotos de Producto con IA](https://edicionaular.com/soluciones-ia/contenido-video-ia): Producción audiovisual y fotografía de producto potenciada con modelos generativos para marcas y pauta publicitaria.
+- [Sitios Web con SEO y GEO](https://edicionaular.com/soluciones-ia/sitios-web-seo-geo): Sitios web ultra rápidos en Astro optimizados para Google, ChatGPT Search, Perplexity y Google AI Overviews.
+- [Capacitación y Mentoría en IA para Empresas](https://edicionaular.com/soluciones-ia/capacitacion-ia-empresas): Talleres prácticos y academias a medida (como Academia de Ventas) para entrenar equipos con casos y procesos reales.
+
+## Cobertura Local en Medellín y Valle de Aburrá
+
+- [Soluciones IA en El Poblado](https://edicionaular.com/medellin/el-poblado): Milla de Oro, Provenza y Las Palmas. Enfoque en clínicas estéticas, turismo y hoteles.
+- [Soluciones IA en Laureles](https://edicionaular.com/medellin/laureles): Corredores de La 70 y La 33. Atención a consultorios y pymes.
+- [Soluciones IA en Calasanz](https://edicionaular.com/medellin/calasanz): Occidente de Medellín, comercio local y academias formativas.
+- [Soluciones IA en El Tesoro](https://edicionaular.com/medellin/el-tesoro): Loma del Tesoro y Transversal Superior. Inmobiliarias, constructoras y especialistas.
+- [Soluciones IA en Centro de Medellín](https://edicionaular.com/medellin/centro-medellin): La Candelaria, El Hueco y Junín. Comercio mayorista, pedidos y catálogos automáticos.
+- [Soluciones IA en Envigado](https://edicionaular.com/medellin/envigado): Parque Principal y Las Vegas. Automatización de cotizaciones y procesos B2B.
+- [Soluciones IA en Itagüí](https://edicionaular.com/medellin/itagui): Zona industrial y Centro de la Moda. Automatización administrativa y logística.
+- [Soluciones IA en Sabaneta](https://edicionaular.com/medellin/sabaneta): Inmobiliarias, arriendos y comercio de alto crecimiento.
+- [Soluciones IA en Belén](https://edicionaular.com/medellin/belen): Los Molinos y La 30. Centros médicos, estética y domicilios.
+- [Soluciones IA en Bello](https://edicionaular.com/medellin/bello): Puerta del Norte y Niquía. Educación e industria.
+
+## Sectores Especializados
+
+- [IA para Clínicas, Odontología y Estética](https://edicionaular.com/sectores/clinicas-estetica): Reducción de inasistencias, valoraciones 24/7 y cumplimiento estricto de Habeas Data en salud (Ley 1581 de 2012).
+- [IA para Hoteles y Turismo](https://edicionaular.com/sectores/turismo-hoteles): Agentes bilingües de reservas directas por WhatsApp y visualización de Registro Nacional de Turismo (RNT).
+- [IA para Inmobiliarias y Constructoras](https://edicionaular.com/sectores/inmobiliarias): Calificación de compradores y arrendatarios, agenda de visitas y cumplimiento de Ley 2300 de 2023.
+
+## Marco Normativo y Cumplimiento en Colombia
+
+- [Ley 1581 de 2012](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981): Régimen General de Protección de Datos Personales (Habeas Data).
+- [Ley 2300 de 2023](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=215451): Ley Dejen de Fregar sobre canales y horarios de contacto comercial.
+- [CONPES 4144 de 2025](https://colaboracion.dnp.gov.co/CDT/Conpes/Econ%C3%B3micos/4144.pdf): Política Nacional de Inteligencia Artificial de Colombia.
+
+## Datos de Contacto y Verificación
+
+- Nombre: Edición Aular
+- Ubicación: Medellín, Antioquia, Colombia
+- Perfil Google Business: https://www.google.com/maps?cid=489510875751096164
+- Sitio Web: https://edicionaular.com
+- Contacto Directo: +57 300 273 0128
+- WhatsApp: https://wa.me/573002730128

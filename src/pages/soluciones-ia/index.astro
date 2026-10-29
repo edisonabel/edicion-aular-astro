@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Normativa from '../../components/geo/Normativa.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { SOLUCIONES } from '../../data/ia/soluciones';
+import { ZONAS } from '../../data/ia/zonas';
+import { SECTORES } from '../../data/ia/sectores';
+import { NEGOCIO, ESTADISTICAS } from '../../data/ia/negocio';
+import { breadcrumbs, localBusiness, faqPage, webPage } from '../../lib/schema';
+
+const pageTitle = "Soluciones con Inteligencia Artificial para Empresas en Medellín | Edición Aular";
+const pageDesc = "Implementamos soluciones prácticas de IA para empresas en Medellín: agentes de WhatsApp, automatización de procesos, video con IA y SEO/GEO para aparecer en Google y ChatGPT.";
+const pageUrl = "/soluciones-ia";
+
+const faqsHub = [
+  {
+    q: "¿Por qué contratar una solución de IA en lugar de usar herramientas gratuitas?",
+    a: "Las herramientas como ChatGPT, Make o bots genéricos están democratizadas y al alcance de todos. La dificultad no está en acceder al software, sino en diseñar la solución para el problema específico de tu empresa: entrenar la IA con tus datos, conectarla a tu CRM o WhatsApp oficial, cumplir la Ley 1581 de protección de datos y medir el retorno."
+  },
+  {
+    q: "¿Qué tipo de soluciones de IA tienen mayor retorno de inversión (ROI) para una pyme?",
+    a: "En Colombia, los agentes de WhatsApp para atención y agendamiento 24/7 y la automatización de procesos repetitivos (registro de prospectos, cotizaciones y recordatorios) son los que entregan resultados más rápidos al evitar la pérdida de clientes y liberar horas de nómina."
+  },
+  {
+    q: "¿En qué zonas de Medellín y el Valle de Aburrá prestan servicio presencial?",
+    a: "Atendemos presencialmente en El Poblado, Laureles, Calasanz, El Tesoro, Centro de Medellín, Belén, Envigado, Itagüí, Sabaneta y Bello. También realizamos diagnósticos e implementaciones remotas para todo el país."
+  }
+];
+
+const schemaData = [
+  webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
+  localBusiness(),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Soluciones con IA", href: pageUrl }
+  ]),
+  faqPage(faqsHub)
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Soluciones con IA" }
+    ]} />
+
+    <!-- Hero Section -->
+    <section class="stg-top-gap-m">
+      <div class="stg-row stg-large-gap stg-valign-middle">
+        <div class="stg-col-8">
+          <span class="bringer-label">Inteligencia Artificial Aplicada · Medellín</span>
+          <h1 class="bringer-page-title stg-top-gap-s">
+            Soluciones de IA para empresas que resuelven problemas reales<span class="bringer-accent">.</span>
+          </h1>
+          
+          <div class="geo-answer-card">
+            <p>
+              <strong>{NEGOCIO.propuesta}</strong>
+            </p>
+          </div>
+        </div>
+        <div class="stg-col-4">
+          <div class="bringer-block is-accented stg-vertical-space-between">
+            <div>
+              <span class="bringer-label">Diagnóstico sin costo</span>
+              <h4>¿Tu empresa está lista para implementar IA?</h4>
+              <p>Revisamos tus flujos de atención y procesos para identificar dónde la IA genera valor inmediato.</p>
+            </div>
+            <a href={NEGOCIO.agenda} class="geo-btn stg-top-gap-s">Agendar sesión</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estadísticas Citables (Princeton GEO Rule 2: Concrete Numbers & Sources) -->
+    <section class="geo-section">
+      <div class="stg-row stg-bottom-gap">
+        <div class="stg-col-12">
+          <h2>El contexto empresarial de la IA en Colombia</h2>
+          <p class="geo-note">Datos verificables sobre adopción tecnológica y canales de conversión:</p>
+        </div>
+      </div>
+      <div class="bringer-grid-3cols">
+        <div class="geo-stat-card">
+          <span class="geo-stat-number">+90%</span>
+          <span class="geo-stat-label">{ESTADISTICAS.whatsapp.dato}</span>
+          <span class="geo-stat-source">Fuente: {ESTADISTICAS.whatsapp.fuente}</span>
+        </div>
+        <div class="geo-stat-card">
+          <span class="geo-stat-number">4 de 10</span>
+          <span class="geo-stat-label">{ESTADISTICAS.adopcionIA.dato}</span>
+          <span class="geo-stat-source">Fuente: {ESTADISTICAS.adopcionIA.fuente}</span>
+        </div>
+        <div class="geo-stat-card">
+          <span class="geo-stat-number">62%</span>
+          <span class="geo-stat-label">{ESTADISTICAS.pilotos.dato}</span>
+          <span class="geo-stat-source">Fuente: {ESTADISTICAS.pilotos.fuente}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catálogo de Soluciones -->
+    <section class="geo-section">
+      <div class="stg-row stg-bottom-gap">
+        <div class="stg-col-8">
+          <h2>Soluciones de IA a la medida de tu operación</h2>
+          <p class="bringer-large-text">No vendemos prompts ni recetas genéricas. Construimos flujos integrados a tus sistemas:</p>
+        </div>
+      </div>
+
+      <div class="bringer-grid-2cols stg-normal-gap">
+        {SOLUCIONES.map((sol) => (
+          <div class="bringer-block stg-vertical-space-between">
+            <div>
+              <span class="bringer-label">{sol.tiempo}</span>
+              <h3 class="stg-top-gap-s">
+                <a href={`/soluciones-ia/${sol.slug}`} style="color: inherit; text-decoration: none;">
+                  {sol.nombre}
+                </a>
+              </h3>
+              <p>{sol.respuesta}</p>
+              
+              <ul style="padding-left: 1.2rem; margin-top: 1rem; color: #94a3b8; font-size: 0.95rem;">
+                {sol.incluye.slice(0, 3).map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div class="stg-top-gap-m" style="display: flex; justify-content: space-between; align-items: center;">
+              <a href={`/soluciones-ia/${sol.slug}`} class="bringer-arrow-link">
+                Ver detalles y alcance
+              </a>
+              {sol.servicioRelacionado && (
+                <a href={sol.servicioRelacionado.href} class="geo-small" style="color: #64748b;">
+                  Base: {sol.servicioRelacionado.label}
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Sectores Especializados -->
+    <section class="geo-section">
+      <h2>Sectores con casos de uso prioritarios</h2>
+      <div class="bringer-grid-3cols stg-top-gap-s">
+        {SECTORES.map((sec) => (
+          <div class="bringer-block">
+            <span class="bringer-label">Sector</span>
+            <h4>
+              <a href={`/sectores/${sec.slug}`} style="color: inherit; text-decoration: none;">
+                {sec.nombre}
+              </a>
+            </h4>
+            <p style="font-size: 0.95rem;">{sec.respuesta}</p>
+            <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link stg-top-gap-s">
+              Solución para este sector
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Zonas de Cobertura en Medellín y Valle de Aburrá -->
+    <section class="geo-section">
+      <h2>Cobertura local en Medellín y municipios del Valle de Aburrá</h2>
+      <p>Diseñamos e implementamos soluciones presenciales y virtuales con conocimiento del ecosistema comercial local:</p>
+      
+      <div class="bringer-grid-3cols stg-top-gap-s">
+        {ZONAS.map((z) => (
+          <div class="bringer-block" style="padding: 1.25rem;">
+            <h5>
+              <a href={`/medellin/${z.slug}`} style="color: inherit; text-decoration: none;">
+                {z.nombre}
+              </a>
+            </h5>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin: 0.5rem 0;">{z.intro.substring(0, 110)}...</p>
+            <a href={`/medellin/${z.slug}`} class="bringer-arrow-link" style="font-size: 0.85rem;">
+              Ver soluciones en {z.nombre}
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Normativa y Cumplimiento Legal -->
+    <Normativa claves={['habeasData', 'ley2300', 'conpesIA']} />
+
+    <!-- Preguntas Frecuentes (Ryze PAA + Auriti FAQPage) -->
+    <FaqList faqs={faqsHub} titulo="Preguntas frecuentes sobre adopción de IA en empresas" />
+
+    <!-- CTA Final -->
+    <Cta 
+      titulo="Las herramientas ya existen. Diseñemos la solución para tu negocio."
+      texto="Conversemos 20 minutos sin compromiso: analizamos qué cuello de botella en ventas o atención puedes resolver este mes con IA."
+    />
+  </div>
+</BaseLayout>

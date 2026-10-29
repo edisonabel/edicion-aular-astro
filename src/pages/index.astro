@@ -1,12 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import portfolioData from '../data/portfolio.json';
+import JsonLd from '../components/geo/JsonLd.astro';
+import { localBusiness, webPage } from '../lib/schema';
+
+const pageTitle = 'Edición Aular | Soluciones de IA y Marketing Digital en Medellín';
+const pageDesc = 'Agencia en Medellín especializada en soluciones de Inteligencia Artificial para empresas: agentes de WhatsApp 24/7, automatización de procesos, diseño web y SEO/GEO. Diagnóstico gratuito.';
+
+const homeSchema = [webPage({ name: pageTitle, description: pageDesc, path: '/' }), localBusiness()];
 
 // Obtener TODOS los proyectos featured para mostrar en home
 const featuredProjects = portfolioData.filter(p => p.featured);
 ---
 
-<BaseLayout>
+<BaseLayout title={pageTitle} description={pageDesc}>
+    <JsonLd slot="head" data={homeSchema} />
     <div class="stg-container">
         <!-- Hero Section -->
         <section>
@@ -83,6 +91,22 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                     </div>
                 </div><!-- .stg-row -->
             </div><!-- .bringer-hero-block -->
+        </section>
+
+        <!-- Banner Soluciones con IA Medellín -->
+        <section class="stg-bottom-gap-l" data-appear="fade-up">
+            <div class="geo-cta" style="margin: 1.5rem 0 3rem 0; text-align: left; padding: 2rem 2.5rem;">
+                <div class="stg-row stg-valign-middle">
+                    <div class="stg-col-8 stg-tp-col-12 stg-tp-bottom-gap">
+                        <span class="bringer-label" style="background: rgba(255, 0, 128, 0.2); color: #fff; padding: 0.2rem 0.8rem; border-radius: 9999px;">Nuevo Enfoque · Medellín y Valle de Aburrá</span>
+                        <h2 style="font-size: 1.8rem; margin: 0.5rem 0;">Soluciones de IA para problemas reales de negocio</h2>
+                        <p style="margin: 0; font-size: 1rem; color: #cbd5e1; max-width: 100%;">Las herramientas ya existen y están democratizadas. Diseñamos e implementamos agentes de WhatsApp con Meta API oficial, automatización de tareas y posicionamiento en ChatGPT y Google.</p>
+                    </div>
+                    <div class="stg-col-4 stg-tp-col-12 align-right">
+                        <a href="/soluciones-ia" class="geo-btn">Explorar Soluciones IA →</a>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Section: About Us (¿Qué Esperas...) -->
@@ -271,6 +295,19 @@ const featuredProjects = portfolioData.filter(p => p.featured);
             <!-- Services List -->
             <div class="bringer-detailed-list-wrap" data-appear="fade-up" data-unload="fade-up" data-delay="200">
                 <ul class="bringer-detailed-list">
+                <li data-stagger-appear="fade-up" data-stagger-delay="75" style="border-left: 3px solid var(--color-accent, #ff0080);">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Soluciones con Inteligencia Artificial ✨<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>Conectamos las herramientas de IA a los problemas reales de tu operación: agentes de atención en WhatsApp con API oficial, automatización de cotizaciones y procesos, y optimización GEO para aparecer en ChatGPT y Google.
+                        <span class="bringer-accent">Tecnología enfocada en resultados de negocio medibles.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/soluciones-ia"></a>
+                </li>
                 <li data-stagger-appear="fade-up" data-stagger-delay="100">
                     <div class="bringer-detailed-list-title">
                         <h4>Lanzamientos de Productos Digitales<span class="bringer-accent">.</span></h4>

@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Normativa from '../../components/geo/Normativa.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { SOLUCIONES, type Solucion } from '../../data/ia/soluciones';
+import { ZONAS } from '../../data/ia/zonas';
+import { SECTORES } from '../../data/ia/sectores';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, localBusiness, faqPage, service, webPage } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return SOLUCIONES.map((solucion) => ({
+    params: { slug: solucion.slug },
+    props: { solucion },
+  }));
+}
+
+interface Props {
+  solucion: Solucion;
+}
+
+const { solucion } = Astro.props;
+const pageUrl = `/soluciones-ia/${solucion.slug}`;
+
+// Enlazado cruzado a zonas y sectores relevantes
+const zonasRelevantes = ZONAS.filter((z) => z.enfoque.includes(solucion.slug)).slice(0, 4);
+const sectoresRelevantes = SECTORES.filter((s) => s.usos.some((u) => u.solucion === solucion.slug));
+
+const schemaData = [
+  webPage({ name: solucion.title, description: solucion.description, path: pageUrl }),
+  localBusiness(),
+  service({
+    name: solucion.nombre,
+    description: solucion.description,
+    path: pageUrl,
+    serviceType: solucion.keyword,
+  }),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Soluciones con IA", href: "/soluciones-ia" },
+    { name: solucion.nombre, href: pageUrl }
+  ]),
+  faqPage(solucion.faqs)
+];
+---
+
+<BaseLayout title={solucion.title} description={solucion.description}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Soluciones con IA", href: "/soluciones-ia" },
+      { name: solucion.nombre }
+    ]} />
+
+    <!-- Hero Section con Answer-First para motores generativos -->
+    <section class="stg-top-gap-m">
+      <div class="stg-row stg-large-gap stg-valign-middle">
+        <div class="stg-col-8">
+          <span class="bringer-label">Solución Especializada · Tiempo estimado: {solucion.tiempo}</span>
+          <h1 class="bringer-page-title stg-top-gap-s">
+            {solucion.h1}<span class="bringer-accent">.</span>
+          </h1>
+
+          <div class="geo-answer-card">
+            <p>
+              <strong>Respuesta directa:</strong> {solucion.respuesta}
+            </p>
+          </div>
+        </div>
+
+        <div class="stg-col-4">
+          <div class="bringer-block is-accented">
+            <span class="bringer-label">Diagnóstico Personalizado</span>
+            <h4>Cotiza esta solución para tu empresa</h4>
+            <p style="font-size: 0.95rem;">Evaluamos la viabilidad técnica y los sistemas que ya utilizas.</p>
+            <a href={NEGOCIO.agenda} class="geo-btn stg-top-gap-s">Agendar diagnóstico</a>
+            <p class="geo-small" style="margin-top: 0.75rem;">Sin permanencia · Conexiones oficiales</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- El problema de fondo: Por qué la herramienta sola no basta -->
+    <section class="geo-section">
+      <div class="stg-row stg-large-gap">
+        <div class="stg-col-6">
+          <h2>El problema que resolvemos</h2>
+          <p class="bringer-large-text">
+            {solucion.problema}
+          </p>
+          <p style="color: #cbd5e1; line-height: 1.7;">
+            Muchas organizaciones caen en la trampa de suscribirse a plataformas de IA que luego nadie mantiene o que generan respuestas erróneas frente a clientes. En Edición Aular nos enfocamos en la arquitectura de la solución: qué datos alimentar, qué límites darle al modelo y cómo conectarlo a los canales de venta que tus clientes ya frecuentan.
+          </p>
+        </div>
+
+        <div class="stg-col-6">
+          <div class="bringer-block">
+            <h4>Qué incluye la implementación</h4>
+            <ul style="padding-left: 1.25rem; margin-top: 1rem; color: #cbd5e1; line-height: 1.8;">
+              {solucion.incluye.map((item) => (
+                <li><strong>✓</strong> {item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla: De qué depende el costo (Transparencia sin precios fijos obligatorios) -->
+    <section class="geo-section">
+      <h2>Variables que determinan el costo y alcance</h2>
+      <p class="geo-note">
+        Dado que cada empresa cuenta con volúmenes e integraciones distintas, la inversión se calcula sobre estos factores clave:
+      </p>
+
+      <div class="geo-table-wrap">
+        <table class="geo-table">
+          <thead>
+            <tr>
+              <th scope="col">Factor determinante</th>
+              <th scope="col">Impacto en la complejidad e inversión</th>
+            </tr>
+          </thead>
+          <tbody>
+            {solucion.costoDepende.map((c) => (
+              <tr>
+                <td><strong>{c.factor}</strong></td>
+                <td>{c.impacto}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Proceso de Trabajo Paso a Paso -->
+    <section class="geo-section">
+      <h2>Metodología de implementación</h2>
+      <div class="bringer-grid-4cols stg-top-gap-s">
+        {solucion.proceso.map((p, idx) => (
+          <div class="bringer-block">
+            <span class="bringer-label">0{idx + 1}</span>
+            <h4 class="stg-top-gap-s">{p.paso}</h4>
+            <p style="font-size: 0.95rem; color: #94a3b8;">{p.detalle}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Enlazado Interno hacia Sectores y Zonas (Red de enlaces Ryze) -->
+    <section class="geo-section">
+      <h2>Sectores y zonas con alta demanda de esta solución</h2>
+      <div class="stg-row stg-normal-gap stg-top-gap-s">
+        {sectoresRelevantes.length > 0 && (
+          <div class="stg-col-6">
+            <div class="bringer-block">
+              <h4>Sectores que la utilizan activamente</h4>
+              <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                {sectoresRelevantes.map((sec) => (
+                  <li style="margin-bottom: 0.75rem;">
+                    <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link">
+                      {sec.nombre}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {zonasRelevantes.length > 0 && (
+          <div class="stg-col-6">
+            <div class="bringer-block">
+              <h4>Aplicación por zona comercial</h4>
+              <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                {zonasRelevantes.map((z) => (
+                  <li style="margin-bottom: 0.75rem;">
+                    <a href={`/medellin/${z.slug}`} class="bringer-arrow-link">
+                      Empresas y comercios en {z.nombre}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {solucion.servicioRelacionado && (
+        <p class="stg-top-gap-m" style="color: #94a3b8;">
+          Esta solución se complementa con nuestro servicio base de{" "}
+          <a href={solucion.servicioRelacionado.href} style="color: var(--color-accent, #ff0080); text-decoration: underline;">
+            {solucion.servicioRelacionado.label}
+          </a>.
+        </p>
+      )}
+    </section>
+
+    <!-- Normativa y Legalidad -->
+    <Normativa claves={solucion.normativa} />
+
+    <!-- Preguntas Frecuentes Reales (Ryze PAA) -->
+    <FaqList faqs={solucion.faqs} titulo={`Preguntas frecuentes sobre ${solucion.nombre}`} />
+
+    <!-- CTA -->
+    <Cta 
+      titulo={`¿Interesado en implementar ${solucion.nombre}?`}
+      texto="Conversemos sobre los cuellos de botella de tu equipo y analicemos cómo esta solución se integra a tus herramientas actuales."
+    />
+  </div>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+// Preguntas frecuentes visibles (las mismas que van en FAQPage schema).
+import type { FAQ } from '../../data/ia/soluciones';
+const { faqs, titulo = 'Preguntas frecuentes' } = Astro.props as { faqs: FAQ[]; titulo?: string };
+---
+<section class="geo-section" id="preguntas-frecuentes">
+  <h2>{titulo}</h2>
+  <div class="geo-faq">
+    {faqs.map((f, i) => (
+      <details open={i === 0}>
+        <summary><h3>{f.q}</h3></summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

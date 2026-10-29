@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Normativa from '../../components/geo/Normativa.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { SECTORES, type Sector } from '../../data/ia/sectores';
+import { SOLUCIONES, getSolucion } from '../../data/ia/soluciones';
+import { ZONAS } from '../../data/ia/zonas';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, localBusiness, faqPage, service, webPage } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return SECTORES.map((sector) => ({
+    params: { slug: sector.slug },
+    props: { sector },
+  }));
+}
+
+interface Props {
+  sector: Sector;
+}
+
+const { sector } = Astro.props;
+const pageUrl = `/sectores/${sector.slug}`;
+
+// Zonas recomendadas para este sector según su perfil
+const zonasAfin = ZONAS.filter((z) =>
+  z.perfil.some((p) => p.toLowerCase().includes(sector.slug.split('-')[0]))
+).slice(0, 4);
+
+const schemaData = [
+  webPage({ name: sector.title, description: sector.description, path: pageUrl }),
+  localBusiness(),
+  service({
+    name: sector.nombre,
+    description: sector.description,
+    path: pageUrl,
+    audience: sector.nombre,
+  }),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Sectores Especializados", href: "/sectores" },
+    { name: sector.nombre, href: pageUrl }
+  ]),
+  faqPage(sector.faqs)
+];
+---
+
+<BaseLayout title={sector.title} description={sector.description}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Sectores Especializados", href: "/sectores" },
+      { name: sector.nombre }
+    ]} />
+
+    <!-- Hero Sectorial Answer-First -->
+    <section class="stg-top-gap-m">
+      <div class="stg-row stg-large-gap stg-valign-middle">
+        <div class="stg-col-8">
+          <span class="bringer-label">Solución Sectorial · Medellín y Colombia</span>
+          <h1 class="bringer-page-title stg-top-gap-s">
+            {sector.h1}<span class="bringer-accent">.</span>
+          </h1>
+
+          <div class="geo-answer-card">
+            <p>
+              <strong>Respuesta directa:</strong> {sector.respuesta}
+            </p>
+          </div>
+        </div>
+
+        <div class="stg-col-4">
+          <div class="bringer-block is-accented">
+            <span class="bringer-label">Diagnóstico sin costo</span>
+            <h4>Optimiza tu operación en {sector.nombre}</h4>
+            <p style="font-size: 0.95rem;">Evaluamos tus canales actuales de captación y atención.</p>
+            <a href={NEGOCIO.agenda} class="geo-btn stg-top-gap-s">Agendar diagnóstico</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dolores Comunes vs Respuestas con IA -->
+    <section class="geo-section">
+      <div class="stg-row stg-large-gap">
+        <div class="stg-col-6">
+          <h2>Cuellos de botella en {sector.nombre}</h2>
+          <p class="bringer-large-text">
+            Los problemas más habituales que frenan el crecimiento en este rubro:
+          </p>
+
+          <ul style="padding-left: 1.25rem; margin-top: 1rem; color: #cbd5e1; line-height: 1.8;">
+            {sector.dolores.map((dolor) => (
+              <li><strong>⚠️</strong> {dolor}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="stg-col-6">
+          <div class="bringer-block">
+            <h4>Flujos de IA aplicados a este sector</h4>
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+              {sector.usos.map((u) => {
+                const solObj = getSolucion(u.solucion);
+                return (
+                  <div style="padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                    <a href={`/soluciones-ia/${u.solucion}`} style="color: var(--color-accent, #ff0080); font-weight: 600; text-decoration: none;">
+                      {solObj ? solObj.nombre : u.solucion} →
+                    </a>
+                    <p style="font-size: 0.95rem; color: #cbd5e1; margin-top: 0.25rem; line-height: 1.5;">
+                      {u.uso}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zonas con Alta Concentración de este Sector -->
+    {zonasAfin.length > 0 && (
+      <section class="geo-section">
+        <h2>Zonas de Medellín con alta actividad de este sector</h2>
+        <div class="bringer-grid-4cols stg-top-gap-s">
+          {zonasAfin.map((z) => (
+            <div class="bringer-block" style="padding: 1.25rem;">
+              <h5 style="margin: 0;">
+                <a href={`/medellin/${z.slug}`} style="color: #fff; text-decoration: none;">
+                  {z.nombre}
+                </a>
+              </h5>
+              <p style="font-size: 0.85rem; color: #94a3b8; margin: 0.5rem 0 0 0;">
+                {z.municipio}
+              </p>
+              <a href={`/medellin/${z.slug}`} class="bringer-arrow-link stg-top-gap-s" style="font-size: 0.85rem;">
+                Ver dinámicas locales
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Cumplimiento Legal y Normativa -->
+    <Normativa claves={sector.normativa} nota={sector.notaLegal} />
+
+    <!-- Preguntas Frecuentes Reales -->
+    <FaqList faqs={sector.faqs} titulo={`Preguntas frecuentes sobre IA para ${sector.nombre}`} />
+
+    <!-- CTA -->
+    <Cta 
+      titulo={`¿Administras una empresa de ${sector.nombre}?`}
+      texto="Diseñamos un flujo de atención o prospección específico para tus clientes, cuidando siempre la legalidad de datos y la imagen de tu marca."
+    />
+  </div>
+</BaseLayout>

@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { SECTORES } from '../../data/ia/sectores';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, localBusiness, faqPage, webPage } from '../../lib/schema';
+
+const pageTitle = "Soluciones de IA por Sector en Medellín | Edición Aular";
+const pageDesc = "Implementación especializada de Inteligencia Artificial para clínicas y estética, turismo y hoteles, e inmobiliarias. Diseñadas para resolver cuellos de botella específicos.";
+const pageUrl = "/sectores";
+
+const faqsSectores = [
+  {
+    q: "¿Por qué se necesita una solución de IA adaptada a cada sector?",
+    a: "Porque los cuellos de botella y las regulaciones varían radicalmente: una clínica estética maneja datos de salud sensibles (Ley 1581) y necesita agendar valoraciones; un hotel boutique necesita atención multilingüe 24/7 y validación de RNT; y una inmobiliaria requiere filtrar solvencia económica y visitas sin saturar a los asesores."
+  },
+  {
+    q: "¿Qué sector obtiene resultados más rápidos con agentes de IA?",
+    a: "Las clínicas y centros de estética suelen ver un impacto inmediato en la reducción de citas perdidas y la atención fuera de horario de oficina, cuando se concentra hasta el 40% de las consultas por WhatsApp."
+  }
+];
+
+const schemaData = [
+  webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
+  localBusiness(),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Sectores Especializados", href: pageUrl }
+  ]),
+  faqPage(faqsSectores)
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Sectores Especializados" }
+    ]} />
+
+    <!-- Hero -->
+    <section class="stg-top-gap-m">
+      <div class="stg-row stg-large-gap stg-valign-middle">
+        <div class="stg-col-8">
+          <span class="bringer-label">Especialización de Industria</span>
+          <h1 class="bringer-page-title stg-top-gap-s">
+            Soluciones de IA adaptadas a tu modelo de negocio<span class="bringer-accent">.</span>
+          </h1>
+
+          <div class="geo-answer-card">
+            <p>
+              No aplicamos la misma plantilla a todos. Cada sector industrial cuenta con canales de conversión, objeciones típicas de clientes y exigencias normativas particulares. Diseñamos la arquitectura de IA según la realidad de tu industria en Medellín y Colombia.
+            </p>
+          </div>
+        </div>
+
+        <div class="stg-col-4">
+          <div class="bringer-block is-accented">
+            <span class="bringer-label">Consultoría Sectorial</span>
+            <h4>¿Tu sector no está en la lista?</h4>
+            <p style="font-size: 0.95rem;">Evaluamos modelos para comercio minorista, educación, logística y servicios profesionales.</p>
+            <a href={NEGOCIO.agenda} class="geo-btn stg-top-gap-s">Agendar diagnóstico</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Listado de Sectores -->
+    <section class="geo-section">
+      <div class="bringer-grid-1col stg-normal-gap">
+        {SECTORES.map((sec) => (
+          <div class="bringer-block">
+            <div class="stg-row stg-large-gap">
+              <div class="stg-col-7">
+                <span class="bringer-label">Industria</span>
+                <h3 class="stg-top-gap-s">
+                  <a href={`/sectores/${sec.slug}`} style="color: inherit; text-decoration: none;">
+                    {sec.nombre}
+                  </a>
+                </h3>
+                <p style="color: #cbd5e1; line-height: 1.7; font-size: 1rem; margin-top: 0.75rem;">
+                  {sec.respuesta}
+                </p>
+
+                <div class="stg-top-gap-s">
+                  <strong style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase;">Dolores principales que resolvemos:</strong>
+                  <ul style="padding-left: 1.25rem; margin-top: 0.5rem; color: #cbd5e1; font-size: 0.95rem;">
+                    {sec.dolores.slice(0, 3).map((d) => (
+                      <li>{d}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="stg-top-gap-m">
+                  <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link">
+                    Ver soluciones detalladas para {sec.nombre}
+                  </a>
+                </div>
+              </div>
+
+              <div class="stg-col-5">
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 1.5rem; border-radius: 12px; height: 100%; border: 1px solid rgba(255, 255, 255, 0.06);">
+                  <h5 style="color: #fff; margin-bottom: 1rem;">Casos de uso integrados:</h5>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    {sec.usos.map((u) => (
+                      <li style="margin-bottom: 0.75rem; font-size: 0.9rem; color: #cbd5e1;">
+                        <strong style="color: var(--color-accent, #ff0080);">•</strong> {u.uso}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <FaqList faqs={faqsSectores} titulo="Preguntas frecuentes sobre IA por sector" />
+
+    <!-- CTA -->
+    <Cta 
+      titulo="¿Quieres saber cómo la IA se aplica a tu industria?"
+      texto="Conversemos sobre el flujo de compra de tus clientes y diseñemos un agente o automatización a la medida."
+    />
+  </div>
+</BaseLayout>
