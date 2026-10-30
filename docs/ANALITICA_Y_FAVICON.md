@@ -26,6 +26,8 @@ La preferencia se guarda durante 180 días en localStorage. «Preferencias de co
 
 Los eventos representan clics de intención de contacto, no conversaciones enviadas, reservas confirmadas ni ventas. Sus parámetros propios no contienen URL de destino, números, correos, mensajes o datos de formularios. GA4 también procesa sus datos técnicos habituales después de aceptar la medición.
 
+`cta_whatsapp_click` y `cta_agenda_click` se registraron como eventos clave, una vez por sesión y sin valor monetario predeterminado. No se crearon reglas que dupliquen eventos de página.
+
 ## Iconos
 
 La fuente es el símbolo de marca existente `public/img/favicon.svg`. `npm run iconos` regenera SVG raíz, PNG de 96 px, ICO con tamaños 16/32/48, Apple de 180 px, PWA de 192/512 y una variante maskable con margen seguro. Se reemplazó el antiguo PNG de Bringer, el SVG de Astro y las referencias del manifest a archivos ausentes.
@@ -34,9 +36,10 @@ El layout usa las nuevas URL raíz para evitar reutilizar la antigua URL PNG con
 
 ## Comprobaciones
 
-- `node --test scripts/analytics.test.mjs`: 6 pruebas de carga única, consentimiento, retirada, entornos, canales y parámetros.
+- `node --test scripts/analytics.test.mjs`: 7 pruebas de carga única, consentimiento, preferencias, retirada, entornos, canales y parámetros.
 - `npm run build`: 63 páginas.
 - `npm run audit:geo`: 21 páginas, 236 bloques JSON-LD, sin errores.
 - Revisión visual del aviso y botones en modo claro y oscuro.
+- Producción: favicon PNG responde 200 con la marca y caché de un día. Antes de aceptar no hay scripts de Tag Manager; después aparece el contenedor correcto. Analytics en tiempo real recibió `page_view`, `cta_agenda_click` y `cta_whatsapp_click` durante la validación. Esos clics de prueba forman parte de la medición de ese día.
 
 La guía PDF sobre Claude y Stape se consultó como referencia. No se instaló un MCP de terceros ni se concedieron permisos adicionales a Stape o Claude. La configuración se realizó directamente en Google, sin contratar servicios.

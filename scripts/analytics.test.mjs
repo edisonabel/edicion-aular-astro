@@ -17,6 +17,7 @@ function fixture(hostname = 'edicionaular.com', saved = null) {
     get cookie() { return '_ga=test; _ga_2CTQCP83WM=test; theme=dark'; }, set cookie(value) { deletedCookies.push(value); } };
   installAnalytics(win, doc);
   return { win, doc, scripts, panel, accept, reject, preferences, storage, deletedCookies, reloads: () => reloads,
+    openPreferences() { listeners.click({ target: { closest: selector => selector === '[data-analytics-preferences]' ? preferences : null } }); },
     click(href) { listeners.click({ target: { closest(selector) { return selector === 'a[href]' ? { getAttribute: () => href, closest: () => null } : null; } } }); } };
 }
 
@@ -79,4 +80,14 @@ test('Retirar la aceptación detiene eventos, borra cookies GA y reinicia sin el
 
 test('El clasificador rechaza protocolos ejecutables y agendas de otras cuentas', () => {
   for (const href of ['javascript:alert(1)', 'https://cal.com/otra-cuenta', 'https://cal.com/edicion-aular-website-falso']) assert.equal(contactChannel(href, 'https://edicionaular.com'), null);
+});
+
+test('Las preferencias reabren el aviso tras una elección guardada y permiten retirarla', () => {
+  const f = fixture('edicionaular.com', { value: 'granted', date: Date.now() });
+  assert.equal(f.panel.hidden, true);
+  f.openPreferences();
+  assert.equal(f.panel.hidden, false);
+  f.reject.click();
+  assert.equal(JSON.parse(f.storage.get(CONSENT_KEY)).value, 'denied');
+  assert.equal(f.reloads(), 1);
 });

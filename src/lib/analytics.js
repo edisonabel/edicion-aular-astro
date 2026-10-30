@@ -65,14 +65,16 @@ export function installAnalytics(win, doc) {
   panel.querySelector('[data-analytics-accept]').addEventListener('click', () => setChoice('granted'));
   panel.querySelector('[data-analytics-reject]').addEventListener('click', () => setChoice('denied'));
   preferences.hidden = false;
-  preferences.addEventListener('click', () => {
-    panel.hidden = false;
-    panel.querySelector('[data-analytics-accept]').focus();
-  });
   panel.hidden = choice !== null;
   loadContainer();
 
   doc.addEventListener('click', event => {
+    // Delegar en captura evita depender del estado de los controles del tema.
+    if (event.target?.closest?.('[data-analytics-preferences]')) {
+      panel.hidden = false;
+      panel.querySelector('[data-analytics-accept]').focus();
+      return;
+    }
     if (!production || choice !== 'granted') return;
     const link = event.target?.closest?.('a[href]');
     if (!link) return;
@@ -85,5 +87,5 @@ export function installAnalytics(win, doc) {
       link_channel: channel,
       cta_location: area,
     });
-  });
+  }, true);
 }
