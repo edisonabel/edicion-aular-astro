@@ -41,5 +41,6 @@ El layout usa las nuevas URL raíz para evitar reutilizar la antigua URL PNG con
 - `npm run audit:geo`: 21 páginas, 236 bloques JSON-LD, sin errores.
 - Revisión visual del aviso y botones en modo claro y oscuro.
 - Producción: favicon PNG responde 200 con la marca y caché de un día. Antes de aceptar no hay scripts de Tag Manager; después aparece el contenedor correcto. Analytics en tiempo real recibió `page_view`, `cta_agenda_click` y `cta_whatsapp_click` durante la validación. Esos clics de prueba forman parte de la medición de ese día.
+- Chrome en producción: aceptar, reabrir preferencias desde el pie y rechazar funcionan. Después de la retirada y recarga se comprobaron cero scripts de Google Tag Manager. El control usa delegación en captura para no depender de manejadores del tema.
 
 La guía PDF sobre Claude y Stape se consultó como referencia. No se instaló un MCP de terceros ni se concedieron permisos adicionales a Stape o Claude. La configuración se realizó directamente en Google, sin contratar servicios.
