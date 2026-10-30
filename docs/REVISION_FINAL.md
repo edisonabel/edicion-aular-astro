@@ -56,7 +56,7 @@ El visor de QA usa un iframe con ancho real y desactiva animaciones exclusivamen
 
 Se instaló la skill gratuita GEO Optimizer de Auriti para usar sus referencias técnicas. Su auditoría inicial del deploy preview produjo 68/100, afectado por el noindex propio del entorno de pruebas y por los canónicos de producción; no se usa esa puntuación como una certificación del SEO del dominio principal.
 
-No se activó una prueba ni suscripción de Ryze. Sus herramientas privadas no se usaron para generar este informe. Las métricas de tráfico, consultas, conversiones y posiciones deben obtenerse de las propiedades correctas de Google; las 21 páginas aún no publicadas en producción no tienen una línea base orgánica propia.
+Se confirmó acceso gratuito directo a la propiedad «Edicion Aular» en Google Analytics. No se vinculó Ryze ni se usaron datos de otras propiedades para este informe. No se activó una prueba ni suscripción de Ryze. Sus herramientas privadas no se usaron para generar este informe. Las métricas de tráfico, consultas, conversiones y posiciones deben obtenerse de las propiedades correctas de Google; las 21 páginas aún no publicadas en producción no tienen una línea base orgánica propia.
 
 Referencias primarias contrastadas:
 
@@ -64,6 +64,12 @@ Referencias primarias contrastadas:
 - [Google: datos de negocios locales](https://developers.google.com/search/docs/appearance/structured-data/local-business): no se debe completar una dirección sin datos reales.
 - [Ley 2300 de 2023](https://normativa.colpensiones.gov.co/compilacion/docs/ley_2300_2023.htm), artículos 3 y 5.
 - [GEO Optimizer](https://github.com/Auriti-Labs/geo-optimizer-skill), referencia de revisión; su puntuación es una rúbrica de la herramienta.
+
+## Comprobación del despliegue
+
+El commit de implementación `de2cda4` se subió al PR #1 y Netlify terminó correctamente el preview. Los checks de redirecciones y headers están en success; el listado de páginas cambiadas es informativo (neutral). Se solicitaron las 21 rutas publicadas: todas devolvieron 200 y el número esperado de FAQ nativos. `/mentoria/` devuelve 301 hacia `/servicios/`. El preview conserva el header noindex esperado para pruebas; no se retiró esa protección.
+
+El título y la descripción original del PR no pudieron editarse con la integración (403) y la sesión web de GitHub no estaba autenticada. La documentación vigente del repositorio sí está actualizada. No se fusionó el PR.
 
 ## Imágenes y mantenimiento
 

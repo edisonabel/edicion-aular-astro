@@ -140,7 +140,7 @@ def main():
             lines.append(f"| {i} | {section['titulo']} | `#{section['id']}` | `{section['origen']}` |")
         lines += ['', 'Imágenes compartidas: ' + ', '.join(f'`{k}` × {v}' for k, v in page['imagenes'].items()) + '.', '']
     if args.reference:
-        lines += ['## Catálogo completo de la carpeta HTML', '', 'Se inventarían todas las secciones principales, incluidas las que no se trasladaron al sitio.', '', '| Archivo | Secciones o composición |', '| --- | --- |']
+        lines += ['## Catálogo completo de la carpeta HTML', '', 'Se inventariaron todas las secciones principales, incluidas las que no se trasladaron al sitio.', '', '| Archivo | Secciones o composición |', '| --- | --- |']
         for file in sorted(args.reference.glob('*.html')):
             source = Document(file.read_text(encoding='utf-8')).root
             entries = []

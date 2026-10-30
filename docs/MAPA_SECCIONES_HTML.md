@@ -290,7 +290,7 @@ Imágenes compartidas: `web` × 1, `diagnostico` × 1, `agencia` × 1.
 
 ## Catálogo completo de la carpeta HTML
 
-Se inventarían todas las secciones principales, incluidas las que no se trasladaron al sitio.
+Se inventariaron todas las secciones principales, incluidas las que no se trasladaron al sitio.
 
 | Archivo | Secciones o composición |
 | --- | --- |
