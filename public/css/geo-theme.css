@@ -37,10 +37,11 @@
 }
 
 /* Acordeón de FAQs nativo Bringer con efecto glow */
+.bringer-faq-list,
 .bringer-toggles-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--stg-gap, 1.25rem);
 }
 
 .bringer-toggles-item {
@@ -50,6 +51,7 @@
     background: var(--bringer-s-block, rgba(255, 255, 255, 0.03));
     overflow: hidden;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .bringer-toggles-item::before {
@@ -96,61 +98,51 @@
     opacity: 1;
 }
 
+.bringer-toggles-item--title,
 .bringer-toggles-item-title {
     position: relative;
     z-index: 1;
     cursor: pointer !important;
-    padding: 1.25rem 1.5rem;
+    padding: 1.5rem 2rem;
     background: transparent;
     border-radius: var(--bringer-default-br, 16px);
     transition: background 0.3s ease;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     user-select: none;
 }
 
+.bringer-toggles-item--title h4,
 .bringer-toggles-item-title span {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
     color: #fff;
     margin: 0;
+    padding-right: 48px;
+    line-height: 1.4;
 }
 
-.bringer-toggles-item.is-active .bringer-toggles-item-title {
-    border-radius: var(--bringer-default-br, 16px) var(--bringer-default-br, 16px) 0 0;
-}
-
-.bringer-toggles-item-title::after {
-    content: '+';
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--bringer-s-accent, #ff0080);
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-}
-
-.bringer-toggles-item.is-active .bringer-toggles-item-title::after {
-    transform: rotate(45deg);
-}
-
+.bringer-toggles-item--content,
 .bringer-toggles-item-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none;
     position: relative;
     z-index: 1;
+    cursor: default;
 }
 
+.bringer-toggles-item.is-active .bringer-toggles-item--content,
 .bringer-toggles-item.is-active .bringer-toggles-item-content {
-    max-height: 500px;
+    display: block;
 }
 
+.bringer-toggles-item--content p,
 .bringer-toggles-item-content p {
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 0 2rem 1.75rem 2rem;
     margin: 0;
-    color: var(--bringer-s-text, #a0aec0);
-    line-height: 1.7;
+    color: var(--bringer-s-text, #cbd5e1);
+    line-height: 1.75;
+    font-size: 1rem;
 }
 
 /* Tablas nativas estilo Bringer Dark */

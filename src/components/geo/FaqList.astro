@@ -1,7 +1,11 @@
 ---
-// Acordeón de FAQs nativo Bringer con microdatos para GEO/FAQPage
+// Acordeón de FAQs oficial Bringer con microdatos para GEO/FAQPage
 import type { FAQ } from '../../data/ia/soluciones';
-const { faqs, titulo = 'Preguntas frecuentes' } = Astro.props as { faqs: FAQ[]; titulo?: string };
+const { faqs, titulo = 'Preguntas frecuentes', categoria = 'FAQ' } = Astro.props as {
+  faqs: FAQ[];
+  titulo?: string;
+  categoria?: string;
+};
 ---
 <section class="stg-bottom-gap-l" id="preguntas-frecuentes">
   <div class="stg-row stg-bottom-gap">
@@ -10,13 +14,18 @@ const { faqs, titulo = 'Preguntas frecuentes' } = Astro.props as { faqs: FAQ[]; 
     </div>
   </div>
 
-  <div class="bringer-toggles-list">
+  <div class="bringer-faq-list">
     {faqs.map((f, i) => (
-      <div class="bringer-toggles-item" data-appear="fade-up" data-delay={i * 50}>
-        <div class="bringer-toggles-item-title">
-          <span>{f.q}</span>
+      <div class="bringer-toggles-item bringer-block" data-appear="fade-up" data-delay={i * 50}>
+        <div class="bringer-toggles-item--title">
+          <span class="bringer-label">{categoria}</span>
+          <h4>
+            <sup>{String(i + 1).padStart(2, '0')}.</sup>
+            <span>{f.q}</span>
+          </h4>
+          <i class="bringer-icon bringer-icon-arrow-down"></i>
         </div>
-        <div class="bringer-toggles-item-content">
+        <div class="bringer-toggles-item--content">
           <p>{f.a}</p>
         </div>
       </div>
@@ -24,32 +33,152 @@ const { faqs, titulo = 'Preguntas frecuentes' } = Astro.props as { faqs: FAQ[]; 
   </div>
 </section>
 
+<style>
+  .bringer-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stg-gap, 1.5rem);
+  }
+
+  .bringer-toggles-item {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .bringer-toggles-item--title {
+    display: block;
+    position: relative;
+    user-select: none;
+  }
+
+  .bringer-toggles-item--title .bringer-label {
+    margin: -4px 0 8px 0;
+    display: block;
+    color: var(--bringer-s-heading-fade, #94a3b8);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .bringer-toggles-item--title h4 {
+    margin-bottom: 0;
+    padding-right: 48px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    align-items: baseline;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: var(--bringer-s-heading, #fff);
+  }
+
+  .bringer-toggles-item--title sup {
+    font-size: 0.7em;
+    color: var(--bringer-s-text-accent, #ff0080);
+    font-weight: 600;
+  }
+
+  .bringer-toggles-item--title i.bringer-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    margin: 0;
+    width: 28px;
+    height: 28px;
+    transition: transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bringer-toggles-item.is-active .bringer-toggles-item--title i.bringer-icon {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  .bringer-toggles-item--content {
+    display: none;
+    padding-top: var(--stg-gap, 1.25rem);
+    position: relative;
+    cursor: default;
+  }
+
+  .bringer-toggles-item.is-active .bringer-toggles-item--content {
+    display: block;
+  }
+
+  .bringer-toggles-item--content p {
+    margin: 0;
+    color: var(--bringer-s-text, #cbd5e1);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .bringer-toggles-item--content::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin-bottom: var(--stg-gap, 1.25rem);
+  }
+</style>
+
 <script is:inline>
   (function() {
-    function initGeoFAQ() {
-      const items = document.querySelectorAll('.bringer-toggles-item');
-      items.forEach((item) => {
-        const title = item.querySelector('.bringer-toggles-item-title');
-        if (title && !title.hasAttribute('data-geo-faq-init')) {
-          title.setAttribute('data-geo-faq-init', 'true');
+    function setupAccordion() {
+      const faqList = document.querySelectorAll('.bringer-faq-list');
+      faqList.forEach(list => {
+        const items = list.querySelectorAll('.bringer-toggles-item');
+        items.forEach(item => {
+          // Prevenir doble bind
+          if (item.hasAttribute('data-faq-active-bound')) return;
+          item.setAttribute('data-faq-active-bound', 'true');
+
+          const title = item.querySelector('.bringer-toggles-item--title');
+          if (!title) return;
+
           title.addEventListener('click', function(e) {
             e.preventDefault();
-            const list = item.closest('.bringer-toggles-list');
-            if (list) {
-              list.querySelectorAll('.bringer-toggles-item.is-active').forEach((active) => {
-                if (active !== item) active.classList.remove('is-active');
-              });
+            e.stopPropagation();
+
+            const isActive = item.classList.contains('is-active');
+
+            // Cerrar los demás en la misma lista si se desea acordeón exclusivo
+            items.forEach(other => {
+              if (other !== item) {
+                other.classList.remove('is-active');
+                const content = other.querySelector('.bringer-toggles-item--content');
+                if (content) content.style.display = 'none';
+              }
+            });
+
+            const content = item.querySelector('.bringer-toggles-item--content');
+            if (isActive) {
+              item.classList.remove('is-active');
+              if (content) content.style.display = 'none';
+            } else {
+              item.classList.add('is-active');
+              if (content) content.style.display = 'block';
             }
-            item.classList.toggle('is-active');
           });
-        }
+
+          // Mouse tracking para hover glow de Bringer
+          item.addEventListener('mousemove', function(e) {
+            const rect = item.getBoundingClientRect();
+            item.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+            item.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+          });
+        });
       });
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initGeoFAQ);
+      document.addEventListener('DOMContentLoaded', setupAccordion);
     } else {
-      setTimeout(initGeoFAQ, 50);
+      setupAccordion();
     }
+    setTimeout(setupAccordion, 300);
   })();
 </script>

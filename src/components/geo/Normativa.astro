@@ -1,9 +1,23 @@
 ---
 import { NORMATIVA } from '../../data/ia/negocio';
+
 type Clave = keyof typeof NORMATIVA;
 const { claves, nota } = Astro.props as { claves: Clave[]; nota?: string };
+
+const LABELS: Record<string, string> = {
+  habeasData: 'Protección de Datos',
+  decreto1377: 'Reglamentación de Datos',
+  ley2300: 'Horarios de Contacto ("Dejen de Fregar")',
+  conpesIA: 'Marco Nacional de IA',
+  rnt: 'Normativa Turística'
+};
+
+const gridClass = claves.length === 3 
+  ? 'bringer-grid-3cols bringer-tp-grid-1col stg-normal-gap' 
+  : 'bringer-grid-2cols bringer-tp-grid-1col stg-normal-gap';
 ---
-<section class="stg-bottom-gap-l">
+
+<section class="stg-bottom-gap-l" id="marco-normativo">
   <div class="stg-row stg-bottom-gap">
     <div class="stg-col-8">
       <h2 data-split-appear="fade-up">Marco normativo y cumplimiento en Colombia</h2>
@@ -11,29 +25,30 @@ const { claves, nota } = Astro.props as { claves: Clave[]; nota?: string };
     </div>
   </div>
 
-  <div class="bringer-table-wrap" data-appear="fade-up">
-    <table class="bringer-table">
-      <thead>
-        <tr>
-          <th scope="col" style="width: 32%;">Normativa</th>
-          <th scope="col">Requisitos que aplicamos en el desarrollo</th>
-        </tr>
-      </thead>
-      <tbody>
-        {claves.map((k) => (
-          <tr>
-            <td>
-              <a href={NORMATIVA[k].url} target="_blank" rel="noopener">
-                <strong>{NORMATIVA[k].nombre}</strong>
-              </a>
-            </td>
-            <td>{NORMATIVA[k].resumen}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+  <div class={gridClass} data-stagger-appear="fade-up" data-stagger-delay="100">
+    {claves.map((k) => (
+      <div class="bringer-block stg-vertical-space-between" style="padding: 1.75rem;">
+        <div>
+          <span class="bringer-label">{LABELS[k] || 'Normativa Oficial'}</span>
+          <h5 style="margin-top: 0.5rem; margin-bottom: 1rem; line-height: 1.35;">
+            <a href={NORMATIVA[k].url} target="_blank" rel="noopener" class="bringer-highlight" style="text-decoration: underline; text-underline-offset: 4px;">
+              {NORMATIVA[k].nombre}
+            </a>
+          </h5>
+          <p style="font-size: 0.95rem; line-height: 1.65; color: #cbd5e1; margin-bottom: 0;">
+            {NORMATIVA[k].resumen}
+          </p>
+        </div>
+        <div style="margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+          <span class="bringer-meta" style="color: var(--bringer-s-text-accent); font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="bringer-icon bringer-icon-explore" style="font-size: 0.75rem;"></i> Requisito verificado en cada desarrollo
+          </span>
+        </div>
+      </div>
+    ))}
   </div>
-  <p class="bringer-meta" style="margin-top: 0.75rem; color: #64748b;">
+
+  <p class="bringer-meta" style="margin-top: 1.5rem; color: #64748b; font-size: 0.85rem;">
     Información de referencia legal aplicada a desarrollos tecnológicos, no constituye asesoría jurídica formal.
   </p>
 </section>
