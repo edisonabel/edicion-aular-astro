@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
+import blogData from './src/data/blog.json' with { type: 'json' };
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,6 +44,8 @@ export default defineConfig({
       // Generar un solo sitemap en /sitemap-0.xml
       customPages: [],
       serialize(item) {
+        const post = blogData.find(post => item.url === `https://edicionaular.com/blog/${post.slug}/`);
+        if (post) item.lastmod = new Date(post.dateModified || post.date);
         // Prioridades por tipo de página
         if (item.url.includes('/blog/')) {
           item.priority = 0.8;

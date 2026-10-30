@@ -107,8 +107,12 @@ def main():
                     path = unquote(parts.path).lstrip('/')
                     target = root / path
                     ensure(target.exists() or (target / 'index.html').exists(), f'{route}: destino inexistente {url}', errors)
-                    if parts.fragment and not path:
-                        ensure(parts.fragment in ids, f'{route}: ancla inexistente {url}', errors)
+                    if parts.fragment:
+                        html_target = target / 'index.html' if target.is_dir() else target
+                        if html_target.is_file() and html_target.suffix == '.html':
+                            destination = Document(html_target.read_text(encoding='utf-8')).root
+                            destination_ids = {n.attrs.get('id') for n in destination.walk()}
+                            ensure(unquote(parts.fragment) in destination_ids, f'{route}: ancla inexistente {url}', errors)
             if node.tag == 'img':
                 ensure('alt' in node.attrs, f'{route}: imagen sin alt', errors)
         details = scope.find('details')

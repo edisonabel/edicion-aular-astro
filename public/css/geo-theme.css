@@ -1,6 +1,8 @@
 /* Extensiones de Bringer. Colores semánticos para ambos temas. */
 .geo-page { --geo-ink: var(--bringer-s-heading); --geo-copy: var(--bringer-s-text); --geo-line: var(--bringer-s-border); }
 html.light-mode .geo-page { --bringer-s-text-accent: #b80046; }
+html.light-mode :is(.blog-index, .blog-article, .contact-options) { --bringer-s-text-accent: #b80046; }
+.blog-index, .blog-article, .contact-options { --bringer-s-accent: #b80046; --bringer-button-hover-bg: #960039; --bringer-s-accented-text: #fff; }
 .geo-page .bringer-page-title { font-size: clamp(2.2rem, 4.4vw, 4.5rem); line-height: 1.08; text-wrap: balance; overflow-wrap: break-word; }
 .geo-page h2 { font-size: clamp(1.8rem, 3.2vw, 3.25rem); text-wrap: balance; }
 .geo-page h3 { font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1.3; }

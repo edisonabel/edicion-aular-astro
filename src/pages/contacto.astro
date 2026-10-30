@@ -8,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
     <div class="stg-container">
         <!-- Section: Page Title -->
-        <section class="is-fullwidth">
+        <section >
             <div class="stg-row stg-bottom-gap-l">
                 <div class="stg-col-6 stg-offset-3 align-center">
                     <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">Ponte en Contacto</h1>
@@ -65,9 +65,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <div class="stg-col-4 stg-tp-col-6 stg-tp-bottom-gap">
                     <!-- Phone -->
                     <div class="bringer-block stg-aspect-square stg-vertical-space-between">
-                        <a href="tel:+573002730128" class="bringer-grid-item-link"></a>
+                        <a href="tel:+573002730128" class="bringer-grid-item-link" aria-label="Llamar a Edición Aular al +57 300 273 0128"></a>
                         <div>
-                            <h5>Phone<span class="bringer-accent">.</span></h5>
+                            <h5>Teléfono<span class="bringer-accent">.</span></h5>
                             <h6>+57 (300) 273-01-28</h6>
                         </div>
                         <p>Llámanos y charla directamente con nuestro amigable equipo. Siempre estamos felices de responder cualquier pregunta.</p>
@@ -76,9 +76,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <div class="stg-col-4 stg-tp-col-6 stg-tp-bottom-gap">
                     <!-- Email -->
                     <div class="bringer-block stg-aspect-square stg-vertical-space-between">
-                        <a href="mailto:info@edicionaular.com" class="bringer-grid-item-link"></a>
+                        <a href="mailto:info@edicionaular.com" class="bringer-grid-item-link" aria-label="Enviar un correo a info@edicionaular.com"></a>
                         <div>
-                            <h5>Email<span class="bringer-accent">.</span></h5>
+                            <h5>Correo<span class="bringer-accent">.</span></h5>
                             <h6>info@edicionaular.com <br> <br>edicionaular@gmail.com</h6>
                         </div>
                         <p>Envíanos un mensaje detallado. Nos pondremos en contacto contigo lo antes posible para discutir tu proyecto creativo.</p>
@@ -124,27 +124,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </section>
 
         <!-- Section: CTA Form -->
-        <section class="backlight-top is-fullwidth">
+        <section class="backlight-top">
             <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse">
                 <div class="stg-col-5" data-unload="fade-left">
-                    <div class="bringer-offset-image" data-bg-src="/img/cta/contact2.webp" data-appear="fade-up" data-threshold="0.25"></div>
-                    <form action="/mail.php" method="post" class="bringer-contact-form bringer-block" data-fill-error="Por favor, completa el formulario." data-appear="fade-right" data-threshold="0.25">
-                        <div class="bringer-form-content">
-                            <!-- Field: Name -->
-                            <label for="name">Nombre</label>
-                            <input type="text" id="name" name="name" placeholder="Miguel Perez" required>
-                            <!-- Field: Email -->
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="email@gmail.com" required>    
-                            <!-- Field: Message -->
-                            <label for="message">Mensaje</label>
-                            <textarea id="message" name="message" placeholder="Lo que quieres Contarnos" required></textarea>
-                            <!-- Form Button -->
-                            <button type="submit" value="Send Message">Enviar Mensaje</button>
-                            <div class="bringer-contact-form__response"></div>
-                        </div>
-                        <span class="bringer-form-spinner"></span>
-                    </form>
+                    <div class="bringer-block contact-options">
+                        <h2>Conversemos sobre tu proyecto</h2>
+                        <p>Cuéntanos qué necesita tu negocio, cómo lo resuelves hoy y qué te gustaría mejorar. Elige el canal que te resulte más cómodo.</p>
+                        <a href="https://cal.com/edicion-aular-website" class="bringer-button">Elegir un horario para conversar</a>
+                        <a href="https://wa.link/tjepy5" class="bringer-arrow-link">Escribir por WhatsApp</a>
+                        <a href="mailto:info@edicionaular.com" class="bringer-arrow-link">Enviar los detalles por correo</a>
+                    </div>
                 </div>
                 <div class="stg-col-6 stg-offset-1" data-unload="fade-right">
                     <div class="bringer-cta-form-content">
@@ -185,3 +174,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     </div>
 </BaseLayout>
+
+<style>
+.contact-options { display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+.contact-options h2 { font-size: 1.7rem; margin: 0; }
+.contact-options a:focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 4px; }
+</style>

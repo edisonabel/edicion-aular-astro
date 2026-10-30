@@ -1,624 +1,83 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/blog/BlogCard.astro';
+import JsonLd from '../components/geo/JsonLd.astro';
 import blogData from '../data/blog.json';
-
-// Ordenar posts por fecha (más recientes primero)
-const allPosts = blogData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-const featuredPosts = allPosts.filter(p => p.featured);
-const recentPosts = allPosts.slice(0, 6);
-
-// Obtener categorías únicas
-const categories = [...new Set(blogData.map(p => p.category))];
+import { normalizeSearch } from '../lib/blog';
+import { ORG_ID } from '../lib/schema';
+const posts = [...blogData].sort((a, b) => b.date.localeCompare(a.date));
+const categories = [...new Set(posts.map(p => p.category))];
+const featured = posts.filter(p => p.featured).slice(0, 3);
 ---
-
-<BaseLayout 
-    title="Blog | Edición Aular - Consejos de Marketing y Diseño" 
-    description="Descubre estrategias de marketing digital, diseño web, branding y más. Consejos prácticos para hacer crecer tu negocio online.">
-    
-    <div class="stg-container">
-        <!-- Hero Section -->
-        <section>
-            <div class="bringer-hero-block bringer-hero-type02">
-                <div class="stg-row">
-                    <div class="stg-col-8 stg-offset-2 align-center">
-                        <h1 class="bringer-page-title" data-split-appear="fade-up" data-split-unload="fade-up">
-                            Blog de Marketing Digital<span class="bringer-accent">.</span>
-                        </h1>
-                        <p class="bringer-large-text" data-appear="fade-up" data-delay="100" data-unload="fade-up">
-                            Estrategias, tendencias y consejos prácticos para llevar tu marca al siguiente nivel. 
-                            <span class="bringer-accent">Contenido creado por expertos, pensado para creadores.</span>
-                        </p>
-
-                        <!-- Search Bar -->
-                        <div class="bringer-blog-search" data-appear="fade-up" data-delay="200" data-unload="fade-up" style="margin-top: 2rem;">
-                            <div class="bringer-search-form" style="position: relative; max-width: 800px; margin: 0 auto;">
-                                <input 
-                                    type="text" 
-                                    id="blogSearch" 
-                                    placeholder="Buscar artículos... (ej. 'funnel', 'webinar', 'ofertas')"
-                                    style="width: 100%; padding: 1rem 3.5rem 1rem 1.5rem; font-size: 1rem; border: 2px solid rgba(255,255,255,0.1); border-radius: 50px; background: rgba(255,255,255,0.05); color: #fff; transition: all 0.3s ease;"
-                                />
-                                <!-- SVG Icon Lupa -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); opacity: 0.6; pointer-events: none; color: var(--accent-color);">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <path d="m21 21-4.35-4.35"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🔍 SECCIÓN DE RESULTADOS DE BÚSQUEDA (Justo debajo de la barra) -->
-        <section id="searchResultsSection" style="display: none; margin-top: -3rem; padding: 2rem 0 4rem 0;">
-            <div class="stg-row">
-                <div class="stg-col-10 stg-offset-1">
-                    <!-- Header de Resultados -->
-                    <div style="text-align: center; margin-bottom: 2.5rem;">
-                        <p id="searchResultsText" style="color: var(--accent-color); font-size: 1.1rem; font-weight: 600;"></p>
-                    </div>
-                    
-                    <!-- Grid de Posts Filtrados -->
-                    <div id="searchResultsGrid" class="stg-row stg-bottom-gap" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem;">
-                        <!-- Los posts se insertarán aquí dinámicamente -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Featured Posts Section -->
-        {featuredPosts.length > 0 && (
-            <section class="backlight-top">
-                <div class="stg-row bringer-section-title">
-                    <div class="stg-col-8 stg-offset-2">
-                        <div class="align-center">
-                            <h2 data-appear="fade-up" data-unload="fade-up">Artículos Destacados</h2>
-                            <p class="bringer-large-text" data-appear="fade-up" data-unload="fade-up" data-delay="100">
-                                Los artículos más relevantes y populares de nuestro blog
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bringer-grid-3cols stg-bottom-gap-l" data-stagger-appear="zoom-in" data-stagger-delay="100">
-                    {featuredPosts.map((post) => (
-                        <div class="bringer-block bringer-blog-card">
-                            <div class="bringer-blog-card-image">
-                                <img class="bringer-lazy" src="/img/null.png" data-src={post.image} alt={post.title} width="800" height="600">
-                                <span class="bringer-blog-card-category">{post.category}</span>
-                            </div>
-                            <div class="bringer-blog-card-footer">
-                                <div class="bringer-blog-card-title">
-                                    <h5>{post.title}</h5>
-                                    <p>{post.excerpt}</p>
-                                </div>
-                                <div class="bringer-blog-card-meta">
-                                    <span class="bringer-meta">{post.date} • {post.readTime} lectura</span>
-                                </div>
-                            </div>
-                            <a href={`/blog/${post.slug}`}></a>
-                        </div>
-                    ))}
-                </div>
-            </section>
-        )}
-
-        <!-- All Posts Section -->
-        <section>
-            <div class="stg-row bringer-section-title">
-                <div class="stg-col-8 stg-offset-2">
-                    <div class="align-center">
-                        <h2 data-appear="fade-up" data-unload="fade-up">Todos los Artículos</h2>
-                        <p class="bringer-large-text" data-appear="fade-up" data-unload="fade-up" data-delay="100">
-                            Explora nuestro archivo completo de contenido
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Categories Filter -->
-            <div class="bringer-filter-buttons align-center stg-bottom-gap" data-appear="fade-up">
-                <button class="bringer-filter-button is-active" data-filter="*">Todos</button>
-                {categories.map((category) => (
-                    <button class="bringer-filter-button" data-filter={`.category-${category.toLowerCase().replace(/\s+/g, '-')}`}>
-                        {category}
-                    </button>
-                ))}
-            </div>
-
-            <!-- Posts Grid -->
-            <div class="bringer-grid-3cols bringer-isotope-grid" data-stagger-appear="zoom-in" data-stagger-delay="100">
-                {allPosts.map((post) => (
-                    <div class={`bringer-block bringer-blog-card category-${post.category.toLowerCase().replace(/\s+/g, '-')}`}>
-                        <div class="bringer-blog-card-image">
-                            <img class="bringer-lazy" src="/img/null.png" data-src={post.image} alt={post.title} width="800" height="600">
-                            <span class="bringer-blog-card-category">{post.category}</span>
-                        </div>
-                        <div class="bringer-blog-card-footer">
-                            <div class="bringer-blog-card-title">
-                                <h5>{post.title}</h5>
-                                <p>{post.excerpt}</p>
-                            </div>
-                            <div class="bringer-blog-card-meta">
-                                <div class="bringer-blog-card-author">
-                                    <div class="bringer-blog-card-author-name">
-                                        <h6>{post.author}</h6>
-                                        <span class="bringer-meta">{post.date}</span>
-                                    </div>
-                                </div>
-                                <span class="bringer-meta">{post.readTime} lectura</span>
-                            </div>
-                        </div>
-                        <a href={`/blog/${post.slug}`}></a>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <!-- Newsletter CTA Section -->
-        <section class="divider-top backlight-top">
-            <div class="stg-row">
-                <div class="stg-col-6 stg-offset-3 align-center">
-                    <div class="bringer-block" data-appear="fade-up">
-                        <h3>Recibe Contenido Exclusivo<span class="bringer-accent">.</span></h3>
-                        <p class="bringer-large-text">
-                            Suscríbete a nuestro newsletter y recibe tips, estrategias y recursos 
-                            directamente en tu inbox cada semana.
-                        </p>
-                        <form class="bringer-contact-form stg-top-gap">
-                            <div class="bringer-form-content">
-                                <input 
-                                    type="email" 
-                                    placeholder="Tu correo electrónico" 
-                                    name="email" 
-                                    required
-                                    class="bringer-input"
-                                >
-                                <button type="submit" class="bringer-button">
-                                    Suscribirme
-                                </button>
-                            </div>
-                        </form>
-                        <p class="bringer-meta stg-top-gap-s">
-                            No spam. Solo contenido valioso. Cancela cuando quieras.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="divider-top">
-            <div class="bringer-bento-grid bringer-grid-cta">
-                <div class="is-large bringer-masked-block" data-appear="fade-left" data-unload="fade-left">
-                    <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
-                        <div class="bringer-grid-cta-heading">¿Listo Para Transformar Tu Marca?</div>
-                    </div>
-                    <div class="bringer-masked-content at-bottom-right">
-                        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Hablemos de tu proyecto →</p>
-                    </div>
-                </div>
-
-                <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
-                    <h3>Agenda una consultoría gratuita y descubre cómo podemos ayudarte.</h3>
-                </div>
-
-                <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
-                    <a href="https://cal.com/edicion-aular-website" class="bringer-square-button">
-                        <span class="bringer-icon bringer-icon-explore"></span>
-                    </a>
-                </div>
-
-                <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
-                    <img src="/img/cta/contact3.webp" alt="Contacto" width="960" height="960">
-                </div>
-            </div>
-        </section>
-    </div>
+<BaseLayout title="Blog de IA, diseño web y marketing | Edición Aular" description="Guías prácticas para decidir qué automatizar, mejorar tu sitio web y organizar el marketing de tu negocio. Explora el blog de Edición Aular.">
+  <JsonLd slot="head" data={{ '@context': 'https://schema.org', '@type': 'Blog', name: 'Blog de Edición Aular', url: 'https://edicionaular.com/blog/', publisher: { '@id': ORG_ID }, inLanguage: 'es-CO' }} />
+  <div class="stg-container blog-index">
+    <section class="blog-intro align-center">
+      <p class="blog-eyebrow">Ideas para tomar mejores decisiones</p>
+      <h1 class="bringer-page-title">IA, diseño y marketing para tu negocio<span class="bringer-accent">.</span></h1>
+      <p class="bringer-large-text">Guías y criterios prácticos para conectar las herramientas con los problemas de tu operación.</p>
+      <div class="blog-search"><label for="blogSearch">Buscar en el blog</label><input id="blogSearch" type="search" placeholder="Por ejemplo: asistente, diseño o automatización" aria-controls="blog-posts" /></div>
+      <p class="blog-rss"><a href="/rss.xml">Seguir los artículos por RSS</a></p>
+    </section>
+    {featured.length > 0 && <section id="blog-featured" aria-labelledby="featured-title"><h2 id="featured-title">Para empezar</h2><div class="blog-grid">{featured.map(post => <BlogCard post={post} />)}</div></section>}
+    <section aria-labelledby="archive-title">
+      <h2 id="archive-title">Explora los artículos</h2>
+      <div class="blog-filters" role="group" aria-label="Filtrar por tema">
+        <button type="button" data-category="" aria-pressed="true">Todos los temas</button>
+        {categories.map(category => <button type="button" data-category={category} aria-pressed="false">{category}</button>)}
+      </div>
+      <p id="blog-results" role="status" aria-live="polite" aria-atomic="true">{posts.length} artículos disponibles</p>
+      <div id="blog-posts" class="blog-grid">{posts.map(post => <div data-blog-post data-category={post.category} data-search={normalizeSearch([post.title, post.excerpt, post.category, ...(post.tags || [])].join(' '))}><BlogCard post={post} /></div>)}</div>
+      <p id="blog-empty" hidden>Prueba con otra palabra o selecciona «Todos los temas».</p>
+    </section>
+    <section class="divider-top"><div class="bringer-block blog-next">
+      <div><p class="blog-eyebrow">De la lectura a tu operación</p><h2>¿Qué necesitas resolver?</h2><p>Conoce las soluciones de IA o conversemos sobre el alcance de tu proyecto.</p></div>
+      <div class="blog-actions"><a href="/soluciones-ia/" class="bringer-button">Explorar soluciones con IA</a><a href="https://cal.com/edicion-aular-website" class="bringer-arrow-link">Conversar sobre mi proyecto</a></div>
+    </div></section>
+  </div>
 </BaseLayout>
-
-<style>
-    /* Blog Cards Styles */
-    .bringer-blog-card {
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease;
+<script>
+  import { normalizeSearch } from '../lib/blog';
+  const input = document.querySelector<HTMLInputElement>('#blogSearch');
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.blog-filters button')];
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-blog-post]')];
+  const results = document.querySelector('#blog-results');
+  const featured = document.querySelector<HTMLElement>('#blog-featured');
+  const empty = document.querySelector<HTMLElement>('#blog-empty');
+  let category = '';
+  function filterPosts() {
+    const query = normalizeSearch(input?.value.trim() || '');
+    let count = 0;
+    for (const card of cards) {
+      card.hidden = !!((category && card.dataset.category !== category) || !card.dataset.search?.includes(query));
+      if (!card.hidden) count++;
     }
-
-    .bringer-blog-card:hover {
-        transform: translateY(-8px);
-    }
-
-    .bringer-blog-card-image {
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--bringer-default-br);
-        margin-bottom: 1.5rem;
-    }
-
-    .bringer-blog-card-category {
-        position: absolute;
-        top: 1rem;
-        left: 1rem;
-        background: var(--bringer-s-accent);
-        color: #ffffff;
-        padding: 0.25rem 0.6rem;
-        border-radius: var(--bringer-small-br);
-        font-size: 0.65rem;
-        font-weight: 600;
-        z-index: 5;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-    }
-    
-    /* Forzar blanco en light mode */
-    html.light-mode .bringer-blog-card-category {
-        color: #ffffff !important;
-    }
-
-    .bringer-blog-card-footer {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        min-height: 200px;
-    }
-
-    .bringer-blog-card-title h5 {
-        margin-bottom: 0.75rem;
-        line-height: 1.3;
-        font-size: 1.15rem;
-        min-height: 2.6rem;
-        /* NO cortamos títulos - fluyen naturalmente */
-    }
-
-    .bringer-blog-card-title p {
-        color: var(--bringer-s-text);
-        font-size: 0.9rem;
-        line-height: 1.5;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        min-height: 2.7rem;
-        max-height: 2.7rem;
-    }
-
-    /* ENLACE CLICKEABLE - Cubre toda la tarjeta */
-    .bringer-blog-card > a {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 10;
-        cursor: pointer;
-    }
-
-    .bringer-blog-card-meta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 1rem;
-        border-top: 1px solid var(--bringer-s-border);
-    }
-
-    .bringer-blog-card-author {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
-    .bringer-blog-card-author-name h6 {
-        font-size: 0.875rem;
-        margin-bottom: 0.25rem;
-    }
-
-    /* Filter Buttons */
-    .bringer-filter-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        justify-content: center;
-    }
-
-    .bringer-filter-button {
-        background: var(--bringer-s-container-bg);
-        color: var(--bringer-s-text);
-        border: 1px solid var(--bringer-s-border);
-        padding: 0.625rem 1.25rem;
-        border-radius: var(--bringer-small-br);
-        font-size: 0.9375rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .bringer-filter-button:hover,
-    .bringer-filter-button.is-active {
-        background: var(--bringer-s-accent);
-        color: var(--bringer-s-accented-text);
-        border-color: var(--bringer-s-accent);
-    }
-
-    /* Newsletter Form - Diseño UX/UI Profesional */
-    .bringer-contact-form .bringer-form-content {
-        display: flex;
-        gap: 1rem;
-        max-width: 600px;
-        margin: 0 auto;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .bringer-contact-form .bringer-input {
-        flex: 1;
-        background: var(--bringer-s-body-bg);
-        border: 2px solid var(--bringer-s-border);
-        color: var(--bringer-s-heading);
-        padding: 1.125rem 1.5rem;
-        border-radius: var(--bringer-small-br);
-        font-size: 1rem;
-        font-family: inherit;
-        transition: all 0.3s ease;
-        height: 56px; /* Altura fija para alineación perfecta */
-        line-height: 1.5;
-    }
-
-    .bringer-contact-form .bringer-input::placeholder {
-        color: var(--bringer-s-text);
-        opacity: 0.6;
-    }
-
-    .bringer-contact-form .bringer-input:focus {
-        border-color: var(--bringer-s-accent);
-        outline: none;
-        background: var(--bringer-s-container-bg);
-        box-shadow: 0 0 0 3px rgba(var(--bringer-s-accent-rgb), 0.1);
-    }
-
-    .bringer-contact-form .bringer-button {
-        white-space: nowrap;
-        padding: 1.125rem 2.5rem;
-        flex-shrink: 0;
-        height: 56px; /* Misma altura que el input */
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        letter-spacing: 0.025em;
-    }
-
-    @media (max-width: 768px) {
-        .bringer-contact-form .bringer-form-content {
-            flex-direction: column;
-        }
-        
-        .bringer-contact-form .bringer-button {
-            width: 100%;
-            padding: 1.25rem;
-        }
-    }
-
-    /* 🎯 UX MEJORAS - Hover en "Leer artículo" */
-    .bringer-blog-card:hover .read-more-link {
-        gap: 0.75rem !important;
-    }
-
-    .bringer-blog-card:hover .read-more-link svg {
-        transform: translateX(3px);
-    }
-
-    .read-more-link svg {
-        transition: transform 0.3s ease;
-    }
-
-    /* 🎯 MIN-HEIGHT para igualar cards de búsqueda */
-    #searchResultsGrid .search-result-card {
-        min-height: 580px;
-    }
-
-    #searchResultsGrid .bringer-blog-card {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    #searchResultsGrid .bringer-blog-card a {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    #searchResultsGrid .bringer-blog-card-footer {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-
-    #searchResultsGrid .bringer-blog-card-caption {
-        flex-grow: 1;
-    }
-</style>
-
-<script define:vars={{ allPosts: allPosts }}>
-    // 🎨 Animación de fade in
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .search-result-card {
-            animation: fadeIn 0.4s ease-out forwards;
-            opacity: 0;
-        }
-        .search-result-card:nth-child(1) { animation-delay: 0.05s; }
-        .search-result-card:nth-child(2) { animation-delay: 0.1s; }
-        .search-result-card:nth-child(3) { animation-delay: 0.15s; }
-        .search-result-card:nth-child(4) { animation-delay: 0.2s; }
-        .search-result-card:nth-child(5) { animation-delay: 0.25s; }
-        .search-result-card:nth-child(6) { animation-delay: 0.3s; }
-    `;
-    document.head.appendChild(style);
-
-    // Datos de posts disponibles desde Astro
-    const postsData = allPosts;
-
-    // 🔍 Función para crear card de resultado
-    function createResultCard(post) {
-        return `
-            <div class="bringer-block bringer-blog-card search-result-card">
-                <a href="/blog/${post.slug}" style="display: block; text-decoration: none; color: inherit; height: 100%;">
-                    <div class="bringer-blog-card-image">
-                        <img src="${post.image}" alt="${post.title}" width="800" height="450" loading="lazy" />
-                    </div>
-                    <div class="bringer-blog-card-footer">
-                        <div class="bringer-blog-card-caption">
-                            <span class="bringer-meta">${post.category}</span>
-                            <h5 class="bringer-blog-card-title">${post.title}</h5>
-                            <p class="bringer-blog-card-excerpt">${post.excerpt}</p>
-                            <div class="bringer-blog-card-meta" style="margin-bottom: 1rem;">
-                                <span class="bringer-meta">${new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                                <span class="bringer-meta">•</span>
-                                <span class="bringer-meta">${post.readTime}</span>
-                            </div>
-                            <div class="read-more-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-color); font-size: 0.9rem; font-weight: 600; margin-top: 0.5rem; transition: gap 0.3s ease;">
-                                <span>Leer artículo</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        `;
-    }
-
-    // Inicializar cuando DOM esté listo
-    document.addEventListener('DOMContentLoaded', () => {
-        const filterButtons = document.querySelectorAll('.bringer-filter-button');
-        const blogCards = document.querySelectorAll('.bringer-blog-card');
-        const searchInput = document.getElementById('blogSearch');
-        const searchResultsSection = document.getElementById('searchResultsSection');
-        const searchResultsText = document.getElementById('searchResultsText');
-        const searchResultsGrid = document.getElementById('searchResultsGrid');
-
-        console.log('✅ Posts cargados:', postsData.length);
-
-        // FILTRADO POR CATEGORÍAS (mantener funcionalidad original)
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('is-active'));
-                button.classList.add('is-active');
-
-                const filter = button.getAttribute('data-filter');
-
-                // Limpiar búsqueda
-                if (searchInput) searchInput.value = '';
-                if (searchResultsSection) searchResultsSection.style.display = 'none';
-
-                blogCards.forEach(card => {
-                    if (filter === '*') {
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeIn 0.5s ease-in';
-                    } else {
-                        if (card.classList.contains(filter.replace('.', ''))) {
-                            card.style.display = 'block';
-                            card.style.animation = 'fadeIn 0.5s ease-in';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-            });
-        });
-
-        // 🚀 BÚSQUEDA EN TIEMPO REAL - NUEVA IMPLEMENTACIÓN
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase().trim();
-                
-                if (query.length === 0) {
-                    // Ocultar sección de resultados
-                    searchResultsSection.style.display = 'none';
-                    searchResultsGrid.innerHTML = '';
-                    return;
-                }
-                
-                // Filtrar posts
-                const filteredPosts = postsData.filter(post => {
-                    const title = post.title.toLowerCase();
-                    const excerpt = post.excerpt.toLowerCase();
-                    const category = post.category.toLowerCase();
-                    const tags = post.tags ? post.tags.join(' ').toLowerCase() : '';
-                    
-                    return title.includes(query) || 
-                           excerpt.includes(query) || 
-                           category.includes(query) ||
-                           tags.includes(query);
-                });
-                
-                // Mostrar resultados
-                if (filteredPosts.length === 0) {
-                    searchResultsText.innerHTML = `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem; color: var(--accent-color);">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="15" y1="9" x2="9" y2="15"></line>
-                            <line x1="9" y1="9" x2="15" y2="15"></line>
-                        </svg>
-                        No se encontraron resultados para "<strong>${query}</strong>"
-                    `;
-                    searchResultsGrid.innerHTML = `
-                        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: rgba(255,255,255,0.6);">
-                            <p style="font-size: 1.1rem;">Intenta con otras palabras clave como:</p>
-                            <p style="margin-top: 1rem; color: var(--accent-color);">funnel, marketing, diseño, webinar, copywriting</p>
-                        </div>
-                    `;
-                } else {
-                    searchResultsText.innerHTML = `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem; color: var(--accent-color);">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="9 11 12 14 16 10"></polyline>
-                        </svg>
-                        ${filteredPosts.length} artículo${filteredPosts.length > 1 ? 's' : ''} encontrado${filteredPosts.length > 1 ? 's' : ''} para "<strong>${query}</strong>"
-                    `;
-                    searchResultsGrid.innerHTML = filteredPosts.map(post => createResultCard(post)).join('');
-                }
-                
-                // Mostrar sección
-                searchResultsSection.style.display = 'block';
-                
-                // Scroll suave a resultados
-                setTimeout(() => {
-                    searchResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
-                
-                console.log('🔍 Búsqueda:', query, '| Resultados:', filteredPosts.length);
-            });
-
-            // Efectos de focus
-            searchInput.addEventListener('focus', (e) => {
-                e.target.style.borderColor = 'var(--accent-color)';
-                e.target.style.background = 'rgba(255,255,255,0.08)';
-                e.target.style.boxShadow = '0 0 0 3px rgba(255, 77, 145, 0.1)';
-            });
-
-            searchInput.addEventListener('blur', (e) => {
-                e.target.style.borderColor = 'rgba(255,255,255,0.1)';
-                e.target.style.background = 'rgba(255,255,255,0.05)';
-                e.target.style.boxShadow = 'none';
-            });
-        }
-    });
+    if (results) results.textContent = `${count} ${count === 1 ? 'artículo disponible' : 'artículos disponibles'}${category ? ` en ${category}` : ''}`;
+    if (empty) empty.hidden = count !== 0;
+    if (featured) featured.hidden = !!(query || category);
+  }
+  input?.addEventListener('input', filterPosts);
+  buttons.forEach(button => button.addEventListener('click', () => {
+    category = button.dataset.category || '';
+    buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    filterPosts();
+  }));
 </script>
+<style>
+  .blog-index [hidden] { display: none !important; }
+  .blog-intro { max-width: 950px; margin: auto; }
+  .blog-eyebrow { color: var(--bringer-s-text-accent); font-size: .85rem; font-weight: 600; }
+  .blog-search { max-width: 720px; margin: 2rem auto 0; text-align: left; }
+  .blog-search label { display: block; color: var(--bringer-s-heading); margin-bottom: .6rem; }
+  .blog-search input { width: 100%; background: var(--bringer-s-container-bg); color: var(--bringer-s-heading); border: 1px solid var(--bringer-s-border); border-radius: 12px; padding: 1rem; }
+  .blog-search input::placeholder { color: var(--bringer-s-text); opacity: 1; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .blog-filters { display: flex; flex-wrap: wrap; gap: .65rem; margin: 1.5rem 0; }
+  .blog-filters button { font: inherit; font-size: .9rem; color: var(--bringer-s-heading); background: var(--bringer-s-container-bg); border: 1px solid var(--bringer-s-border); border-radius: 8px; padding: .6rem .9rem; cursor: pointer; }
+  .blog-filters button[aria-pressed="true"] { border-color: var(--bringer-s-text-accent); box-shadow: inset 0 -3px var(--bringer-s-text-accent); }
+  .blog-index :is(button,input,a):focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 4px; }
+  .blog-next { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; }
+  .blog-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+  @media(max-width: 1000px) { .blog-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media(max-width: 650px) { .blog-grid,.blog-next { grid-template-columns: minmax(0,1fr); } }
+</style>

@@ -4,14 +4,19 @@ import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import Analytics from '../components/Analytics.astro';
 import JsonLd from '../components/geo/JsonLd.astro';
 import { organization, webSite } from '../lib/schema';
+import { assetUrl } from '../lib/assets';
 
 const { 
     title = 'Edición Aular | Diseño web y soluciones de IA en Medellín',
     description = 'Somos una agencia de diseño web, publicidad digital y soluciones de Inteligencia Artificial en Medellín. Desarrollamos páginas web, automatizaciones y agentes de WhatsApp con resultados medibles.',
-    image = '/img/social-edicion.webp' // Imagen por defecto
+    image = '/img/social-edicion.webp',
+    type = 'website'
 } = Astro.props;
 
 const socialImage = new URL(image, Astro.site).href;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const secondaryScripts = ['/js/lib/libs.js', '/js/st-core.js', '/js/classes.js', '/js/main.js'].map(assetUrl);
+const isPreview = ['deploy-preview', 'branch-deploy'].includes(process.env.CONTEXT || '');
 ---
 
 <!DOCTYPE html>
@@ -28,9 +33,10 @@ const socialImage = new URL(image, Astro.site).href;
     
     <!-- Meta Description -->
     <meta name="description" content={description}>
+    <link rel="alternate" type="application/rss+xml" title="Blog de Edición Aular" href="/rss.xml" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href={Astro.url.href} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="google-site-verification" content="1CWG9HSA1bg0q-_Qq2kOPN1rDgFWFYdh0BQ8I5fnklc" />
     
     <!-- DNS Prefetch y Preconnect optimizados -->
@@ -46,8 +52,8 @@ const socialImage = new URL(image, Astro.site).href;
     {Astro.url.pathname === '/' && (
         <>
             <link rel="preload" as="image" href="/img/home/home03-hero2.jpg" fetchpriority="high">
-            <link rel="preload" as="style" href="/css/config.css">
-            <link rel="preload" as="style" href="/css/style.css">
+            <link rel="preload" as="style" href={assetUrl('/css/config.css')}>
+            <link rel="preload" as="style" href={assetUrl('/css/style.css')}>
         </>
     )}
     <!-- Google Fonts (optimizado con preload + font-display swap) -->
@@ -57,21 +63,21 @@ const socialImage = new URL(image, Astro.site).href;
     </noscript>
     
     <!-- CSS crítico inline en HEAD, resto async -->
-    <link rel="stylesheet" href="/css/config.css">
-    <link rel="stylesheet" href="/css/libs.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/responsive.css" media="all">
-    <link rel="stylesheet" href="/css/geo-theme.css">
+    <link rel="stylesheet" href={assetUrl('/css/config.css')}>
+    <link rel="stylesheet" href={assetUrl('/css/libs.css')}>
+    <link rel="stylesheet" href={assetUrl('/css/style.css')}>
+    <link rel="stylesheet" href={assetUrl('/css/responsive.css')} media="all">
+    <link rel="stylesheet" href={assetUrl('/css/geo-theme.css')}>
     <!-- Light Mode Theme (async load) -->
-    <link rel="stylesheet" href="/css/theme-light.css">
+    <link rel="stylesheet" href={assetUrl('/css/theme-light.css')}>
     <!-- Fullwidth Fix (async load) -->
-    <link rel="stylesheet" href="/css/fullwidth-fix.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href={assetUrl('/css/fullwidth-fix.css')} media="print" onload="this.media='all'">
     <!-- CTA Gradient (async load) -->
-    <link rel="stylesheet" href="/css/cta-gradient.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href={assetUrl('/css/cta-gradient.css')} media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="/css/theme-light.css">
-        <link rel="stylesheet" href="/css/fullwidth-fix.css">
-        <link rel="stylesheet" href="/css/cta-gradient.css">
+        <link rel="stylesheet" href={assetUrl('/css/theme-light.css')}>
+        <link rel="stylesheet" href={assetUrl('/css/fullwidth-fix.css')}>
+        <link rel="stylesheet" href={assetUrl('/css/cta-gradient.css')}>
     </noscript>
     
     <!-- Favicon y PWA -->
@@ -85,9 +91,9 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Metadatos Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Edición Aular" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -102,7 +108,7 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Meta tags adicionales SEO -->
     <meta property="og:locale" content="es_CO" />
     <meta name="author" content="Edición Aular" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="robots" content={isPreview ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
     
     <!-- Meta tags de Geolocalización - Medellín, Colombia -->
     <meta name="geo.region" content="CO-ANT" />
@@ -343,7 +349,7 @@ const socialImage = new URL(image, Astro.site).href;
                             <a href="/nosotros">Nosotros</a>
                         </li>
                         <li>
-                            <a href="#">Servicios</a>
+                            <a href="/servicios/">Servicios</a>
                             <ul class="sub-menu">
                                 <li><a href="/soluciones-ia">Soluciones con IA</a></li>
                                 <li><a href="/lanzamientos-digitales">Lanzamientos</a></li>
@@ -382,7 +388,7 @@ const socialImage = new URL(image, Astro.site).href;
             </a>
             <div style="display: flex; align-items: center; gap: 0.75rem;">
                 <ThemeToggle />
-                <a href="#" class="bringer-mobile-menu-toggler" aria-label="Menú principal">
+                <a href="#" class="bringer-mobile-menu-toggler" aria-label="Menú principal" aria-expanded="false">
                     <i class="bringer-menu-toggler-icon">
                         <span></span>
                         <span></span>
@@ -412,11 +418,11 @@ const socialImage = new URL(image, Astro.site).href;
                             <div class="bringer-info-description">Somos un equipo de diseñadores, desarrolladores y estrategas de marketing comprometidos con llevar negocios de todos los tamaños al siguiente nivel. Con años de experiencia, diseñamos soluciones que conectan con audiencias y generan resultados.</div>
                             <span class="bringer-label">Síguenos:</span>
                             <ul class="bringer-socials-list" data-stagger-appear="fade-up" data-stagger-delay="75">
-                                <li><a href="https://www.facebook.com/edicionaular" target="_blank" class="bringer-socials-facebook"><i></i></a></li>
-                                <li><a href="https://www.instagram.com/edicion_aular/" target="_blank" class="bringer-socials-instagram"><i></i></a></li>
-                                <li><a href="https://vimeo.com/user67007640" target="_blank" class="bringer-socials-vimeo"><i></i></a></li>
-                                <li><a href="https://www.tiktok.com/@edicionaular8" target="_blank" class="bringer-socials-tiktok"><i></i></a></li>
-                                <li><a href="https://wa.link/tjepy5" target="_blank" class="bringer-socials-whatsapp"><i></i></a></li>
+                                <li><a href="https://www.facebook.com/edicionaular" target="_blank" class="bringer-socials-facebook" aria-label="Facebook de Edición Aular"><i></i></a></li>
+                                <li><a href="https://www.instagram.com/edicion_aular/" target="_blank" class="bringer-socials-instagram" aria-label="Instagram de Edición Aular"><i></i></a></li>
+                                <li><a href="https://vimeo.com/user67007640" target="_blank" class="bringer-socials-vimeo" aria-label="Vimeo de Edición Aular"><i></i></a></li>
+                                <li><a href="https://www.tiktok.com/@edicionaular8" target="_blank" class="bringer-socials-tiktok" aria-label="TikTok de Edición Aular"><i></i></a></li>
+                                <li><a href="https://wa.link/tjepy5" target="_blank" class="bringer-socials-whatsapp" aria-label="Contactar a Edición Aular por WhatsApp"><i></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -445,8 +451,7 @@ const socialImage = new URL(image, Astro.site).href;
                             <div class="bringer-menu-widget">
                                 <ul>
                                     <li><a href="/nosotros">Acerca de</a></li>
-                                    <li><a href="#">Mi Equipo</a></li>
-                                    <li><a href="#">Testimonios</a></li>
+                                    <li><a href="/#testimonios">Testimonios</a></li>
                                     <li><a href="/contacto">Contacto</a></li>
                                 </ul>
                             </div>
@@ -479,7 +484,7 @@ const socialImage = new URL(image, Astro.site).href;
         <div class="bringer-footer-line">
             <div class="stg-container">
                 <div class="align-center">
-                    Copyright &copy; Edición Aular 2025. Todos los Derechos Reservados.
+                    Copyright &copy; Edición Aular {new Date().getUTCFullYear()}. Todos los Derechos Reservados.
                     <br><button type="button" class="analytics-preferences" data-analytics-preferences hidden>Preferencias de cookies</button>
                 </div>
             </div>
@@ -522,14 +527,14 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- 🏝️ ASTRO ISLANDS APPROACH - Scripts por prioridad -->
     
     <!-- ISLA 1: jQuery (crítico - base de todo) - carga inmediata pero no bloquea -->
-    <script src="/js/lib/jquery.min.js" defer></script>
+    <script is:inline src={assetUrl('/js/lib/jquery.min.js')} defer></script>
     
     <!-- ISLA 2: Scripts secundarios cuando navegador idle -->
-    <script is:inline>
+    <script define:vars={{ secondaryScripts }}>
         (function() {
             // Esperar a que jQuery cargue, luego cargar el resto en idle
             function loadSecondaryScripts() {
-                const scripts = ['/js/lib/libs.js', '/js/st-core.js', '/js/classes.js', '/js/main.js'];
+                const scripts = secondaryScripts;
                 let i = 0;
                 
                 function loadNext() {

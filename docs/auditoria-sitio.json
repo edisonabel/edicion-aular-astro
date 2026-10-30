@@ -1,0 +1,259 @@
+{
+  "paginas": 63,
+  "errores": [],
+  "rss_articulos": 19,
+  "detalle": [
+    {
+      "ruta": "/",
+      "html_bytes": 68068
+    },
+    {
+      "ruta": "/blog/",
+      "html_bytes": 68417
+    },
+    {
+      "ruta": "/branding/",
+      "html_bytes": 37448
+    },
+    {
+      "ruta": "/contacto/",
+      "html_bytes": 38224
+    },
+    {
+      "ruta": "/diseno-web/",
+      "html_bytes": 37573
+    },
+    {
+      "ruta": "/faq/",
+      "html_bytes": 45760
+    },
+    {
+      "ruta": "/inversion/",
+      "html_bytes": 45861
+    },
+    {
+      "ruta": "/lanzamientos-digitales/",
+      "html_bytes": 44579
+    },
+    {
+      "ruta": "/medellin/",
+      "html_bytes": 48627
+    },
+    {
+      "ruta": "/meta-ads-google-ads/",
+      "html_bytes": 40327
+    },
+    {
+      "ruta": "/nosotros/",
+      "html_bytes": 45127
+    },
+    {
+      "ruta": "/politica-de-privacidad/",
+      "html_bytes": 43309
+    },
+    {
+      "ruta": "/portfolio/",
+      "html_bytes": 35750
+    },
+    {
+      "ruta": "/produccion-audiovisual/",
+      "html_bytes": 40635
+    },
+    {
+      "ruta": "/sectores/",
+      "html_bytes": 42234
+    },
+    {
+      "ruta": "/servicios/",
+      "html_bytes": 39097
+    },
+    {
+      "ruta": "/soluciones-ia/",
+      "html_bytes": 57436
+    },
+    {
+      "ruta": "/streaming/",
+      "html_bytes": 34503
+    },
+    {
+      "ruta": "/terminos-y-condiciones/",
+      "html_bytes": 43756
+    },
+    {
+      "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+      "html_bytes": 49914
+    },
+    {
+      "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+      "html_bytes": 48354
+    },
+    {
+      "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+      "html_bytes": 47889
+    },
+    {
+      "ruta": "/soluciones-ia/contenido-video-ia/",
+      "html_bytes": 46104
+    },
+    {
+      "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+      "html_bytes": 47650
+    },
+    {
+      "ruta": "/sectores/clinicas-estetica/",
+      "html_bytes": 48519
+    },
+    {
+      "ruta": "/sectores/inmobiliarias/",
+      "html_bytes": 47381
+    },
+    {
+      "ruta": "/sectores/turismo-hoteles/",
+      "html_bytes": 48208
+    },
+    {
+      "ruta": "/portfolio/agrosupreme/",
+      "html_bytes": 33954
+    },
+    {
+      "ruta": "/portfolio/americahvac/",
+      "html_bytes": 33615
+    },
+    {
+      "ruta": "/portfolio/bee/",
+      "html_bytes": 33588
+    },
+    {
+      "ruta": "/portfolio/cazon/",
+      "html_bytes": 32558
+    },
+    {
+      "ruta": "/portfolio/drjarod/",
+      "html_bytes": 33602
+    },
+    {
+      "ruta": "/portfolio/ecosolares/",
+      "html_bytes": 32928
+    },
+    {
+      "ruta": "/portfolio/popwarner/",
+      "html_bytes": 32864
+    },
+    {
+      "ruta": "/medellin/belen/",
+      "html_bytes": 42364
+    },
+    {
+      "ruta": "/medellin/bello/",
+      "html_bytes": 42509
+    },
+    {
+      "ruta": "/medellin/calasanz/",
+      "html_bytes": 42626
+    },
+    {
+      "ruta": "/medellin/centro-medellin/",
+      "html_bytes": 42940
+    },
+    {
+      "ruta": "/medellin/el-poblado/",
+      "html_bytes": 42810
+    },
+    {
+      "ruta": "/medellin/el-tesoro/",
+      "html_bytes": 42682
+    },
+    {
+      "ruta": "/medellin/envigado/",
+      "html_bytes": 42553
+    },
+    {
+      "ruta": "/medellin/itagui/",
+      "html_bytes": 42479
+    },
+    {
+      "ruta": "/medellin/laureles/",
+      "html_bytes": 42620
+    },
+    {
+      "ruta": "/medellin/sabaneta/",
+      "html_bytes": 42482
+    },
+    {
+      "ruta": "/blog/adopcion-ia-embudos-marketing/",
+      "html_bytes": 42437
+    },
+    {
+      "ruta": "/blog/ai-agents-embudo-tendencia-2025/",
+      "html_bytes": 43721
+    },
+    {
+      "ruta": "/blog/asistente-ia-funnel-web-7-dias/",
+      "html_bytes": 45300
+    },
+    {
+      "ruta": "/blog/attractive-character-marca-personal/",
+      "html_bytes": 42402
+    },
+    {
+      "ruta": "/blog/chatgpt-5-1-explicado-facil/",
+      "html_bytes": 44067
+    },
+    {
+      "ruta": "/blog/cro-sistema-peep-laja-experimentos-que-pagan/",
+      "html_bytes": 43228
+    },
+    {
+      "ruta": "/blog/expert-secrets-autoridad-nicho/",
+      "html_bytes": 42005
+    },
+    {
+      "ruta": "/blog/formula-precios-alex-hormozi/",
+      "html_bytes": 42653
+    },
+    {
+      "ruta": "/blog/gemini-3-explicado-facil-2025/",
+      "html_bytes": 45759
+    },
+    {
+      "ruta": "/blog/hook-story-offer-formula-ventas/",
+      "html_bytes": 43213
+    },
+    {
+      "ruta": "/blog/landing-page-optimization-tim-ash-12-palancas/",
+      "html_bytes": 43378
+    },
+    {
+      "ruta": "/blog/nano-banana-2-guia-para-principiantes/",
+      "html_bytes": 47435
+    },
+    {
+      "ruta": "/blog/oferta-irresistible-alex-hormozi/",
+      "html_bytes": 44541
+    },
+    {
+      "ruta": "/blog/perfect-webinar-script-conversion/",
+      "html_bytes": 42396
+    },
+    {
+      "ruta": "/blog/sales-funnel-maquina-ventas/",
+      "html_bytes": 43974
+    },
+    {
+      "ruta": "/blog/stack-valor-presentacion-oferta/",
+      "html_bytes": 42850
+    },
+    {
+      "ruta": "/blog/the-one-thing-funnels-conversion/",
+      "html_bytes": 41779
+    },
+    {
+      "ruta": "/blog/traffic-secrets-fuentes-trafico/",
+      "html_bytes": 42420
+    },
+    {
+      "ruta": "/blog/value-ladder-maximizar-valor-cliente/",
+      "html_bytes": 42841
+    }
+  ]
+}

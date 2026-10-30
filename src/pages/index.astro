@@ -35,7 +35,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                                 <img src="/img/home/social proof 1.webp" alt="Cliente satisfecho 1 de Edición Aular" width="48" height="48" fetchpriority="high">
                                 <img src="/img/home/social proof 2.webp" alt="Cliente satisfecho 2 de Edición Aular" width="48" height="48">
                                 <img src="/img/home/social proof 3.webp" alt="Cliente satisfecho 3 de Edición Aular" width="48" height="48">
-                                <a href="/testimonials">+479</a>
+                                <a href="#testimonios" aria-label="Leer testimonios de clientes">+479</a>
                             </div>
                             <p data-appear="fade-up" data-unload="fade-up" data-delay="200">Más de 479 Clientes Confían</p>
                         </div>
@@ -54,7 +54,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                                poster="/img/home/home03-hero2.jpg" 
                                playsinline muted loop preload="none" 
                                width="1920" height="1080"
-                               fetchpriority="high"></video>
+                               aria-hidden="true"></video>
                     </div>
 
                     <!-- Content -->
@@ -357,7 +357,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                     </div>
                     <div class="bringer-detailed-list-description">
                         <p>¿Listo para atraer a los clientes ideales? Potenciamos tus campañas publicitarias en Meta y Google con estrategias que conectan y convierten. Desde la segmentación precisa hasta la optimización continua,
-                        <span class="bringer-accent">garantizamos que cada dólar invertido genere resultados medibles y escalables.</span></p>
+                        <span class="bringer-accent">definimos indicadores y ajustamos las campañas con los resultados de tu negocio.</span></p>
                     </div>
                     <div class="bringer-detailed-list-button">
                         <span class="bringer-icon bringer-icon-explore"></span>
@@ -437,7 +437,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         </section>
 
         <!-- Section: Testimonials -->
-        <section class="backlight-top">
+        <section id="testimonios" class="backlight-top">
             <div class="bringer-expand-on-scroll">
                 <img src="/img/home/mokcup 1 home.webp" alt="Testimonios" data-unload="fade-up" width="1920" height="1080" loading="lazy" decoding="async">
             </div>
@@ -448,7 +448,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <h2>Lo Que Dicen Nuestros Clientes</h2>
                         <p class="bringer-large-text">Las historias que hemos creado no solo son visuales, también son reales.</p>
                         <div class="align-right">
-                            <a href="#" class="bringer-arrow-link">Descubre más de nuestras historias de éxito</a>
+                            <a href="/portfolio/" class="bringer-arrow-link">Explora los proyectos de nuestro portafolio</a>
                         </div>
                     </div>
                 </div>
@@ -644,31 +644,29 @@ const featuredProjects = portfolioData.filter(p => p.featured);
 </style>
 
 <script>
-    // Intersection Observer para hero video (carga inteligente)
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo && 'IntersectionObserver' in window) {
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const video = entry.target;
-                    const src = video.getAttribute('data-src');
-                    if (src && !video.src) {
-                        video.src = src;
-                        video.load();
-                        video.play().catch(() => {});
-                        videoObserver.unobserve(video);
-                    }
-                }
-            });
-        }, { threshold: 0.25 });
-        
-        videoObserver.observe(heroVideo);
-    } else if (heroVideo) {
-        // Fallback sin IO
-        heroVideo.src = heroVideo.getAttribute('data-src');
-        heroVideo.play().catch(() => {});
+    // El video decorativo se carga una sola vez, sin competir con el contenido inicial.
+    const heroVideo = document.querySelector<HTMLVideoElement>('#heroVideo');
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (heroVideo && !reduceMotion.matches && !connection?.saveData) {
+        const startVideo = () => {
+            const source = window.matchMedia('(max-width: 767px)').matches ? heroVideo.dataset.srcMobile : heroVideo.dataset.srcDesktop;
+            if (!source || heroVideo.getAttribute('src')) return;
+            heroVideo.src = source;
+            heroVideo.play().catch(() => {});
+        };
+        const observeVideo = () => {
+            if (!('IntersectionObserver' in window)) return;
+            const observer = new IntersectionObserver(entries => {
+                if (entries.some(entry => entry.isIntersecting)) { startVideo(); observer.disconnect(); }
+            }, { threshold: .25 });
+            observer.observe(heroVideo);
+        };
+        if (document.readyState === 'complete') observeVideo();
+        else window.addEventListener('load', observeVideo, { once: true });
+        reduceMotion.addEventListener('change', event => { if (event.matches) heroVideo.pause(); });
     }
-    
+
     // SCROLL SUAVE AL HACER CLICK EN FLECHA
     document.querySelectorAll('.scroll-down-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -708,27 +706,3 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         }
     }
 </script>
-
-<!-- Video responsive: diferente src para mobile vs desktop -->
-<script is:inline>
-(function() {
-    const video = document.getElementById('heroVideo');
-    if (!video) return;
-    
-    // Detectar si es móvil (< 768px)
-    const isMobile = window.innerWidth < 768;
-    
-    // Seleccionar video según dispositivo
-    const videoSrc = isMobile 
-        ? video.dataset.srcMobile 
-        : video.dataset.srcDesktop;
-    
-    if (videoSrc) {
-        video.src = videoSrc;
-        video.load();
-        video.play().catch(() => {});
-    }
-})();
-</script>
-
-

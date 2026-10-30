@@ -275,21 +275,37 @@ class Bringer_Mobile_Menu {
             jQuery(this).clone().appendTo(_self.$menu);
         });
         this.$overlay = jQuery('<div class="bringer-mobile-menu-overlay"/>').appendTo(this.$body);
-        this.$menu.find('a[href="#"]').each(function() {
-            this.setAttribute('href', 'javascript:void(0)');
+        this.$nav.attr('aria-label', 'Navegación móvil');
+        this.$menu.find('.menu-item-has-children > a').each(function(index) {
+            const submenu = jQuery(this).parent('li').children('ul');
+            const submenuId = 'mobile-submenu-' + index;
+            submenu.attr('id', submenuId);
+            this.setAttribute('aria-controls', submenuId);
+            this.setAttribute('aria-expanded', 'false');
             this.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.classList.toggle('is-active');
-                jQuery(this).parent('li').children('ul').slideToggle(300);
+                this.setAttribute('aria-expanded', String(this.classList.contains('is-active')));
+                submenu.slideToggle(300);
             });
         });
 
         // Events
         jQuery('.bringer-mobile-menu-toggler').on('click', function() {
             _self.$body.toggleClass('show-menu');
+            this.setAttribute('aria-expanded', String(_self.$body.hasClass('show-menu')));
         });
         this.$overlay.on('click', function() {
             _self.$body.removeClass('show-menu');
+            jQuery('.bringer-mobile-menu-toggler').attr('aria-expanded', 'false');
+        });
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && _self.$body.hasClass('show-menu')) {
+                _self.$body.removeClass('show-menu');
+                const toggler = document.querySelector('.bringer-mobile-menu-toggler');
+                toggler?.setAttribute('aria-expanded', 'false');
+                toggler?.focus();
+            }
         });
     }
 }
