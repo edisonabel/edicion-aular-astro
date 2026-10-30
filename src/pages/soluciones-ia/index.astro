@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditorialImage from '../../components/geo/EditorialImage.astro';
 import JsonLd from '../../components/geo/JsonLd.astro';
 import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
 import FaqList from '../../components/geo/FaqList.astro';
@@ -8,11 +9,11 @@ import Cta from '../../components/geo/Cta.astro';
 import { SOLUCIONES } from '../../data/ia/soluciones';
 import { ZONAS } from '../../data/ia/zonas';
 import { SECTORES } from '../../data/ia/sectores';
-import { NEGOCIO, ESTADISTICAS } from '../../data/ia/negocio';
-import { breadcrumbs, localBusiness, faqPage, webPage } from '../../lib/schema';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, faqPage, webPage } from '../../lib/schema';
 
-const pageTitle = "Soluciones con Inteligencia Artificial en Medellín | Edición Aular";
-const pageDesc = "Implementación de soluciones prácticas de IA para empresas: agentes de WhatsApp 24/7, automatización de procesos, diseño web y posicionamiento en Google y ChatGPT.";
+const pageTitle = "Soluciones de IA en Medellín | Edición Aular";
+const pageDesc = "Soluciones de IA en Medellín: agentes de WhatsApp, automatización, contenido, formación y sitios web con SEO. Alcance y medición a la medida.";
 const pageUrl = "/soluciones-ia";
 
 const faqsHub = [
@@ -22,7 +23,7 @@ const faqsHub = [
   },
   {
     q: "¿Qué tipo de soluciones de IA tienen mayor retorno de inversión (ROI) para una pyme?",
-    a: "En Colombia, los agentes de WhatsApp para atención y agendamiento 24/7 y la automatización de procesos repetitivos (registro de prospectos, cotizaciones y recordatorios) son los que entregan resultados más rápidos al evitar la pérdida de clientes y liberar horas de nómina."
+    a: "El retorno depende de tu proceso y volumen de trabajo. Evaluamos tareas como responder consultas, registrar prospectos, agendar y preparar cotizaciones. Elegimos un primer alcance y medimos su efecto con datos de tu operación."
   },
   {
     q: "¿En qué zonas de Medellín y el Valle de Aburrá prestan servicio presencial?",
@@ -32,7 +33,6 @@ const faqsHub = [
 
 const schemaData = [
   webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
-  localBusiness(),
   breadcrumbs([
     { name: "Inicio", href: "/" },
     { name: "Soluciones con IA", href: pageUrl }
@@ -44,14 +44,14 @@ const schemaData = [
 <BaseLayout title={pageTitle} description={pageDesc}>
   <JsonLd slot="head" data={schemaData} />
 
-  <div class="stg-container">
+  <div class="stg-container geo-page">
     <Breadcrumbs items={[
       { name: "Inicio", href: "/" },
       { name: "Soluciones con IA" }
     ]} />
 
     <!-- Section: Page Title (Bringer services.html Style) -->
-    <section class="backlight-bottom">
+    <section class="backlight-bottom" id="page-title-bringer-services-html-style" data-template="services.html#page-title">
       <div class="stg-row">
         <div class="stg-col-8 stg-offset-2 align-center stg-tp-col-10 stg-tp-offset-1">
           <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
@@ -65,9 +65,9 @@ const schemaData = [
     </section>
 
     <!-- Section: Intro con Parallax Media (Bringer services.html Style) -->
-    <section>
+    <section id="intro-con-parallax-media-bringer-services-html-style" data-template="services.html#intro">
       <div class="bringer-parallax-media stg-bottom-gap-l" data-appear="fade-up" data-unload="fade-up">
-        <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/services.jpg" alt="Soluciones con Inteligencia Artificial" width="1920" height="960">
+        <EditorialImage imagen="agencia" panoramica prioritaria />
       </div>
 
       <div class="stg-row stg-bottom-gap">
@@ -82,11 +82,11 @@ const schemaData = [
           <div class="align-right">
             <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="bringer-icon-link" data-appear="fade-right">
               <div class="bringer-icon-link-content">
-                <h6>
+                <p class="geo-action-label">
                   Descubre qué procesos
                   <br>
                   puedes optimizar hoy
-                </h6>
+                </p>
                 <span class="bringer-label">Agenda un Diagnóstico</span>
               </div>
               <div class="bringer-icon-wrap">
@@ -104,40 +104,18 @@ const schemaData = [
       </div>
     </section>
 
-    <!-- Section: Counters / Estadísticas de Contexto -->
-    <section class="stg-bottom-gap-l">
-      <div class="bringer-grid-3cols bringer-tp-grid-1col stg-normal-gap" data-stagger-appear="zoom-in" data-stagger-delay="100">
-        <!-- Counter Item 01 -->
-        <div class="bringer-block bringer-stat-card" data-appear="zoom-in">
-          <div class="bringer-counter" data-delay="2000">
-            <div class="bringer-counter-number" data-prefix="+" data-suffix="%">90</div>
-            <div class="bringer-counter-label">Uso de WhatsApp en Colombia</div>
-            <div class="bringer-counter-source">Fuente: {ESTADISTICAS.whatsapp.fuente}</div>
-          </div>
-        </div>
-
-        <!-- Counter Item 02 -->
-        <div class="bringer-block bringer-stat-card" data-appear="zoom-in" data-delay="100">
-          <div class="bringer-counter" data-delay="2000">
-            <div class="bringer-counter-number" data-suffix="%">40</div>
-            <div class="bringer-counter-label">Empresas en adopción de IA (4 de 10)</div>
-            <div class="bringer-counter-source">Fuente: {ESTADISTICAS.adopcionIA.fuente}</div>
-          </div>
-        </div>
-
-        <!-- Counter Item 03 -->
-        <div class="bringer-block bringer-stat-card" data-appear="zoom-in" data-delay="200">
-          <div class="bringer-counter" data-delay="2000">
-            <div class="bringer-counter-number" data-suffix="%">62</div>
-            <div class="bringer-counter-label">Iniciativas estancadas en piloto</div>
-            <div class="bringer-counter-source">Fuente: {ESTADISTICAS.pilotos.fuente}</div>
-          </div>
-        </div>
+    <!-- Section: Criterios de implementación -->
+    <section id="criterios" data-template="services.html#what-makes-us-best">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Una solución útil empieza con buenas decisiones</h2></div></div>
+      <div class="bringer-grid-3cols bringer-tp-grid-1col stg-normal-gap">
+        <article class="bringer-block"><span class="bringer-label">01 · Enfoque</span><h3>Un problema concreto</h3><p>Elegimos una tarea que hoy consume tiempo o deja consultas sin atender. Definimos qué debe mejorar antes de elegir la herramienta.</p></article>
+        <article class="bringer-block"><span class="bringer-label">02 · Operación</span><h3>Conexiones con sentido</h3><p>Revisamos tus sistemas, permisos y datos. La automatización debe encajar con el trabajo del equipo y permitir intervención humana.</p></article>
+        <article class="bringer-block"><span class="bringer-label">03 · Medición</span><h3>Resultados con tus datos</h3><p>Acordamos indicadores como tiempo de respuesta, citas o tareas manuales. Comparamos el punto de partida con el funcionamiento real.</p></article>
       </div>
     </section>
 
     <!-- Section: Detailed Services List (Bringer services.html Detailed List) -->
-    <section class="backlight-top">
+    <section class="backlight-top" id="detailed-services-list-bringer-services-html-detailed-list" data-template="services.html#our-services">
       <div class="stg-row bringer-section-title">
         <div class="stg-col-10 stg-offset-1">
           <div class="align-center">
@@ -154,7 +132,7 @@ const schemaData = [
           {SOLUCIONES.map((sol) => (
             <li data-stagger-appear="fade-up" data-stagger-delay="75">
               <div class="bringer-detailed-list-title">
-                <h4>{sol.nombre}<span class="bringer-accent">.</span></h4>
+                <h3>{sol.nombre}<span class="bringer-accent">.</span></h3>
               </div>
               <div class="bringer-detailed-list-description">
                 <p>{sol.respuesta}</p>
@@ -162,7 +140,7 @@ const schemaData = [
               <div class="bringer-detailed-list-button">
                 <span class="bringer-icon bringer-icon-explore"></span>
               </div>
-              <a href={`/soluciones-ia/${sol.slug}`}></a>
+              <a href={`/soluciones-ia/${sol.slug}`} aria-label={`Ver ${sol.nombre}`}></a>
             </li>
           ))}
         </ul>
@@ -170,7 +148,7 @@ const schemaData = [
     </section>
 
     <!-- Section: Sectores Especializados (Bringer 3-cols square grid) -->
-    <section>
+    <section id="sectores-especializados-bringer-3-cols-square-grid" data-template="services.html#what-makes-us-best">
       <div class="align-center stg-bottom-gap-l">
         <h2 data-split-appear="fade-up">Sectores comerciales prioritarios</h2>
         <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
@@ -183,8 +161,8 @@ const schemaData = [
           <div class="bringer-block stg-aspect-square stg-vertical-space-between">
             <div>
               <span class="bringer-label">Sector</span>
-              <h4 class="stg-top-gap-s">{sec.nombre}<span class="bringer-accent">.</span></h4>
-              <p style="font-size: 0.95rem; color: #cbd5e1; margin-top: 0.5rem;">{sec.respuesta}</p>
+              <h3 class="stg-top-gap-s">{sec.nombre}<span class="bringer-accent">.</span></h3>
+              <p style="font-size: 0.95rem; color: var(--bringer-s-heading); margin-top: 0.5rem;">{sec.respuesta}</p>
             </div>
             <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link stg-top-gap-s">
               Ver soluciones del sector
@@ -195,7 +173,7 @@ const schemaData = [
     </section>
 
     <!-- Section: Zonas de Medellín (Bringer Grid) -->
-    <section>
+    <section id="zonas-de-medellin-bringer-grid" data-template="services.html#what-makes-us-best">
       <div class="stg-row bringer-section-title">
         <div class="stg-col-8 stg-offset-2 align-center">
           <h2 data-split-appear="fade-up">Cobertura en Medellín y Valle de Aburrá</h2>
@@ -209,12 +187,12 @@ const schemaData = [
         {ZONAS.map((z) => (
           <div class="bringer-block" style="padding: 1.5rem;">
             <span class="bringer-label">{z.tipo.toUpperCase()} · {z.municipio}</span>
-            <h4 class="stg-top-gap-s">
+            <h3 class="stg-top-gap-s">
               <a href={`/medellin/${z.slug}`} style="color: inherit; text-decoration: none;">
                 {z.nombre}
               </a>
-            </h4>
-            <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0.5rem 0;">{z.intro.substring(0, 110)}...</p>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--bringer-s-heading); margin: 0.5rem 0;">{z.intro.split(' ').slice(0, 22).join(' ')}…</p>
             <a href={`/medellin/${z.slug}`} class="bringer-arrow-link stg-top-gap-s" style="font-size: 0.9rem;">
               Ver soluciones en {z.nombre}
             </a>

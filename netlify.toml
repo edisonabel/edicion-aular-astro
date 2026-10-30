@@ -91,3 +91,16 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 # NO usar redirección SPA - Astro genera páginas estáticas
+
+# Servicio retirado: la URL histórica conduce al catálogo vigente.
+[[redirects]]
+  from = "/mentoria"
+  to = "/servicios/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/mentoria/"
+  to = "/servicios/"
+  status = 301
+  force = true

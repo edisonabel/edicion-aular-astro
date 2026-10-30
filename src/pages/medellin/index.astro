@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditorialImage from '../../components/geo/EditorialImage.astro';
 import JsonLd from '../../components/geo/JsonLd.astro';
 import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
 import FaqList from '../../components/geo/FaqList.astro';
@@ -7,7 +8,7 @@ import Cta from '../../components/geo/Cta.astro';
 import { ZONAS } from '../../data/ia/zonas';
 import { SOLUCIONES } from '../../data/ia/soluciones';
 import { NEGOCIO } from '../../data/ia/negocio';
-import { breadcrumbs, localBusiness, faqPage, webPage } from '../../lib/schema';
+import { breadcrumbs, faqPage, webPage } from '../../lib/schema';
 
 const pageTitle = "Soluciones con IA en Medellín y Valle de Aburrá | Edición Aular";
 const pageDesc = "Implementación local de soluciones de Inteligencia Artificial para empresas y pymes en Medellín, Envigado, Itagüí, Sabaneta y Bello. Agentes, automatización y SEO local.";
@@ -16,7 +17,7 @@ const pageUrl = "/medellin";
 const faqsMedellin = [
   {
     q: "¿Por qué es importante contratar una agencia con presencia en Medellín para implementar IA?",
-    a: "Comprender los canales preferidos de los consumidores locales (más del 90% de interacciones comerciales en Medellín suceden por WhatsApp), los horarios de atención y la normativa colombiana de protección de datos (Ley 1581) y contactos comerciales (Ley 2300 de 2023) es indispensable para que las soluciones de IA conviertan sin fricciones legales ni operativas."
+    a: "Conocer tus canales de venta, horarios y operación facilita diseñar una solución útil. Revisamos los requisitos de protección de datos y de comunicaciones comerciales de cada flujo, y acordamos contigo la modalidad de atención."
   },
   {
     q: "¿Hacen visitas presenciales a empresas en el Valle de Aburrá?",
@@ -30,7 +31,6 @@ const faqsMedellin = [
 
 const schemaData = [
   webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
-  localBusiness(ZONAS.map((z) => `${z.nombre}, ${z.municipio}`)),
   breadcrumbs([
     { name: "Inicio", href: "/" },
     { name: "Medellín y Valle de Aburrá", href: pageUrl }
@@ -42,14 +42,14 @@ const schemaData = [
 <BaseLayout title={pageTitle} description={pageDesc}>
   <JsonLd slot="head" data={schemaData} />
 
-  <div class="stg-container">
+  <div class="stg-container geo-page">
     <Breadcrumbs items={[
       { name: "Inicio", href: "/" },
       { name: "Medellín y Valle de Aburrá" }
     ]} />
 
     <!-- Section: Page Title (Bringer Style) -->
-    <section class="backlight-bottom">
+    <section class="backlight-bottom" id="page-title-bringer-style" data-template="services.html#page-title">
       <div class="stg-row">
         <div class="stg-col-8 stg-offset-2 align-center stg-tp-col-10 stg-tp-offset-1">
           <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
@@ -63,14 +63,14 @@ const schemaData = [
     </section>
 
     <!-- Section: Intro con Parallax Media (Bringer Style) -->
-    <section>
+    <section id="intro-con-parallax-media-bringer-style" data-template="services.html#intro">
       <div class="bringer-parallax-media stg-bottom-gap-l" data-appear="fade-up" data-unload="fade-up">
-        <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/service-details.jpg" alt="Medellín y Valle de Aburrá" width="1920" height="960">
+        <EditorialImage imagen="medellin" panoramica prioritaria />
       </div>
 
       <div class="stg-row stg-bottom-gap">
         <div class="stg-col-7" data-unload="fade-left">
-          <h2 class="stg-bottom-gap" data-split-appear="fade-up">Presencia local con estándares globales de desarrollo.</h2>
+          <h2 class="stg-bottom-gap" data-split-appear="fade-up">Soluciones pensadas para tu operación local.</h2>
         </div>
         <div class="stg-col-5"></div>
       </div>
@@ -80,11 +80,11 @@ const schemaData = [
           <div class="align-right">
             <a href={NEGOCIO.googleMaps} target="_blank" rel="noopener" class="bringer-icon-link" data-appear="fade-right">
               <div class="bringer-icon-link-content">
-                <h6>
-                  Ubicación oficial
+                <p class="geo-action-label">
+                  Perfil comercial
                   <br>
-                  en Google Maps
-                </h6>
+                  en Google
+                </p>
                 <span class="bringer-label">Ver Perfil Comercial</span>
               </div>
               <div class="bringer-icon-wrap">
@@ -102,8 +102,10 @@ const schemaData = [
       </div>
     </section>
 
+    <p class="geo-example-note">La cobertura indica dónde podemos atender con cita previa; no representa una oficina en cada zona. También trabajamos de forma remota.</p>
+
     <!-- Section: Directorio de Zonas (Bringer 2-cols Grid) -->
-    <section class="stg-bottom-gap-l">
+    <section class="stg-bottom-gap-l" id="directorio-de-zonas-bringer-2-cols-grid" data-template="services.html#our-services">
       <div class="stg-row bringer-section-title">
         <div class="stg-col-8 stg-offset-2 align-center">
           <h2 data-split-appear="fade-up">Zonas comerciales con atención especializada</h2>
@@ -123,13 +125,13 @@ const schemaData = [
                   {z.nombre}
                 </a>
               </h3>
-              <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem;">
+              <p style="color: var(--bringer-s-heading); font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem;">
                 {z.intro}
               </p>
 
               <div style="margin-top: 1rem;">
                 <span class="bringer-meta">Ejes comerciales:</span>
-                <p style="font-size: 0.9rem; color: #cbd5e1; margin-top: 0.25rem;">
+                <p style="font-size: 0.9rem; color: var(--bringer-s-heading); margin-top: 0.25rem;">
                   {z.ejes.join(" · ")}
                 </p>
               </div>

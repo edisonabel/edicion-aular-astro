@@ -17,9 +17,10 @@ export const webSite = () => ({
   inLanguage: 'es-CO',
 });
 
-export const localBusiness = (areaServed: string[] = ['Medellín', 'Envigado', 'Itagüí', 'Sabaneta', 'Bello']) => ({
+// Organization hasta contar con una dirección de atención pública confirmada.
+export const organization = () => ({
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  '@type': 'Organization',
   '@id': ORG_ID,
   name: NEGOCIO.nombre,
   url: NEGOCIO.url,
@@ -27,17 +28,13 @@ export const localBusiness = (areaServed: string[] = ['Medellín', 'Envigado', '
   image: NEGOCIO.logo,
   telephone: NEGOCIO.telefono,
   description: NEGOCIO.propuesta,
-  hasMap: NEGOCIO.googleMaps,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: NEGOCIO.direccion.calle,
-    addressLocality: NEGOCIO.direccion.ciudad,
-    addressRegion: NEGOCIO.direccion.region,
-    postalCode: NEGOCIO.direccion.postal,
-    addressCountry: NEGOCIO.direccion.pais,
+    addressLocality: NEGOCIO.ciudad,
+    addressRegion: NEGOCIO.region,
+    addressCountry: NEGOCIO.pais,
   },
-  geo: { '@type': 'GeoCoordinates', latitude: NEGOCIO.geo.lat, longitude: NEGOCIO.geo.lng },
-  areaServed: areaServed.map((name) => ({ '@type': 'Place', name })),
+  areaServed: ['Medellín', 'Envigado', 'Itagüí', 'Sabaneta', 'Bello'].map((name) => ({ '@type': 'Place', name })),
   sameAs: NEGOCIO.redes,
   knowsAbout: ['Inteligencia artificial', 'Agentes de IA', 'Automatización de procesos', 'SEO', 'GEO', 'Marketing digital'],
 });
@@ -73,6 +70,5 @@ export const webPage = (o: { name: string; description: string; path: string }) 
   description: o.description,
   url: abs(o.path),
   inLanguage: 'es-CO',
-  dateModified: NEGOCIO.actualizado,
   publisher: { '@id': ORG_ID },
 });

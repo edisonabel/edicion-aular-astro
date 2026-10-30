@@ -1,68 +1,21 @@
 ---
-// Formato exacto de acordeón Bringer de inversión.astro
 import type { FAQ } from '../../data/ia/soluciones';
-
-const { faqs, titulo = 'Preguntas frecuentes', categoria = 'Preguntas Frecuentes' } = Astro.props as {
-  faqs: FAQ[];
-  titulo?: string;
-  categoria?: string;
-};
+interface Props { faqs: FAQ[]; titulo?: string; categoria?: string; id?: string }
+const { faqs, titulo = 'Preguntas frecuentes', categoria = 'Preguntas frecuentes', id = 'preguntas-frecuentes' } = Astro.props;
 ---
-
-<section class="stg-bottom-gap-l" id="preguntas-frecuentes">
+<section class="geo-faq stg-bottom-gap-l" id={id} data-template="pricing.html#faq">
   <div class="stg-row stg-bottom-gap-l">
-    <div class="stg-col-8 stg-offset-2">
-      <div class="align-center">
-        <h2 data-appear="fade-up" data-unload="fade-up">{titulo}</h2>
-      </div>
-    </div>
+    <div class="stg-col-8 stg-offset-2 align-center"><h2>{titulo}</h2></div>
   </div>
-
-  <!-- FAQ List - Exact Pricing / Inversión Style -->
   <div class="bringer-faq-list">
     {faqs.map((faq, index) => (
-      <div class="bringer-toggles-item bringer-block" data-appear="fade-up" data-unload="fade-up">
-        <div class="bringer-toggles-item--title">
+      <details class="geo-faq-item bringer-block">
+        <summary class="geo-faq-title">
           <span class="bringer-label">{categoria}</span>
-          <h4>
-            <sup>{String(index + 1).padStart(2, '0')}.</sup>
-            {faq.q}
-          </h4>
-        </div>
-        <div class="bringer-toggles-item--content">
-          <p>{faq.a}</p>
-        </div>
-      </div>
+          <h3><span class="geo-faq-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}.</span> {faq.q}</h3>
+        </summary>
+        <div class="geo-faq-content"><p>{faq.a}</p></div>
+      </details>
     ))}
   </div>
 </section>
-
-<script is:inline>
-  (function() {
-    function initBringerToggles() {
-      if (typeof jQuery !== 'undefined') {
-        jQuery('.bringer-toggles-item:not(.is-init)').each(function() {
-          let $this = jQuery(this);
-          $this.addClass('is-init');
-          $this.children('.bringer-toggles-item--title').append('<i class="bringer-icon bringer-icon-arrow-down"/>');
-          $this.children('.bringer-toggles-item--content').slideUp(1);
-          $this.on('click', function() {
-            jQuery(this).toggleClass('is-active');
-            $this.children('.bringer-toggles-item--content').slideToggle(300);
-          });
-          $this.on('click', '.bringer-toggles-item--content', function(e) {
-            e.stopPropagation();
-            e.preventDefault();
-          });
-        });
-      }
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initBringerToggles);
-    } else {
-      initBringerToggles();
-    }
-    setTimeout(initBringerToggles, 150);
-    setTimeout(initBringerToggles, 600);
-  })();
-</script>

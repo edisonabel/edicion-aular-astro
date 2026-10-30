@@ -1,52 +1,9 @@
-# robots.txt para edicionaular.com
-# Optimizado con Auriti GEO Framework (Search Bots + Citation Crawlers)
-
+# Rutas públicas de Edición Aular. Rastreo permitido para buscadores y asistentes.
+# robots.txt no sustituye la autenticación de endpoints privados.
 User-agent: *
 Allow: /
-# Permitir assets para renderizado correcto en Google y bots de IA
-Allow: /_astro/
-Allow: /css/
-Allow: /js/
-Allow: /img/
-
-# Bloquear rutas privadas y endpoints administrativos
 Disallow: /api/
 Disallow: /admin/
 Disallow: /*.json$
 
-# === CRAWLERS DE BÚSQUEDA IA Y CITAS (Auriti GEO Tier 1 - Search) ===
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Rastreo de imágenes optimizado
-User-agent: Googlebot-Image
-Allow: /img/
-Allow: /*.webp$
-Allow: /*.jpg$
-Allow: /*.png$
-
-# Crawl-delay para bots de terceros
-User-agent: AhrefsBot
-Crawl-delay: 10
-
-User-agent: SemrushBot
-Crawl-delay: 10
-
-# Sitemaps oficiales
 Sitemap: https://edicionaular.com/sitemap-index.xml
-Sitemap: https://edicionaular.com/sitemap-0.xml

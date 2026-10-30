@@ -24,7 +24,7 @@ export const ZONAS: Zona[] = [
     wikipedia: 'https://es.wikipedia.org/wiki/El_Poblado_(Medell%C3%ADn)',
     geo: { lat: 6.2087, lng: -75.5673 },
     intro:
-      'El Poblado (comuna 14) concentra buena parte de las oficinas corporativas, consultorios, clínicas estéticas, restaurantes y hoteles de Medellín. Es también la zona con más visitantes extranjeros, por lo que muchos negocios atienden clientes en español e inglés y a cualquier hora.',
+      'Para negocios de El Poblado que atienden por WhatsApp, una solución de IA puede organizar consultas, citas y solicitudes de reserva. Revisamos cómo trabajan tu equipo y tus canales para conectar atención, agenda y seguimiento. La propuesta se adapta a la operación de cada clínica, hotel, comercio o empresa de servicios.',
     ejes: ['Milla de Oro (avenida El Poblado)', 'Provenza y Parque Lleras', 'Manila', 'Astorga y Ciudad del Río', 'Las Palmas'],
     perfil: ['Clínicas estéticas y odontológicas', 'Hoteles y alojamientos turísticos', 'Inmobiliarias y proyectos de vivienda', 'Oficinas y servicios profesionales'],
     enfoque: ['agentes-ia-whatsapp', 'sitios-web-seo-geo', 'contenido-video-ia', 'automatizacion-procesos-ia', 'capacitacion-ia-empresas'],
@@ -43,7 +43,7 @@ export const ZONAS: Zona[] = [
     wikipedia: 'https://es.wikipedia.org/wiki/Laureles_(Medell%C3%ADn)',
     geo: { lat: 6.2447, lng: -75.5917 },
     intro:
-      'Laureles–Estadio (comuna 11) combina zona residencial tradicional con comercio de barrio, gastronomía, consultorios médicos y una creciente oferta de alojamiento para nómadas digitales. Sus negocios suelen ser pymes familiares que necesitan vender más sin aumentar nómina.',
+      'En Laureles trabajamos con negocios que necesitan responder consultas, organizar reservas o dar seguimiento a sus clientes. Un consultorio, un restaurante y un alojamiento requieren flujos distintos. Partimos de sus horarios, preguntas frecuentes y herramientas para definir una solución de IA útil para el equipo.',
     ejes: ['La 70', 'La 33', 'Primer Parque de Laureles', 'Avenida Nutibara', 'Zona del Estadio Atanasio Girardot'],
     perfil: ['Consultorios y centros de estética', 'Restaurantes y cafés', 'Hostales y apartamentos turísticos', 'Comercio y servicios de barrio'],
     enfoque: ['agentes-ia-whatsapp', 'automatizacion-procesos-ia', 'sitios-web-seo-geo', 'contenido-video-ia', 'capacitacion-ia-empresas'],
@@ -61,7 +61,7 @@ export const ZONAS: Zona[] = [
     tipo: 'barrio',
     geo: { lat: 6.2565, lng: -75.6025 },
     intro:
-      'Calasanz, en la comuna 12 (La América), es un sector residencial de clase media con comercio activo de barrio, colegios, servicios de salud y negocios familiares consolidados. Su clientela es muy local y fiel, y se mueve mucho por recomendación y WhatsApp.',
+      'Para comercios, consultorios y academias en Calasanz, la IA puede ayudar a responder preguntas frecuentes, registrar interesados y recordar citas o matrículas. Revisamos las tareas que hoy se hacen por WhatsApp o en hojas de cálculo y proponemos un primer flujo que el equipo pueda supervisar.',
     ejes: ['Carrera 80–81', 'Calle 50 (Colombia)', 'Sector de La América', 'Corredor hacia Floresta'],
     perfil: ['Comercio minorista', 'Servicios de salud y odontología', 'Educación y academias', 'Restaurantes y domicilios'],
     enfoque: ['agentes-ia-whatsapp', 'contenido-video-ia', 'automatizacion-procesos-ia', 'capacitacion-ia-empresas', 'sitios-web-seo-geo'],
@@ -79,12 +79,12 @@ export const ZONAS: Zona[] = [
     tipo: 'barrio',
     geo: { lat: 6.1985, lng: -75.5583 },
     intro:
-      'El sector de El Tesoro, en la parte alta de El Poblado, reúne comercio de alto nivel, servicios de salud especializados y proyectos inmobiliarios de vivienda nueva. Sus clientes esperan atención rápida, personalizada y digital.',
+      'Para negocios del sector El Tesoro evaluamos soluciones de atención y seguimiento que conserven el trato personal. Una clínica puede organizar valoraciones; una inmobiliaria, solicitudes de visita; y un comercio, consultas de catálogo. Definimos con tu equipo la información disponible, las acciones permitidas y el paso a un asesor.',
     ejes: ['Centro Comercial El Tesoro', 'Transversal Superior', 'Loma de Los Parra', 'Loma del Tesoro'],
     perfil: ['Inmobiliarias y constructoras', 'Clínicas y especialistas', 'Retail y marcas premium', 'Gimnasios y bienestar'],
     enfoque: ['agentes-ia-whatsapp', 'sitios-web-seo-geo', 'contenido-video-ia', 'automatizacion-procesos-ia', 'capacitacion-ia-empresas'],
     caso:
-      'Una sala de ventas de un proyecto de vivienda califica prospectos 24/7 (presupuesto, crédito, fecha de compra) y agenda visitas solo con los compradores listos.',
+      'Una sala de ventas de un proyecto de vivienda califica prospectos 24/7 (presupuesto, crédito, fecha de compra) y organiza solicitudes de visita para revisión de los asesores.',
     faqs: [
       { q: '¿La IA puede calificar compradores de vivienda?', a: 'Sí. El agente hace las preguntas clave (presupuesto, forma de pago, plazo) y prioriza a los prospectos más avanzados para el asesor.' },
       { q: '¿Pueden hacer recorridos o videos de proyectos con IA?', a: 'Sí: combinamos grabación real con renders y edición asistida por IA para piezas de venta y pauta.' },
@@ -98,7 +98,7 @@ export const ZONAS: Zona[] = [
     wikipedia: 'https://es.wikipedia.org/wiki/La_Candelaria_(Medell%C3%ADn)',
     geo: { lat: 6.2476, lng: -75.5658 },
     intro:
-      'El Centro (comuna 10, La Candelaria) es el mayor polo de comercio mayorista y minorista de la ciudad. Miles de negocios venden por volumen, por WhatsApp y a domicilio, con márgenes ajustados donde cada hora de atención cuenta.',
+      'Para comercios y distribuidores del Centro de Medellín, responder catálogos, consultar existencias y ordenar solicitudes puede consumir buena parte de la jornada. Revisamos esos procesos antes de automatizar. La solución conecta la información del negocio con sus canales de atención y deja los casos que requieren criterio al equipo.',
     ejes: ['Junín', 'Carabobo', 'El Hueco', 'Parque Berrío', 'San Antonio', 'Avenida Oriental'],
     perfil: ['Comercio mayorista y distribuidores', 'Textil y confección', 'Tecnología y celulares', 'Servicios profesionales y trámites'],
     enfoque: ['agentes-ia-whatsapp', 'automatizacion-procesos-ia', 'contenido-video-ia', 'capacitacion-ia-empresas', 'sitios-web-seo-geo'],
@@ -117,7 +117,7 @@ export const ZONAS: Zona[] = [
     wikipedia: 'https://es.wikipedia.org/wiki/Envigado',
     geo: { lat: 6.1759, lng: -75.5917 },
     intro:
-      'Envigado es uno de los municipios con mejor calidad de vida del Valle de Aburrá y tiene un tejido fuerte de pymes, consultorios, restaurantes y empresas de servicios. Muchos de sus negocios ya tienen clientela estable y buscan eficiencia más que volumen.',
+      'Para empresas de Envigado diseñamos flujos que conectan consultas, agendas y seguimiento sin perder el contexto de cada cliente. Podemos trabajar con servicios profesionales, comercios y equipos de venta. Primero revisamos el proceso actual y luego acordamos una implementación acotada, sus permisos y la forma de medirla.',
     ejes: ['Parque Principal de Envigado', 'Zona Rosa de Envigado', 'Avenida Las Vegas', 'Sector de Viva Envigado', 'Avenida El Poblado sur'],
     perfil: ['Servicios de salud y estética', 'Gastronomía', 'Empresas de servicios B2B', 'Inmobiliarias'],
     enfoque: ['automatizacion-procesos-ia', 'agentes-ia-whatsapp', 'sitios-web-seo-geo', 'capacitacion-ia-empresas', 'contenido-video-ia'],
@@ -136,7 +136,7 @@ export const ZONAS: Zona[] = [
     wikipedia: 'https://es.wikipedia.org/wiki/Itag%C3%BC%C3%AD',
     geo: { lat: 6.1719, lng: -75.6114 },
     intro:
-      'Itagüí es un municipio industrial y comercial del sur del Valle de Aburrá, con fuerte presencia de manufactura, confección, logística y comercio. Sus empresas manejan muchos procesos operativos que se prestan para automatizar.',
+      'Para empresas de Itagüí, una automatización puede ordenar solicitudes comerciales, documentos y registros que hoy se trasladan entre correo, WhatsApp y hojas de cálculo. Revisamos qué sistemas permiten conectarse y qué necesita aprobar una persona. El objetivo es reducir trabajo repetido con controles claros para el equipo.',
     ejes: ['Parque Principal de Itagüí', 'Zona industrial', 'Centro de la Moda', 'Autopista Sur', 'Sector de Ditaires'],
     perfil: ['Industria y manufactura', 'Confección y moda', 'Logística y distribución', 'Comercio local'],
     enfoque: ['automatizacion-procesos-ia', 'agentes-ia-whatsapp', 'capacitacion-ia-empresas', 'contenido-video-ia', 'sitios-web-seo-geo'],
@@ -155,7 +155,7 @@ export const ZONAS: Zona[] = [
     wikipedia: 'https://es.wikipedia.org/wiki/Sabaneta',
     geo: { lat: 6.1515, lng: -75.6166 },
     intro:
-      'Sabaneta ha tenido uno de los crecimientos inmobiliarios y comerciales más rápidos del Valle de Aburrá. Nuevos conjuntos residenciales, centros comerciales y negocios de servicios compiten por una población joven que busca y compra desde el celular.',
+      'Para negocios de Sabaneta que reciben consultas sobre productos, servicios o proyectos inmobiliarios, organizamos la atención y el seguimiento con IA. Definimos qué información puede responder el agente, cómo registrar cada solicitud y cuándo pasarla a una persona. La propuesta parte del proceso real de tu negocio.',
     ejes: ['Parque de Sabaneta', 'Mayorca', 'Avenida Las Vegas', 'Aves María', 'Sector de La Doctora'],
     perfil: ['Constructoras e inmobiliarias', 'Gastronomía y entretenimiento', 'Gimnasios y estética', 'Comercio y servicios del hogar'],
     enfoque: ['agentes-ia-whatsapp', 'contenido-video-ia', 'sitios-web-seo-geo', 'automatizacion-procesos-ia', 'capacitacion-ia-empresas'],
@@ -174,7 +174,7 @@ export const ZONAS: Zona[] = [
     wikipedia: 'https://es.wikipedia.org/wiki/Bel%C3%A9n_(Medell%C3%ADn)',
     geo: { lat: 6.2317, lng: -75.6033 },
     intro:
-      'Belén (comuna 16) es una de las comunas más pobladas de Medellín, con mucho comercio de barrio, servicios de salud y gastronomía tradicional. Sus negocios atienden un volumen alto de clientes recurrentes, sobre todo por WhatsApp y redes sociales.',
+      'Para comercios, consultorios y empresas de servicios en Belén evaluamos soluciones de IA para consultas repetidas, agendamiento y seguimiento. Revisamos la información que ya tiene tu equipo y los canales que utilizan sus clientes. Empezamos por una necesidad concreta y dejamos un flujo que pueda supervisarse y ajustarse.',
     ejes: ['Parque de Belén', 'Calle 30', 'Los Molinos', 'Avenida 80', 'Belén La Palma'],
     perfil: ['Clínicas, consultorios y laboratorios', 'Restaurantes y domicilios', 'Comercio minorista', 'Gimnasios y estética'],
     enfoque: ['agentes-ia-whatsapp', 'automatizacion-procesos-ia', 'contenido-video-ia', 'sitios-web-seo-geo', 'capacitacion-ia-empresas'],
@@ -193,7 +193,7 @@ export const ZONAS: Zona[] = [
     wikipedia: 'https://es.wikipedia.org/wiki/Bello_(Antioquia)',
     geo: { lat: 6.3373, lng: -75.5579 },
     intro:
-      'Bello es el segundo municipio más poblado del Valle de Aburrá y la puerta del norte del área metropolitana. Su economía mezcla comercio, servicios, educación e industria, con muchas empresas en proceso de digitalización.',
+      'Para empresas y comercios de Bello diseñamos soluciones que organizan consultas, solicitudes de cotización y seguimiento desde sus canales habituales. Un agente puede responder información aprobada y una automatización puede registrar datos en el sistema correspondiente. El alcance y las revisiones humanas se acuerdan antes de implementarlo.',
     ejes: ['Parque Santander de Bello', 'Puerta del Norte', 'Avenida Regional / Autopista Norte', 'Niquía'],
     perfil: ['Comercio y retail', 'Educación e institutos', 'Servicios de salud', 'Industria y logística'],
     enfoque: ['agentes-ia-whatsapp', 'capacitacion-ia-empresas', 'automatizacion-procesos-ia', 'sitios-web-seo-geo', 'contenido-video-ia'],

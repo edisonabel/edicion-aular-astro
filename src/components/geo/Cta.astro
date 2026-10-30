@@ -1,4 +1,5 @@
 ---
+import EditorialImage from './EditorialImage.astro';
 // Sección Bento CTA oficial de la plantilla Bringer
 interface Props {
   titulo?: string;
@@ -8,16 +9,16 @@ interface Props {
 
 const {
   titulo = "¿Listo para transformar tu operación con IA?",
-  subtitulo = "Conversemos 20 minutos sin compromiso: revisamos tus procesos y te decimos qué resolver primero.",
+  subtitulo = "Conversemos sobre tus procesos y definamos qué conviene resolver primero.",
   enlace = "https://cal.com/edicion-aular-website"
 } = Astro.props;
 ---
-<section class="divider-top" data-appear="fade-up">
+<section id="contacto-proyecto" class="divider-top geo-cta" data-template="services.html#grid-cta">
   <div class="bringer-bento-grid bringer-grid-cta">
     <!-- Card grande con gradiente lava oficial de Bringer -->
     <div class="is-large bringer-masked-block" data-appear="fade-right" data-unload="fade-left">
       <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
-        <div class="bringer-grid-cta-heading">{titulo}</div>
+        <h2 class="bringer-grid-cta-heading">{titulo}</h2>
       </div>
       <div class="bringer-masked-content at-bottom-right">
         <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Agenda tu diagnóstico hoy mismo →</p>
@@ -26,19 +27,19 @@ const {
 
     <!-- Card mediano con texto descriptivo -->
     <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
-      <h3>{subtitulo}</h3>
+      <p class="bringer-large-text">{subtitulo}</p>
     </div>
 
     <!-- Botón cuadrado con icono explore -->
     <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
-      <a href={enlace} target="_blank" rel="noopener" class="bringer-square-button">
+      <a href={enlace} target="_blank" rel="noopener" class="bringer-square-button" aria-label="Agendar una conversación sobre mi proyecto">
         <span class="bringer-icon bringer-icon-explore"></span>
       </a>
     </div>
 
     <!-- Mockup visual oficial de Bringer -->
     <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
-      <img src="/img/home/CAZON-BRAND-MOCKUP-8-copia.webp" alt="Contacto Edición Aular" width="960" height="960" loading="lazy" decoding="async">
+      <EditorialImage imagen="agencia" />
     </div>
   </div>
 </section>

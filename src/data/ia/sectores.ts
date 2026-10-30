@@ -10,6 +10,7 @@ export interface Sector {
   dolores: string[];
   usos: { solucion: string; uso: string }[]; // solucion = slug de SOLUCIONES
   normativa: ('habeasData' | 'decreto1377' | 'ley2300' | 'conpesIA' | 'rnt')[];
+  zonas: string[];
   notaLegal: string;
   faqs: FAQ[];
 }
@@ -17,6 +18,7 @@ export interface Sector {
 export const SECTORES: Sector[] = [
   {
     slug: 'clinicas-estetica',
+    zonas: ['el-poblado', 'laureles', 'calasanz', 'envigado'],
     nombre: 'Clínicas, odontología y estética',
     title: 'IA para Clínicas, Odontología y Estética en Medellín',
     description:
@@ -48,6 +50,7 @@ export const SECTORES: Sector[] = [
   },
   {
     slug: 'turismo-hoteles',
+    zonas: ['el-poblado', 'laureles', 'centro-medellin', 'sabaneta'],
     nombre: 'Turismo y hoteles',
     title: 'IA para Hoteles y Turismo en Medellín | Edición Aular',
     description:
@@ -79,13 +82,14 @@ export const SECTORES: Sector[] = [
   },
   {
     slug: 'inmobiliarias',
+    zonas: ['el-tesoro', 'envigado', 'sabaneta', 'bello'],
     nombre: 'Inmobiliarias y constructoras',
     title: 'IA para Inmobiliarias y Constructoras en Medellín',
     description:
       'Agentes de IA que califican compradores y arrendatarios, agendan visitas y responden por WhatsApp 24/7. Automatización para inmobiliarias en Medellín.',
     h1: 'Soluciones de IA para inmobiliarias y constructoras',
     respuesta:
-      'En el sector inmobiliario, la IA califica a compradores y arrendatarios (presupuesto, forma de pago, requisitos), agenda visitas, responde dudas sobre inmuebles y automatiza el seguimiento hasta el cierre. Edición Aular implementa estas soluciones para inmobiliarias y salas de ventas de Medellín y el Valle de Aburrá.',
+      'En el sector inmobiliario, la IA recoge las necesidades de compradores y arrendatarios (presupuesto, características y fechas), agenda visitas, responde dudas sobre inmuebles y automatiza el seguimiento hasta el cierre. Edición Aular implementa estas soluciones para inmobiliarias y salas de ventas de Medellín y el Valle de Aburrá.',
     dolores: [
       'Muchos interesados que no califican para comprar o arrendar',
       'Asesores perdiendo tiempo en preguntas repetidas',
@@ -93,7 +97,7 @@ export const SECTORES: Sector[] = [
       'Seguimiento manual e irregular a compradores',
     ],
     usos: [
-      { solucion: 'agentes-ia-whatsapp', uso: 'Califica, responde sobre inmuebles y agenda visitas automáticamente.' },
+      { solucion: 'agentes-ia-whatsapp', uso: 'Organiza solicitudes, responde sobre inmuebles y propone visitas al asesor.' },
       { solucion: 'automatizacion-procesos-ia', uso: 'Leads de portales al CRM, seguimiento y recordatorios.' },
       { solucion: 'contenido-video-ia', uso: 'Recorridos, renders animados y piezas de pauta por proyecto.' },
       { solucion: 'sitios-web-seo-geo', uso: 'Páginas por proyecto y barrio (ej. apartamentos en Sabaneta).' },
@@ -102,10 +106,10 @@ export const SECTORES: Sector[] = [
     notaLegal:
       'Los contactos comerciales a prospectos deben respetar los horarios y la frecuencia de la Ley 2300 de 2023, y los datos de los interesados requieren autorización de tratamiento (Ley 1581 de 2012).',
     faqs: [
-      { q: '¿Cómo usar la IA en una inmobiliaria?', a: 'Los usos más rentables son calificar prospectos, agendar visitas, responder preguntas sobre inmuebles y hacer seguimiento automático hasta el cierre.' },
-      { q: '¿Un chatbot puede calificar a un arrendatario?', a: 'Sí: pregunta ingresos, codeudor o póliza, fecha de mudanza y mascotas, y entrega al asesor solo los perfiles que cumplen.' },
+      { q: '¿Cómo usar la IA en una inmobiliaria?', a: 'Algunos usos son organizar consultas de prospectos, agendar visitas, responder preguntas sobre inmuebles y hacer seguimiento automático hasta el cierre.' },
+      { q: '¿Un chatbot puede calificar a un arrendatario?', a: 'Puede recopilar necesidades de búsqueda y fechas con autorización. La revisión de requisitos y cualquier decisión de aprobación o rechazo corresponden al equipo responsable, con criterios transparentes.' },
       { q: '¿Se pueden conectar los leads de los portales inmobiliarios?', a: 'Sí, los leads que llegan por correo o formulario se registran automáticamente en tu CRM y reciben respuesta inmediata por WhatsApp.' },
-      { q: '¿A qué hora puedo escribirle a un prospecto por WhatsApp?', a: 'Según la Ley 2300 de 2023, de lunes a viernes de 7:00 a. m. a 7:00 p. m. y sábados de 8:00 a. m. a 3:00 p. m.; nunca domingos ni festivos, salvo que el cliente inicie la conversación.' },
+      { q: '¿A qué hora puedo escribirle a un prospecto por WhatsApp?', a: 'Según la Ley 2300 de 2023, de lunes a viernes de 7:00 a. m. a 7:00 p. m. y sábados de 8:00 a. m. a 3:00 p. m.; con exclusión de domingos y festivos para contactos comerciales. Las excepciones y autorizaciones deben revisarse según la finalidad del mensaje.' },
     ],
   },
 ];

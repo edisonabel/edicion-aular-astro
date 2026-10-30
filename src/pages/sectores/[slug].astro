@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditorialImage from '../../components/geo/EditorialImage.astro';
+import { IMAGEN_SECTOR } from '../../data/ia/imagenes';
 import JsonLd from '../../components/geo/JsonLd.astro';
 import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
 import FaqList from '../../components/geo/FaqList.astro';
@@ -9,7 +11,7 @@ import { SECTORES, type Sector } from '../../data/ia/sectores';
 import { SOLUCIONES, getSolucion } from '../../data/ia/soluciones';
 import { ZONAS } from '../../data/ia/zonas';
 import { NEGOCIO } from '../../data/ia/negocio';
-import { breadcrumbs, localBusiness, faqPage, service, webPage } from '../../lib/schema';
+import { breadcrumbs, faqPage, service, webPage } from '../../lib/schema';
 
 export function getStaticPaths() {
   return SECTORES.map((sector) => ({
@@ -25,13 +27,10 @@ interface Props {
 const { sector } = Astro.props;
 const pageUrl = `/sectores/${sector.slug}`;
 
-const zonasAfin = ZONAS.filter((z) =>
-  z.perfil.some((p) => p.toLowerCase().includes(sector.slug.split('-')[0]))
-).slice(0, 4);
+const zonasAfin = ZONAS.filter((z) => sector.zonas.includes(z.slug));
 
 const schemaData = [
   webPage({ name: sector.title, description: sector.description, path: pageUrl }),
-  localBusiness(),
   service({
     name: sector.nombre,
     description: sector.description,
@@ -46,18 +45,13 @@ const schemaData = [
   faqPage(sector.faqs)
 ];
 
-const sectorImages: Record<string, string> = {
-  'clinicas-estetica': '/img/inner-pages/service-details01.jpg',
-  'turismo-hoteles': '/img/inner-pages/service-details04.jpg',
-  'inmobiliarias': '/img/inner-pages/service-details02.jpg',
-};
-const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.jpg';
+
 ---
 
 <BaseLayout title={sector.title} description={sector.description}>
   <JsonLd slot="head" data={schemaData} />
 
-  <div class="stg-container">
+  <div class="stg-container geo-page">
     <Breadcrumbs items={[
       { name: "Inicio", href: "/" },
       { name: "Sectores Especializados", href: "/sectores" },
@@ -65,7 +59,7 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
     ]} />
 
     <!-- Section: Intro (Bringer Style) -->
-    <section>
+    <section id="intro-bringer-style" data-template="services.html#intro">
       <div class="stg-row stg-large-gap stg-tp-normal-gap stg-tp-column-reverse">
         <div class="stg-col-6 stg-vertical-space-between" data-unload="fade-left">
           <div class="stg-tp-bottom-gap">
@@ -80,11 +74,11 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
           <div class="align-right" data-appear="fade-right">
             <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="bringer-icon-link">
               <div class="bringer-icon-link-content">
-                <h6>
+                <p class="geo-action-label">
                   Diagnóstico para tu
                   <br>
                   operación en {sector.nombre}
-                </h6>
+                </p>
                 <span class="bringer-label">Agendar Diagnóstico</span>
               </div>
               <div class="bringer-icon-wrap">
@@ -95,13 +89,13 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
         </div>
 
         <div class="stg-col-6 stg-tp-bottom-gap-l bringer-parallax-media" data-appear="fade-left" data-unload="fade-right">
-          <img class="bringer-lazy" src="/img/null.png" data-src={heroImg} alt={sector.nombre} width="1200" height="1200">
+          <EditorialImage imagen={IMAGEN_SECTOR[sector.slug]} prioritaria />
         </div>
       </div>
     </section>
 
     <!-- Section: The Challenge & Our Approach (Bringer Bento Case Study Style) -->
-    <section class="stg-bottom-gap-l">
+    <section class="stg-bottom-gap-l" id="the-challenge-our-approach-bringer-bento-case-study-style" data-template="portfolio-post01.html#the-challenge">
       <!-- Block: The Challenge -->
       <div class="stg-row stg-bottom-gap-l stg-tp-column-reverse">
         <div class="stg-col-8 bringer-block stg-vertical-space-between" data-appear="fade-right" data-unload="fade-left">
@@ -120,7 +114,7 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
 
         <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-left" data-unload="fade-right">
           <div class="bringer-parallax-media">
-            <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/jolu mockup.webp" alt="Desafíos del sector" width="960" height="960">
+            <EditorialImage imagen="diagnostico" />
           </div>
         </div>
       </div>
@@ -129,7 +123,7 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
       <div class="stg-row stg-bottom-gap-l">
         <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-right" data-unload="fade-left">
           <div class="bringer-parallax-media">
-            <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/service-details03.jpg" alt="Solución del sector" width="960" height="960">
+            <EditorialImage imagen={IMAGEN_SECTOR[sector.slug]} />
           </div>
         </div>
 
@@ -143,11 +137,11 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
               {sector.usos.map((u) => {
                 const solObj = getSolucion(u.solucion);
                 return (
-                  <div style="padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                  <div style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--bringer-s-border);">
                     <a href={`/soluciones-ia/${u.solucion}`} class="bringer-arrow-link" style="font-weight: 600;">
                       {solObj ? solObj.nombre : u.solucion}
                     </a>
-                    <p style="font-size: 0.95rem; color: #cbd5e1; margin-top: 0.25rem;">
+                    <p style="font-size: 0.95rem; color: var(--bringer-s-heading); margin-top: 0.25rem;">
                       {u.uso}
                     </p>
                   </div>
@@ -161,22 +155,22 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
 
     <!-- Section: Zonas con Alta Actividad de este Sector -->
     {zonasAfin.length > 0 && (
-      <section class="stg-bottom-gap-l">
+      <section class="stg-bottom-gap-l" id="cobertura-sector" data-template="services.html#our-services">
         <div class="stg-row bringer-section-title">
           <div class="stg-col-8 stg-offset-2 align-center">
-            <h2 data-split-appear="fade-up">Zonas de Medellín con alta actividad de este sector</h2>
+            <h2 data-split-appear="fade-up">Explora la cobertura para tu empresa</h2>
           </div>
         </div>
 
         <div class="bringer-grid-4cols stg-top-gap-s" data-stagger-appear="fade-up">
           {zonasAfin.map((z) => (
             <div class="bringer-block" style="padding: 1.25rem;">
-              <h5>
-                <a href={`/medellin/${z.slug}`} style="color: #fff; text-decoration: none;">
+              <h3>
+                <a href={`/medellin/${z.slug}`} style="color: var(--bringer-s-heading); text-decoration: none;">
                   {z.nombre}
                 </a>
-              </h5>
-              <p style="font-size: 0.85rem; color: #ffffff; opacity: 0.85; margin: 0.25rem 0 0.5rem 0;">{z.municipio}</p>
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--bringer-s-heading); opacity: 0.85; margin: 0.25rem 0 0.5rem 0;">{z.municipio}</p>
               <a href={`/medellin/${z.slug}`} class="bringer-arrow-link" style="font-size: 0.85rem;">
                 Ver dinámicas locales
               </a>
@@ -195,7 +189,7 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
     <!-- Section: Bento CTA Oficial Bringer -->
     <Cta 
       titulo={`¿Administras una empresa en ${sector.nombre}?`}
-      subtitulo="Diseñamos un flujo de atención o prospección específico para tus clientes, cuidando siempre la legalidad de datos y la imagen de tu marca."
+      subtitulo="Diseñamos un flujo de atención o prospección específico para tus clientes, con requisitos de datos y revisión humana definidos desde el inicio."
       enlace={NEGOCIO.agenda}
     />
   </div>

@@ -1,0 +1,970 @@
+{
+  "paginas": 21,
+  "bloques_json_ld": 236,
+  "errores": [],
+  "detalle": [
+    {
+      "ruta": "/medellin/belen/",
+      "titulo": "IA para empresas en Belén | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en Belén (Medellín). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en Belén.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en Belén",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en Belén",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en Belén?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/bello/",
+      "titulo": "IA para empresas en Bello | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en Bello (Bello). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en Bello.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en Bello",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en Bello",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en Bello?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/calasanz/",
+      "titulo": "IA para empresas en Calasanz | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en Calasanz (Medellín). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en Calasanz.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en Calasanz",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en Calasanz",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en Calasanz?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/centro-medellin/",
+      "titulo": "IA para empresas en Centro de Medellín | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en Centro de Medellín (Medellín). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en Centro de Medellín.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en Centro de Medellín",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en Centro de Medellín",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en Centro de Medellín?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/el-poblado/",
+      "titulo": "IA para empresas en El Poblado | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en El Poblado (Medellín). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en El Poblado.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en El Poblado",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en El Poblado",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en El Poblado?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/el-tesoro/",
+      "titulo": "IA para empresas en El Tesoro | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en El Tesoro (Medellín). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en El Tesoro.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en El Tesoro",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en El Tesoro",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en El Tesoro?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/envigado/",
+      "titulo": "IA para empresas en Envigado | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en Envigado (Envigado). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en Envigado.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en Envigado",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en Envigado",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en Envigado?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/",
+      "titulo": "Soluciones con IA en Medellín y Valle de Aburrá | Edición Aular",
+      "description": "Implementación local de soluciones de Inteligencia Artificial para empresas y pymes en Medellín, Envigado, Itagüí, Sabaneta y Bello. Agentes, automatización y SEO local.",
+      "secciones": [
+        {
+          "id": "page-title-bringer-style",
+          "titulo": "Soluciones de IA en el Valle de Aburrá.",
+          "origen": "services.html#page-title"
+        },
+        {
+          "id": "intro-con-parallax-media-bringer-style",
+          "titulo": "Soluciones pensadas para tu operación local.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "directorio-de-zonas-bringer-2-cols-grid",
+          "titulo": "Zonas comerciales con atención especializada",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios de IA en Medellín",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tu empresa está ubicada en Medellín o el Valle de Aburrá?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "agencia": 1
+      },
+      "faqs": 3
+    },
+    {
+      "ruta": "/medellin/itagui/",
+      "titulo": "IA para empresas en Itagüí | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en Itagüí (Itagüí). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en Itagüí.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en Itagüí",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en Itagüí",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en Itagüí?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/laureles/",
+      "titulo": "IA para empresas en Laureles | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en Laureles (Medellín). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en Laureles.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en Laureles",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en Laureles",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en Laureles?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/medellin/sabaneta/",
+      "titulo": "IA para empresas en Sabaneta | Edición Aular",
+      "description": "Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en Sabaneta (Sabaneta). Asesoría local.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para empresas en Sabaneta.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "dinamica-comercial-y-caso-real-bringer-bento-case-study-style",
+          "titulo": "Contexto para diseñar la solución",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "soluciones-recomendadas-bringer-3-cols-square-grid",
+          "titulo": "Soluciones para evaluar en Sabaneta",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "otras-zonas-del-valle-de-aburra",
+          "titulo": "Otras zonas con atención presencial",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre servicios en Sabaneta",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Tienes una empresa en Sabaneta?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "medellin": 1,
+        "diagnostico": 1,
+        "canales": 1,
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/sectores/clinicas-estetica/",
+      "titulo": "IA para Clínicas, Odontología y Estética en Medellín",
+      "description": "Agentes de IA que agendan valoraciones, confirman citas y responden precios por WhatsApp para clínicas, consultorios odontológicos y centros de estética.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para clínicas, consultorios odontológicos y centros de estética.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "the-challenge-our-approach-bringer-bento-case-study-style",
+          "titulo": "Los retos de este sector",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "cobertura-sector",
+          "titulo": "Explora la cobertura para tu empresa",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre IA para Clínicas, odontología y estética",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Administras una empresa en Clínicas, odontología y estética?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "clinica": 2,
+        "diagnostico": 1,
+        "agencia": 1
+      },
+      "faqs": 4
+    },
+    {
+      "ruta": "/sectores/",
+      "titulo": "IA para empresas por sector | Edición Aular",
+      "description": "Implementación especializada de Inteligencia Artificial para clínicas y estética, turismo y hoteles, e inmobiliarias en Medellín y Colombia.",
+      "secciones": [
+        {
+          "id": "page-title-bringer-style",
+          "titulo": "Soluciones de IA por Sector.",
+          "origen": "services.html#page-title"
+        },
+        {
+          "id": "listado-de-sectores-bringer-bento-style",
+          "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre IA por sector",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Quieres saber cómo la IA se aplica a tu industria?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "agencia": 1
+      },
+      "faqs": 2
+    },
+    {
+      "ruta": "/sectores/inmobiliarias/",
+      "titulo": "IA para Inmobiliarias y Constructoras en Medellín",
+      "description": "Agentes de IA que califican compradores y arrendatarios, agendan visitas y responden por WhatsApp 24/7. Automatización para inmobiliarias en Medellín.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para inmobiliarias y constructoras.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "the-challenge-our-approach-bringer-bento-case-study-style",
+          "titulo": "Los retos de este sector",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "cobertura-sector",
+          "titulo": "Explora la cobertura para tu empresa",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre IA para Inmobiliarias y constructoras",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Administras una empresa en Inmobiliarias y constructoras?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "inmobiliaria": 2,
+        "diagnostico": 1,
+        "agencia": 1
+      },
+      "faqs": 4
+    },
+    {
+      "ruta": "/sectores/turismo-hoteles/",
+      "titulo": "IA para Hoteles y Turismo en Medellín | Edición Aular",
+      "description": "Agentes de IA bilingües para hoteles, hostales, agencias y tours en Medellín: reservas por WhatsApp 24/7, respuestas en inglés y automatización.",
+      "secciones": [
+        {
+          "id": "intro-bringer-style",
+          "titulo": "Soluciones de IA para hoteles, hostales y empresas de turismo.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "the-challenge-our-approach-bringer-bento-case-study-style",
+          "titulo": "Los retos de este sector",
+          "origen": "portfolio-post01.html#the-challenge"
+        },
+        {
+          "id": "cobertura-sector",
+          "titulo": "Explora la cobertura para tu empresa",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre IA para Turismo y hoteles",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Administras una empresa en Turismo y hoteles?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "hotel": 2,
+        "diagnostico": 1,
+        "agencia": 1
+      },
+      "faqs": 4
+    },
+    {
+      "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+      "titulo": "Chatbot con IA para WhatsApp en Medellín | Edición Aular",
+      "description": "Agentes de IA que atienden, califican y agendan clientes por WhatsApp y tu web 24/7. Implementación con API oficial de Meta en Medellín.",
+      "secciones": [
+        {
+          "id": "intro-bringer-service-details-html-style",
+          "titulo": "Agentes de IA para WhatsApp y web en Medellín",
+          "origen": "service-details.html#intro"
+        },
+        {
+          "id": "proceso",
+          "titulo": "Del diagnóstico a la puesta en marcha",
+          "origen": "home06.html#steps"
+        },
+        {
+          "id": "que-incluye",
+          "titulo": "Qué incluye esta solución",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
+          "titulo": "Variables de inversión y alcance",
+          "origen": "pricing.html#prices"
+        },
+        {
+          "id": "explorar-soluciones",
+          "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre Agentes de IA para WhatsApp y web",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Interesado en implementar Agentes de IA para WhatsApp y web?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "canales": 1,
+        "diagnostico": 1,
+        "agencia": 1
+      },
+      "faqs": 6
+    },
+    {
+      "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+      "titulo": "Automatización de Procesos con IA en Medellín | Edición Aular",
+      "description": "Automatizamos tareas repetitivas con IA: CRM, facturas, agendamiento, reportes y seguimiento de clientes. Soluciones a la medida para empresas de Medellín.",
+      "secciones": [
+        {
+          "id": "intro-bringer-service-details-html-style",
+          "titulo": "Automatización de procesos con IA para empresas en Medellín",
+          "origen": "service-details.html#intro"
+        },
+        {
+          "id": "proceso",
+          "titulo": "Del diagnóstico a la puesta en marcha",
+          "origen": "home06.html#steps"
+        },
+        {
+          "id": "que-incluye",
+          "titulo": "Qué incluye esta solución",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
+          "titulo": "Variables de inversión y alcance",
+          "origen": "pricing.html#prices"
+        },
+        {
+          "id": "explorar-soluciones",
+          "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre Automatización de procesos con IA",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Interesado en implementar Automatización de procesos con IA?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "automatizacion": 1,
+        "diagnostico": 1,
+        "agencia": 1
+      },
+      "faqs": 5
+    },
+    {
+      "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+      "titulo": "Capacitación en IA para Empresas en Medellín | Edición Aular",
+      "description": "Talleres prácticos de inteligencia artificial para equipos de ventas, marketing y operación. Casos prácticos con tus procesos reales en Medellín.",
+      "secciones": [
+        {
+          "id": "intro-bringer-service-details-html-style",
+          "titulo": "Capacitación en inteligencia artificial para equipos",
+          "origen": "service-details.html#intro"
+        },
+        {
+          "id": "proceso",
+          "titulo": "Del diagnóstico a la puesta en marcha",
+          "origen": "home06.html#steps"
+        },
+        {
+          "id": "que-incluye",
+          "titulo": "Qué incluye esta solución",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "programa-formacion",
+          "titulo": "Un taller que continúa en el trabajo diario",
+          "origen": "home06.html#steps"
+        },
+        {
+          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
+          "titulo": "Variables de inversión y alcance",
+          "origen": "pricing.html#prices"
+        },
+        {
+          "id": "explorar-soluciones",
+          "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre Capacitación en IA para equipos",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Interesado en implementar Capacitación en IA para equipos?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "formacion": 1,
+        "diagnostico": 1,
+        "agencia": 1
+      },
+      "faqs": 4
+    },
+    {
+      "ruta": "/soluciones-ia/contenido-video-ia/",
+      "titulo": "Contenido, Video y Fotos de Producto con IA | Edición Aular",
+      "description": "Producción audiovisual potenciada con IA: fotos de producto, videos cortos, avatares y piezas para pauta en menos tiempo. Atención en Medellín.",
+      "secciones": [
+        {
+          "id": "intro-bringer-service-details-html-style",
+          "titulo": "Contenido, video y fotografía de producto con IA en Medellín",
+          "origen": "service-details.html#intro"
+        },
+        {
+          "id": "proceso",
+          "titulo": "Del diagnóstico a la puesta en marcha",
+          "origen": "home06.html#steps"
+        },
+        {
+          "id": "que-incluye",
+          "titulo": "Qué incluye esta solución",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
+          "titulo": "Variables de inversión y alcance",
+          "origen": "pricing.html#prices"
+        },
+        {
+          "id": "explorar-soluciones",
+          "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre Contenido, video y fotos de producto con IA",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Interesado en implementar Contenido, video y fotos de producto con IA?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "contenido": 1,
+        "diagnostico": 1,
+        "agencia": 1
+      },
+      "faqs": 4
+    },
+    {
+      "ruta": "/soluciones-ia/",
+      "titulo": "Soluciones de IA en Medellín | Edición Aular",
+      "description": "Soluciones de IA en Medellín: agentes de WhatsApp, automatización, contenido, formación y sitios web con SEO. Alcance y medición a la medida.",
+      "secciones": [
+        {
+          "id": "page-title-bringer-services-html-style",
+          "titulo": "Soluciones con Inteligencia Artificial.",
+          "origen": "services.html#page-title"
+        },
+        {
+          "id": "intro-con-parallax-media-bringer-services-html-style",
+          "titulo": "Tecnología enfocada en resultados comerciales medibles.",
+          "origen": "services.html#intro"
+        },
+        {
+          "id": "criterios",
+          "titulo": "Una solución útil empieza con buenas decisiones",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "detailed-services-list-bringer-services-html-detailed-list",
+          "titulo": "Catálogo de soluciones prácticas con Inteligencia Artificial.",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "sectores-especializados-bringer-3-cols-square-grid",
+          "titulo": "Sectores comerciales prioritarios",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "zonas-de-medellin-bringer-grid",
+          "titulo": "Cobertura en Medellín y Valle de Aburrá",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre soluciones con IA",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Listo para implementar IA en tu empresa?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "agencia": 2
+      },
+      "faqs": 3
+    },
+    {
+      "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+      "titulo": "Sitios web con SEO y GEO en Medellín | Edición Aular",
+      "description": "Diseñamos sitios web optimizados para Google y para respuestas de IA (ChatGPT, Gemini, AI Overviews). SEO local y GEO para empresas de Medellín.",
+      "secciones": [
+        {
+          "id": "intro-bringer-service-details-html-style",
+          "titulo": "Sitios web con SEO y contenido preparado para búsquedas con IA",
+          "origen": "service-details.html#intro"
+        },
+        {
+          "id": "proceso",
+          "titulo": "Del diagnóstico a la puesta en marcha",
+          "origen": "home06.html#steps"
+        },
+        {
+          "id": "que-incluye",
+          "titulo": "Qué incluye esta solución",
+          "origen": "service-details.html#offer"
+        },
+        {
+          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
+          "titulo": "Variables de inversión y alcance",
+          "origen": "pricing.html#prices"
+        },
+        {
+          "id": "explorar-soluciones",
+          "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "marco-normativo",
+          "titulo": "Datos y comunicaciones: referencias para el proyecto",
+          "origen": "services.html#what-makes-us-best"
+        },
+        {
+          "id": "preguntas-frecuentes",
+          "titulo": "Preguntas frecuentes sobre Sitios web con IA + SEO/GEO",
+          "origen": "pricing.html#faq"
+        },
+        {
+          "id": "contacto-proyecto",
+          "titulo": "¿Interesado en implementar Sitios web con IA + SEO/GEO?",
+          "origen": "services.html#grid-cta"
+        }
+      ],
+      "imagenes": {
+        "web": 1,
+        "diagnostico": 1,
+        "agencia": 1
+      },
+      "faqs": 5
+    }
+  ]
+}

@@ -14,7 +14,7 @@ export interface Solucion {
   tiempo: string;
   normativa: ('habeasData' | 'decreto1377' | 'ley2300' | 'conpesIA' | 'rnt')[];
   servicioRelacionado?: { href: string; label: string };
-  faqs: FAQ[];             // preguntas reales tipo "People Also Ask"
+  faqs: FAQ[];             // preguntas frecuentes del servicio; sin atribuirlas a investigaciones no documentadas
 }
 
 export const SOLUCIONES: Solucion[] = [
@@ -33,7 +33,7 @@ export const SOLUCIONES: Solucion[] = [
     incluye: [
       'Diagnóstico de las 20–30 preguntas que más recibes y de tu proceso de venta',
       'Entrenamiento del agente con tu catálogo, precios, políticas y tono de marca',
-      'Conexión con la API oficial de WhatsApp Business (sin riesgo de bloqueo del número)',
+      'Conexión con la API oficial de WhatsApp Business, sujeta a las políticas de Meta',
       'Agendamiento automático (Google Calendar, Cal.com u otro) y registro en CRM',
       'Traspaso a humano con contexto de la conversación',
       'Autorización de tratamiento de datos (Ley 1581) dentro del flujo',
@@ -56,10 +56,10 @@ export const SOLUCIONES: Solucion[] = [
     normativa: ['habeasData', 'ley2300'],
     servicioRelacionado: { href: '/diseno-web', label: 'Diseño web' },
     faqs: [
-      { q: '¿Cuánto cuesta un chatbot con IA para WhatsApp en Colombia?', a: 'Depende de cuatro componentes: la implementación (pago único), la plataforma mensual, el consumo de IA y las tarifas de Meta por conversación. El rango varía según integraciones y volumen; en Edición Aular cotizamos tras un diagnóstico gratuito para que pagues solo por lo que tu negocio necesita.' },
+      { q: '¿Cuánto cuesta un chatbot con IA para WhatsApp en Colombia?', a: 'Depende de cuatro componentes: la implementación (pago único), la plataforma mensual, el consumo de IA y las tarifas vigentes de mensajería de Meta. El rango varía según integraciones y volumen; en Edición Aular cotizamos tras un diagnóstico gratuito para que pagues solo por lo que tu negocio necesita.' },
       { q: '¿Es legal usar un bot en WhatsApp para vender?', a: 'Sí, si usas la API oficial de WhatsApp Business, pides autorización de tratamiento de datos (Ley 1581 de 2012) y respetas los horarios y frecuencia de contacto de la Ley 2300 de 2023 cuando el bot inicia la conversación.' },
       { q: '¿El bot de IA reemplaza a mis asesores?', a: 'No. Resuelve las preguntas repetitivas y califica prospectos; los casos complejos o de cierre pasan a un asesor con todo el contexto. El objetivo es que tu equipo atienda menos chats y cierre más.' },
-      { q: '¿Puedo usar mi número actual de WhatsApp?', a: 'Sí. El número se migra a la API oficial de WhatsApp Business. Durante la migración se deja de usar en la app normal del celular, por eso planificamos el cambio contigo.' },
+      { q: '¿Puedo usar mi número actual de WhatsApp?', a: 'Revisamos la cuenta y la elegibilidad del número. Según las opciones vigentes de Meta y del proveedor, puede ser posible migrarlo o mantener la app mediante coexistencia. Confirmamos el procedimiento y sus efectos antes de hacer cambios.' },
       { q: '¿Qué diferencia hay entre un chatbot normal y un agente de IA?', a: 'Un chatbot tradicional sigue menús fijos ("marque 1"). Un agente de IA entiende lenguaje natural, consulta tu información y ejecuta acciones como agendar o registrar un cliente en el CRM.' },
       { q: '¿En cuánto tiempo queda funcionando?', a: 'Un agente básico con FAQ y agenda puede quedar listo en 1–2 semanas; con integraciones a CRM, pagos o inventario, entre 3 y 4 semanas.' },
     ],
@@ -113,7 +113,7 @@ export const SOLUCIONES: Solucion[] = [
     keyword: 'producción de contenido con IA en Medellín',
     title: 'Contenido, Video y Fotos de Producto con IA | Edición Aular',
     description:
-      'Producción audiovisual potenciada con IA: fotos de producto, videos cortos, avatares y piezas para pauta en menos tiempo. Estudio en Medellín.',
+      'Producción audiovisual potenciada con IA: fotos de producto, videos cortos, avatares y piezas para pauta en menos tiempo. Atención en Medellín.',
     h1: 'Contenido, video y fotografía de producto con IA en Medellín',
     respuesta:
       'La producción de contenido con IA combina dirección creativa humana con herramientas de generación de imagen, video y voz para producir fotos de producto, videos cortos y piezas publicitarias más rápido y en más versiones. Edición Aular une su experiencia en producción audiovisual con flujos de IA para mantener la calidad y la identidad de tu marca.',
@@ -153,19 +153,19 @@ export const SOLUCIONES: Solucion[] = [
     slug: 'sitios-web-seo-geo',
     nombre: 'Sitios web con IA + SEO/GEO',
     keyword: 'posicionamiento en ChatGPT y Google para empresas en Medellín',
-    title: 'Sitios Web con SEO y GEO: Aparece en Google y ChatGPT',
+    title: 'Sitios web con SEO y GEO en Medellín | Edición Aular',
     description:
       'Diseñamos sitios web optimizados para Google y para respuestas de IA (ChatGPT, Gemini, AI Overviews). SEO local y GEO para empresas de Medellín.',
-    h1: 'Sitios web con IA, SEO y GEO para aparecer en Google y en ChatGPT',
+    h1: 'Sitios web con SEO y contenido preparado para búsquedas con IA',
     respuesta:
-      'El GEO (Generative Engine Optimization) es la optimización de un sitio para que asistentes como ChatGPT, Gemini, Perplexity y los AI Overviews de Google lo citen como fuente. Combina SEO técnico, datos estructurados, respuestas directas, estadísticas con fuente y archivos como llms.txt. Edición Aular construye sitios rápidos preparados para ambos buscadores.',
+      'El SEO mejora la comprensión y el rastreo de tu sitio en buscadores. El GEO extiende ese trabajo a contenidos claros y verificables que puedan servir de fuente en respuestas con IA. En Edición Aular trabajamos estructura, rendimiento, información de negocio y medición, sin garantizar posiciones, recomendaciones ni citas.',
     problema:
-      'Cada vez más clientes preguntan a una IA antes de buscar en Google. Si tu web no tiene respuestas claras, datos verificables y estructura que las máquinas entiendan, la IA recomienda a tu competencia.',
+      'Si tu web no explica con claridad qué haces, a quién ayudas y dónde atiendes, resulta difícil encontrar y comparar tus servicios. Organizamos esa información y resolvemos los problemas técnicos que dificultan su rastreo.',
     incluye: [
       'Arquitectura de contenido por servicio, zona y sector',
       'Investigación de preguntas reales de clientes ("People Also Ask")',
-      'Datos estructurados Schema.org: LocalBusiness, Service, FAQPage',
-      'Archivo /llms.txt y robots.txt preparados para bots de IA',
+      'Datos estructurados Schema.org coherentes con la información publicada',
+      'Control de rastreo con robots.txt y mapa editorial opcional en llms.txt',
       'Velocidad y Core Web Vitals optimizados (sitios estáticos)',
       'Enlazado interno estratégico y SEO local para Medellín y Valle de Aburrá',
       'Asistente de IA integrado en la web cuando aporta valor',
@@ -188,42 +188,42 @@ export const SOLUCIONES: Solucion[] = [
     faqs: [
       { q: '¿Qué es el GEO y en qué se diferencia del SEO?', a: 'El SEO busca posicionar en los resultados de Google; el GEO busca que los motores generativos (ChatGPT, Gemini, AI Overviews) citen tu sitio en sus respuestas. Se complementan: el GEO se apoya en un buen SEO técnico y añade respuestas directas, datos con fuente y estructura legible por IA.' },
       { q: '¿Cómo hago para que ChatGPT recomiende mi empresa?', a: 'Necesitas presencia consistente: un sitio con respuestas claras sobre lo que haces y dónde, perfil de Google Business completo, reseñas, menciones en otros sitios y datos estructurados. No existe un pago para aparecer; se gana con autoridad y claridad.' },
-      { q: '¿Qué es el archivo llms.txt?', a: 'Es un archivo en la raíz del sitio (tusitio.com/llms.txt) que resume, en texto plano, quién eres, qué ofreces y cuáles son tus páginas clave, para que los modelos de lenguaje entiendan tu web rápidamente.' },
-      { q: '¿Cuánto tiempo tarda en verse el SEO local?', a: 'En búsquedas locales poco competidas pueden verse movimientos en 4–8 semanas; en términos competidos, de 3 a 6 meses. Las citas en respuestas de IA suelen llegar después de consolidar el SEO.' },
+      { q: '¿Qué es el archivo llms.txt?', a: 'Es una convención propuesta para resumir el sitio y enlazar sus páginas clave en texto. Puede ayudar a algunas herramientas a consultar el contenido, pero no es un requisito de Google ni garantiza visibilidad o citas.' },
+      { q: '¿Cuánto tiempo tarda en verse el SEO local?', a: 'En búsquedas locales poco competidas pueden verse movimientos en 4–8 semanas; en términos competidos, de 3 a 6 meses. La indexación, las posiciones y las citas dependen de cada buscador; estos plazos son orientativos y no una garantía.' },
       { q: '¿Sirve tener una página por barrio de Medellín?', a: 'Sí, siempre que cada página aporte información útil y distinta para esa zona. Las páginas duplicadas cambiando solo el nombre del barrio pueden ser penalizadas por Google.' },
     ],
   },
   {
     slug: 'capacitacion-ia-empresas',
-    nombre: 'Capacitación y mentoría en IA para equipos',
+    nombre: 'Capacitación en IA para equipos',
     keyword: 'capacitación en inteligencia artificial para empresas en Medellín',
     title: 'Capacitación en IA para Empresas en Medellín | Edición Aular',
     description:
-      'Talleres y mentoría en inteligencia artificial para equipos de ventas, marketing y operación. Casos prácticos con tus procesos reales en Medellín.',
-    h1: 'Capacitación y mentoría en inteligencia artificial para equipos',
+      'Talleres prácticos de inteligencia artificial para equipos de ventas, marketing y operación. Casos prácticos con tus procesos reales en Medellín.',
+    h1: 'Capacitación en inteligencia artificial para equipos',
     respuesta:
       'La capacitación en IA para empresas enseña a cada área (ventas, marketing, servicio, operación) a usar herramientas como ChatGPT, Gemini o Claude sobre sus propias tareas, con reglas claras de seguridad y calidad. Edición Aular diseña talleres prácticos con los procesos reales de tu empresa, no cursos genéricos.',
     problema:
-      'Muchos empleados ya usan IA por su cuenta, sin criterio común ni cuidado con los datos de la empresa. El resultado: resultados desiguales y riesgos de confidencialidad.',
+      'Muchos empleados ya usan IA por su cuenta, sin criterio común ni cuidado con los datos de la empresa. Esto produce trabajo desigual y riesgos de confidencialidad.',
     incluye: [
       'Diagnóstico de madurez en IA por área',
       'Talleres prácticos presenciales en Medellín o virtuales',
       'Biblioteca de prompts y flujos para tu empresa',
       'Política interna de uso de IA y manejo de datos',
-      'Mentoría de seguimiento para implementar lo aprendido',
-      'Academias internas a medida (como Academia de Ventas)',
+      'Sesiones de seguimiento para implementar lo aprendido',
+      'Programas internos por módulos, adaptados a cada área',
     ],
     costoDepende: [
       { factor: 'Número de participantes', impacto: 'Grupo reducido vs. toda la empresa' },
       { factor: 'Formato', impacto: 'Taller único, programa por módulos o academia continua' },
       { factor: 'Personalización', impacto: 'Contenido estándar vs. casos con tus procesos' },
-      { factor: 'Seguimiento', impacto: 'Sin mentoría vs. acompañamiento mensual' },
+      { factor: 'Seguimiento', impacto: 'Taller puntual o acompañamiento mensual' },
     ],
     proceso: [
       { paso: 'Diagnóstico', detalle: 'Encuesta y entrevistas para medir el nivel actual.' },
       { paso: 'Diseño del programa', detalle: 'Módulos por área con ejercicios reales.' },
       { paso: 'Formación', detalle: 'Sesiones prácticas con entregables.' },
-      { paso: 'Seguimiento', detalle: 'Mentoría y medición de adopción.' },
+      { paso: 'Seguimiento', detalle: 'Acompañamiento y medición de adopción.' },
     ],
     tiempo: 'Talleres desde una jornada; programas de 4 a 12 semanas.',
     normativa: ['habeasData', 'conpesIA'],

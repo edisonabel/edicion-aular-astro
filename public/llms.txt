@@ -8,7 +8,7 @@
 - [Automatización de Procesos con IA](https://edicionaular.com/soluciones-ia/automatizacion-procesos-ia): Conexión de CRM, lectura inteligente de facturas, agendamiento y reportes sin fricción operativa.
 - [Contenido, Video y Fotos de Producto con IA](https://edicionaular.com/soluciones-ia/contenido-video-ia): Producción audiovisual y fotografía de producto potenciada con modelos generativos para marcas y pauta publicitaria.
 - [Sitios Web con SEO y GEO](https://edicionaular.com/soluciones-ia/sitios-web-seo-geo): Sitios web ultra rápidos en Astro optimizados para Google, ChatGPT Search, Perplexity y Google AI Overviews.
-- [Capacitación y Mentoría en IA para Empresas](https://edicionaular.com/soluciones-ia/capacitacion-ia-empresas): Talleres prácticos y academias a medida (como Academia de Ventas) para entrenar equipos con casos y procesos reales.
+- [Capacitación en IA para Empresas](https://edicionaular.com/soluciones-ia/capacitacion-ia-empresas): Talleres prácticos y programas internos a medida para entrenar equipos con casos y procesos reales.
 
 ## Cobertura Local en Medellín y Valle de Aburrá
 
@@ -25,20 +25,20 @@
 
 ## Sectores Especializados
 
-- [IA para Clínicas, Odontología y Estética](https://edicionaular.com/sectores/clinicas-estetica): Reducción de inasistencias, valoraciones 24/7 y cumplimiento estricto de Habeas Data en salud (Ley 1581 de 2012).
+- [IA para Clínicas, Odontología y Estética](https://edicionaular.com/sectores/clinicas-estetica): Gestión de consultas y citas con revisión de permisos y tratamiento de datos de salud.
 - [IA para Hoteles y Turismo](https://edicionaular.com/sectores/turismo-hoteles): Agentes bilingües de reservas directas por WhatsApp y visualización de Registro Nacional de Turismo (RNT).
-- [IA para Inmobiliarias y Constructoras](https://edicionaular.com/sectores/inmobiliarias): Calificación de compradores y arrendatarios, agenda de visitas y cumplimiento de Ley 2300 de 2023.
+- [IA para Inmobiliarias y Constructoras](https://edicionaular.com/sectores/inmobiliarias): Organización de solicitudes y agenda de visitas para revisión del equipo comercial.
 
 ## Marco Normativo y Cumplimiento en Colombia
 
 - [Ley 1581 de 2012](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981): Régimen General de Protección de Datos Personales (Habeas Data).
-- [Ley 2300 de 2023](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=215451): Ley Dejen de Fregar sobre canales y horarios de contacto comercial.
+- [Ley 2300 de 2023](https://normativa.colpensiones.gov.co/compilacion/docs/ley_2300_2023.htm): Ley Dejen de Fregar sobre canales y horarios de contacto comercial.
 - [CONPES 4144 de 2025](https://colaboracion.dnp.gov.co/CDT/Conpes/Econ%C3%B3micos/4144.pdf): Política Nacional de Inteligencia Artificial de Colombia.
 
-## Datos de Contacto y Verificación
+## Datos de contacto
 
 - Nombre: Edición Aular
-- Ubicación: Medellín, Antioquia, Colombia
+- Base de atención: Medellín, Antioquia, Colombia. La cobertura no implica oficinas en cada zona.
 - Perfil Google Business: https://www.google.com/maps?cid=489510875751096164
 - Sitio Web: https://edicionaular.com
 - Contacto Directo: +57 300 273 0128
