@@ -104,28 +104,34 @@ const schemaData = [
       </div>
     </section>
 
-    <!-- Section: Counters / Estadísticas de Contexto (Bringer Counters Style) -->
+    <!-- Section: Counters / Estadísticas de Contexto -->
     <section class="stg-bottom-gap-l">
       <div class="bringer-grid-3cols bringer-tp-grid-1col stg-normal-gap" data-stagger-appear="zoom-in" data-stagger-delay="100">
         <!-- Counter Item 01 -->
-        <div class="bringer-counter bringer-block" data-delay="2000">
-          <div class="bringer-counter-number" data-prefix="+" data-suffix="%">90</div>
-          <div class="bringer-counter-label">Uso de WhatsApp en Colombia</div>
-          <p class="bringer-meta" style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; margin-bottom: 0;">Fuente: {ESTADISTICAS.whatsapp.fuente}</p>
+        <div class="bringer-block bringer-stat-card" data-appear="zoom-in">
+          <div class="bringer-counter" data-delay="2000">
+            <div class="bringer-counter-number" data-prefix="+" data-suffix="%">90</div>
+            <div class="bringer-counter-label">Uso de WhatsApp en Colombia</div>
+            <div class="bringer-counter-source">Fuente: {ESTADISTICAS.whatsapp.fuente}</div>
+          </div>
         </div>
 
         <!-- Counter Item 02 -->
-        <div class="bringer-counter bringer-block" data-delay="2000">
-          <div class="bringer-counter-number" data-suffix="%">40</div>
-          <div class="bringer-counter-label">Empresas en adopción de IA (4 de 10)</div>
-          <p class="bringer-meta" style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; margin-bottom: 0;">Fuente: {ESTADISTICAS.adopcionIA.fuente}</p>
+        <div class="bringer-block bringer-stat-card" data-appear="zoom-in" data-delay="100">
+          <div class="bringer-counter" data-delay="2000">
+            <div class="bringer-counter-number" data-suffix="%">40</div>
+            <div class="bringer-counter-label">Empresas en adopción de IA (4 de 10)</div>
+            <div class="bringer-counter-source">Fuente: {ESTADISTICAS.adopcionIA.fuente}</div>
+          </div>
         </div>
 
         <!-- Counter Item 03 -->
-        <div class="bringer-counter bringer-block" data-delay="2000">
-          <div class="bringer-counter-number" data-suffix="%">62</div>
-          <div class="bringer-counter-label">Iniciativas estancadas en piloto</div>
-          <p class="bringer-meta" style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; margin-bottom: 0;">Fuente: {ESTADISTICAS.pilotos.fuente}</p>
+        <div class="bringer-block bringer-stat-card" data-appear="zoom-in" data-delay="200">
+          <div class="bringer-counter" data-delay="2000">
+            <div class="bringer-counter-number" data-suffix="%">62</div>
+            <div class="bringer-counter-label">Iniciativas estancadas en piloto</div>
+            <div class="bringer-counter-source">Fuente: {ESTADISTICAS.pilotos.fuente}</div>
+          </div>
         </div>
       </div>
     </section>
@@ -221,7 +227,7 @@ const schemaData = [
     <Normativa claves={['habeasData', 'ley2300', 'conpesIA']} />
 
     <!-- Section: FAQs con Acordeón Nativo -->
-    <FaqList faqs={faqsHub} titulo="Preguntas frecuentes sobre soluciones con IA" />
+    <FaqList faqs={faqsHub} titulo="Preguntas frecuentes sobre soluciones con IA" categoria="Soluciones IA" />
 
     <!-- Section: Bento CTA Oficial Bringer -->
     <Cta 

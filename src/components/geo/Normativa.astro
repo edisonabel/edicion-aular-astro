@@ -20,8 +20,8 @@ const gridClass = claves.length === 3
 <section class="stg-bottom-gap-l" id="marco-normativo">
   <div class="stg-row stg-bottom-gap">
     <div class="stg-col-8">
-      <h2 data-split-appear="fade-up">Marco normativo y cumplimiento en Colombia</h2>
-      {nota && <p class="bringer-large-text" style="color: #cbd5e1; margin-top: 0.5rem;">{nota}</p>}
+      <h2 data-split-appear="fade-up" style="color: #ffffff;">Marco normativo y cumplimiento en Colombia</h2>
+      {nota && <p class="bringer-large-text" style="color: #ffffff; margin-top: 0.5rem;">{nota}</p>}
     </div>
   </div>
 
@@ -29,26 +29,26 @@ const gridClass = claves.length === 3
     {claves.map((k) => (
       <div class="bringer-block stg-vertical-space-between" style="padding: 1.75rem;">
         <div>
-          <span class="bringer-label">{LABELS[k] || 'Normativa Oficial'}</span>
+          <span class="bringer-label" style="color: #ffffff; opacity: 0.85;">{LABELS[k] || 'Normativa Oficial'}</span>
           <h5 style="margin-top: 0.5rem; margin-bottom: 1rem; line-height: 1.35;">
-            <a href={NORMATIVA[k].url} target="_blank" rel="noopener" class="bringer-highlight" style="text-decoration: underline; text-underline-offset: 4px;">
+            <a href={NORMATIVA[k].url} target="_blank" rel="noopener" class="bringer-highlight" style="color: #ffffff; text-decoration: underline; text-underline-offset: 4px;">
               {NORMATIVA[k].nombre}
             </a>
           </h5>
-          <p style="font-size: 0.95rem; line-height: 1.65; color: #cbd5e1; margin-bottom: 0;">
+          <p style="font-size: 0.95rem; line-height: 1.65; color: #ffffff; margin-bottom: 0;">
             {NORMATIVA[k].resumen}
           </p>
         </div>
-        <div style="margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-          <span class="bringer-meta" style="color: var(--bringer-s-text-accent); font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
-            <i class="bringer-icon bringer-icon-explore" style="font-size: 0.75rem;"></i> Requisito verificado en cada desarrollo
+        <div style="margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.12);">
+          <span class="bringer-meta" style="color: #ffffff; opacity: 0.9; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="bringer-icon bringer-icon-explore" style="font-size: 0.75rem; color: #ffffff;"></i> Requisito verificado en cada desarrollo
           </span>
         </div>
       </div>
     ))}
   </div>
 
-  <p class="bringer-meta" style="margin-top: 1.5rem; color: #64748b; font-size: 0.85rem;">
-    Información de referencia legal aplicada a desarrollos tecnológicos, no constituye asesoría jurídica formal.
+  <p style="margin-top: 1.5rem; color: #ffffff; opacity: 0.9; font-size: 0.85rem; letter-spacing: 0.04em;">
+    INFORMACIÓN DE REFERENCIA LEGAL APLICADA A DESARROLLOS TECNOLÓGICOS, NO CONSTITUYE ASESORÍA JURÍDICA FORMAL.
   </p>
 </section>

@@ -176,7 +176,7 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
                   {z.nombre}
                 </a>
               </h5>
-              <p style="font-size: 0.85rem; color: #94a3b8; margin: 0.25rem 0 0.5rem 0;">{z.municipio}</p>
+              <p style="font-size: 0.85rem; color: #ffffff; opacity: 0.85; margin: 0.25rem 0 0.5rem 0;">{z.municipio}</p>
               <a href={`/medellin/${z.slug}`} class="bringer-arrow-link" style="font-size: 0.85rem;">
                 Ver dinámicas locales
               </a>
@@ -190,7 +190,7 @@ const heroImg = sectorImages[sector.slug] || '/img/inner-pages/service-details.j
     <Normativa claves={sector.normativa} nota={sector.notaLegal} />
 
     <!-- Section: FAQs con Acordeón Nativo -->
-    <FaqList faqs={sector.faqs} titulo={`Preguntas frecuentes sobre IA para ${sector.nombre}`} />
+    <FaqList faqs={sector.faqs} titulo={`Preguntas frecuentes sobre IA para ${sector.nombre}`} categoria={sector.nombre} />
 
     <!-- Section: Bento CTA Oficial Bringer -->
     <Cta 

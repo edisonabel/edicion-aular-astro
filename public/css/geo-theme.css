@@ -1,10 +1,10 @@
 /* Integración de componentes nativos de la plantilla Bringer para SEO y GEO */
 
-/* Breadcrumbs sobrio y limpio */
+/* Breadcrumbs sobrio y limpio en blanco */
 .geo-breadcrumbs {
     padding: 1.5rem 0 0.5rem 0;
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: #ffffff;
 }
 
 .geo-breadcrumbs ol {
@@ -19,130 +19,72 @@
 .geo-breadcrumbs li:not(:last-child)::after {
     content: "/";
     margin-left: 0.5rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .geo-breadcrumbs a {
-    color: #94a3b8;
+    color: #ffffff;
+    opacity: 0.8;
     text-decoration: none;
-    transition: color 0.2s;
+    transition: opacity 0.2s;
 }
 
 .geo-breadcrumbs a:hover {
-    color: #fff;
+    color: #ffffff;
+    opacity: 1;
 }
 
 .geo-breadcrumbs [aria-current="page"] {
-    color: #cbd5e1;
-}
-
-/* Acordeón de FAQs nativo Bringer con efecto glow */
-.bringer-faq-list,
-.bringer-toggles-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--stg-gap, 1.25rem);
-}
-
-.bringer-toggles-item {
-    position: relative;
-    margin-bottom: 0;
-    border-radius: var(--bringer-default-br, 16px);
-    background: var(--bringer-s-block, rgba(255, 255, 255, 0.03));
-    overflow: hidden;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.bringer-toggles-item::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: var(--bringer-default-br, 16px);
-    padding: 1px;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.05) 50%,
-        rgba(255, 255, 255, 0.02) 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-
-.bringer-toggles-item:hover::before {
-    opacity: 1;
-}
-
-.bringer-toggles-item::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: var(--bringer-default-br, 16px);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    background: radial-gradient(
-        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(255, 0, 128, 0.06),
-        transparent 40%
-    );
-    pointer-events: none;
-}
-
-.bringer-toggles-item:hover::after {
-    opacity: 1;
-}
-
-.bringer-toggles-item--title,
-.bringer-toggles-item-title {
-    position: relative;
-    z-index: 1;
-    cursor: pointer !important;
-    padding: 1.5rem 2rem;
-    background: transparent;
-    border-radius: var(--bringer-default-br, 16px);
-    transition: background 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    user-select: none;
-}
-
-.bringer-toggles-item--title h4,
-.bringer-toggles-item-title span {
-    font-size: 1.15rem;
+    color: #ffffff;
     font-weight: 600;
-    color: #fff;
-    margin: 0;
-    padding-right: 48px;
-    line-height: 1.4;
 }
 
-.bringer-toggles-item--content,
-.bringer-toggles-item-content {
-    display: none;
-    position: relative;
-    z-index: 1;
-    cursor: default;
+/* Tarjetas de Estadísticas / Contadores sin colisión vertical */
+.bringer-stat-card {
+    padding: 2.25rem 1.75rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    min-height: 220px !important;
+    border-radius: var(--bringer-default-br, 16px) !important;
 }
 
-.bringer-toggles-item.is-active .bringer-toggles-item--content,
-.bringer-toggles-item.is-active .bringer-toggles-item-content {
-    display: block;
+.bringer-stat-card .bringer-counter {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
 }
 
-.bringer-toggles-item--content p,
-.bringer-toggles-item-content p {
-    padding: 0 2rem 1.75rem 2rem;
-    margin: 0;
-    color: var(--bringer-s-text, #cbd5e1);
-    line-height: 1.75;
-    font-size: 1rem;
+.bringer-stat-card .bringer-counter-number {
+    font-size: 3.5rem !important;
+    line-height: 1 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    margin-bottom: 0 !important;
+}
+
+.bringer-stat-card .bringer-counter-label {
+    font-size: 1.05rem !important;
+    line-height: 1.4 !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+}
+
+.bringer-stat-card .bringer-counter-source {
+    font-size: 0.8rem !important;
+    line-height: 1.3 !important;
+    color: #ffffff !important;
+    opacity: 0.85 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-top: 0.5rem !important;
 }
 
 /* Tablas nativas estilo Bringer Dark */
@@ -168,12 +110,12 @@
 
 .bringer-table th {
     background: rgba(255, 255, 255, 0.04);
-    color: #f8fafc;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .bringer-table td {
-    color: #cbd5e1;
+    color: #ffffff;
 }
 
 .bringer-table a {

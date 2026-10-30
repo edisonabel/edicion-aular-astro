@@ -178,7 +178,7 @@ const schemaData = [
                 {oz.nombre}
               </a>
             </h5>
-            <p style="font-size: 0.85rem; color: #94a3b8; margin: 0.25rem 0 0.5rem 0;">{oz.municipio}</p>
+            <p style="font-size: 0.85rem; color: #ffffff; opacity: 0.85; margin: 0.25rem 0 0.5rem 0;">{oz.municipio}</p>
             <a href={`/medellin/${oz.slug}`} class="bringer-arrow-link" style="font-size: 0.85rem;">
               Ver zona
             </a>
@@ -188,7 +188,7 @@ const schemaData = [
     </section>
 
     <!-- Section: FAQs con Acordeón Nativo -->
-    <FaqList faqs={zona.faqs} titulo={`Preguntas frecuentes sobre servicios en ${zona.nombre}`} />
+    <FaqList faqs={zona.faqs} titulo={`Preguntas frecuentes sobre servicios en ${zona.nombre}`} categoria={zona.nombre} />
 
     <!-- Section: Bento CTA Oficial Bringer -->
     <Cta 
