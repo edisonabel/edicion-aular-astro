@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import Analytics from '../components/Analytics.astro';
 import JsonLd from '../components/geo/JsonLd.astro';
 import { organization, webSite } from '../lib/schema';
 
@@ -74,9 +75,10 @@ const socialImage = new URL(image, Astro.site).href;
     </noscript>
     
     <!-- Favicon y PWA -->
-    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/img/favicon.png" sizes="32x32" type="image/png">
-    <link rel="apple-touch-icon" href="/img/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="icon" href="/favicon.png" sizes="96x96" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#ff0080">
     
@@ -109,20 +111,6 @@ const socialImage = new URL(image, Astro.site).href;
     
     <JsonLd data={[organization(), webSite()]} />
     
-    <!-- Google tag (gtag.js) - Carga diferida -->
-    <script>
-        window.addEventListener('load', function() {
-            const script = document.createElement('script');
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-2CTQCP83WM';
-            script.async = true;
-            document.head.appendChild(script);
-            
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-2CTQCP83WM');
-        });
-    </script>
     
     <!-- Critical CSS para prevenir CLS y optimización mobile -->
     <style is:global>
@@ -492,10 +480,12 @@ const socialImage = new URL(image, Astro.site).href;
             <div class="stg-container">
                 <div class="align-center">
                     Copyright &copy; Edición Aular 2025. Todos los Derechos Reservados.
+                    <br><button type="button" class="analytics-preferences" data-analytics-preferences hidden>Preferencias de cookies</button>
                 </div>
             </div>
         </div>
     </footer>
+    <Analytics />
 
     <!-- Right Click Protection Block -->
     <div class="bringer-rcp-wrap">

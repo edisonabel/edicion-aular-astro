@@ -11,7 +11,8 @@
     "prebuild": "node verificar.js",
     "audit:geo": "python scripts/auditar_geo.py",
     "qa:preview": "node scripts/preview-qa.mjs",
-    "prompts:imagenes": "node scripts/generar_prompts.mjs"
+    "prompts:imagenes": "node scripts/generar_prompts.mjs",
+    "iconos": "node scripts/generar_iconos.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "sharp": "0.34.4"
   }
 }

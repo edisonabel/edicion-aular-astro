@@ -1,0 +1,26 @@
+<section id="analytics-consent" class="analytics-consent" aria-labelledby="analytics-consent-title" hidden>
+  <h2 id="analytics-consent-title">Analítica del sitio</h2>
+  <p>Con tu permiso usamos Google Analytics para conocer qué páginas resultan útiles. Puedes elegir si permites esta medición y cambiar tu decisión desde el pie de página.</p>
+  <div class="analytics-consent-actions">
+    <button type="button" data-analytics-accept>Aceptar analítica</button>
+    <button type="button" data-analytics-reject>Rechazar</button>
+    <a href="/politica-de-privacidad/">Política de privacidad</a>
+  </div>
+</section>
+
+<script>
+  import { installAnalytics } from '../lib/analytics.js';
+  installAnalytics(window, document);
+</script>
+
+<style is:global>
+  .analytics-consent[hidden], .analytics-preferences[hidden] { display: none !important; }
+  .analytics-consent { position: fixed; z-index: 10000; left: 1rem; bottom: 1rem; width: min(640px, calc(100% - 2rem)); border: 1px solid var(--bringer-s-border); border-radius: 16px; padding: 1.4rem; background: var(--bringer-s-container-bg); color: var(--bringer-s-text); box-shadow: 0 10px 45px #0003; }
+  .analytics-consent h2 { color: var(--bringer-s-heading); font-size: 1.25rem; margin: 0 0 .6rem; }
+  .analytics-consent p { margin: 0 0 1rem; font-size: .95rem; line-height: 1.5; }
+  .analytics-consent-actions { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
+  .analytics-consent-actions button { cursor: pointer; border-radius: 8px; border: 1px solid var(--bringer-s-heading); padding: .65rem 1rem; font: inherit; color: var(--bringer-s-heading); background: transparent; min-height: 44px; }
+  .analytics-consent-actions a { color: var(--bringer-s-heading); text-decoration: underline; text-underline-offset: .2em; font-size: .85rem; }
+  .analytics-preferences { cursor: pointer; display: inline-block; margin: .5rem 0 0; padding: .35rem .6rem; color: var(--bringer-s-text); font: inherit; font-size: .85rem; border: 0; background: transparent; text-decoration: underline; text-underline-offset: .2em; min-height: 44px; }
+  .analytics-consent-actions :is(button, a):focus-visible, .analytics-preferences:focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 4px; }
+</style>

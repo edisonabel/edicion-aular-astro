@@ -1,5 +1,5 @@
 // Service Worker para caché inteligente
-const CACHE_VERSION = 'v1.0.0';
+const CACHE_VERSION = 'v1.0.1';
 const CACHE_NAME = `edicion-aular-${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [
