@@ -332,4 +332,4 @@ Se inventariaron todas las secciones principales, incluidas las que no se trasla
 - No se copian testimonios, premios, estadísticas, resultados ni clientes de demostración de Bringer.
 - Los ejemplos locales se identifican como ilustrativos. Cobertura no significa oficina en cada barrio.
 - La plantilla original usa un tema oscuro; los componentes trasladados adoptan variables semánticas y se prueban en ambos modos.
-- Las imágenes nuevas se gestionan en src/data/ia/imagenes.ts; hasta recibir los WebP se muestran tarjetas editoriales, sin rectángulos grises ni fotografías atribuidas a clientes.
+- Las diez fotos aportadas se gestionan en src/data/ia/imagenes.ts y se reutilizan por tema. Formación e inmobiliarias comparten una imagen de planificación. No se atribuyen a clientes, personal o sedes reales.

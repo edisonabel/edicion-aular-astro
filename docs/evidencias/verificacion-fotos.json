@@ -1,0 +1,1510 @@
+[
+  {
+    "ruta": "/soluciones-ia/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 9,
+    "faq": 3,
+    "fotos": [
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": true,
+        "ancho": 976,
+        "alto": 488
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": true,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 9,
+    "faq": 3,
+    "fotos": [
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": true,
+        "ancho": 976,
+        "alto": 488
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": true,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 9,
+    "faq": 3,
+    "fotos": [
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": true,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 9,
+    "faq": 3,
+    "fotos": [
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": true,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/medellin/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 5,
+    "faq": 3,
+    "fotos": [
+      {
+        "uso": "medellin",
+        "archivo": "/img/ia/negocios-medellin.webp",
+        "cargada": true,
+        "ancho": 976,
+        "alto": 488
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/medellin/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 5,
+    "faq": 3,
+    "fotos": [
+      {
+        "uso": "medellin",
+        "archivo": "/img/ia/negocios-medellin.webp",
+        "cargada": true,
+        "ancho": 976,
+        "alto": 488
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/medellin/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 5,
+    "faq": 3,
+    "fotos": [
+      {
+        "uso": "medellin",
+        "archivo": "/img/ia/negocios-medellin.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/medellin/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 5,
+    "faq": 3,
+    "fotos": [
+      {
+        "uso": "medellin",
+        "archivo": "/img/ia/negocios-medellin.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/medellin/belen/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 6,
+    "faq": 2,
+    "fotos": [
+      {
+        "uso": "medellin",
+        "archivo": "/img/ia/negocios-medellin.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "canales",
+        "archivo": "/img/ia/agente-whatsapp.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/medellin/belen/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 6,
+    "faq": 2,
+    "fotos": [
+      {
+        "uso": "medellin",
+        "archivo": "/img/ia/negocios-medellin.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "canales",
+        "archivo": "/img/ia/agente-whatsapp.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/medellin/belen/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 6,
+    "faq": 2,
+    "fotos": [
+      {
+        "uso": "medellin",
+        "archivo": "/img/ia/negocios-medellin.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "canales",
+        "archivo": "/img/ia/agente-whatsapp.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/medellin/belen/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 6,
+    "faq": 2,
+    "fotos": [
+      {
+        "uso": "medellin",
+        "archivo": "/img/ia/negocios-medellin.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "canales",
+        "archivo": "/img/ia/agente-whatsapp.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/clinicas-estetica/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "clinica",
+        "archivo": "/img/ia/recepcion-clinica.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "clinica",
+        "archivo": "/img/ia/recepcion-clinica.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/clinicas-estetica/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "clinica",
+        "archivo": "/img/ia/recepcion-clinica.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "clinica",
+        "archivo": "/img/ia/recepcion-clinica.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/clinicas-estetica/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "clinica",
+        "archivo": "/img/ia/recepcion-clinica.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "clinica",
+        "archivo": "/img/ia/recepcion-clinica.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/clinicas-estetica/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "clinica",
+        "archivo": "/img/ia/recepcion-clinica.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "clinica",
+        "archivo": "/img/ia/recepcion-clinica.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/turismo-hoteles/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "hotel",
+        "archivo": "/img/ia/recepcion-hotel.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "hotel",
+        "archivo": "/img/ia/recepcion-hotel.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/turismo-hoteles/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "hotel",
+        "archivo": "/img/ia/recepcion-hotel.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "hotel",
+        "archivo": "/img/ia/recepcion-hotel.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/turismo-hoteles/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "hotel",
+        "archivo": "/img/ia/recepcion-hotel.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "hotel",
+        "archivo": "/img/ia/recepcion-hotel.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/turismo-hoteles/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "hotel",
+        "archivo": "/img/ia/recepcion-hotel.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "hotel",
+        "archivo": "/img/ia/recepcion-hotel.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/inmobiliarias/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "inmobiliaria",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "inmobiliaria",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/inmobiliarias/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "inmobiliaria",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "inmobiliaria",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 309,
+        "alto": 309
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/inmobiliarias/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "inmobiliaria",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "inmobiliaria",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/sectores/inmobiliarias/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 6,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "inmobiliaria",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "inmobiliaria",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 8,
+    "faq": 5,
+    "fotos": [
+      {
+        "uso": "automatizacion",
+        "archivo": "/img/ia/automatizacion-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 8,
+    "faq": 5,
+    "fotos": [
+      {
+        "uso": "automatizacion",
+        "archivo": "/img/ia/automatizacion-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 8,
+    "faq": 5,
+    "fotos": [
+      {
+        "uso": "automatizacion",
+        "archivo": "/img/ia/automatizacion-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 8,
+    "faq": 5,
+    "fotos": [
+      {
+        "uso": "automatizacion",
+        "archivo": "/img/ia/automatizacion-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/contenido-video-ia/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 8,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "contenido",
+        "archivo": "/img/ia/contenido-ia.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/contenido-video-ia/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 8,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "contenido",
+        "archivo": "/img/ia/contenido-ia.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/contenido-video-ia/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 8,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "contenido",
+        "archivo": "/img/ia/contenido-ia.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/contenido-video-ia/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 8,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "contenido",
+        "archivo": "/img/ia/contenido-ia.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 8,
+    "faq": 5,
+    "fotos": [
+      {
+        "uso": "web",
+        "archivo": "/img/ia/desarrollo-web.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 8,
+    "faq": 5,
+    "fotos": [
+      {
+        "uso": "web",
+        "archivo": "/img/ia/desarrollo-web.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 8,
+    "faq": 5,
+    "fotos": [
+      {
+        "uso": "web",
+        "archivo": "/img/ia/desarrollo-web.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 8,
+    "faq": 5,
+    "fotos": [
+      {
+        "uso": "web",
+        "archivo": "/img/ia/desarrollo-web.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 9,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "formacion",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 9,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "formacion",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 9,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "formacion",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 9,
+    "faq": 4,
+    "fotos": [
+      {
+        "uso": "formacion",
+        "archivo": "/img/ia/formacion-equipos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+    "ancho": "1200",
+    "tema": "oscuro",
+    "secciones": 8,
+    "faq": 6,
+    "fotos": [
+      {
+        "uso": "canales",
+        "archivo": "/img/ia/agente-whatsapp.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+    "ancho": "1200",
+    "tema": "claro",
+    "secciones": 8,
+    "faq": 6,
+    "fotos": [
+      {
+        "uso": "canales",
+        "archivo": "/img/ia/agente-whatsapp.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 464,
+        "alto": 464
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 226,
+        "alto": 226
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+    "ancho": "390",
+    "tema": "oscuro",
+    "secciones": 8,
+    "faq": 6,
+    "fotos": [
+      {
+        "uso": "canales",
+        "archivo": "/img/ia/agente-whatsapp.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  },
+  {
+    "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+    "ancho": "390",
+    "tema": "claro",
+    "secciones": 8,
+    "faq": 6,
+    "fotos": [
+      {
+        "uso": "canales",
+        "archivo": "/img/ia/agente-whatsapp.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "diagnostico",
+        "archivo": "/img/ia/diagnostico-procesos.webp",
+        "cargada": true,
+        "ancho": 349,
+        "alto": 349
+      },
+      {
+        "uso": "agencia",
+        "archivo": "/img/ia/agencia-ia.webp",
+        "cargada": false,
+        "ancho": 164,
+        "alto": 164
+      }
+    ],
+    "desbordamientos": [],
+    "contraste": [],
+    "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente. Las fotos diferidas fuera de pantalla pueden figurar sin cargar."
+  }
+]

@@ -6,10 +6,11 @@ interface Props { imagen: ImagenId; panoramica?: boolean; prioritaria?: boolean 
 const { imagen, panoramica = false, prioritaria = false } = Astro.props;
 const asset = IMAGENES[imagen];
 const disponible = existsSync(resolve('public/img/ia', asset.archivo));
+const posicion = 'posicion' in asset ? asset.posicion : '50% 50%';
 ---
 <figure class:list={['geo-editorial-image', { 'is-wide': panoramica }]} data-image-slot={imagen}>
   {disponible ? (
-    <img src={`/img/ia/${asset.archivo}`} alt={asset.alt} width={panoramica ? 1920 : 1200} height={panoramica ? 960 : 1200} loading={prioritaria ? 'eager' : 'lazy'} fetchpriority={prioritaria ? 'high' : 'auto'} decoding="async" />
+    <img src={`/img/ia/${asset.archivo}`} alt={asset.alt} width="1536" height="1024" style={`object-position: ${posicion}`} loading={prioritaria ? 'eager' : 'lazy'} fetchpriority={prioritaria ? 'high' : 'auto'} decoding="async" />
   ) : (
     <div class="geo-editorial-card bringer-block">
       <span class="bringer-label">Edición Aular · IA aplicada</span>

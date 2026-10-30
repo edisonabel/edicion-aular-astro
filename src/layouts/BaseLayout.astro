@@ -141,6 +141,9 @@ const socialImage = new URL(image, Astro.site).href;
         html.light-mode .bringer-menu-toggler-icon span {
             background-color: #ffffff !important;
         }
+        html.light-mode body.show-menu .bringer-menu-toggler-icon span {
+            background-color: var(--bringer-s-heading) !important;
+        }
         
         /* Prevenir Layout Shift en imágenes */
         img[width][height] {
@@ -343,36 +346,25 @@ const socialImage = new URL(image, Astro.site).href;
             
             <!-- Main Menu -->
             <div class="bringer-header-mp">
-                <nav class="bringer-nav">
+                <nav class="bringer-nav" aria-label="Navegación principal">
                     <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="/">Inicio</a>
                         </li>
                         <li>
                             <a href="/nosotros">Nosotros</a>
                         </li>
                         <li>
-                            <a href="/soluciones-ia" style="color: var(--color-accent, #ff0080); font-weight: 600;">Soluciones con IA</a>
-                            <ul class="sub-menu">
-                                <li><a href="/soluciones-ia/agentes-ia-whatsapp">Agentes de WhatsApp</a></li>
-                                <li><a href="/soluciones-ia/automatizacion-procesos-ia">Automatización de Procesos</a></li>
-                                <li><a href="/soluciones-ia/contenido-video-ia">Contenido y Video IA</a></li>
-                                <li><a href="/soluciones-ia/sitios-web-seo-geo">Webs SEO & GEO</a></li>
-                                <li><a href="/soluciones-ia/capacitacion-ia-empresas">Capacitación en IA</a></li>
-                                <li><a href="/medellin">Zonas de Medellín</a></li>
-                                <li><a href="/sectores">Por Sector</a></li>
-                            </ul>
-                        </li>
-                        <li>
                             <a href="#">Servicios</a>
                             <ul class="sub-menu">
+                                <li><a href="/soluciones-ia">Soluciones con IA</a></li>
                                 <li><a href="/lanzamientos-digitales">Lanzamientos</a></li>
                                 <li><a href="/diseno-web">Diseño Web</a></li>
                                 <li><a href="/branding">Branding</a></li>
                                 <li><a href="/produccion-audiovisual">Audiovisuales</a></li>
                                 <li><a href="/meta-ads-google-ads">Meta & Google Ads</a></li>
                                 <li><a href="/streaming">Streaming Profesional</a></li>
-                                
+                                <li><a href="/servicios">Todos los servicios</a></li>
                             </ul>
                         </li>
                         <li>
@@ -380,9 +372,6 @@ const socialImage = new URL(image, Astro.site).href;
                         </li>
                         <li>
                             <a href="/blog">Blog</a>
-                        </li>
-                        <li>
-                            <a href="/inversion">Inversión</a>
                         </li>
                         <li>
                             <a href="/contacto">Contacto</a>
@@ -405,7 +394,7 @@ const socialImage = new URL(image, Astro.site).href;
             </a>
             <div style="display: flex; align-items: center; gap: 0.75rem;">
                 <ThemeToggle />
-                <a href="#" class="bringer-mobile-menu-toggler">
+                <a href="#" class="bringer-mobile-menu-toggler" aria-label="Menú principal">
                     <i class="bringer-menu-toggler-icon">
                         <span></span>
                         <span></span>
@@ -585,7 +574,7 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Active Menu Script -->
     <script is:inline>
         document.addEventListener('DOMContentLoaded', function() {
-            const currentPath = window.location.pathname;
+            const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
             const menuItems = document.querySelectorAll('.main-menu > li');
             const subMenuItems = document.querySelectorAll('.sub-menu li');
             
@@ -608,7 +597,8 @@ const socialImage = new URL(image, Astro.site).href;
                 const href = link.getAttribute('href');
                 
                 // Check if current page matches a submenu item
-                if (href === currentPath) {
+                const isIaSection = href === '/soluciones-ia' && /^\/(soluciones-ia|medellin|sectores)(\/|$)/.test(currentPath);
+                if (href === currentPath || isIaSection) {
                     item.classList.add('current-menu-item');
                     // Mark parent "Servicios" as current-menu-parent
                     const servicesItem = Array.from(menuItems).find(mi => 

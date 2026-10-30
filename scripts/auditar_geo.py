@@ -122,7 +122,14 @@ def main():
             headings = [n for n in section.walk() if n.tag in ('h1', 'h2')]
             sections.append({'id': section.attrs.get('id'), 'titulo': headings[0].text() if headings else '', 'origen': section.attrs.get('data-template')})
             ensure(bool(section.attrs.get('id')) and bool(section.attrs.get('data-template')), f'{route}: sección sin mapa', errors)
-        slots = Counter(n.attrs['data-image-slot'] for n in scope.walk() if 'data-image-slot' in n.attrs)
+        image_slots = [n for n in scope.walk() if 'data-image-slot' in n.attrs]
+        for slot in image_slots:
+            images = slot.find('img')
+            ensure(len(images) == 1, f'{route}: fotografía ausente en {slot.attrs["data-image-slot"]}', errors)
+            for image in images:
+                ensure(bool(image.attrs.get('alt', '').strip()), f'{route}: foto editorial sin descripción', errors)
+                ensure(image.attrs.get('width') == '1536' and image.attrs.get('height') == '1024', f'{route}: dimensiones de fotografía incorrectas', errors)
+        slots = Counter(n.attrs['data-image-slot'] for n in image_slots)
         pages.append({'ruta': route, 'titulo': title, 'description': descriptions[0], 'secciones': sections, 'imagenes': dict(slots), 'faqs': len(details)})
     ensure(len(pages) == 21, f'Se esperaban 21 páginas; hay {len(pages)}', errors)
     ensure(not (root / 'mentoria/index.html').exists(), 'Mentoría sigue publicada', errors)
@@ -150,7 +157,7 @@ def main():
             if not entries:
                 entries = ['Composición de portfolio a pantalla completa; sin etiquetas section.']
             lines.append(f"| `{file.name}` | {' · '.join(entries).replace('|', '/')} |")
-    lines += ['', '## Criterios editoriales', '', '- Se aprovechan Intro y Detailed List de services, Steps de home06, las composiciones de portfolio-post01, Offer de service-details, FAQ de pricing y Grid CTA de services.', '- La formación añade módulos con entregables; no publica eventos, fechas, ponentes ni plazas inventadas.', '- No se copian testimonios, premios, estadísticas, resultados ni clientes de demostración de Bringer.', '- Los ejemplos locales se identifican como ilustrativos. Cobertura no significa oficina en cada barrio.', '- La plantilla original usa un tema oscuro; los componentes trasladados adoptan variables semánticas y se prueban en ambos modos.', '- Las imágenes nuevas se gestionan en src/data/ia/imagenes.ts; hasta recibir los WebP se muestran tarjetas editoriales, sin rectángulos grises ni fotografías atribuidas a clientes.', '']
+    lines += ['', '## Criterios editoriales', '', '- Se aprovechan Intro y Detailed List de services, Steps de home06, las composiciones de portfolio-post01, Offer de service-details, FAQ de pricing y Grid CTA de services.', '- La formación añade módulos con entregables; no publica eventos, fechas, ponentes ni plazas inventadas.', '- No se copian testimonios, premios, estadísticas, resultados ni clientes de demostración de Bringer.', '- Los ejemplos locales se identifican como ilustrativos. Cobertura no significa oficina en cada barrio.', '- La plantilla original usa un tema oscuro; los componentes trasladados adoptan variables semánticas y se prueban en ambos modos.', '- Las diez fotos aportadas se gestionan en src/data/ia/imagenes.ts y se reutilizan por tema. Formación e inmobiliarias comparten una imagen de planificación. No se atribuyen a clientes, personal o sedes reales.', '']
     (output / 'MAPA_SECCIONES_HTML.md').write_text('\n'.join(lines), encoding='utf-8')
     print(json.dumps({'paginas': len(pages), 'bloques_json_ld': total_blocks, 'errores': errors}, ensure_ascii=False, indent=2))
     raise SystemExit(bool(errors))

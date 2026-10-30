@@ -14,6 +14,8 @@ html.light-mode .geo-page { --bringer-s-text-accent: #b80046; }
 .geo-breadcrumbs a { color: var(--bringer-s-text); text-decoration: underline; text-underline-offset: .2em; }
 .geo-breadcrumbs [aria-current="page"] { color: var(--bringer-s-heading); font-weight: 600; }
 .geo-page a:focus-visible, .geo-faq summary:focus-visible, .theme-toggle-button:focus-visible, .geo-skip-link:focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 5px; }
+#bringer-header a:focus-visible, .bringer-mobile-menu a:focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 5px; }
+nav.bringer-nav li.menu-item-has-children:focus-within > ul.sub-menu { opacity: 1; transform: scale(1); pointer-events: auto; }
 .geo-skip-link { position: fixed; left: 1rem; top: 1rem; z-index: 10000; padding: .75rem 1rem; background: var(--bringer-s-container-bg); color: var(--bringer-s-heading); transform: translateY(-200%); }
 .geo-skip-link:focus { transform: translateY(0); }
 .geo-faq-item { padding: 0 !important; margin-bottom: 1rem; }
@@ -26,7 +28,8 @@ html.light-mode .geo-page { --bringer-s-text-accent: #b80046; }
 .geo-faq-content { padding: 0 1.5rem 1.5rem; color: var(--bringer-s-text); }
 .geo-editorial-image { display: block; width: 100%; margin: 0; aspect-ratio: 1; overflow: hidden; border-radius: var(--bringer-default-br); }
 .geo-editorial-image.is-wide { aspect-ratio: 2; }
-.geo-editorial-image > img { width: 100%; height: 100% !important; object-fit: cover; }
+/* Mantener el encuadre editorial: el parallax global amplía y desplaza las fotos. */
+.geo-editorial-image > img { width: 100%; height: 100% !important; object-fit: cover; transform: none !important; }
 .geo-editorial-card { height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(1.5rem, 4vw, 3.5rem) !important; background: var(--bringer-s-container-bg); overflow: hidden; position: relative; }
 .geo-editorial-card .geo-editorial-title { color: var(--bringer-s-heading); font-size: clamp(1.5rem, 3.2vw, 3rem); line-height: 1.12; font-weight: 600; margin: 0 0 1rem; max-width: 19ch; }
 .geo-editorial-card p:last-child { color: var(--bringer-s-text); max-width: 35ch; }

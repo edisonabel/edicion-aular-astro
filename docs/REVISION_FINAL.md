@@ -75,7 +75,7 @@ El título y la descripción original del PR no pudieron editarse con la integra
 
 [PROMPTS_IMAGENES.md](PROMPTS_IMAGENES.md) contiene once prompts completos, nombre de archivo, alt propuesto y páginas de reutilización. Se eligieron escenas de agencia, atención, administración, desarrollo, producción creativa, formación y operaciones sectoriales, con luz y materiales naturales.
 
-Los archivos deben guardarse en `public/img/ia/` con sus nombres previstos y recompilar. El componente los detecta durante el build. Aún no se generaron imágenes: el recorte, el alt definitivo y el peso deben revisarse al recibir cada archivo.
+Se incorporaron las diez fotos WebP entregadas por el usuario en `public/img/ia/`, sin modificar los originales. Cubren los once usos editoriales de las 21 páginas; formación e inmobiliarias comparten una foto de planificación. Se corrigieron los alt según las escenas recibidas y las dimensiones intrínsecas a 1536 × 1024 px. Peso total: 1.224.642 bytes. [Inventario, procedencia y reutilización](IMAGENES_INCORPORADAS.md). No se compraron ni generaron imágenes adicionales.
 
 Comandos de mantenimiento:
 
@@ -87,3 +87,13 @@ npm run qa:preview
 ```
 
 El mapa con inventario de la carpeta de referencia se regenera pasando `--reference` al script Python. El visor de QA solo se sirve en localhost; no se incluye en la web desplegada. No se ha fusionado a main.
+
+## Incorporación de fotos y simplificación del menú
+
+Las diez fotos aportadas están colocadas y reutilizadas en los once usos editoriales de las 21 páginas. Se conserva la compresión original (1.224.642 bytes entre todas). El encuadre de agencia se desplaza hacia arriba para conservar los rostros en panorámico; el de atención prioriza a la profesional y al teléfono. Estas fotos no se amplían ni desplazan con el parallax global, para conservar su composición.
+
+Se verificaron 44 combinaciones: once rutas representativas de todas las fotos y composiciones × 390/1200 px × claro/oscuro. No quedaron desbordamientos ni incidencias de contraste en los fondos planos medidos. Las imágenes están separadas del texto, sin titulares superpuestos. `evidencias/verificacion-fotos.json` registra medidas y estados de carga; es normal que una foto secundaria diferida fuera de pantalla aún no esté descargada. Se comprobó también la carga y la integridad de los diez archivos del despliegue.
+
+La cabecera común pasa de ocho a seis opciones: Inicio, Nosotros, Servicios, Portafolio, Blog y Contacto. «Soluciones con IA» queda como primera opción de Servicios; los detalles se descubren desde su directorio. «Todos los servicios» abre el catálogo general. Inversión permanece en Recursos, en el pie de página. Se conserva Agenda una cita.
+
+Se probó Tab desde Servicios hacia Soluciones con IA en escritorio, y la apertura y navegación por ese submenú en móvil. El foco abre el desplegable y tiene un contorno visible. Se corrigió el indicador de sección para rutas con barra final y páginas de IA, zonas y sectores. También se corrigió el contraste de la X que cierra el menú móvil en modo claro.
