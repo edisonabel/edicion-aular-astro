@@ -48,49 +48,72 @@ const schemaData = [
       { name: "Medellín y Valle de Aburrá" }
     ]} />
 
-    <!-- Hero -->
-    <section class="stg-top-gap-m">
-      <div class="stg-row stg-large-gap stg-valign-middle">
-        <div class="stg-col-8">
-          <span class="bringer-label">Presencia Local · Medellín & Área Metropolitana</span>
-          <h1 class="bringer-page-title stg-top-gap-s">
-            Soluciones de IA para empresas del Valle de Aburrá<span class="bringer-accent">.</span>
+    <!-- Section: Page Title (Bringer Style) -->
+    <section class="backlight-bottom">
+      <div class="stg-row">
+        <div class="stg-col-8 stg-offset-2 align-center stg-tp-col-10 stg-tp-offset-1">
+          <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
+            Soluciones de IA en el Valle de Aburrá<span class="bringer-accent">.</span>
           </h1>
-
-          <div class="geo-answer-card">
-            <p>
-              En Edición Aular ayudamos a marcas y pymes de Medellín a modernizar sus procesos comerciales con Inteligencia Artificial: desde agentes de WhatsApp conectados a Meta API oficial hasta automatización administrativa y posicionamiento en motores generativos (ChatGPT, Gemini y Perplexity).
-            </p>
-          </div>
-        </div>
-
-        <div class="stg-col-4">
-          <div class="bringer-block is-accented">
-            <span class="bringer-label">Atención Local</span>
-            <h4>Sede y Cobertura</h4>
-            <p style="font-size: 0.95rem;">
-              Base en Medellín con servicio presencial y virtual en toda Antioquia y Colombia.
-            </p>
-            <a href={NEGOCIO.googleMaps} target="_blank" rel="noopener" class="bringer-arrow-link stg-top-gap-s">
-              Ver ficha de Google Business
-            </a>
-          </div>
+          <p class="bringer-large-text" data-split-appear="fade-up" data-delay="100" data-split-unload="fade-up">
+            Consultoría e implementación local para empresas y comercios por sectores y barrios en Medellín, Envigado, Itagüí, Sabaneta y Bello.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Directorio de Zonas Comerciales -->
-    <section class="geo-section">
+    <!-- Section: Intro con Parallax Media (Bringer Style) -->
+    <section>
+      <div class="bringer-parallax-media stg-bottom-gap-l" data-appear="fade-up" data-unload="fade-up">
+        <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/service-details.jpg" alt="Medellín y Valle de Aburrá" width="1920" height="960">
+      </div>
+
       <div class="stg-row stg-bottom-gap">
-        <div class="stg-col-8">
-          <h2>Zonas y municipios con atención especializada</h2>
+        <div class="stg-col-7" data-unload="fade-left">
+          <h2 class="stg-bottom-gap" data-split-appear="fade-up">Presencia local con estándares globales de desarrollo.</h2>
+        </div>
+        <div class="stg-col-5"></div>
+      </div>
+
+      <div class="stg-row stg-tp-column-reverse">
+        <div class="stg-col-6 stg-valign-bottom" data-unload="fade-left">
+          <div class="align-right">
+            <a href={NEGOCIO.googleMaps} target="_blank" rel="noopener" class="bringer-icon-link" data-appear="fade-right">
+              <div class="bringer-icon-link-content">
+                <h6>
+                  Ubicación oficial
+                  <br>
+                  en Google Maps
+                </h6>
+                <span class="bringer-label">Ver Perfil Comercial</span>
+              </div>
+              <div class="bringer-icon-wrap">
+                <i class="bringer-icon bringer-icon-explore"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="stg-col-6 stg-tp-col-9 stg-tp-bottom-gap" data-appear="fade-left" data-unload="fade-right">
           <p class="bringer-large-text">
+            En Edición Aular ayudamos a marcas y pymes de Medellín a modernizar sus procesos comerciales con Inteligencia Artificial: desde agentes de WhatsApp conectados a Meta API oficial hasta automatización administrativa y posicionamiento en motores generativos (ChatGPT, Gemini y Perplexity).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Directorio de Zonas (Bringer 2-cols Grid) -->
+    <section class="stg-bottom-gap-l">
+      <div class="stg-row bringer-section-title">
+        <div class="stg-col-8 stg-offset-2 align-center">
+          <h2 data-split-appear="fade-up">Zonas comerciales con atención especializada</h2>
+          <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
             Explora las necesidades operativas y casos de uso de IA según la dinámica de cada sector:
           </p>
         </div>
       </div>
 
-      <div class="bringer-grid-2cols stg-normal-gap">
+      <div class="bringer-grid-2cols stg-normal-gap" data-stagger-appear="fade-up">
         {ZONAS.map((z) => (
           <div class="bringer-block stg-vertical-space-between">
             <div>
@@ -100,60 +123,36 @@ const schemaData = [
                   {z.nombre}
                 </a>
               </h3>
-              <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+              <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem;">
                 {z.intro}
               </p>
 
               <div style="margin-top: 1rem;">
-                <strong style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase;">Ejes principales:</strong>
+                <span class="bringer-meta">Ejes comerciales:</span>
                 <p style="font-size: 0.9rem; color: #cbd5e1; margin-top: 0.25rem;">
                   {z.ejes.join(" · ")}
                 </p>
               </div>
             </div>
 
-            <div class="stg-top-gap-m" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="stg-top-gap-m">
               <a href={`/medellin/${z.slug}`} class="bringer-arrow-link">
                 Ver servicios en {z.nombre}
               </a>
-              {z.wikipedia && (
-                <a href={z.wikipedia} target="_blank" rel="noopener" class="geo-small" style="color: #64748b;">
-                  Referencia geográfica ↗
-                </a>
-              )}
             </div>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- Soluciones Transversales Disponibles -->
-    <section class="geo-section">
-      <h2>Soluciones aplicables en tu zona</h2>
-      <div class="bringer-grid-3cols stg-top-gap-s">
-        {SOLUCIONES.map((sol) => (
-          <div class="bringer-block">
-            <h5>
-              <a href={`/soluciones-ia/${sol.slug}`} style="color: inherit; text-decoration: none;">
-                {sol.nombre}
-              </a>
-            </h5>
-            <p style="font-size: 0.9rem; color: #94a3b8; margin: 0.5rem 0;">{sol.respuesta.substring(0, 110)}...</p>
-            <a href={`/soluciones-ia/${sol.slug}`} class="bringer-arrow-link" style="font-size: 0.85rem;">
-              Conocer solución
-            </a>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- FAQs de Medellín -->
+    <!-- Section: FAQs con Acordeón Nativo -->
     <FaqList faqs={faqsMedellin} titulo="Preguntas frecuentes sobre servicios de IA en Medellín" />
 
-    <!-- CTA -->
+    <!-- Section: Bento CTA Oficial Bringer -->
     <Cta 
-      titulo="¿Tu negocio está ubicado en Medellín o el Valle de Aburrá?"
-      texto="Agenda una llamada o visita de diagnóstico. Analizamos cómo implementar IA en tus canales de venta y atención."
+      titulo="¿Tu empresa está ubicada en Medellín o el Valle de Aburrá?"
+      subtitulo="Agenda una llamada o visita de diagnóstico. Analizamos cómo implementar IA en tus canales de venta y atención."
+      enlace={NEGOCIO.agenda}
     />
   </div>
 </BaseLayout>

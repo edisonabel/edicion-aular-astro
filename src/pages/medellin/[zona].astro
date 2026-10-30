@@ -25,11 +25,8 @@ const pageUrl = `/medellin/${zona.slug}`;
 const pageTitle = `Soluciones de IA en ${zona.nombre}, Medellín | Edición Aular`;
 const pageDesc = `Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en ${zona.nombre} (${zona.municipio}). Asesoría local.`;
 
-// Soluciones prioritarias para esta zona
-const solucionesZona = SOLUCIONES.filter((s) => zona.enfoque.includes(s.slug));
-
-// Otras zonas adyacentes para enlazado cruzado
-const otrasZonas = ZONAS.filter((z) => z.slug !== zona.slug).slice(0, 5);
+const solucionesZona = SOLUCIONES.filter((s) => zona.enfoque.includes(s.slug)).slice(0, 3);
+const otrasZonas = ZONAS.filter((z) => z.slug !== zona.slug).slice(0, 4);
 
 const schemaData = [
   webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
@@ -53,126 +50,151 @@ const schemaData = [
       { name: zona.nombre }
     ]} />
 
-    <!-- Hero Local con Contexto Específico -->
-    <section class="stg-top-gap-m">
-      <div class="stg-row stg-large-gap stg-valign-middle">
-        <div class="stg-col-8">
-          <span class="bringer-label">{zona.tipo.toUpperCase()} · {zona.municipio}</span>
-          <h1 class="bringer-page-title stg-top-gap-s">
-            Soluciones de IA para negocios en {zona.nombre}<span class="bringer-accent">.</span>
-          </h1>
-
-          <div class="geo-answer-card">
-            <p>
-              <strong>Atención y automatización local:</strong> {zona.intro}
+    <!-- Section: Intro (Bringer Style) -->
+    <section>
+      <div class="stg-row stg-large-gap stg-tp-normal-gap stg-tp-column-reverse">
+        <div class="stg-col-6 stg-vertical-space-between" data-unload="fade-left">
+          <div class="stg-tp-bottom-gap">
+            <span class="bringer-label">{zona.tipo.toUpperCase()} · {zona.municipio}</span>
+            <h1 class="bringer-page-title" data-split-appear="fade-up">
+              Soluciones de IA para empresas en {zona.nombre}<span class="bringer-accent">.</span>
+            </h1>
+            <p class="bringer-large-text" data-appear="fade-right" data-delay="100">
+              {zona.intro}
             </p>
           </div>
+          <div class="align-right" data-appear="fade-right">
+            <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="bringer-icon-link">
+              <div class="bringer-icon-link-content">
+                <h6>
+                  Hablemos sobre tu negocio
+                  <br>
+                  en {zona.nombre}
+                </h6>
+                <span class="bringer-label">Agenda una Cita</span>
+              </div>
+              <div class="bringer-icon-wrap">
+                <i class="bringer-icon bringer-icon-explore"></i>
+              </div>
+            </a>
+          </div>
         </div>
 
-        <div class="stg-col-4">
-          <div class="bringer-block is-accented">
-            <span class="bringer-label">Presencia en el sector</span>
-            <h4>Asesoría presencial o virtual en {zona.nombre}</h4>
-            <p style="font-size: 0.95rem;">Evaluamos la viabilidad técnica para tu comercio o empresa.</p>
-            <a href={NEGOCIO.agenda} class="geo-btn stg-top-gap-s">Agendar diagnóstico</a>
-          </div>
+        <div class="stg-col-6 stg-tp-bottom-gap-l bringer-parallax-media" data-appear="fade-left" data-unload="fade-right">
+          <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/service-details.jpg" alt={zona.nombre} width="1200" height="1200">
         </div>
       </div>
     </section>
 
-    <!-- Contexto Comercial y Ejes del Sector -->
-    <section class="geo-section">
-      <div class="stg-row stg-large-gap">
-        <div class="stg-col-6">
-          <h2>Dinámica comercial de {zona.nombre}</h2>
-          <p class="bringer-large-text">
-            Comprender las particularidades de {zona.nombre} permite diseñar flujos de atención que realmente encajen con los hábitos de tus clientes:
-          </p>
-
+    <!-- Section: Dinámica Comercial y Caso Real (Bringer Bento Case Study Style) -->
+    <section class="stg-bottom-gap-l">
+      <!-- Block: Ejes Comerciales -->
+      <div class="stg-row stg-bottom-gap-l stg-tp-column-reverse">
+        <div class="stg-col-8 bringer-block stg-vertical-space-between" data-appear="fade-right" data-unload="fade-left">
+          <h2>La dinámica comercial del sector</h2>
+          <div>
+            <p class="bringer-large-text">
+              Los negocios en {zona.nombre} operan en un entorno donde la rapidez de respuesta define si un prospecto compra o busca otra opción.
+            </p>
+            <p>
+              Ejes principales de alta circulación: <strong>{zona.ejes.join(" · ")}</strong>.
+            </p>
+          </div>
           <div class="stg-top-gap-s">
-            <h4 style="font-size: 1.1rem; color: #fff;">Ejes y corredores principales:</h4>
-            <ul style="padding-left: 1.25rem; margin-top: 0.5rem; color: #cbd5e1; line-height: 1.8;">
-              {zona.ejes.map((eje) => (
-                <li>{eje}</li>
-              ))}
-            </ul>
+            <span class="bringer-meta">Perfil de negocios: {zona.perfil.join(", ")}.</span>
           </div>
         </div>
 
-        <div class="stg-col-6">
-          <div class="bringer-block">
-            <h4>Tipos de negocios predominantes</h4>
-            <ul style="list-style: none; padding: 0; margin-top: 1rem;">
-              {zona.perfil.map((p) => (
-                <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: #cbd5e1;">
-                  ✓ {p}
-                </li>
-              ))}
-            </ul>
+        <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-left" data-unload="fade-right">
+          <div class="bringer-parallax-media">
+            <img class="bringer-lazy" src="/img/null.png" data-src="/img/home/jolu mockup.webp" alt="Caso de negocio" width="960" height="960">
+          </div>
+        </div>
+      </div>
 
-            <div class="stg-top-gap-m" style="background: rgba(255, 255, 255, 0.03); padding: 1.25rem; border-radius: 8px;">
-              <strong style="color: var(--color-accent, #ff0080); font-size: 0.9rem; text-transform: uppercase;">
-                Ejemplo real de aplicación:
-              </strong>
-              <p style="font-size: 0.95rem; color: #f1f5f9; margin-top: 0.5rem; line-height: 1.6;">
-                "{zona.caso}"
-              </p>
-            </div>
+      <!-- Block: Caso concreto de aplicación -->
+      <div class="stg-row stg-bottom-gap-l">
+        <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-right" data-unload="fade-left">
+          <div class="bringer-parallax-media">
+            <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/service-details01.jpg" alt="Agente en acción" width="960" height="960">
+          </div>
+        </div>
+
+        <div class="stg-col-8 bringer-block stg-vertical-space-between" data-appear="fade-left" data-unload="fade-right">
+          <h2>Caso de aplicación en {zona.nombre}</h2>
+          <div>
+            <p class="bringer-large-text" style="color: #f1f5f9; font-style: italic;">
+              "{zona.caso}"
+            </p>
+            <p class="stg-top-gap-s">
+              Desarrollamos soluciones adaptadas a los horarios, tono de comunicación y expectativas de los clientes que frecuentan esta zona del Valle de Aburrá.
+            </p>
+          </div>
+          <div class="align-right">
+            <a href={NEGOCIO.agenda} class="bringer-arrow-link">Consultar para mi negocio</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Soluciones Más Demandadas en Esta Zona -->
-    <section class="geo-section">
-      <h2>Soluciones recomendadas para {zona.nombre}</h2>
-      <div class="bringer-grid-2cols stg-top-gap-s stg-normal-gap">
+    <!-- Section: Soluciones Recomendadas (Bringer 3-cols Square Grid) -->
+    <section>
+      <div class="align-center stg-bottom-gap-l">
+        <h2 data-split-appear="fade-up">Soluciones de mayor impacto en {zona.nombre}</h2>
+        <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+          Flujos diseñados para resolver los cuellos de botella más comunes de la zona:
+        </p>
+      </div>
+
+      <div class="bringer-grid-3cols bringer-tp-grid-2cols bringer-tp-stretch-last-item" data-stagger-appear="fade-up">
         {solucionesZona.map((sol) => (
-          <div class="bringer-block stg-vertical-space-between">
+          <div class="bringer-block stg-aspect-square stg-vertical-space-between">
             <div>
               <span class="bringer-label">{sol.tiempo}</span>
-              <h3 class="stg-top-gap-s">
-                <a href={`/soluciones-ia/${sol.slug}`} style="color: inherit; text-decoration: none;">
-                  {sol.nombre}
-                </a>
-              </h3>
-              <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
-                {sol.respuesta}
-              </p>
+              <h4 class="stg-top-gap-s">{sol.nombre}<span class="bringer-accent">.</span></h4>
+              <p style="font-size: 0.95rem; color: #cbd5e1; margin-top: 0.5rem;">{sol.respuesta}</p>
             </div>
-
-            <div class="stg-top-gap-m">
-              <a href={`/soluciones-ia/${sol.slug}`} class="bringer-arrow-link">
-                Ver alcance de {sol.nombre}
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- Enlazado Interno hacia Otras Zonas -->
-    <section class="geo-section">
-      <h2>Otras zonas del Valle de Aburrá con cobertura</h2>
-      <div class="bringer-grid-5cols stg-top-gap-s">
-        {otrasZonas.map((oz) => (
-          <div class="bringer-block" style="padding: 1rem; text-align: center;">
-            <a href={`/medellin/${oz.slug}`} style="color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem;">
-              {oz.nombre}
+            <a href={`/soluciones-ia/${sol.slug}`} class="bringer-arrow-link">
+              Ver detalles de la solución
             </a>
-            <p style="font-size: 0.8rem; color: #94a3b8; margin: 0.25rem 0 0 0;">{oz.municipio}</p>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- Preguntas Frecuentes de la Zona -->
-    <FaqList faqs={zona.faqs} titulo={`Preguntas frecuentes sobre IA en ${zona.nombre}`} />
+    <!-- Section: Otras Zonas del Valle de Aburrá -->
+    <section class="stg-bottom-gap-l">
+      <div class="stg-row bringer-section-title">
+        <div class="stg-col-8 stg-offset-2 align-center">
+          <h2 data-split-appear="fade-up">Otras zonas con atención presencial</h2>
+        </div>
+      </div>
 
-    <!-- CTA -->
+      <div class="bringer-grid-4cols stg-top-gap-s" data-stagger-appear="fade-up">
+        {otrasZonas.map((oz) => (
+          <div class="bringer-block" style="padding: 1.25rem;">
+            <h5>
+              <a href={`/medellin/${oz.slug}`} style="color: #fff; text-decoration: none;">
+                {oz.nombre}
+              </a>
+            </h5>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin: 0.25rem 0 0.5rem 0;">{oz.municipio}</p>
+            <a href={`/medellin/${oz.slug}`} class="bringer-arrow-link" style="font-size: 0.85rem;">
+              Ver zona
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section: FAQs con Acordeón Nativo -->
+    <FaqList faqs={zona.faqs} titulo={`Preguntas frecuentes sobre servicios en ${zona.nombre}`} />
+
+    <!-- Section: Bento CTA Oficial Bringer -->
     <Cta 
       titulo={`¿Tienes una empresa en ${zona.nombre}?`}
-      texto="Conversemos 20 minutos: revisamos cómo optimizar tu atención por WhatsApp o automatizar tareas repetitivas."
+      subtitulo="Conversemos sobre tus canales de atención y te mostramos cómo implementar un agente de WhatsApp o automatización este mes."
+      enlace={NEGOCIO.agenda}
     />
   </div>
 </BaseLayout>

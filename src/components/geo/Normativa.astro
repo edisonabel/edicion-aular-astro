@@ -3,21 +3,37 @@ import { NORMATIVA } from '../../data/ia/negocio';
 type Clave = keyof typeof NORMATIVA;
 const { claves, nota } = Astro.props as { claves: Clave[]; nota?: string };
 ---
-<section class="geo-section">
-  <h2>Normativa colombiana que aplicamos</h2>
-  {nota && <p class="geo-note">{nota}</p>}
-  <div class="geo-table-wrap">
-    <table class="geo-table">
-      <thead><tr><th scope="col">Norma</th><th scope="col">Qué exige y cómo la aplicamos</th></tr></thead>
+<section class="stg-bottom-gap-l">
+  <div class="stg-row stg-bottom-gap">
+    <div class="stg-col-8">
+      <h2 data-split-appear="fade-up">Marco normativo y cumplimiento en Colombia</h2>
+      {nota && <p class="bringer-large-text" style="color: #cbd5e1; margin-top: 0.5rem;">{nota}</p>}
+    </div>
+  </div>
+
+  <div class="bringer-table-wrap" data-appear="fade-up">
+    <table class="bringer-table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 32%;">Normativa</th>
+          <th scope="col">Requisitos que aplicamos en el desarrollo</th>
+        </tr>
+      </thead>
       <tbody>
         {claves.map((k) => (
           <tr>
-            <td><a href={NORMATIVA[k].url} target="_blank" rel="noopener">{NORMATIVA[k].nombre}</a></td>
+            <td>
+              <a href={NORMATIVA[k].url} target="_blank" rel="noopener">
+                <strong>{NORMATIVA[k].nombre}</strong>
+              </a>
+            </td>
             <td>{NORMATIVA[k].resumen}</td>
           </tr>
         ))}
       </tbody>
     </table>
   </div>
-  <p class="geo-small">Información general, no constituye asesoría legal.</p>
+  <p class="bringer-meta" style="margin-top: 0.75rem; color: #64748b;">
+    Información de referencia legal aplicada a desarrollos tecnológicos, no constituye asesoría jurídica formal.
+  </p>
 </section>

@@ -227,7 +227,7 @@ export const SOLUCIONES: Solucion[] = [
     ],
     tiempo: 'Talleres desde una jornada; programas de 4 a 12 semanas.',
     normativa: ['habeasData', 'conpesIA'],
-    servicioRelacionado: { href: '/mentoria', label: 'Mentoría' },
+    servicioRelacionado: { href: '/soluciones-ia', label: 'Soluciones de IA' },
     faqs: [
       { q: '¿Qué debe aprender un equipo sobre inteligencia artificial?', a: 'Lo esencial: redactar buenas instrucciones (prompts), verificar resultados, proteger información confidencial y aplicar la IA a sus tareas diarias concretas. Lo técnico se adapta a cada rol.' },
       { q: '¿La capacitación en IA es presencial o virtual?', a: 'Ambas. En Medellín y el Valle de Aburrá ofrecemos sesiones presenciales en tu empresa; para otros lugares, en vivo por videollamada.' },

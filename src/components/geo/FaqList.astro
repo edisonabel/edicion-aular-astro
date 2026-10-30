@@ -1,16 +1,55 @@
 ---
-// Preguntas frecuentes visibles (las mismas que van en FAQPage schema).
+// Acordeón de FAQs nativo Bringer con microdatos para GEO/FAQPage
 import type { FAQ } from '../../data/ia/soluciones';
 const { faqs, titulo = 'Preguntas frecuentes' } = Astro.props as { faqs: FAQ[]; titulo?: string };
 ---
-<section class="geo-section" id="preguntas-frecuentes">
-  <h2>{titulo}</h2>
-  <div class="geo-faq">
+<section class="stg-bottom-gap-l" id="preguntas-frecuentes">
+  <div class="stg-row stg-bottom-gap">
+    <div class="stg-col-8">
+      <h2 data-split-appear="fade-up">{titulo}</h2>
+    </div>
+  </div>
+
+  <div class="bringer-toggles-list">
     {faqs.map((f, i) => (
-      <details open={i === 0}>
-        <summary><h3>{f.q}</h3></summary>
-        <p>{f.a}</p>
-      </details>
+      <div class="bringer-toggles-item" data-appear="fade-up" data-delay={i * 50}>
+        <div class="bringer-toggles-item-title">
+          <span>{f.q}</span>
+        </div>
+        <div class="bringer-toggles-item-content">
+          <p>{f.a}</p>
+        </div>
+      </div>
     ))}
   </div>
 </section>
+
+<script is:inline>
+  (function() {
+    function initGeoFAQ() {
+      const items = document.querySelectorAll('.bringer-toggles-item');
+      items.forEach((item) => {
+        const title = item.querySelector('.bringer-toggles-item-title');
+        if (title && !title.hasAttribute('data-geo-faq-init')) {
+          title.setAttribute('data-geo-faq-init', 'true');
+          title.addEventListener('click', function(e) {
+            e.preventDefault();
+            const list = item.closest('.bringer-toggles-list');
+            if (list) {
+              list.querySelectorAll('.bringer-toggles-item.is-active').forEach((active) => {
+                if (active !== item) active.classList.remove('is-active');
+              });
+            }
+            item.classList.toggle('is-active');
+          });
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGeoFAQ);
+    } else {
+      setTimeout(initGeoFAQ, 50);
+    }
+  })();
+</script>

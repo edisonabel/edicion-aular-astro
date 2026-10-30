@@ -8,8 +8,8 @@ import { SECTORES } from '../../data/ia/sectores';
 import { NEGOCIO } from '../../data/ia/negocio';
 import { breadcrumbs, localBusiness, faqPage, webPage } from '../../lib/schema';
 
-const pageTitle = "Soluciones de IA por Sector en Medellín | Edición Aular";
-const pageDesc = "Implementación especializada de Inteligencia Artificial para clínicas y estética, turismo y hoteles, e inmobiliarias. Diseñadas para resolver cuellos de botella específicos.";
+const pageTitle = "Soluciones de Inteligencia Artificial por Sector | Edición Aular";
+const pageDesc = "Implementación especializada de Inteligencia Artificial para clínicas y estética, turismo y hoteles, e inmobiliarias en Medellín y Colombia.";
 const pageUrl = "/sectores";
 
 const faqsSectores = [
@@ -43,72 +43,61 @@ const schemaData = [
       { name: "Sectores Especializados" }
     ]} />
 
-    <!-- Hero -->
-    <section class="stg-top-gap-m">
-      <div class="stg-row stg-large-gap stg-valign-middle">
-        <div class="stg-col-8">
-          <span class="bringer-label">Especialización de Industria</span>
-          <h1 class="bringer-page-title stg-top-gap-s">
-            Soluciones de IA adaptadas a tu modelo de negocio<span class="bringer-accent">.</span>
+    <!-- Section: Page Title (Bringer Style) -->
+    <section class="backlight-bottom">
+      <div class="stg-row">
+        <div class="stg-col-8 stg-offset-2 align-center stg-tp-col-10 stg-tp-offset-1">
+          <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
+            Soluciones de IA por Sector<span class="bringer-accent">.</span>
           </h1>
-
-          <div class="geo-answer-card">
-            <p>
-              No aplicamos la misma plantilla a todos. Cada sector industrial cuenta con canales de conversión, objeciones típicas de clientes y exigencias normativas particulares. Diseñamos la arquitectura de IA según la realidad de tu industria en Medellín y Colombia.
-            </p>
-          </div>
-        </div>
-
-        <div class="stg-col-4">
-          <div class="bringer-block is-accented">
-            <span class="bringer-label">Consultoría Sectorial</span>
-            <h4>¿Tu sector no está en la lista?</h4>
-            <p style="font-size: 0.95rem;">Evaluamos modelos para comercio minorista, educación, logística y servicios profesionales.</p>
-            <a href={NEGOCIO.agenda} class="geo-btn stg-top-gap-s">Agendar diagnóstico</a>
-          </div>
+          <p class="bringer-large-text" data-split-appear="fade-up" data-delay="100" data-split-unload="fade-up">
+            Arquitectura de Inteligencia Artificial adaptada a las particularidades comerciales y normativas de cada industria.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Listado de Sectores -->
-    <section class="geo-section">
+    <!-- Section: Listado de Sectores (Bringer Bento Style) -->
+    <section class="stg-bottom-gap-l">
       <div class="bringer-grid-1col stg-normal-gap">
         {SECTORES.map((sec) => (
           <div class="bringer-block">
             <div class="stg-row stg-large-gap">
-              <div class="stg-col-7">
-                <span class="bringer-label">Industria</span>
-                <h3 class="stg-top-gap-s">
-                  <a href={`/sectores/${sec.slug}`} style="color: inherit; text-decoration: none;">
-                    {sec.nombre}
-                  </a>
-                </h3>
-                <p style="color: #cbd5e1; line-height: 1.7; font-size: 1rem; margin-top: 0.75rem;">
-                  {sec.respuesta}
-                </p>
-
-                <div class="stg-top-gap-s">
-                  <strong style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase;">Dolores principales que resolvemos:</strong>
-                  <ul style="padding-left: 1.25rem; margin-top: 0.5rem; color: #cbd5e1; font-size: 0.95rem;">
-                    {sec.dolores.slice(0, 3).map((d) => (
-                      <li>{d}</li>
-                    ))}
-                  </ul>
+              <div class="stg-col-7 stg-vertical-space-between">
+                <div>
+                  <span class="bringer-label">Sector Especializado</span>
+                  <h3 class="stg-top-gap-s">
+                    <a href={`/sectores/${sec.slug}`} style="color: inherit; text-decoration: none;">
+                      {sec.nombre}
+                    </a>
+                  </h3>
+                  <p style="color: #cbd5e1; line-height: 1.7; font-size: 1.05rem; margin-top: 0.75rem;">
+                    {sec.respuesta}
+                  </p>
+                  
+                  <div class="stg-top-gap-s">
+                    <span class="bringer-meta">Dolores que resolvemos:</span>
+                    <ul class="bringer-marked-list stg-top-gap-s">
+                      {sec.dolores.slice(0, 3).map((d) => (
+                        <li>{d}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
                 <div class="stg-top-gap-m">
                   <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link">
-                    Ver soluciones detalladas para {sec.nombre}
+                    Ver soluciones para {sec.nombre}
                   </a>
                 </div>
               </div>
 
               <div class="stg-col-5">
-                <div style="background: rgba(255, 255, 255, 0.03); padding: 1.5rem; border-radius: 12px; height: 100%; border: 1px solid rgba(255, 255, 255, 0.06);">
-                  <h5 style="color: #fff; margin-bottom: 1rem;">Casos de uso integrados:</h5>
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 1.75rem; border-radius: var(--bringer-default-br, 16px); height: 100%; border: 1px solid rgba(255, 255, 255, 0.06);">
+                  <h5 style="color: #fff; margin-bottom: 1rem;">Casos de uso aplicados:</h5>
                   <ul style="list-style: none; padding: 0; margin: 0;">
                     {sec.usos.map((u) => (
-                      <li style="margin-bottom: 0.75rem; font-size: 0.9rem; color: #cbd5e1;">
+                      <li style="margin-bottom: 1rem; font-size: 0.95rem; color: #cbd5e1; line-height: 1.6;">
                         <strong style="color: var(--color-accent, #ff0080);">•</strong> {u.uso}
                       </li>
                     ))}
@@ -121,13 +110,14 @@ const schemaData = [
       </div>
     </section>
 
-    <!-- FAQs -->
+    <!-- Section: FAQs con Acordeón Nativo -->
     <FaqList faqs={faqsSectores} titulo="Preguntas frecuentes sobre IA por sector" />
 
-    <!-- CTA -->
+    <!-- Section: Bento CTA Oficial Bringer -->
     <Cta 
       titulo="¿Quieres saber cómo la IA se aplica a tu industria?"
-      texto="Conversemos sobre el flujo de compra de tus clientes y diseñemos un agente o automatización a la medida."
+      subtitulo="Conversemos sobre el flujo de compra de tus clientes y diseñemos un agente o automatización a la medida."
+      enlace={NEGOCIO.agenda}
     />
   </div>
 </BaseLayout>

@@ -1,9 +1,10 @@
-/* Estilos complementarios para secciones GEO y SEO Local (Edición Aular) */
+/* Integración de componentes nativos de la plantilla Bringer para SEO y GEO */
 
+/* Breadcrumbs sobrio y limpio */
 .geo-breadcrumbs {
     padding: 1.5rem 0 0.5rem 0;
-    font-size: 0.9rem;
-    color: var(--color-text-muted, #94a3b8);
+    font-size: 0.85rem;
+    color: #94a3b8;
 }
 
 .geo-breadcrumbs ol {
@@ -16,234 +17,174 @@
 }
 
 .geo-breadcrumbs li:not(:last-child)::after {
-    content: "›";
+    content: "/";
     margin-left: 0.5rem;
-    color: var(--color-accent, #ff0080);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .geo-breadcrumbs a {
-    color: var(--color-text-muted, #94a3b8);
+    color: #94a3b8;
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .geo-breadcrumbs a:hover {
-    color: var(--color-accent, #ff0080);
-}
-
-.geo-answer-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 1.75rem 2rem;
-    margin: 2rem 0;
-    backdrop-filter: blur(10px);
-}
-
-.geo-answer-card p {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    margin: 0;
-    color: #f1f5f9;
-}
-
-.geo-section {
-    margin: 4rem 0;
-}
-
-.geo-section h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.geo-faq {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.geo-faq details {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    transition: background 0.2s, border-color 0.2s;
-}
-
-.geo-faq details[open] {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 0, 128, 0.3);
-}
-
-.geo-faq summary {
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-}
-
-.geo-faq summary::-webkit-details-marker {
-    display: none;
-}
-
-.geo-faq summary h3 {
-    margin: 0;
-    font-size: 1.15rem;
-    font-weight: 600;
-    display: inline;
     color: #fff;
 }
 
-.geo-faq summary::after {
-    content: "+";
-    font-size: 1.5rem;
-    color: var(--color-accent, #ff0080);
-    transition: transform 0.2s;
-}
-
-.geo-faq details[open] summary::after {
-    content: "−";
-}
-
-.geo-faq p {
-    margin-top: 1rem;
-    margin-bottom: 0;
+.geo-breadcrumbs [aria-current="page"] {
     color: #cbd5e1;
-    line-height: 1.6;
 }
 
-.geo-table-wrap {
+/* Acordeón de FAQs nativo Bringer con efecto glow */
+.bringer-toggles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bringer-toggles-item {
+    position: relative;
+    margin-bottom: 0;
+    border-radius: var(--bringer-default-br, 16px);
+    background: var(--bringer-s-block, rgba(255, 255, 255, 0.03));
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.bringer-toggles-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--bringer-default-br, 16px);
+    padding: 1px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.bringer-toggles-item:hover::before {
+    opacity: 1;
+}
+
+.bringer-toggles-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--bringer-default-br, 16px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 0, 128, 0.06),
+        transparent 40%
+    );
+    pointer-events: none;
+}
+
+.bringer-toggles-item:hover::after {
+    opacity: 1;
+}
+
+.bringer-toggles-item-title {
+    position: relative;
+    z-index: 1;
+    cursor: pointer !important;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border-radius: var(--bringer-default-br, 16px);
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.bringer-toggles-item-title span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.bringer-toggles-item.is-active .bringer-toggles-item-title {
+    border-radius: var(--bringer-default-br, 16px) var(--bringer-default-br, 16px) 0 0;
+}
+
+.bringer-toggles-item-title::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--bringer-s-accent, #ff0080);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.bringer-toggles-item.is-active .bringer-toggles-item-title::after {
+    transform: rotate(45deg);
+}
+
+.bringer-toggles-item-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.bringer-toggles-item.is-active .bringer-toggles-item-content {
+    max-height: 500px;
+}
+
+.bringer-toggles-item-content p {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    margin: 0;
+    color: var(--bringer-s-text, #a0aec0);
+    line-height: 1.7;
+}
+
+/* Tablas nativas estilo Bringer Dark */
+.bringer-table-wrap {
     overflow-x: auto;
     margin: 1.5rem 0;
-    border-radius: 12px;
+    border-radius: var(--bringer-default-br, 16px);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
 }
 
-.geo-table {
+.bringer-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
     text-align: left;
-    background: rgba(255, 255, 255, 0.02);
 }
 
-.geo-table th, .geo-table td {
-    padding: 1rem 1.25rem;
+.bringer-table th, .bringer-table td {
+    padding: 1.1rem 1.4rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.geo-table th {
-    background: rgba(255, 255, 255, 0.05);
+.bringer-table th {
+    background: rgba(255, 255, 255, 0.04);
     color: #f8fafc;
     font-weight: 600;
 }
 
-.geo-table td {
+.bringer-table td {
     color: #cbd5e1;
 }
 
-.geo-table a {
+.bringer-table a {
     color: var(--color-accent, #ff0080);
     text-decoration: underline;
-}
-
-.geo-note {
-    font-size: 0.95rem;
-    color: #94a3b8;
-    margin-bottom: 1rem;
-    font-style: italic;
-}
-
-.geo-small {
-    font-size: 0.85rem;
-    color: #64748b;
-    margin-top: 0.75rem;
-}
-
-.geo-stat-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.geo-stat-number {
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: var(--color-accent, #ff0080);
-    line-height: 1;
-}
-
-.geo-stat-label {
-    font-size: 0.95rem;
-    color: #cbd5e1;
-}
-
-.geo-stat-source {
-    font-size: 0.8rem;
-    color: #94a3b8;
-    margin-top: 0.25rem;
-}
-
-.geo-cta {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 3rem 2rem;
-    text-align: center;
-    margin: 4rem 0;
-}
-
-.geo-cta h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-}
-
-.geo-cta p {
-    font-size: 1.15rem;
-    color: #e2e8f0;
-    max-width: 650px;
-    margin: 0 auto 2rem auto;
-}
-
-.geo-cta-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.geo-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.9rem 1.8rem;
-    background: var(--color-accent, #ff0080);
-    color: #fff;
-    border-radius: 9999px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform 0.2s, background 0.2s;
-}
-
-.geo-btn:hover {
-    transform: translateY(-2px);
-    background: #e00070;
-}
-
-.geo-btn.is-outline {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-}
-
-.geo-btn.is-outline:hover {
-    background: rgba(255, 255, 255, 0.08);
 }

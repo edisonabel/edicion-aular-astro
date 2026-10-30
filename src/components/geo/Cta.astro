@@ -1,12 +1,44 @@
 ---
-import { NEGOCIO } from '../../data/ia/negocio';
-const { titulo = '¿Tienes la herramienta pero no la solución?', texto = 'Agenda un diagnóstico gratuito: revisamos tu proceso y te decimos qué resolver primero con IA.' } = Astro.props;
+// Sección Bento CTA oficial de la plantilla Bringer
+interface Props {
+  titulo?: string;
+  subtitulo?: string;
+  enlace?: string;
+}
+
+const {
+  titulo = "¿Listo para transformar tu operación con IA?",
+  subtitulo = "Conversemos 20 minutos sin compromiso: revisamos tus procesos y te decimos qué resolver primero.",
+  enlace = "https://cal.com/edicion-aular-website"
+} = Astro.props;
 ---
-<section class="geo-cta">
-  <h2>{titulo}</h2>
-  <p>{texto}</p>
-  <div class="geo-cta-actions">
-    <a class="geo-btn" href={NEGOCIO.agenda} rel="noopener">Agendar diagnóstico</a>
-    <a class="geo-btn is-outline" href={`${NEGOCIO.whatsapp}?text=${encodeURIComponent('Hola, quiero información sobre soluciones con IA')}`} rel="noopener">Escribir por WhatsApp</a>
+<section class="divider-top" data-appear="fade-up">
+  <div class="bringer-bento-grid bringer-grid-cta">
+    <!-- Card grande con gradiente lava oficial de Bringer -->
+    <div class="is-large bringer-masked-block" data-appear="fade-right" data-unload="fade-left">
+      <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
+        <div class="bringer-grid-cta-heading">{titulo}</div>
+      </div>
+      <div class="bringer-masked-content at-bottom-right">
+        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Agenda tu diagnóstico hoy mismo →</p>
+      </div>
+    </div>
+
+    <!-- Card mediano con texto descriptivo -->
+    <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
+      <h3>{subtitulo}</h3>
+    </div>
+
+    <!-- Botón cuadrado con icono explore -->
+    <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
+      <a href={enlace} target="_blank" rel="noopener" class="bringer-square-button">
+        <span class="bringer-icon bringer-icon-explore"></span>
+      </a>
+    </div>
+
+    <!-- Mockup visual oficial de Bringer -->
+    <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
+      <img src="/img/home/CAZON-BRAND-MOCKUP-8-copia.webp" alt="Contacto Edición Aular" width="960" height="960" loading="lazy" decoding="async">
+    </div>
   </div>
 </section>
