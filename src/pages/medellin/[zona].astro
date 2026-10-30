@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditorialImage from '../../components/geo/EditorialImage.astro';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { ZONAS, type Zona } from '../../data/ia/zonas';
+import { SOLUCIONES } from '../../data/ia/soluciones';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, faqPage, webPage } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return ZONAS.map((zona) => ({
+    params: { zona: zona.slug },
+    props: { zona },
+  }));
+}
+
+interface Props {
+  zona: Zona;
+}
+
+const { zona } = Astro.props;
+const pageUrl = `/medellin/${zona.slug}`;
+const pageTitle = `IA para empresas en ${zona.nombre} | Edición Aular`;
+const pageDesc = `Implementación de agentes de WhatsApp, automatización y posicionamiento en ChatGPT para empresas en ${zona.nombre} (${zona.municipio}). Asesoría local.`;
+
+const solucionesZona = SOLUCIONES.filter((s) => zona.enfoque.includes(s.slug)).slice(0, 3);
+const otrasZonas = [...ZONAS.filter((z) => z.municipio === zona.municipio && z.slug !== zona.slug), ...ZONAS.filter((z) => z.municipio !== zona.municipio)].slice(0, 4);
+
+const schemaData = [
+  webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Medellín y Valle de Aburrá", href: "/medellin" },
+    { name: zona.nombre, href: pageUrl }
+  ]),
+  faqPage(zona.faqs)
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container geo-page">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Medellín y Valle de Aburrá", href: "/medellin" },
+      { name: zona.nombre }
+    ]} />
+
+    <!-- Section: Intro (Bringer Style) -->
+    <section id="intro-bringer-style" data-template="services.html#intro">
+      <div class="stg-row stg-large-gap stg-tp-normal-gap stg-tp-column-reverse">
+        <div class="stg-col-6 stg-vertical-space-between" data-unload="fade-left">
+          <div class="stg-tp-bottom-gap">
+            <span class="bringer-label">{zona.tipo.toUpperCase()} · {zona.municipio}</span>
+            <h1 class="bringer-page-title" data-split-appear="fade-up">
+              Soluciones de IA para empresas en {zona.nombre}<span class="bringer-accent">.</span>
+            </h1>
+            <p class="bringer-large-text" data-appear="fade-right" data-delay="100">
+              {zona.intro}
+            </p>
+          </div>
+          <div class="align-right" data-appear="fade-right">
+            <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="bringer-icon-link">
+              <div class="bringer-icon-link-content">
+                <p class="geo-action-label">
+                  Hablemos sobre tu negocio
+                  <br>
+                  en {zona.nombre}
+                </p>
+                <span class="bringer-label">Agenda una Cita</span>
+              </div>
+              <div class="bringer-icon-wrap">
+                <i class="bringer-icon bringer-icon-explore"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="stg-col-6 stg-tp-bottom-gap-l bringer-parallax-media" data-appear="fade-left" data-unload="fade-right">
+          <EditorialImage imagen="medellin" prioritaria />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Dinámica Comercial y Caso Real (Bringer Bento Case Study Style) -->
+    <section class="stg-bottom-gap-l" id="dinamica-comercial-y-caso-real-bringer-bento-case-study-style" data-template="portfolio-post01.html#the-challenge">
+      <!-- Block: Ejes Comerciales -->
+      <div class="stg-row stg-bottom-gap-l stg-tp-column-reverse">
+        <div class="stg-col-8 bringer-block stg-vertical-space-between" data-appear="fade-right" data-unload="fade-left">
+          <h2>Contexto para diseñar la solución</h2>
+          <div>
+            <p class="bringer-large-text">
+              Para un negocio en {zona.nombre}, organizar las consultas y el seguimiento puede facilitar el trabajo diario. Antes de automatizar revisamos cómo llegan los clientes y qué necesita resolver tu equipo.
+            </p>
+            <p>
+              Ejes de referencia: <strong>{zona.ejes.join(" · ")}</strong>.
+            </p>
+          </div>
+          <div class="stg-top-gap-s">
+            <span class="bringer-meta">Negocios a los que puede ser útil: {zona.perfil.join(", ")}.</span>
+          </div>
+        </div>
+
+        <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-left" data-unload="fade-right">
+          <div class="bringer-parallax-media">
+            <EditorialImage imagen="diagnostico" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Block: Caso concreto de aplicación -->
+      <div class="stg-row stg-bottom-gap-l">
+        <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-right" data-unload="fade-left">
+          <div class="bringer-parallax-media">
+            <EditorialImage imagen="canales" />
+          </div>
+        </div>
+
+        <div class="stg-col-8 bringer-block stg-vertical-space-between" data-appear="fade-left" data-unload="fade-right">
+          <h2>Ejemplo de aplicación en {zona.nombre}</h2>
+          <div>
+            <p class="bringer-large-text" style="color: var(--bringer-s-heading); font-style: italic;">
+              {zona.caso}
+            </p>
+            <p class="geo-example-note">Ejemplo ilustrativo, no un resultado atribuido a un cliente.</p>
+            <p class="stg-top-gap-s">
+              Desarrollamos soluciones adaptadas a los horarios, tono de comunicación y expectativas de los clientes que frecuentan esta zona del Valle de Aburrá.
+            </p>
+          </div>
+          <div class="align-right">
+            <a href={NEGOCIO.agenda} class="bringer-arrow-link">Consultar para mi negocio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Soluciones Recomendadas (Bringer 3-cols Square Grid) -->
+    <section id="soluciones-recomendadas-bringer-3-cols-square-grid" data-template="service-details.html#offer">
+      <div class="align-center stg-bottom-gap-l">
+        <h2 data-split-appear="fade-up">Soluciones para evaluar en {zona.nombre}</h2>
+        <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+          Opciones que podemos evaluar según tu operación:
+        </p>
+      </div>
+
+      <div class="bringer-grid-3cols bringer-tp-grid-2cols bringer-tp-stretch-last-item" data-stagger-appear="fade-up">
+        {solucionesZona.map((sol) => (
+          <div class="bringer-block stg-aspect-square stg-vertical-space-between">
+            <div>
+              <span class="bringer-label">{sol.tiempo}</span>
+              <h3 class="stg-top-gap-s">{sol.nombre}<span class="bringer-accent">.</span></h3>
+              <p style="font-size: 0.95rem; color: var(--bringer-s-heading); margin-top: 0.5rem;">{sol.respuesta}</p>
+            </div>
+            <a href={`/soluciones-ia/${sol.slug}`} class="bringer-arrow-link">
+              Ver detalles de la solución
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section: Otras Zonas del Valle de Aburrá -->
+    <section class="stg-bottom-gap-l" id="otras-zonas-del-valle-de-aburra" data-template="services.html#our-services">
+      <div class="stg-row bringer-section-title">
+        <div class="stg-col-8 stg-offset-2 align-center">
+          <h2 data-split-appear="fade-up">Otras zonas con atención presencial</h2>
+        </div>
+      </div>
+
+      <div class="bringer-grid-4cols stg-top-gap-s" data-stagger-appear="fade-up">
+        {otrasZonas.map((oz) => (
+          <div class="bringer-block" style="padding: 1.25rem;">
+            <h3>
+              <a href={`/medellin/${oz.slug}`} style="color: var(--bringer-s-heading); text-decoration: none;">
+                {oz.nombre}
+              </a>
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--bringer-s-heading); opacity: 0.85; margin: 0.25rem 0 0.5rem 0;">{oz.municipio}</p>
+            <a href={`/medellin/${oz.slug}`} class="bringer-arrow-link" style="font-size: 0.85rem;">
+              Ver zona
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section: FAQs con Acordeón Nativo -->
+    <FaqList faqs={zona.faqs} titulo={`Preguntas frecuentes sobre servicios en ${zona.nombre}`} categoria={zona.nombre} />
+
+    <!-- Section: Bento CTA Oficial Bringer -->
+    <Cta 
+      titulo={`¿Tienes una empresa en ${zona.nombre}?`}
+      subtitulo="Conversemos sobre tus canales de atención y te mostramos cómo priorizar una solución útil para tu operación."
+      enlace={NEGOCIO.agenda}
+    />
+  </div>
+</BaseLayout>

@@ -1,0 +1,966 @@
+{
+  "comprobaciones": 96,
+  "metodo": "Viewport real en iframe; animaciones desactivadas solo en el visor de QA; contraste estimado en fondos planos; inspección visual adicional de FAQ con animaciones normales.",
+  "resultados": [
+    {
+      "ruta": "/medellin/belen/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/belen/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/belen/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/belen/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/bello/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/bello/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/bello/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/bello/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/calasanz/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/calasanz/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/calasanz/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/calasanz/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/centro-medellin/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/centro-medellin/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/centro-medellin/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/centro-medellin/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/el-poblado/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/el-poblado/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/el-poblado/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/el-poblado/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/el-tesoro/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/el-tesoro/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/el-tesoro/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/el-tesoro/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/envigado/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/envigado/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/envigado/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/envigado/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 5,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 5,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 5,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 5,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/itagui/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/itagui/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/itagui/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/itagui/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/laureles/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/laureles/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/laureles/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/laureles/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/sabaneta/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/sabaneta/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/sabaneta/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/sabaneta/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/clinicas-estetica/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/clinicas-estetica/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/clinicas-estetica/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/clinicas-estetica/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 4,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 4,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 4,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 4,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/inmobiliarias/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/inmobiliarias/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/inmobiliarias/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/inmobiliarias/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/turismo-hoteles/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/turismo-hoteles/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/turismo-hoteles/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/turismo-hoteles/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 8,
+      "faq": 6,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 8,
+      "faq": 6,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 8,
+      "faq": 6,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 8,
+      "faq": 6,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 8,
+      "faq": 5,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 8,
+      "faq": 5,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 8,
+      "faq": 5,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 8,
+      "faq": 5,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 9,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 9,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 9,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 9,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/contenido-video-ia/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 8,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/contenido-video-ia/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 8,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/contenido-video-ia/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 8,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/contenido-video-ia/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 8,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 9,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 9,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 9,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 9,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+      "ancho": "390",
+      "tema": "oscuro",
+      "secciones": 8,
+      "faq": 5,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+      "ancho": "390",
+      "tema": "claro",
+      "secciones": 8,
+      "faq": 5,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+      "ancho": "1200",
+      "tema": "oscuro",
+      "secciones": 8,
+      "faq": 5,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/sitios-web-seo-geo/",
+      "ancho": "1200",
+      "tema": "claro",
+      "secciones": 8,
+      "faq": 5,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/belen/",
+      "ancho": "768",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/belen/",
+      "ancho": "768",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/",
+      "ancho": "768",
+      "tema": "oscuro",
+      "secciones": 5,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/medellin/",
+      "ancho": "768",
+      "tema": "claro",
+      "secciones": 5,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/clinicas-estetica/",
+      "ancho": "768",
+      "tema": "oscuro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/clinicas-estetica/",
+      "ancho": "768",
+      "tema": "claro",
+      "secciones": 6,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/",
+      "ancho": "768",
+      "tema": "oscuro",
+      "secciones": 4,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/sectores/",
+      "ancho": "768",
+      "tema": "claro",
+      "secciones": 4,
+      "faq": 2,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+      "ancho": "768",
+      "tema": "oscuro",
+      "secciones": 9,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
+      "ancho": "768",
+      "tema": "claro",
+      "secciones": 9,
+      "faq": 4,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/",
+      "ancho": "768",
+      "tema": "oscuro",
+      "secciones": 9,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    },
+    {
+      "ruta": "/soluciones-ia/",
+      "ancho": "768",
+      "tema": "claro",
+      "secciones": 9,
+      "faq": 3,
+      "desbordamientos": [],
+      "contraste": [],
+      "nota": "Animaciones desactivadas en este visor para medir la distribución. Contraste estimado en fondos planos; gradientes se revisan visualmente."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+---
+// Adaptación editorial de Steps de home06.html; módulos, sin fechas ni eventos ficticios.
+const modulos = [
+  { nombre: 'Criterio y seguridad', entrega: 'Guía de uso para el equipo', texto: 'Qué tareas delegar, qué información proteger y cómo revisar una respuesta.' },
+  { nombre: 'Práctica por área', entrega: 'Ejercicios sobre tus procesos', texto: 'Trabajamos con casos de ventas, marketing u operación y datos de ejemplo.' },
+  { nombre: 'Aplicación y seguimiento', entrega: 'Plan de adopción', texto: 'Cada persona define un flujo de trabajo y una forma concreta de evaluar su utilidad.' },
+];
+---
+<section id="programa-formacion" data-template="home06.html#steps">
+  <div class="stg-row bringer-section-title">
+    <div class="stg-col-8"><span class="bringer-label">Programa a la medida</span><h2>Un taller que continúa en el trabajo diario</h2><p>Adaptamos los módulos, la duración y el formato al nivel del equipo. Las fechas se acuerdan en la propuesta.</p></div>
+  </div>
+  <div class="bringer-grid-3cols bringer-tp-grid-1col stg-normal-gap">
+    {modulos.map((m, i) => <article class="bringer-block geo-program-module"><span class="bringer-label">Módulo {String(i + 1).padStart(2, '0')}</span><h3>{m.nombre}</h3><p>{m.texto}</p><p class="geo-module-delivery">Entregable: {m.entrega}</p></article>)}
+  </div>
+</section>

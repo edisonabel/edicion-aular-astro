@@ -1,0 +1,14 @@
+---
+// Migas de pan visibles. El schema BreadcrumbList se genera en lib/schema.ts
+interface Item { name: string; href?: string }
+const { items } = Astro.props as { items: Item[] };
+---
+<nav class="geo-breadcrumbs" aria-label="Migas de pan">
+  <ol>
+    {items.map((it, i) => (
+      <li>
+        {it.href && i < items.length - 1 ? <a href={it.href}>{it.name}</a> : <span aria-current="page">{it.name}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

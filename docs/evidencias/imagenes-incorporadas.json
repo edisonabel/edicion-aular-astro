@@ -1,0 +1,92 @@
+[
+  {
+    "origen": "collaborative-design-studio-meeting-6ae41a8981946.webp",
+    "archivo": "agencia-ia.webp",
+    "usos": "agencia",
+    "bytes": 113852,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "eb06b6bd4a6423321fd5a6c231eed144135cc4bb54e30ccdf2e25352466af0a2"
+  },
+  {
+    "origen": "focused-remote-work-in-a-modern-office-6ae41a896205d.webp",
+    "archivo": "agente-whatsapp.webp",
+    "usos": "canales",
+    "bytes": 100708,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "2da8facfcff45bfb1bd8a62f52ba2f5ca085fa6af3412d2f3c8faf663e143f4a"
+  },
+  {
+    "origen": "collaborative-creative-office-workspace-6ae41a88346f3.webp",
+    "archivo": "automatizacion-procesos.webp",
+    "usos": "automatizacion",
+    "bytes": 117506,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "8cf55fb3a905b3458e0a2fbfd81249eae962060512a5e72d63df34b25181efab"
+  },
+  {
+    "origen": "creative-studio-product-shoot-6ae41a88056c9.webp",
+    "archivo": "contenido-ia.webp",
+    "usos": "contenido",
+    "bytes": 112720,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "7c239f1cbe441e4efdebbc19dc227ee05c29e13cf0b12be3d7a148560d73ed94"
+  },
+  {
+    "origen": "espacio-creativo-con-codigo-y-montanas-6ae41a86e3ac8.webp",
+    "archivo": "desarrollo-web.webp",
+    "usos": "web",
+    "bytes": 129392,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "f82eb4f4a01ac5c550fb95aae34f2dc1abd061d13dcda17fa3b4033da2ff81bd"
+  },
+  {
+    "origen": "warm-dental-clinic-receptionist-6ae41a854a098.webp",
+    "archivo": "recepcion-clinica.webp",
+    "usos": "clinica",
+    "bytes": 95748,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "dd279278405837e15df57cc267cff4b545e83748f03fd36fb4e19beaaaabd694"
+  },
+  {
+    "origen": "woman-writing-in-a-mountain-view-office-6ae41a86b6864.webp",
+    "archivo": "negocios-medellin.webp",
+    "usos": "medellin",
+    "bytes": 103182,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "a473f828b93931dd72cc80a1edd418073d9dea1470410a86c0e4c8077c907521"
+  },
+  {
+    "origen": "modern-lobby-receptionist-multitasking-6ae41a8551e93.webp",
+    "archivo": "recepcion-hotel.webp",
+    "usos": "hotel",
+    "bytes": 124758,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "0c3eed84ecb5d1c34f8d8caa272bfac7bf5c0ab0af3772a607689f61d9967180"
+  },
+  {
+    "origen": "collaborative-creative-workspace-meeting-6ae41a83e29ec.webp",
+    "archivo": "diagnostico-procesos.webp",
+    "usos": "diagnostico",
+    "bytes": 169218,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "3228de4b233a117b418c3ff20b541d118c4dd0acd099acccdc40b893c5c8ea49"
+  },
+  {
+    "origen": "collaborative-creative-workspace-planning-6ae41a83e54a4.webp",
+    "archivo": "formacion-equipos.webp",
+    "usos": "formacion, inmobiliaria",
+    "bytes": 157558,
+    "ancho": 1536,
+    "alto": 1024,
+    "sha256": "8eb62a82a74fdcffaaf8e1b55ee2fb11fee725eca5962d1798820879ab99bdc9"
+  }
+]

@@ -2,7 +2,7 @@
 // Theme Toggle Component - Switch between light and dark mode
 ---
 
-<button class="theme-toggle-button" aria-label="Toggle theme" title="Cambiar tema">
+<button class="theme-toggle-button" aria-label="Activar modo claro" aria-pressed="false" title="Cambiar tema">
     <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="5"/>
         <line x1="12" y1="1" x2="12" y2="3"/>
@@ -82,19 +82,29 @@
         const themeToggles = document.querySelectorAll('.theme-toggle-button');
 
         // Check for saved theme preference or default to 'dark'
-        const currentTheme = localStorage.getItem('theme') || 'dark';
+        let currentTheme = 'dark';
+        try { currentTheme = localStorage.getItem('theme') || 'dark'; } catch (_) {}
         
         if (currentTheme === 'light') {
             html.classList.add('light-mode');
         }
 
+        function syncThemeControls() {
+            const light = html.classList.contains('light-mode');
+            themeToggles.forEach(button => {
+                button.setAttribute('aria-label', light ? 'Activar modo oscuro' : 'Activar modo claro');
+                button.setAttribute('aria-pressed', String(light));
+            });
+        }
+        syncThemeControls();
         // Agregar listener a CADA botón (desktop + mobile)
         themeToggles.forEach(button => {
             button.addEventListener('click', () => {
                 html.classList.toggle('light-mode');
                 
                 const newTheme = html.classList.contains('light-mode') ? 'light' : 'dark';
-                localStorage.setItem('theme', newTheme);
+                try { localStorage.setItem('theme', newTheme); } catch (_) {}
+                syncThemeControls();
                 
                 // Trigger animation en el botón clickeado
                 button.style.transform = 'rotate(360deg) scale(1.2)';

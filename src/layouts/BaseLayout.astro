@@ -1,10 +1,12 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import JsonLd from '../components/geo/JsonLd.astro';
+import { organization, webSite } from '../lib/schema';
 
 const { 
-    title = 'Edición Aular | 🚀 Agencia de SEO y Publicidad Digital 📈', 
-    description = 'Somos una agencia de publicidad digital especializada en SEO 📈, diseño web 💻, branding 🎨, producción audiovisual 🎥, gestión de Ads 📊 y mentoría 🧠. ¡Transforma tu marca! ✨',
+    title = 'Edición Aular | Diseño web y soluciones de IA en Medellín',
+    description = 'Somos una agencia de diseño web, publicidad digital y soluciones de Inteligencia Artificial en Medellín. Desarrollamos páginas web, automatizaciones y agentes de WhatsApp con resultados medibles.',
     image = '/img/social-edicion.webp' // Imagen por defecto
 } = Astro.props;
 
@@ -12,9 +14,12 @@ const socialImage = new URL(image, Astro.site).href;
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
     <meta charset="UTF-8">
+    <script is:inline>
+      try { document.documentElement.classList.toggle('light-mode', localStorage.getItem('theme') === 'light'); } catch (_) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Page Title -->
@@ -55,8 +60,9 @@ const socialImage = new URL(image, Astro.site).href;
     <link rel="stylesheet" href="/css/libs.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css" media="all">
+    <link rel="stylesheet" href="/css/geo-theme.css">
     <!-- Light Mode Theme (async load) -->
-    <link rel="stylesheet" href="/css/theme-light.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/theme-light.css">
     <!-- Fullwidth Fix (async load) -->
     <link rel="stylesheet" href="/css/fullwidth-fix.css" media="print" onload="this.media='all'">
     <!-- CTA Gradient (async load) -->
@@ -99,137 +105,9 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Meta tags de Geolocalización - Medellín, Colombia -->
     <meta name="geo.region" content="CO-ANT" />
     <meta name="geo.placename" content="Medellín, Antioquia, Colombia" />
-    <meta name="geo.position" content="6.2442;-75.5812" />
-    <meta name="ICBM" content="6.2442, -75.5812" />
+
     
-    <!-- JSON-LD Organization Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Edición Aular",
-        "alternateName": ["Edicion Aular", "Agencia Edición Aular Medellín"],
-        "url": "https://edicionaular.com",
-        "logo": "https://edicionaular.com/img/Edicion-Aular-Logo.png",
-        "description": "Agencia de diseño web y publicidad digital en Medellín. Especialistas en SEO, páginas web, branding, producción audiovisual y gestión de Ads.",
-        "foundingDate": "2020",
-        "sameAs": [
-            "https://www.facebook.com/edicionaular",
-            "https://www.instagram.com/edicion_aular/",
-            "https://www.tiktok.com/@edicionaular8",
-            "https://vimeo.com/user67007640"
-        ],
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "url": "https://edicionaular.com/contacto",
-            "telephone": "+57 3002730128",
-            "availableLanguage": ["Spanish", "English"]
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Medellín",
-            "addressRegion": "Antioquia",
-            "addressCountry": "CO"
-        },
-        "areaServed": [
-            {
-                "@type": "City",
-                "name": "Medellín",
-                "sameAs": "https://es.wikipedia.org/wiki/Medell%C3%ADn"
-            },
-            {
-                "@type": "State",
-                "name": "Antioquia"
-            },
-            {
-                "@type": "Country",
-                "name": "Colombia"
-            }
-        ]
-    }
-    </script>
-    
-    <!-- JSON-LD LocalBusiness Schema para SEO Local -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Edición Aular - Diseño Web Medellín",
-        "image": "https://edicionaular.com/img/Edicion-Aular-Logo.png",
-        "url": "https://edicionaular.com",
-        "telephone": "+57 3002730128",
-        "priceRange": "$$",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "El Poblado",
-            "addressLocality": "Medellín",
-            "addressRegion": "Antioquia",
-            "postalCode": "050021",
-            "addressCountry": "CO"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 6.2442,
-            "longitude": -75.5812
-        },
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "09:00",
-                "closes": "18:00"
-            }
-        ],
-        "sameAs": [
-            "https://www.facebook.com/edicionaular",
-            "https://www.instagram.com/edicion_aular/"
-        ],
-        "serviceArea": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": 6.2442,
-                "longitude": -75.5812
-            },
-            "geoRadius": "50000"
-        },
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Servicios de Diseño Web y Marketing Digital",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Diseño de Páginas Web en Medellín"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "SEO y Posicionamiento Web"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Branding e Identidad Visual"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Gestión de Meta Ads y Google Ads"
-                    }
-                }
-            ]
-        }
-    }
-    </script>
+    <JsonLd data={[organization(), webSite()]} />
     
     <!-- Google tag (gtag.js) - Carga diferida -->
     <script>
@@ -262,6 +140,9 @@ const socialImage = new URL(image, Astro.site).href;
         /* Hamburguesa BLANCA en light mode */
         html.light-mode .bringer-menu-toggler-icon span {
             background-color: #ffffff !important;
+        }
+        html.light-mode body.show-menu .bringer-menu-toggler-icon span {
+            background-color: var(--bringer-s-heading) !important;
         }
         
         /* Prevenir Layout Shift en imágenes */
@@ -446,9 +327,12 @@ const socialImage = new URL(image, Astro.site).href;
             <link rel="prefetch" href="/portfolio" as="document">
         </>
     )}
+    <!-- Slot para JSON-LD y metadatos específicos de cada página (SEO/GEO) -->
+    <slot name="head" />
 </head>
 
 <body>
+    <a class="geo-skip-link" href="#bringer-main">Saltar al contenido</a>
     <!-- Header -->
     <header id="bringer-header" class="is-frosted is-sticky" data-appear="fade-down" data-unload="fade-up">
         <!-- Desktop Header -->
@@ -462,10 +346,10 @@ const socialImage = new URL(image, Astro.site).href;
             
             <!-- Main Menu -->
             <div class="bringer-header-mp">
-                <nav class="bringer-nav">
+                <nav class="bringer-nav" aria-label="Navegación principal">
                     <ul class="main-menu" data-stagger-appear="fade-down" data-stagger-delay="75">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="/">Inicio</a>
                         </li>
                         <li>
                             <a href="/nosotros">Nosotros</a>
@@ -473,13 +357,14 @@ const socialImage = new URL(image, Astro.site).href;
                         <li>
                             <a href="#">Servicios</a>
                             <ul class="sub-menu">
+                                <li><a href="/soluciones-ia">Soluciones con IA</a></li>
                                 <li><a href="/lanzamientos-digitales">Lanzamientos</a></li>
                                 <li><a href="/diseno-web">Diseño Web</a></li>
                                 <li><a href="/branding">Branding</a></li>
                                 <li><a href="/produccion-audiovisual">Audiovisuales</a></li>
                                 <li><a href="/meta-ads-google-ads">Meta & Google Ads</a></li>
                                 <li><a href="/streaming">Streaming Profesional</a></li>
-                                <li><a href="/mentoria">Mentoría de Marca</a></li>
+                                <li><a href="/servicios">Todos los servicios</a></li>
                             </ul>
                         </li>
                         <li>
@@ -487,9 +372,6 @@ const socialImage = new URL(image, Astro.site).href;
                         </li>
                         <li>
                             <a href="/blog">Blog</a>
-                        </li>
-                        <li>
-                            <a href="/inversion">Inversión</a>
                         </li>
                         <li>
                             <a href="/contacto">Contacto</a>
@@ -512,7 +394,7 @@ const socialImage = new URL(image, Astro.site).href;
             </a>
             <div style="display: flex; align-items: center; gap: 0.75rem;">
                 <ThemeToggle />
-                <a href="#" class="bringer-mobile-menu-toggler">
+                <a href="#" class="bringer-mobile-menu-toggler" aria-label="Menú principal">
                     <i class="bringer-menu-toggler-icon">
                         <span></span>
                         <span></span>
@@ -556,13 +438,14 @@ const socialImage = new URL(image, Astro.site).href;
                             <h6>Servicios</h6>
                             <div class="bringer-menu-widget">
                                 <ul>
+                                    <li><a href="/soluciones-ia" style="color: var(--color-accent, #ff0080);">Soluciones con IA</a></li>
                                     <li><a href="/lanzamientos-digitales">Lanzamientos</a></li>
                                     <li><a href="/diseno-web">Diseño Web</a></li>
                                     <li><a href="/branding">Branding</a></li>
                                     <li><a href="/produccion-audiovisual">Audiovisuales</a></li>
                                     <li><a href="/meta-ads-google-ads">Meta & Google Ads</a></li>
                                     <li><a href="/streaming">Streaming Profesional</a></li>
-                                    <li><a href="/mentoria">Mentoría de Marca</a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -589,6 +472,9 @@ const socialImage = new URL(image, Astro.site).href;
                                 <ul>
                                     <li><a href="/blog">Blog</a></li>
                                     <li><a href="/faq">Preguntas Frecuentes</a></li>
+                                    <li><a href="/medellin">Zonas de Medellín</a></li>
+                                    <li><a href="/sectores">Sectores Especializados</a></li>
+
                                     <li><a href="/servicios">Nuestros Servicios</a></li>
                                     <li><a href="/inversion">Inversión</a></li>
                                     <li><a href="/terminos-y-condiciones">Términos y Condiciones</a></li>
@@ -688,7 +574,7 @@ const socialImage = new URL(image, Astro.site).href;
     <!-- Active Menu Script -->
     <script is:inline>
         document.addEventListener('DOMContentLoaded', function() {
-            const currentPath = window.location.pathname;
+            const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
             const menuItems = document.querySelectorAll('.main-menu > li');
             const subMenuItems = document.querySelectorAll('.sub-menu li');
             
@@ -711,7 +597,8 @@ const socialImage = new URL(image, Astro.site).href;
                 const href = link.getAttribute('href');
                 
                 // Check if current page matches a submenu item
-                if (href === currentPath) {
+                const isIaSection = href === '/soluciones-ia' && /^\/(soluciones-ia|medellin|sectores)(\/|$)/.test(currentPath);
+                if (href === currentPath || isIaSection) {
                     item.classList.add('current-menu-item');
                     // Mark parent "Servicios" as current-menu-parent
                     const servicesItem = Array.from(menuItems).find(mi => 

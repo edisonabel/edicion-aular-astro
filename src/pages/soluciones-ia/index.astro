@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditorialImage from '../../components/geo/EditorialImage.astro';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Normativa from '../../components/geo/Normativa.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { SOLUCIONES } from '../../data/ia/soluciones';
+import { ZONAS } from '../../data/ia/zonas';
+import { SECTORES } from '../../data/ia/sectores';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, faqPage, webPage } from '../../lib/schema';
+
+const pageTitle = "Soluciones de IA en Medellín | Edición Aular";
+const pageDesc = "Soluciones de IA en Medellín: agentes de WhatsApp, automatización, contenido, formación y sitios web con SEO. Alcance y medición a la medida.";
+const pageUrl = "/soluciones-ia";
+
+const faqsHub = [
+  {
+    q: "¿Por qué contratar una solución de IA en lugar de usar herramientas gratuitas?",
+    a: "Las herramientas como ChatGPT, Make o bots genéricos están democratizadas y al alcance de todos. La dificultad no está en acceder al software, sino en diseñar la solución para el problema específico de tu empresa: entrenar la IA con tus datos, conectarla a tu CRM o WhatsApp oficial, cumplir la Ley 1581 de protección de datos y medir el retorno."
+  },
+  {
+    q: "¿Qué tipo de soluciones de IA tienen mayor retorno de inversión (ROI) para una pyme?",
+    a: "El retorno depende de tu proceso y volumen de trabajo. Evaluamos tareas como responder consultas, registrar prospectos, agendar y preparar cotizaciones. Elegimos un primer alcance y medimos su efecto con datos de tu operación."
+  },
+  {
+    q: "¿En qué zonas de Medellín y el Valle de Aburrá prestan servicio presencial?",
+    a: "Atendemos presencialmente en El Poblado, Laureles, Calasanz, El Tesoro, Centro de Medellín, Belén, Envigado, Itagüí, Sabaneta y Bello. También realizamos diagnósticos e implementaciones remotas para todo el país."
+  }
+];
+
+const schemaData = [
+  webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Soluciones con IA", href: pageUrl }
+  ]),
+  faqPage(faqsHub)
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container geo-page">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Soluciones con IA" }
+    ]} />
+
+    <!-- Section: Page Title (Bringer services.html Style) -->
+    <section class="backlight-bottom" id="page-title-bringer-services-html-style" data-template="services.html#page-title">
+      <div class="stg-row">
+        <div class="stg-col-8 stg-offset-2 align-center stg-tp-col-10 stg-tp-offset-1">
+          <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
+            Soluciones con Inteligencia Artificial<span class="bringer-accent">.</span>
+          </h1>
+          <p class="bringer-large-text" data-split-appear="fade-up" data-delay="100" data-split-unload="fade-up">
+            Las herramientas existen y están democratizadas; en Edición Aular diseñamos la solución al problema real de tu empresa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Intro con Parallax Media (Bringer services.html Style) -->
+    <section id="intro-con-parallax-media-bringer-services-html-style" data-template="services.html#intro">
+      <div class="bringer-parallax-media stg-bottom-gap-l" data-appear="fade-up" data-unload="fade-up">
+        <EditorialImage imagen="agencia" panoramica prioritaria />
+      </div>
+
+      <div class="stg-row stg-bottom-gap">
+        <div class="stg-col-7" data-unload="fade-left">
+          <h2 class="stg-bottom-gap" data-split-appear="fade-up">Tecnología enfocada en resultados comerciales medibles.</h2>
+        </div>
+        <div class="stg-col-5"></div>
+      </div>
+
+      <div class="stg-row stg-tp-column-reverse">
+        <div class="stg-col-6 stg-valign-bottom" data-unload="fade-left">
+          <div class="align-right">
+            <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="bringer-icon-link" data-appear="fade-right">
+              <div class="bringer-icon-link-content">
+                <p class="geo-action-label">
+                  Descubre qué procesos
+                  <br>
+                  puedes optimizar hoy
+                </p>
+                <span class="bringer-label">Agenda un Diagnóstico</span>
+              </div>
+              <div class="bringer-icon-wrap">
+                <i class="bringer-icon bringer-icon-explore"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="stg-col-6 stg-tp-col-9 stg-tp-bottom-gap" data-appear="fade-left" data-unload="fade-right">
+          <p class="bringer-large-text">
+            {NEGOCIO.propuesta}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Criterios de implementación -->
+    <section id="criterios" data-template="services.html#what-makes-us-best">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Una solución útil empieza con buenas decisiones</h2></div></div>
+      <div class="bringer-grid-3cols bringer-tp-grid-1col stg-normal-gap">
+        <article class="bringer-block"><span class="bringer-label">01 · Enfoque</span><h3>Un problema concreto</h3><p>Elegimos una tarea que hoy consume tiempo o deja consultas sin atender. Definimos qué debe mejorar antes de elegir la herramienta.</p></article>
+        <article class="bringer-block"><span class="bringer-label">02 · Operación</span><h3>Conexiones con sentido</h3><p>Revisamos tus sistemas, permisos y datos. La automatización debe encajar con el trabajo del equipo y permitir intervención humana.</p></article>
+        <article class="bringer-block"><span class="bringer-label">03 · Medición</span><h3>Resultados con tus datos</h3><p>Acordamos indicadores como tiempo de respuesta, citas o tareas manuales. Comparamos el punto de partida con el funcionamiento real.</p></article>
+      </div>
+    </section>
+
+    <!-- Section: Detailed Services List (Bringer services.html Detailed List) -->
+    <section class="backlight-top" id="detailed-services-list-bringer-services-html-detailed-list" data-template="services.html#our-services">
+      <div class="stg-row bringer-section-title">
+        <div class="stg-col-10 stg-offset-1">
+          <div class="align-center">
+            <h2 data-split-appear="fade-up" data-split-unload="fade-up">Catálogo de soluciones prácticas con Inteligencia Artificial.</h2>
+            <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+              Flujos desarrollados a la medida de tu operación comercial y administrativa:
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bringer-detailed-list-wrap" data-appear="fade-up" data-delay="200" data-unload="fade-up">
+        <ul class="bringer-detailed-list">
+          {SOLUCIONES.map((sol) => (
+            <li data-stagger-appear="fade-up" data-stagger-delay="75">
+              <div class="bringer-detailed-list-title">
+                <h3>{sol.nombre}<span class="bringer-accent">.</span></h3>
+              </div>
+              <div class="bringer-detailed-list-description">
+                <p>{sol.respuesta}</p>
+              </div>
+              <div class="bringer-detailed-list-button">
+                <span class="bringer-icon bringer-icon-explore"></span>
+              </div>
+              <a href={`/soluciones-ia/${sol.slug}`} aria-label={`Ver ${sol.nombre}`}></a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section: Sectores Especializados (Bringer 3-cols square grid) -->
+    <section id="sectores-especializados-bringer-3-cols-square-grid" data-template="services.html#what-makes-us-best">
+      <div class="align-center stg-bottom-gap-l">
+        <h2 data-split-appear="fade-up">Sectores comerciales prioritarios</h2>
+        <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+          Adaptadas a las objeciones, canales y normativas de cada industria:
+        </p>
+      </div>
+
+      <div class="bringer-grid-3cols bringer-tp-grid-2cols bringer-tp-stretch-last-item" data-stagger-appear="fade-up">
+        {SECTORES.map((sec) => (
+          <div class="bringer-block stg-aspect-square stg-vertical-space-between">
+            <div>
+              <span class="bringer-label">Sector</span>
+              <h3 class="stg-top-gap-s">{sec.nombre}<span class="bringer-accent">.</span></h3>
+              <p style="font-size: 0.95rem; color: var(--bringer-s-heading); margin-top: 0.5rem;">{sec.respuesta}</p>
+            </div>
+            <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link stg-top-gap-s">
+              Ver soluciones del sector
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section: Zonas de Medellín (Bringer Grid) -->
+    <section id="zonas-de-medellin-bringer-grid" data-template="services.html#what-makes-us-best">
+      <div class="stg-row bringer-section-title">
+        <div class="stg-col-8 stg-offset-2 align-center">
+          <h2 data-split-appear="fade-up">Cobertura en Medellín y Valle de Aburrá</h2>
+          <p class="bringer-large-text" data-appear="fade-up" data-delay="100">
+            Atención presencial y virtual en los principales corredores comerciales:
+          </p>
+        </div>
+      </div>
+
+      <div class="bringer-grid-3cols stg-top-gap-s" data-stagger-appear="fade-up">
+        {ZONAS.map((z) => (
+          <div class="bringer-block" style="padding: 1.5rem;">
+            <span class="bringer-label">{z.tipo.toUpperCase()} · {z.municipio}</span>
+            <h3 class="stg-top-gap-s">
+              <a href={`/medellin/${z.slug}`} style="color: inherit; text-decoration: none;">
+                {z.nombre}
+              </a>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--bringer-s-heading); margin: 0.5rem 0;">{z.intro.split(' ').slice(0, 22).join(' ')}…</p>
+            <a href={`/medellin/${z.slug}`} class="bringer-arrow-link stg-top-gap-s" style="font-size: 0.9rem;">
+              Ver soluciones en {z.nombre}
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section: Normativa -->
+    <Normativa claves={['habeasData', 'ley2300', 'conpesIA']} />
+
+    <!-- Section: FAQs con Acordeón Nativo -->
+    <FaqList faqs={faqsHub} titulo="Preguntas frecuentes sobre soluciones con IA" categoria="Soluciones IA" />
+
+    <!-- Section: Bento CTA Oficial Bringer -->
+    <Cta 
+      titulo="¿Listo para implementar IA en tu empresa?"
+      subtitulo="Revisamos los cuellos de botella de tu equipo y diseñamos un flujo de atención o automatización a la medida."
+      enlace={NEGOCIO.agenda}
+    />
+  </div>
+</BaseLayout>

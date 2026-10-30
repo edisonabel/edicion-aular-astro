@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditorialImage from '../../components/geo/EditorialImage.astro';
+import Programa from '../../components/geo/Programa.astro';
+import { IMAGEN_SOLUCION } from '../../data/ia/imagenes';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Normativa from '../../components/geo/Normativa.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { SOLUCIONES, type Solucion } from '../../data/ia/soluciones';
+import { ZONAS } from '../../data/ia/zonas';
+import { SECTORES } from '../../data/ia/sectores';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, faqPage, service, webPage } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return SOLUCIONES.map((solucion) => ({
+    params: { slug: solucion.slug },
+    props: { solucion },
+  }));
+}
+
+interface Props {
+  solucion: Solucion;
+}
+
+const { solucion } = Astro.props;
+const pageUrl = `/soluciones-ia/${solucion.slug}`;
+
+const zonasRelevantes = ZONAS.filter((z) => z.enfoque.includes(solucion.slug)).slice(0, 4);
+const sectoresRelevantes = SECTORES.filter((s) => s.usos.some((u) => u.solucion === solucion.slug));
+
+const schemaData = [
+  webPage({ name: solucion.title, description: solucion.description, path: pageUrl }),
+  service({
+    name: solucion.nombre,
+    description: solucion.description,
+    path: pageUrl,
+    serviceType: solucion.keyword,
+  }),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Soluciones con IA", href: "/soluciones-ia" },
+    { name: solucion.nombre, href: pageUrl }
+  ]),
+  faqPage(solucion.faqs)
+];
+
+
+---
+
+<BaseLayout title={solucion.title} description={solucion.description}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container geo-page">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Soluciones con IA", href: "/soluciones-ia" },
+      { name: solucion.nombre }
+    ]} />
+
+    <!-- Section: Intro (Bringer service-details.html Style) -->
+    <section id="intro-bringer-service-details-html-style" data-template="service-details.html#intro">
+      <div class="stg-row stg-large-gap stg-tp-normal-gap stg-tp-column-reverse">
+        <div class="stg-col-6 stg-vertical-space-between" data-unload="fade-left">
+          <div class="stg-tp-bottom-gap">
+            <span class="bringer-label">Tiempo estimado: {solucion.tiempo}</span>
+            <h1 class="bringer-page-title" data-split-appear="fade-up">{solucion.h1}</h1>
+            <p class="bringer-large-text" data-appear="fade-right" data-delay="100">{solucion.respuesta}</p>
+            <p class="bringer-large-text bringer-tp-normal-text" data-appear="fade-right" data-delay="200">{solucion.problema}</p>
+          </div>
+          <div class="align-right" data-appear="fade-right">
+            <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="bringer-icon-link">
+              <div class="bringer-icon-link-content">
+                <p class="geo-action-label">
+                  Hablemos de tu proyecto
+                  <br>
+                  y definamos el primer paso
+                </p>
+                <span class="bringer-label">Agenda un Diagnóstico</span>
+              </div>
+              <div class="bringer-icon-wrap">
+                <i class="bringer-icon bringer-icon-explore"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="stg-col-6 stg-tp-bottom-gap-l bringer-parallax-media" data-appear="fade-left" data-unload="fade-right">
+          <EditorialImage imagen={IMAGEN_SOLUCION[solucion.slug]} prioritaria />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Proceso de implementación -->
+    <section id="proceso" data-template="home06.html#steps" class="backlight-bottom">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Del diagnóstico a la puesta en marcha</h2><p>Plazo orientativo: {solucion.tiempo} Confirmamos el calendario después de revisar el alcance.</p></div></div>
+      <div class="stg-row stg-valign-middle stg-large-gap stg-tp-normal-gap">
+        <div class="stg-col-6 stg-tp-bottom-gap-l"><EditorialImage imagen="diagnostico" /></div>
+        <div class="stg-col-6"><div class="bringer-grid-2cols stg-normal-gap">
+          {solucion.proceso.map((p, idx) => <div class="bringer-subgrid-item"><span class="bringer-label">Paso {String(idx + 1).padStart(2, '0')}</span><h3>{p.paso}</h3><p>{p.detalle}</p></div>)}
+        </div></div>
+      </div>
+    </section>
+
+    <!-- Section: Entregables de la solución -->
+    <section id="que-incluye" data-template="service-details.html#offer">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Qué incluye esta solución</h2><p>Definimos los entregables en la propuesta y dejamos claro qué podrá operar tu equipo.</p></div></div>
+      <div class="bringer-grid-2cols bringer-tp-grid-1col stg-normal-gap">
+        {solucion.incluye.map((item, idx) => <div class="bringer-block geo-deliverable"><span class="bringer-label">{String(idx + 1).padStart(2, '0')}</span><h3>{item}</h3></div>)}
+      </div>
+      {solucion.servicioRelacionado && <p class="stg-top-gap">Complementa el proyecto con <a href={solucion.servicioRelacionado.href}>{solucion.servicioRelacionado.label}</a>.</p>}
+    </section>
+    {solucion.slug === 'capacitacion-ia-empresas' && <Programa />}
+
+    <!-- Section: Qué incluye y de qué depende la inversión (estilo Bringer sticky block) -->
+    <section id="que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block" data-template="pricing.html#prices">
+      <div class="stg-row stg-large-gap stg-tp-normal-gap">
+        <div class="stg-col-6 stg-tp-bottom-gap-l" data-unload="fade-left">
+          <div class="bringer-sticky-block">
+            <h2>Variables de inversión y alcance</h2>
+            <p class="bringer-large-text">
+              No creemos en paquetes cerrados que no se adaptan a la realidad de tu empresa. La inversión se determina a partir de estos factores técnicos:
+            </p>
+            <div class="align-right">
+              <a href="/inversion" class="bringer-arrow-link">Ver Políticas de Inversión</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="stg-col-6">
+          <div class="bringer-grid-1col stg-normal-gap" data-stagger-appear="zoom-in" data-stagger-unload="zoom-out" data-threshold="0.5" data-stagger-delay="100">
+            {solucion.costoDepende.map((c) => (
+              <div class="bringer-block">
+                <h3>{c.factor}<span class="bringer-accent">.</span></h3>
+                <p>{c.impacto}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Sectores y Zonas Relevantes -->
+    {(sectoresRelevantes.length > 0 || zonasRelevantes.length > 0) && (
+      <section class="stg-bottom-gap-l" id="explorar-soluciones" data-template="services.html#our-services">
+        <div class="stg-row stg-large-gap stg-tp-normal-gap">
+          {sectoresRelevantes.length > 0 && (
+            <div class="stg-col-6 stg-tp-bottom-gap">
+              <div class="bringer-block">
+                <h3>Aplicaciones por sector</h3>
+                <p style="color: var(--bringer-s-heading); margin-top: 0.5rem;">Soluciones adaptadas a la dinámica comercial de cada industria:</p>
+                <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                  {sectoresRelevantes.map((sec) => (
+                    <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link">
+                      {sec.nombre}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {zonasRelevantes.length > 0 && (
+            <div class="stg-col-6">
+              <div class="bringer-block">
+                <h3>Zonas comerciales en Medellín</h3>
+                <p style="color: var(--bringer-s-heading); margin-top: 0.5rem;">Cobertura presencial y virtual en el Valle de Aburrá:</p>
+                <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                  {zonasRelevantes.map((z) => (
+                    <a href={`/medellin/${z.slug}`} class="bringer-arrow-link">
+                      Empresas y comercios en {z.nombre}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    {solucion.slug === 'sitios-web-seo-geo' && <p class="geo-example-note">Trabajamos con las <a href="https://developers.google.com/search/docs/appearance/ai-features?hl=es" target="_blank" rel="noopener">recomendaciones de Google para funciones de IA en la Búsqueda</a>. No hay un marcado especial ni un archivo que garantice aparecer en sus respuestas.</p>}
+    <!-- Section: Normativa -->
+    <Normativa claves={solucion.normativa} />
+
+    <!-- Section: Preguntas Frecuentes Reales (Bringer Accordion) -->
+    <FaqList faqs={solucion.faqs} titulo={`Preguntas frecuentes sobre ${solucion.nombre}`} categoria={solucion.nombre} />
+
+    <!-- Section: Bento CTA Oficial Bringer -->
+    <Cta 
+      titulo={`¿Interesado en implementar ${solucion.nombre}?`}
+      subtitulo="Revisamos tus flujos de trabajo actuales y te entregamos una propuesta con alcance, plazos y costos definidos."
+      enlace={NEGOCIO.agenda}
+    />
+  </div>
+</BaseLayout>

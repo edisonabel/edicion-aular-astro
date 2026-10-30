@@ -8,7 +8,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "verificar": "node verificar.js",
-    "prebuild": "node verificar.js"
+    "prebuild": "node verificar.js",
+    "audit:geo": "python scripts/auditar_geo.py",
+    "qa:preview": "node scripts/preview-qa.mjs",
+    "prompts:imagenes": "node scripts/generar_prompts.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

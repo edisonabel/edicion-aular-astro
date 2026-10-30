@@ -1,0 +1,45 @@
+---
+import EditorialImage from './EditorialImage.astro';
+// Sección Bento CTA oficial de la plantilla Bringer
+interface Props {
+  titulo?: string;
+  subtitulo?: string;
+  enlace?: string;
+}
+
+const {
+  titulo = "¿Listo para transformar tu operación con IA?",
+  subtitulo = "Conversemos sobre tus procesos y definamos qué conviene resolver primero.",
+  enlace = "https://cal.com/edicion-aular-website"
+} = Astro.props;
+---
+<section id="contacto-proyecto" class="divider-top geo-cta" data-template="services.html#grid-cta">
+  <div class="bringer-bento-grid bringer-grid-cta">
+    <!-- Card grande con gradiente lava oficial de Bringer -->
+    <div class="is-large bringer-masked-block" data-appear="fade-right" data-unload="fade-left">
+      <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
+        <h2 class="bringer-grid-cta-heading">{titulo}</h2>
+      </div>
+      <div class="bringer-masked-content at-bottom-right">
+        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Agenda tu diagnóstico hoy mismo →</p>
+      </div>
+    </div>
+
+    <!-- Card mediano con texto descriptivo -->
+    <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
+      <p class="bringer-large-text">{subtitulo}</p>
+    </div>
+
+    <!-- Botón cuadrado con icono explore -->
+    <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
+      <a href={enlace} target="_blank" rel="noopener" class="bringer-square-button" aria-label="Agendar una conversación sobre mi proyecto">
+        <span class="bringer-icon bringer-icon-explore"></span>
+      </a>
+    </div>
+
+    <!-- Mockup visual oficial de Bringer -->
+    <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
+      <EditorialImage imagen="agencia" />
+    </div>
+  </div>
+</section>

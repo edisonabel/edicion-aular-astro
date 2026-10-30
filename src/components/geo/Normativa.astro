@@ -1,0 +1,54 @@
+---
+import { NORMATIVA } from '../../data/ia/negocio';
+
+type Clave = keyof typeof NORMATIVA;
+const { claves, nota } = Astro.props as { claves: Clave[]; nota?: string };
+
+const LABELS: Record<string, string> = {
+  habeasData: 'Protección de Datos',
+  decreto1377: 'Reglamentación de Datos',
+  ley2300: 'Horarios de Contacto ("Dejen de Fregar")',
+  conpesIA: 'Marco Nacional de IA',
+  rnt: 'Normativa Turística'
+};
+
+const gridClass = claves.length === 3 
+  ? 'bringer-grid-3cols bringer-tp-grid-1col stg-normal-gap' 
+  : 'bringer-grid-2cols bringer-tp-grid-1col stg-normal-gap';
+---
+
+<section class="stg-bottom-gap-l" id="marco-normativo" data-template="services.html#what-makes-us-best">
+  <div class="stg-row stg-bottom-gap">
+    <div class="stg-col-8">
+      <h2 data-split-appear="fade-up" style="color: var(--bringer-s-heading);">Datos y comunicaciones: referencias para el proyecto</h2>
+      {nota && <p class="bringer-large-text" style="color: var(--bringer-s-heading); margin-top: 0.5rem;">{nota}</p>}
+    </div>
+  </div>
+
+  <div class={gridClass} data-stagger-appear="fade-up" data-stagger-delay="100">
+    {claves.map((k) => (
+      <div class="bringer-block stg-vertical-space-between" style="padding: 1.75rem;">
+        <div>
+          <span class="bringer-label" style="color: var(--bringer-s-heading); opacity: 0.85;">{LABELS[k] || 'Normativa Oficial'}</span>
+          <h3 style="margin-top: 0.5rem; margin-bottom: 1rem; line-height: 1.35;">
+            <a href={NORMATIVA[k].url} target="_blank" rel="noopener" class="bringer-highlight" style="color: var(--bringer-s-heading); text-decoration: underline; text-underline-offset: 4px;">
+              {NORMATIVA[k].nombre}
+            </a>
+          </h3>
+          <p style="font-size: 0.95rem; line-height: 1.65; color: var(--bringer-s-heading); margin-bottom: 0;">
+            {NORMATIVA[k].resumen}
+          </p>
+        </div>
+        <div style="margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid var(--bringer-s-border);">
+          <span class="bringer-meta" style="color: var(--bringer-s-heading); opacity: 0.9; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="bringer-icon bringer-icon-explore" style="font-size: 0.75rem; color: var(--bringer-s-heading);"></i> Referencia para definir el alcance
+          </span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p style="margin-top: 1.5rem; color: var(--bringer-s-heading); opacity: 0.9; font-size: 0.85rem; letter-spacing: 0.04em;">
+    INFORMACIÓN DE REFERENCIA LEGAL APLICADA A DESARROLLOS TECNOLÓGICOS, NO CONSTITUYE ASESORÍA JURÍDICA FORMAL.
+  </p>
+</section>

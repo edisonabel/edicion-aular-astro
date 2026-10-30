@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditorialImage from '../../components/geo/EditorialImage.astro';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { SECTORES } from '../../data/ia/sectores';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, faqPage, webPage } from '../../lib/schema';
+
+const pageTitle = "IA para empresas por sector | Edición Aular";
+const pageDesc = "Implementación especializada de Inteligencia Artificial para clínicas y estética, turismo y hoteles, e inmobiliarias en Medellín y Colombia.";
+const pageUrl = "/sectores";
+
+const faqsSectores = [
+  {
+    q: "¿Por qué se necesita una solución de IA adaptada a cada sector?",
+    a: "Porque los cuellos de botella y las regulaciones varían radicalmente: una clínica estética maneja datos de salud sensibles (Ley 1581) y necesita agendar valoraciones; un hotel boutique necesita atención multilingüe 24/7 y validación de RNT; y una inmobiliaria requiere organizar consultas y visitas para revisión de sus asesores sin saturar a los asesores."
+  },
+  {
+    q: "¿Qué sector obtiene resultados más rápidos con agentes de IA?",
+    a: "Depende del proceso, el volumen de trabajo y las integraciones. Empezamos por una tarea acotada, medimos su situación inicial y comparamos tiempos de respuesta, citas o trabajo manual después de la implementación."
+  }
+];
+
+const schemaData = [
+  webPage({ name: pageTitle, description: pageDesc, path: pageUrl }),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Sectores Especializados", href: pageUrl }
+  ]),
+  faqPage(faqsSectores)
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container geo-page">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Sectores Especializados" }
+    ]} />
+
+    <!-- Section: Page Title (Bringer Style) -->
+    <section class="backlight-bottom" id="page-title-bringer-style" data-template="services.html#page-title">
+      <div class="stg-row">
+        <div class="stg-col-8 stg-offset-2 align-center stg-tp-col-10 stg-tp-offset-1">
+          <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">
+            Soluciones de IA por Sector<span class="bringer-accent">.</span>
+          </h1>
+          <p class="bringer-large-text" data-split-appear="fade-up" data-delay="100" data-split-unload="fade-up">
+            Arquitectura de Inteligencia Artificial adaptada a las particularidades comerciales y normativas de cada industria.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Listado de Sectores (Bringer Bento Style) -->
+    <section class="stg-bottom-gap-l" id="listado-de-sectores-bringer-bento-style" data-template="services.html#our-services">
+      <div class="bringer-grid-1col stg-normal-gap">
+        {SECTORES.map((sec) => (
+          <div class="bringer-block">
+            <div class="stg-row stg-large-gap stg-tp-normal-gap">
+              <div class="stg-col-7 stg-vertical-space-between">
+                <div>
+                  <span class="bringer-label">Sector Especializado</span>
+                  <h3 class="stg-top-gap-s">
+                    <a href={`/sectores/${sec.slug}`} style="color: inherit; text-decoration: none;">
+                      {sec.nombre}
+                    </a>
+                  </h3>
+                  <p style="color: var(--bringer-s-heading); line-height: 1.7; font-size: 1.05rem; margin-top: 0.75rem;">
+                    {sec.respuesta}
+                  </p>
+                  
+                  <div class="stg-top-gap-s">
+                    <span class="bringer-meta">Dolores que resolvemos:</span>
+                    <ul class="bringer-marked-list stg-top-gap-s">
+                      {sec.dolores.slice(0, 3).map((d) => (
+                        <li>{d}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="stg-top-gap-m">
+                  <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link">
+                    Ver soluciones para {sec.nombre}
+                  </a>
+                </div>
+              </div>
+
+              <div class="stg-col-5">
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 1.75rem; border-radius: var(--bringer-default-br, 16px); height: 100%; border: 1px solid var(--bringer-s-border);">
+                  <h3 style="color: var(--bringer-s-heading); margin-bottom: 1rem;">Casos de uso aplicados:</h3>
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    {sec.usos.map((u) => (
+                      <li style="margin-bottom: 1rem; font-size: 0.95rem; color: var(--bringer-s-heading); line-height: 1.6;">
+                        <strong style="color: var(--bringer-s-text-accent);">•</strong> {u.uso}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section: FAQs con Acordeón Nativo -->
+    <FaqList faqs={faqsSectores} titulo="Preguntas frecuentes sobre IA por sector" />
+
+    <!-- Section: Bento CTA Oficial Bringer -->
+    <Cta 
+      titulo="¿Quieres saber cómo la IA se aplica a tu industria?"
+      subtitulo="Conversemos sobre el flujo de compra de tus clientes y diseñemos un agente o automatización a la medida."
+      enlace={NEGOCIO.agenda}
+    />
+  </div>
+</BaseLayout>

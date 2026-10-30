@@ -1,12 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import portfolioData from '../data/portfolio.json';
+import JsonLd from '../components/geo/JsonLd.astro';
+import { webPage } from '../lib/schema';
+
+const pageTitle = 'Edición Aular | IA, diseño web y marketing en Medellín';
+const pageDesc = 'Agencia en Medellín especializada en soluciones de Inteligencia Artificial para empresas: agentes de WhatsApp 24/7, automatización de procesos, diseño web y SEO/GEO. Diagnóstico gratuito.';
+
+const homeSchema = [webPage({ name: pageTitle, description: pageDesc, path: '/' })];
 
 // Obtener TODOS los proyectos featured para mostrar en home
 const featuredProjects = portfolioData.filter(p => p.featured);
 ---
 
-<BaseLayout>
+<BaseLayout title={pageTitle} description={pageDesc}>
+    <JsonLd slot="head" data={homeSchema} />
     <div class="stg-container">
         <!-- Hero Section -->
         <section>
@@ -97,6 +105,9 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                 <div class="stg-col-6 stg-vertical-space-between" data-unload="fade-right">
                     <div>
                         <h3>¿Qué Esperas de Una Agencia Creativa?</h3>
+
+                        <p class="bringer-large-text">¿Pagas por herramientas de moda o por soluciones reales a tus problemas?</p>
+                        <p>Las herramientas de Inteligencia Artificial están democratizadas y al alcance de todos. Sin embargo, tener acceso a la IA no resuelve un problema por sí solo: diseñamos e implementamos soluciones concretas (páginas web, automatizaciones y agentes de WhatsApp con API oficial) para que tu negocio crezca con resultados medibles.</p>
 
                         <p class="bringer-large-text">¿Pagas a un experto para que te solucione un problema o para que te diga cómo hacerlo?</p>
                         <p>Nos encargamos de todo. Con un brief claro, transformamos tus objetivos en soluciones, mientras tú te enfocas en lo que importa: hacer crecer tu negocio.</p>
@@ -271,6 +282,19 @@ const featuredProjects = portfolioData.filter(p => p.featured);
             <!-- Services List -->
             <div class="bringer-detailed-list-wrap" data-appear="fade-up" data-unload="fade-up" data-delay="200">
                 <ul class="bringer-detailed-list">
+                <li data-stagger-appear="fade-up" data-stagger-delay="75">
+                    <div class="bringer-detailed-list-title">
+                        <h4>Soluciones con Inteligencia Artificial<span class="bringer-accent">.</span></h4>
+                    </div>
+                    <div class="bringer-detailed-list-description">
+                        <p>Conectamos las herramientas de IA a los problemas reales de tu operación: agentes de atención en WhatsApp con API oficial, automatización de cotizaciones y procesos, y optimización GEO para aparecer en ChatGPT y Google.
+                        <span class="bringer-accent">Tecnología enfocada en resultados de negocio medibles.</span></p>
+                    </div>
+                    <div class="bringer-detailed-list-button">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </div>
+                    <a href="/soluciones-ia"></a>
+                </li>
                 <li data-stagger-appear="fade-up" data-stagger-delay="100">
                     <div class="bringer-detailed-list-title">
                         <h4>Lanzamientos de Productos Digitales<span class="bringer-accent">.</span></h4>
@@ -353,20 +377,6 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                         <span class="bringer-icon bringer-icon-explore"></span>
                     </div>
                     <a href="/streaming"></a>
-                </li>
-
-                <li data-stagger-appear="fade-up" data-stagger-delay="100">
-                    <div class="bringer-detailed-list-title">
-                        <h4>Mentoría de Marca Personal y Negocio Digital<span class="bringer-accent">.</span></h4>
-                    </div>
-                    <div class="bringer-detailed-list-description">
-                        <p>Transforma tu marca y negocio en una historia de éxito. A través de sesiones personalizadas, te ayudamos a construir una identidad poderosa, conectar con tu audiencia y diseñar estrategias digitales que generan resultados reales.
-                        <span class="bringer-accent">Descubre el poder detrás de tu marca.</span></p>
-                    </div>
-                    <div class="bringer-detailed-list-button">
-                        <span class="bringer-icon bringer-icon-explore"></span>
-                    </div>
-                    <a href="/mentoria"></a>
                 </li>
             </ul>
             </div><!-- .bringer-detailed-list-wrap -->

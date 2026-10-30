@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditorialImage from '../../components/geo/EditorialImage.astro';
+import { IMAGEN_SECTOR } from '../../data/ia/imagenes';
+import JsonLd from '../../components/geo/JsonLd.astro';
+import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
+import FaqList from '../../components/geo/FaqList.astro';
+import Normativa from '../../components/geo/Normativa.astro';
+import Cta from '../../components/geo/Cta.astro';
+import { SECTORES, type Sector } from '../../data/ia/sectores';
+import { SOLUCIONES, getSolucion } from '../../data/ia/soluciones';
+import { ZONAS } from '../../data/ia/zonas';
+import { NEGOCIO } from '../../data/ia/negocio';
+import { breadcrumbs, faqPage, service, webPage } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return SECTORES.map((sector) => ({
+    params: { slug: sector.slug },
+    props: { sector },
+  }));
+}
+
+interface Props {
+  sector: Sector;
+}
+
+const { sector } = Astro.props;
+const pageUrl = `/sectores/${sector.slug}`;
+
+const zonasAfin = ZONAS.filter((z) => sector.zonas.includes(z.slug));
+
+const schemaData = [
+  webPage({ name: sector.title, description: sector.description, path: pageUrl }),
+  service({
+    name: sector.nombre,
+    description: sector.description,
+    path: pageUrl,
+    audience: sector.nombre,
+  }),
+  breadcrumbs([
+    { name: "Inicio", href: "/" },
+    { name: "Sectores Especializados", href: "/sectores" },
+    { name: sector.nombre, href: pageUrl }
+  ]),
+  faqPage(sector.faqs)
+];
+
+
+---
+
+<BaseLayout title={sector.title} description={sector.description}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container geo-page">
+    <Breadcrumbs items={[
+      { name: "Inicio", href: "/" },
+      { name: "Sectores Especializados", href: "/sectores" },
+      { name: sector.nombre }
+    ]} />
+
+    <!-- Section: Intro (Bringer Style) -->
+    <section id="intro-bringer-style" data-template="services.html#intro">
+      <div class="stg-row stg-large-gap stg-tp-normal-gap stg-tp-column-reverse">
+        <div class="stg-col-6 stg-vertical-space-between" data-unload="fade-left">
+          <div class="stg-tp-bottom-gap">
+            <span class="bringer-label">Solución Sectorial · Medellín y Colombia</span>
+            <h1 class="bringer-page-title" data-split-appear="fade-up">
+              {sector.h1}<span class="bringer-accent">.</span>
+            </h1>
+            <p class="bringer-large-text" data-appear="fade-right" data-delay="100">
+              {sector.respuesta}
+            </p>
+          </div>
+          <div class="align-right" data-appear="fade-right">
+            <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="bringer-icon-link">
+              <div class="bringer-icon-link-content">
+                <p class="geo-action-label">
+                  Diagnóstico para tu
+                  <br>
+                  operación en {sector.nombre}
+                </p>
+                <span class="bringer-label">Agendar Diagnóstico</span>
+              </div>
+              <div class="bringer-icon-wrap">
+                <i class="bringer-icon bringer-icon-explore"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="stg-col-6 stg-tp-bottom-gap-l bringer-parallax-media" data-appear="fade-left" data-unload="fade-right">
+          <EditorialImage imagen={IMAGEN_SECTOR[sector.slug]} prioritaria />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: The Challenge & Our Approach (Bringer Bento Case Study Style) -->
+    <section class="stg-bottom-gap-l" id="the-challenge-our-approach-bringer-bento-case-study-style" data-template="portfolio-post01.html#the-challenge">
+      <!-- Block: The Challenge -->
+      <div class="stg-row stg-bottom-gap-l stg-tp-column-reverse">
+        <div class="stg-col-8 bringer-block stg-vertical-space-between" data-appear="fade-right" data-unload="fade-left">
+          <h2>Los retos de este sector</h2>
+          <div>
+            <p class="bringer-large-text">
+              Cada industria enfrenta puntos de fricción que frenan las conversiones si no se gestionan en tiempo real:
+            </p>
+            <ul class="bringer-marked-list stg-top-gap-s">
+              {sector.dolores.map((dolor) => (
+                <li>{dolor}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-left" data-unload="fade-right">
+          <div class="bringer-parallax-media">
+            <EditorialImage imagen="diagnostico" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Block: The Solution -->
+      <div class="stg-row stg-bottom-gap-l">
+        <div class="stg-col-4 stg-tp-bottom-gap" data-appear="fade-right" data-unload="fade-left">
+          <div class="bringer-parallax-media">
+            <EditorialImage imagen={IMAGEN_SECTOR[sector.slug]} />
+          </div>
+        </div>
+
+        <div class="stg-col-8 bringer-block stg-vertical-space-between" data-appear="fade-left" data-unload="fade-right">
+          <h2>La solución que construimos</h2>
+          <div>
+            <p class="bringer-large-text">
+              Diseñamos agentes y automatizaciones conectados directamente a los sistemas donde tus clientes toman decisiones de compra.
+            </p>
+            <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              {sector.usos.map((u) => {
+                const solObj = getSolucion(u.solucion);
+                return (
+                  <div style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--bringer-s-border);">
+                    <a href={`/soluciones-ia/${u.solucion}`} class="bringer-arrow-link" style="font-weight: 600;">
+                      {solObj ? solObj.nombre : u.solucion}
+                    </a>
+                    <p style="font-size: 0.95rem; color: var(--bringer-s-heading); margin-top: 0.25rem;">
+                      {u.uso}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Zonas con Alta Actividad de este Sector -->
+    {zonasAfin.length > 0 && (
+      <section class="stg-bottom-gap-l" id="cobertura-sector" data-template="services.html#our-services">
+        <div class="stg-row bringer-section-title">
+          <div class="stg-col-8 stg-offset-2 align-center">
+            <h2 data-split-appear="fade-up">Explora la cobertura para tu empresa</h2>
+          </div>
+        </div>
+
+        <div class="bringer-grid-4cols stg-top-gap-s" data-stagger-appear="fade-up">
+          {zonasAfin.map((z) => (
+            <div class="bringer-block" style="padding: 1.25rem;">
+              <h3>
+                <a href={`/medellin/${z.slug}`} style="color: var(--bringer-s-heading); text-decoration: none;">
+                  {z.nombre}
+                </a>
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--bringer-s-heading); opacity: 0.85; margin: 0.25rem 0 0.5rem 0;">{z.municipio}</p>
+              <a href={`/medellin/${z.slug}`} class="bringer-arrow-link" style="font-size: 0.85rem;">
+                Ver dinámicas locales
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Section: Normativa -->
+    <Normativa claves={sector.normativa} nota={sector.notaLegal} />
+
+    <!-- Section: FAQs con Acordeón Nativo -->
+    <FaqList faqs={sector.faqs} titulo={`Preguntas frecuentes sobre IA para ${sector.nombre}`} categoria={sector.nombre} />
+
+    <!-- Section: Bento CTA Oficial Bringer -->
+    <Cta 
+      titulo={`¿Administras una empresa en ${sector.nombre}?`}
+      subtitulo="Diseñamos un flujo de atención o prospección específico para tus clientes, con requisitos de datos y revisión humana definidos desde el inicio."
+      enlace={NEGOCIO.agenda}
+    />
+  </div>
+</BaseLayout>
