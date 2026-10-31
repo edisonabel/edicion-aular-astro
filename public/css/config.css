@@ -35,7 +35,7 @@
     --bringer-button-hover-bg: #ff001f;
 
     /* Used as a color for text accents */
-    --bringer-s-text-accent: #ffbc1f;
+    --bringer-s-text-accent: #ff6fa8;
 
     /* Used as a text color for accented blocks */
     --bringer-s-accented-text: var(--bringer-s-heading);
@@ -74,6 +74,8 @@
     /* Main menu current item text color */
     --bringer-c-menu-active: var(--bringer-s-heading);
 }
+
+html.light-mode { --bringer-s-text-accent: #b80046; }
 
 /* ==========
    TYPOGRAPHY

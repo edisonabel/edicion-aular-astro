@@ -5,10 +5,11 @@ import JsonLd from '../../components/geo/JsonLd.astro';
 import blogData from '../../data/blog.json';
 import { blogDestination, formatBlogDate } from '../../lib/blog';
 import { ORG_ID, breadcrumbs } from '../../lib/schema';
+import '../../styles/blog-brand.css';
 export function getStaticPaths() { return blogData.map(post => ({ params: { slug: post.slug }, props: { post } })); }
 const { post } = Astro.props;
 const destination = blogDestination(post.category, post.slug);
-const related = blogData.filter(p => p.id !== post.id).sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category) || b.date.localeCompare(a.date)).slice(0, 3);
+const related = blogData.filter(p => p.id !== post.id).sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category) || b.date.localeCompare(a.date)).slice(0, 6);
 const articleUrl = `https://edicionaular.com/blog/${post.slug}/`;
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'BlogPosting', '@id': `${articleUrl}#article`,
@@ -20,51 +21,83 @@ const articleSchema = {
 ---
 <BaseLayout title={`${post.title} | Blog Edición Aular`} description={post.excerpt} image={post.image} type="article">
   <JsonLd slot="head" data={[articleSchema, breadcrumbs([{ name: 'Inicio', href: '/' }, { name: 'Blog', href: '/blog/' }, { name: post.title, href: `/blog/${post.slug}/` }])]} />
+  <div id="reading-progress-bar" aria-hidden="true"></div>
   <div class="stg-container blog-article">
-    <article>
-      <header class="article-header">
-        <nav aria-label="Migas de pan"><a href="/">Inicio</a><span aria-hidden="true"> / </span><a href="/blog/">Blog</a><span aria-hidden="true"> / </span><span>{post.category}</span></nav>
+    <section class="article-intro">
+      <div class="bringer-page-intro"><div class="stg-row"><div class="stg-col-8 stg-offset-2">
+        <nav class="bringer-breadcrumb" aria-label="Migas de pan"><ul><li><a href="/">Inicio</a></li><li><a href="/blog/">Blog</a></li><li><span>{post.category}</span></li></ul></nav>
         <h1 class="bringer-page-title">{post.title}</h1>
-        <div class="article-meta"><a href="/nosotros/">Por {post.author}</a><span>Publicado: <time datetime={post.date}>{formatBlogDate(post.date)}</time></span>{post.dateModified && <span>Actualizado: <time datetime={post.dateModified}>{formatBlogDate(post.dateModified)}</time></span>}<span>{post.readTime} de lectura</span></div>
-      </header>
-      <figure class="article-image"><img src={post.image} alt={post.imageAlt || post.title} width={post.imageWidth || 1200} height={post.imageHeight || 630} decoding="async" /></figure>
-      <div class="article-reading">
-        <p class="article-excerpt bringer-large-text">{post.excerpt}</p>
+        <div class="bringer-post-meta"><span>Por <a href="/nosotros/">{post.author}</a></span><time datetime={post.date}>{formatBlogDate(post.date)}</time><span>{post.readTime} de lectura</span>{post.dateModified && <span>Actualizado: <time datetime={post.dateModified}>{formatBlogDate(post.dateModified)}</time></span>}</div>
+      </div></div></div>
+    </section>
+    <section class="article-cover"><div class="stg-row"><div class="stg-col-8 stg-offset-2"><figure class="st-expandable-wrap"><img src={post.image} alt={post.imageAlt || post.title} width={post.imageWidth || 1200} height={post.imageHeight || 630} decoding="async" /></figure></div></div></section>
+    <section class="article-content-section"><div class="stg-row"><div class="stg-col-8 stg-offset-2">
+      <article class="bringer-post-content">
+        <div class="bringer-post-excerpt"><p class="bringer-large-text">{post.excerpt}</p></div>
         <div class="bringer-post-body" set:html={post.content} />
-        <aside class="article-next bringer-block" aria-labelledby="article-next-title">
-          <h2 id="article-next-title">Del artículo a tu proyecto</h2>
-          <p>Si esta necesidad existe en tu negocio, revisemos el proceso, las herramientas y el alcance antes de elegir una solución.</p>
-          <a href={destination.href} class="article-service">{destination.label} →</a>
-          <a href="https://cal.com/edicion-aular-website" class="bringer-button">Conversar sobre mi proyecto</a>
-        </aside>
-      </div>
-    </article>
-    <section aria-labelledby="related-title"><h2 id="related-title">Lecturas relacionadas</h2><div class="related-grid">{related.map(item => <BlogCard post={item} />)}</div></section>
+      </article>
+    </div></div></section>
+    <section class="divider-top"><div class="stg-row"><div class="stg-col-8 stg-offset-2">
+      <aside class="bringer-cta-box bringer-block align-center" aria-labelledby="article-next-title">
+        <h2 id="article-next-title">¿Te gustó este artículo?<span class="bringer-accent">.</span></h2>
+        <p class="bringer-large-text">Conversemos sobre cómo aplicar estas ideas a las necesidades de tu negocio.</p>
+        <p><a class="article-service" href={destination.href}>{destination.label} →</a></p>
+        <a href="https://cal.com/edicion-aular-website" class="bringer-button blog-brand-button">Conversar sobre mi proyecto</a>
+      </aside>
+    </div></div></section>
+    <section class="backlight-bottom" aria-labelledby="related-title">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8 stg-offset-2 align-center"><h2 id="related-title">Artículos Relacionados<span class="bringer-accent">.</span></h2><p class="bringer-large-text">Continúa aprendiendo con estos artículos</p></div></div>
+      <div class="swiper bringer-carousel"><div class="swiper-wrapper">{related.map(item => <BlogCard post={item} className="swiper-slide" />)}</div><div class="swiper-pagination bringer-dots"></div></div>
+    </section>
   </div>
 </BaseLayout>
+<script>
+  const progressBar = document.querySelector<HTMLElement>('#reading-progress-bar');
+  const reading = document.querySelector<HTMLElement>('.bringer-post-content');
+  if(progressBar && reading){
+    document.body.append(progressBar);
+    let scheduled = false;
+    const update = () => {
+      const start = reading.getBoundingClientRect().top + window.scrollY;
+      const distance = reading.offsetHeight - window.innerHeight;
+      const progress = distance > 0 ? Math.max(0, Math.min(1, (window.scrollY - start) / distance)) : 0;
+      progressBar.style.width = `${progress * 100}%`;
+      scheduled = false;
+    };
+    const requestUpdate = () => { if(!scheduled){ scheduled = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll',requestUpdate,{passive:true});
+    window.addEventListener('resize',requestUpdate);
+    update();
+  }
+</script>
 <style>
-  .article-header { max-width: 960px; margin: auto; padding: 4rem 0 2rem; }
-  nav { font-size: .9rem; margin-bottom: 1.5rem; overflow-wrap: anywhere; }
-  .article-meta { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; border-top: 1px solid var(--bringer-s-border); padding-top: 1rem; color: var(--bringer-s-text); font-size: .85rem; }
-  .article-meta a { color: var(--bringer-s-heading); }
-  .article-image { max-width: 960px; margin: 0 auto 3rem; }
-  .article-image img { display: block; width: 100%; height: auto; border-radius: 18px; }
-  .article-reading { max-width: 780px; margin: auto; overflow-wrap: anywhere; }
-  .article-excerpt { padding: 1.5rem; border-left: 3px solid var(--bringer-s-text-accent); background: var(--bringer-s-container-bg); border-radius: 8px; margin-bottom: 2rem; }
-  .bringer-post-body { font-size: 1.05rem; line-height: 1.8; }
+  .article-intro { padding-bottom: 1rem; }
+  .bringer-breadcrumb ul { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0 0 1.5rem; font-size: .875rem; overflow-wrap: anywhere; }
+  .bringer-breadcrumb li:not(:last-child)::after { content: '/'; margin-left: .5rem; }
+  .bringer-post-meta { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--bringer-s-border); font-size: .85rem; color: var(--bringer-s-text); }
+  .bringer-post-meta a { color: var(--bringer-s-heading); }
+  .article-cover { padding: 2rem 0 3rem; }
+  .st-expandable-wrap { margin: 0; border-radius: 18px; overflow: hidden; }
+  .st-expandable-wrap img { display: block; width: 100%; height: auto; }
+  .article-content-section { padding-top: 0; }
+  .bringer-post-content { font-size: 1.0625rem; line-height: 1.9; overflow-wrap: anywhere; }
+  .bringer-post-excerpt { margin-bottom: 3.5rem; padding: 2rem 1.75rem; border-left: 4px solid #b80046; border-radius: 8px; background: var(--bringer-s-container-bg); }
+  .bringer-post-excerpt p { line-height: 1.9; margin: 0; }
   .bringer-post-body :global(section) { padding: 0; }
-  .bringer-post-body :global(h2) { font-size: 1.9rem; line-height: 1.35; margin: 3rem 0 1rem; }
-  .bringer-post-body :global(h3) { font-size: 1.5rem; line-height: 1.4; margin: 2rem 0 1rem; }
-  .bringer-post-body :global(h4) { font-size: 1.2rem; margin: 1.5rem 0 1rem; }
-  .bringer-post-body :global(p), .bringer-post-body :global(ul), .bringer-post-body :global(ol) { margin-bottom: 1.5rem; }
-  .bringer-post-body :global(li) { margin-bottom: .65rem; }
-  .bringer-post-body :global(a), .article-service { color: var(--bringer-s-text-accent); text-decoration: underline; text-underline-offset: .2em; }
+  .bringer-post-body :global(h2) { font-size: 1.9rem; line-height: 1.35; margin: 3.5rem 0 1.5rem; }
+  .bringer-post-body :global(h3) { font-size: 1.5rem; line-height: 1.4; margin: 3rem 0 1.25rem; }
+  .bringer-post-body :global(h4) { font-size: 1.2rem; margin: 2.5rem 0 1rem; }
+  .bringer-post-body :global(p) { margin-bottom: 2rem; line-height: 1.9; }
+  .bringer-post-body :global(ul), .bringer-post-body :global(ol) { margin: 2rem 0; padding-left: 1.75rem; }
+  .bringer-post-body :global(li) { margin-bottom: .8rem; }
+  .bringer-post-body :global(a), .article-service { color: var(--blog-accent); text-decoration: underline; text-underline-offset: .2em; }
   .bringer-post-body :global(img) { max-width: 100%; height: auto; border-radius: 12px; }
   .bringer-post-body :global(table) { display: block; max-width: 100%; overflow-x: auto; }
-  .article-next { margin: 3rem 0; }
-  .article-next h2 { font-size: 1.6rem; }
-  .article-next a { display: table; margin-top: 1.2rem; }
-  .related-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.5rem; }
-  .blog-article :global(a:focus-visible) { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 4px; }
-  @media(max-width: 750px) { .related-grid { grid-template-columns: minmax(0,1fr); } .article-header { padding-top: 2rem; } }
+  .bringer-cta-box h2 { font-size: clamp(1.6rem,3vw,2.5rem); }
+  .blog-article :global(a:focus-visible) { outline: 3px solid var(--blog-accent); outline-offset: 4px; }
+  .bringer-carousel :global(.swiper-slide) { height: auto; }
+  .blog-article :global(.swiper-pagination-bullet) { background: var(--bringer-s-text); opacity: .5; }
+  .blog-article :global(.swiper-pagination-bullet-active) { background: var(--blog-accent); opacity: 1; }
+  #reading-progress-bar { position: fixed; left: 0; bottom: 0; width: 0; height: 4px; background: #ff005f; z-index: 10001; pointer-events: none; }
+  @media(max-width: 600px) { .bringer-post-excerpt { padding: 1.4rem; } }
 </style>

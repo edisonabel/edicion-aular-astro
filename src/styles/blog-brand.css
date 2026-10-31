@@ -1,0 +1,8 @@
+.blog-index, .blog-article {
+  --blog-accent: #ff6fa8;
+  --bringer-s-text-accent: var(--blog-accent);
+}
+html.light-mode .blog-index, html.light-mode .blog-article { --blog-accent: #b80046; }
+.blog-index .bringer-accent, .blog-article .bringer-accent { color: var(--blog-accent); }
+.blog-index a.bringer-button.blog-brand-button, .blog-article a.bringer-button.blog-brand-button { color: #fff; background: #b80046; }
+.blog-index a.bringer-button.blog-brand-button:hover, .blog-article a.bringer-button.blog-brand-button:hover { color: #fff; background: #970039; }

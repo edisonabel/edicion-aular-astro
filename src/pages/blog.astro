@@ -5,35 +5,71 @@ import JsonLd from '../components/geo/JsonLd.astro';
 import blogData from '../data/blog.json';
 import { normalizeSearch } from '../lib/blog';
 import { ORG_ID } from '../lib/schema';
+import '../styles/blog-brand.css';
 const posts = [...blogData].sort((a, b) => b.date.localeCompare(a.date));
 const categories = [...new Set(posts.map(p => p.category))];
-const featured = posts.filter(p => p.featured).slice(0, 3);
+const featured = posts.filter(p => p.featured);
+const archiveCount = posts.filter(p => p.id <= 19).length;
+const newCount = posts.length - archiveCount;
 ---
 <BaseLayout title="Blog de IA, diseño web y marketing | Edición Aular" description="Guías prácticas para decidir qué automatizar, mejorar tu sitio web y organizar el marketing de tu negocio. Explora el blog de Edición Aular.">
   <JsonLd slot="head" data={{ '@context': 'https://schema.org', '@type': 'Blog', name: 'Blog de Edición Aular', url: 'https://edicionaular.com/blog/', publisher: { '@id': ORG_ID }, inLanguage: 'es-CO' }} />
   <div class="stg-container blog-index">
-    <section class="blog-intro align-center">
-      <p class="blog-eyebrow">Ideas para tomar mejores decisiones</p>
-      <h1 class="bringer-page-title">IA, diseño y marketing para tu negocio<span class="bringer-accent">.</span></h1>
-      <p class="bringer-large-text">Guías y criterios prácticos para conectar las herramientas con los problemas de tu operación.</p>
-      <div class="blog-search"><label for="blogSearch">Buscar en el blog</label><input id="blogSearch" type="search" placeholder="Por ejemplo: asistente, diseño o automatización" aria-controls="blog-posts" /></div>
-      <p class="blog-rss"><a href="/rss.xml">Seguir los artículos por RSS</a></p>
+    <section>
+      <div class="bringer-hero-block bringer-hero-type02"><div class="stg-row"><div class="stg-col-8 stg-offset-2 align-center">
+        <h1 class="bringer-page-title" data-split-appear="fade-up" data-split-unload="fade-up">Blog de Marketing Digital<span class="bringer-accent">.</span></h1>
+        <p class="bringer-large-text" data-appear="fade-up" data-delay="100">Estrategias, tendencias y consejos prácticos para llevar tu marca al siguiente nivel.<br><span class="bringer-accent">Creatividad y tecnología para tu negocio.</span></p>
+        <div class="bringer-blog-search" data-appear="fade-up" data-delay="200">
+          <label class="blog-search-label" for="blogSearch">Buscar artículos</label>
+          <div class="bringer-search-form"><input id="blogSearch" type="search" placeholder="Buscar artículos… (ej. funnel, webinar, IA)" aria-controls="blog-posts" /><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg></div>
+        </div>
+        <p class="blog-archive-link"><a href="#archivo-blog">Ver el archivo completo · {posts.length} artículos</a></p>
+      </div></div></div>
     </section>
-    {featured.length > 0 && <section id="blog-featured" aria-labelledby="featured-title"><h2 id="featured-title">Para empezar</h2><div class="blog-grid">{featured.map(post => <BlogCard post={post} />)}</div></section>}
-    <section aria-labelledby="archive-title">
-      <h2 id="archive-title">Explora los artículos</h2>
-      <div class="blog-filters" role="group" aria-label="Filtrar por tema">
-        <button type="button" data-category="" aria-pressed="true">Todos los temas</button>
-        {categories.map(category => <button type="button" data-category={category} aria-pressed="false">{category}</button>)}
+    {featured.length > 0 && <section id="blog-featured" class="backlight-top" aria-labelledby="featured-title">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8 stg-offset-2 align-center"><h2 id="featured-title" data-appear="fade-up">Artículos Destacados</h2><p class="bringer-large-text" data-appear="fade-up">Una selección de nuestro blog</p></div></div>
+      <div class="bringer-grid-3cols blog-grid">{featured.map(post => <BlogCard post={post} />)}</div>
+    </section>}
+    <section id="archivo-blog" aria-labelledby="archive-title">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8 stg-offset-2 align-center"><h2 id="archive-title" data-appear="fade-up">Todos los Artículos</h2><p class="bringer-large-text" data-appear="fade-up">{archiveCount} artículos del archivo y {newCount} publicaciones nuevas sobre IA.</p></div></div>
+      <div class="bringer-filter-buttons blog-filters align-center" role="group" aria-label="Filtrar por tema">
+        <button type="button" class="bringer-filter-button" data-category="" aria-pressed="true">Todos</button>
+        {categories.map(category => <button type="button" class="bringer-filter-button" data-category={category} aria-pressed="false">{category}</button>)}
       </div>
-      <p id="blog-results" role="status" aria-live="polite" aria-atomic="true">{posts.length} artículos disponibles</p>
-      <div id="blog-posts" class="blog-grid">{posts.map(post => <div data-blog-post data-category={post.category} data-search={normalizeSearch([post.title, post.excerpt, post.category, ...(post.tags || [])].join(' '))}><BlogCard post={post} /></div>)}</div>
-      <p id="blog-empty" hidden>Prueba con otra palabra o selecciona «Todos los temas».</p>
+      <p id="blog-results" class="align-center" role="status" aria-live="polite" aria-atomic="true">{posts.length} artículos disponibles</p>
+      <div id="blog-posts" class="bringer-grid-3cols blog-grid">{posts.map(post => <div data-blog-post data-category={post.category} data-search={normalizeSearch([post.title, post.excerpt, post.category, ...(post.tags || []), ...(post.searchAliases || [])].join(' '))}><BlogCard post={post} /></div>)}</div>
+      <p id="blog-empty" class="align-center" hidden>Prueba con otra palabra o selecciona «Todos».</p>
     </section>
-    <section class="divider-top"><div class="bringer-block blog-next">
-      <div><p class="blog-eyebrow">De la lectura a tu operación</p><h2>¿Qué necesitas resolver?</h2><p>Conoce las soluciones de IA o conversemos sobre el alcance de tu proyecto.</p></div>
-      <div class="blog-actions"><a href="/soluciones-ia/" class="bringer-button">Explorar soluciones con IA</a><a href="https://cal.com/edicion-aular-website" class="bringer-arrow-link">Conversar sobre mi proyecto</a></div>
-    </div></section>
+    <section class="divider-top backlight-top"><div class="stg-row"><div class="stg-col-6 stg-offset-3 align-center"><div class="bringer-block blog-rss-card" data-appear="fade-up">
+      <h3>Sigue nuestras publicaciones<span class="bringer-accent">.</span></h3><p class="bringer-large-text">Recibe los nuevos artículos en tu lector RSS.</p><a href="/rss.xml" class="bringer-button blog-brand-button">Seguir el blog por RSS</a>
+    </div></div></div></section>
+        <!-- CTA Section -->
+        <section class="divider-top">
+            <div class="bringer-bento-grid bringer-grid-cta">
+                <div class="is-large bringer-masked-block" data-appear="fade-left" data-unload="fade-left">
+                    <div class="bringer-grid-cta-media bringer-masked-media bg-lava">
+                        <div class="bringer-grid-cta-heading">¿Listo Para Transformar Tu Marca?</div>
+                    </div>
+                    <div class="bringer-masked-content at-bottom-right">
+                        <p class="bringer-large-text" data-appear="fade-right" data-delay="100">Hablemos de tu proyecto →</p>
+                    </div>
+                </div>
+
+                <div class="is-medium bringer-block" data-appear="fade-down" data-unload="fade-right">
+                    <h3>Agenda una consultoría gratuita y descubre cómo podemos ayudarte.</h3>
+                </div>
+
+                <div class="is-small" data-appear="zoom-out" data-delay="100" data-unload="zoom-out">
+                    <a href="https://cal.com/edicion-aular-website" class="bringer-square-button" aria-label="Agendar una conversación">
+                        <span class="bringer-icon bringer-icon-explore"></span>
+                    </a>
+                </div>
+
+                <div class="is-small" data-appear="zoom-out" data-delay="200" data-unload="zoom-out">
+                    <img src="/img/cta/contact3.webp" alt="Diseño y creatividad" width="960" height="960" loading="lazy" decoding="async">
+                </div>
+            </div>
+        </section>
   </div>
 </BaseLayout>
 <script>
@@ -65,19 +101,22 @@ const featured = posts.filter(p => p.featured).slice(0, 3);
 </script>
 <style>
   .blog-index [hidden] { display: none !important; }
-  .blog-intro { max-width: 950px; margin: auto; }
-  .blog-eyebrow { color: var(--bringer-s-text-accent); font-size: .85rem; font-weight: 600; }
-  .blog-search { max-width: 720px; margin: 2rem auto 0; text-align: left; }
-  .blog-search label { display: block; color: var(--bringer-s-heading); margin-bottom: .6rem; }
-  .blog-search input { width: 100%; background: var(--bringer-s-container-bg); color: var(--bringer-s-heading); border: 1px solid var(--bringer-s-border); border-radius: 12px; padding: 1rem; }
-  .blog-search input::placeholder { color: var(--bringer-s-text); opacity: 1; }
-  .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
-  .blog-filters { display: flex; flex-wrap: wrap; gap: .65rem; margin: 1.5rem 0; }
-  .blog-filters button { font: inherit; font-size: .9rem; color: var(--bringer-s-heading); background: var(--bringer-s-container-bg); border: 1px solid var(--bringer-s-border); border-radius: 8px; padding: .6rem .9rem; cursor: pointer; }
-  .blog-filters button[aria-pressed="true"] { border-color: var(--bringer-s-text-accent); box-shadow: inset 0 -3px var(--bringer-s-text-accent); }
-  .blog-index :is(button,input,a):focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 4px; }
-  .blog-next { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; }
-  .blog-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+  .bringer-blog-search { margin-top: 2rem; }
+  .blog-search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .bringer-search-form { position: relative; max-width: 800px; margin: 0 auto; }
+  .bringer-search-form input { width: 100%; padding: 1rem 3.5rem 1rem 1.5rem; font: inherit; font-size: 1rem; border: 2px solid var(--bringer-s-border); border-radius: 50px; background: var(--bringer-s-container-bg); color: var(--bringer-s-heading); }
+  .bringer-search-form input::placeholder { color: var(--bringer-s-text); opacity: 1; }
+  .bringer-search-form svg { position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); color: var(--blog-accent); pointer-events: none; }
+  .blog-archive-link { margin-top: 1rem; font-size: .9rem; }
+  .blog-archive-link a { color: var(--bringer-s-text); text-decoration: underline; text-underline-offset: .25em; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--stg-gap); }
+  .blog-filters { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; margin-bottom: 1.5rem; }
+  .blog-filters button { font: inherit; font-size: .9375rem; color: var(--bringer-s-text); background: var(--bringer-s-container-bg); border: 1px solid var(--bringer-s-border); border-radius: var(--bringer-small-br); padding: .625rem 1.25rem; cursor: pointer; }
+  .blog-filters button:is(:hover,[aria-pressed="true"]) { color: #fff; background: #b80046; border-color: #b80046; }
+  #archivo-blog { scroll-margin-top: 100px; }
+  #blog-results { font-size: .85rem; color: var(--bringer-s-text); margin-bottom: 2rem; }
+  .blog-rss-card .bringer-button { margin-top: 1rem; }
+  .blog-index :is(button,input,a):focus-visible { outline: 3px solid var(--blog-accent); outline-offset: 4px; }
   @media(max-width: 1000px) { .blog-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media(max-width: 650px) { .blog-grid,.blog-next { grid-template-columns: minmax(0,1fr); } }
+  @media(max-width: 650px) { .blog-grid { grid-template-columns: minmax(0,1fr); } }
 </style>
