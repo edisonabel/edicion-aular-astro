@@ -50,6 +50,10 @@ document.querySelector('#guide-preview').onclick=()=>{
 const mime = { '.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf','.mp4':'video/mp4','.xml':'application/xml','.txt':'text/plain' };
 createServer((req,res)=>{
   const url = new URL(req.url, 'http://localhost:4322');
+  if(url.pathname==='/api/consulta'&&process.env.QA_EMAIL_TEST==='1'){
+    res.writeHead(req.method==='GET'?200:503,{'Content-Type':'application/json','Cache-Control':'no-store'});
+    res.end(JSON.stringify(req.method==='GET'?{available:true}:{error:'Prueba local sin envío de correo. En producción se conecta con Resend.'}));return;
+  }
   if(url.pathname==='/__qa/'){res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});res.end(harness);return;}
   if(/^\/mentoria\/?$/.test(url.pathname)){res.writeHead(301,{Location:'/servicios/'});res.end();return;}
   let file=resolve(root, '.'+decodeURIComponent(url.pathname));

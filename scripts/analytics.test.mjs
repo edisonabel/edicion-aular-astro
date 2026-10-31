@@ -17,10 +17,18 @@ function fixture(hostname = 'edicionaular.com', saved = null) {
     get cookie() { return '_ga=test; _ga_2CTQCP83WM=test; theme=dark'; }, set cookie(value) { deletedCookies.push(value); } };
   installAnalytics(win, doc);
   return { win, doc, scripts, panel, accept, reject, preferences, storage, deletedCookies, reloads: () => reloads,
+    leadSent() { listeners['edicion:lead-sent'](); },
     openPreferences() { listeners.click({ target: { closest: selector => selector === '[data-analytics-preferences]' ? preferences : null } }); },
     clickGuideButton() { listeners.click({ target: { closest(selector) { return selector === 'button[data-contact-channel="whatsapp"]' ? { closest: () => null, getAttribute() { throw new Error('El resumen no debe leerse para medir el clic'); } } : null; } } }); },
     click(href) { listeners.click({ target: { closest(selector) { return selector === 'a[href]' ? { getAttribute: () => href, closest: () => null } : null; } } }); } };
 }
+
+test('El envío aceptado se mide aparte del clic, sin datos personales y solo con consentimiento', () => {
+  const f = fixture(); f.leadSent(); assert.equal(f.win.dataLayer.length, 0);
+  f.accept.click(); f.leadSent();
+  assert.deepEqual(f.win.dataLayer.find(e => e.event === 'generate_lead'), { event: 'generate_lead', page_path: '/soluciones-ia/', link_channel: 'email', cta_location: 'project_guide' });
+  const preview = fixture('localhost', { value: 'granted', date: Date.now() }); preview.leadSent(); assert.equal(preview.win.dataLayer.length, 0);
+});
 
 test('No carga Google ni registra contactos antes de elegir o después de rechazar', () => {
   const f = fixture();

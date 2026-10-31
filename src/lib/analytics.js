@@ -68,6 +68,11 @@ export function installAnalytics(win, doc) {
   panel.hidden = choice !== null;
   loadContainer();
 
+  doc.addEventListener('edicion:lead-sent', () => {
+    if (!production || choice !== 'granted') return;
+    win.dataLayer.push({ event: 'generate_lead', page_path: win.location.pathname, link_channel: 'email', cta_location: 'project_guide' });
+  });
+
   doc.addEventListener('click', event => {
     // Delegar en captura evita depender del estado de los controles del tema.
     if (event.target?.closest?.('[data-analytics-preferences]')) {
