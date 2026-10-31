@@ -6,9 +6,11 @@
 - Ventana del 1 al 28 de octubre: 170 impresiones, 0 clics, CTR 0 % y posición media 7,2. Termina antes de los últimos cambios; no permite atribuirles resultados.
 - Páginas con impresiones: oferta irresistible (66), stack de valor (51), Nano Banana (31), inicio (16), value ladder (9), términos (7). Las sumas por URL pueden diferir del total de la propiedad.
 - Ambos sitemaps constaban como correctos, con 43 páginas descubiertas en sus lecturas anteriores del 23 y 25 de octubre. La compilación actual contiene 70 páginas. Descubrimiento, indexación y publicación son estados distintos.
+- El 31 de octubre se volvió a enviar `sitemap-index.xml`: Google confirmó el envío y lo marcó como correcto, con lectura del mismo día. El recuento de páginas descubiertas aún mostraba 43.
 - GTM conserva el ID `GTM-TKRFCRBN` y GA4 `G-2CTQCP83WM`, propiedad Edicion Aular. El activador permite los cuatro clics de contacto y ahora también `generate_lead`.
 - `generate_lead` se produce después de la aceptación de Resend, solo con consentimiento de analítica. No demuestra lectura ni atención de la consulta. Los clics de WhatsApp, agenda, teléfono y correo se mantienen separados.
 - Los eventos contienen ruta, canal y ubicación del control; no nombre, correo ni respuestas. Las pruebas también comprueban que localhost y los previews no envían medición.
+- Publicada la versión 3 de GTM, «Consultas por correo · envío confirmado». `generate_lead` quedó marcado como evento clave en GA4, una vez por evento y sin valor monetario predeterminado.
 
 ## Radar
 
@@ -39,6 +41,7 @@ El canal se añade dentro del modal existente como opción secundaria a WhatsApp
 - La respuesta se dirige al correo indicado por el visitante mediante Reply-To.
 - El dominio quedó verificado en Resend mediante tres registros DNS específicos. No se sustituyeron los registros de la web.
 - La configuración de envío no crea un buzón receptor para info@. Para recibir correo dirigido a esa dirección hace falta configurar recepción o reenvío.
+- Hasta contar con ese buzón, los enlaces directos y la dirección pública para consultas apuntan a `edicionaular@gmail.com`, también en los textos de contacto de privacidad y términos.
 - Función Netlify con clave privada, validación de respuestas y autorización, tamaño limitado, origen permitido, campo antispam, límite de solicitudes e idempotencia de Resend.
 - El navegador consulta disponibilidad. No muestra el canal si falta configuración. Un fallo conserva las respuestas y permite reintentar o continuar por WhatsApp.
 - El nombre es opcional. Se requiere correo de respuesta y autorización para responder la consulta. No hay suscripción publicitaria ni envío a modelos de IA.
