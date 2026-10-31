@@ -29,7 +29,7 @@ Configuración y límites detallados en RADAR_EDITORIAL_IA.md. Dos activadores s
 - Compilación estática: 68 páginas y 24 artículos en RSS; auditores HTML/GEO sin errores.
 - 15 pruebas: ocho de analítica, dos del orientador que cubren las 21 combinaciones y cinco del radar (destinatario/deduplicación, envío incierto, horario, escape/límites y filtro comercial).
 - 126 revisiones de las 21 páginas GEO: 390, 768 y 1200 píxeles, claro/oscuro. Sin incidencias en los controles de desbordamiento, contraste y solapamientos internos medidos.
-- Orientador: cuatro estados en móvil/escritorio y claro/oscuro, siete recomendaciones en móvil y recorrido por teclado. Apertura real de WhatsApp comprobada con un mensaje ficticio: destinatario correcto y resumen completo, sin enviar el mensaje. La revisión final de producción se cierra con esta entrega.
+- Orientador: cuatro estados en móvil/escritorio y claro/oscuro, siete recomendaciones en móvil y recorrido por teclado. Apertura real de WhatsApp comprobada con un mensaje ficticio: destinatario correcto y resumen completo, sin enviar el mensaje. Se redujo el espacio superior del orientador para facilitar el acceso a las opciones. Producción verificada en las cinco soluciones, Contacto, Inicio y Servicios.
 - Fuentes leídas desde Google sin errores y correo inicial verificado; comprobantes privados fuera del repositorio.
 
 No se ejecutó una nueva medición de Core Web Vitals ni se declara una certificación de accesibilidad completa. El radar no publica automáticamente y los borradores necesitan completar y revisar las fuentes.
