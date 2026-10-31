@@ -1,5 +1,6 @@
 """Revisa destinos, anclas, metadatos y JSON-LD de todo dist, sin solicitudes externas."""
 import json
+import os
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit, unquote
 from xml.etree import ElementTree
@@ -11,6 +12,14 @@ errors, pages = [], []
 for file, doc in documents.items():
     route = '/' + file.relative_to(root).as_posix().removesuffix('index.html')
     nodes = list(doc.walk())
+    robots = [n.attrs.get('content', '').lower() for n in doc.find('meta') if n.attrs.get('name') == 'robots']
+    context = os.environ.get('CONTEXT', '')
+    if len(robots) != 1:
+        errors.append(f'{route}: robots ausente o duplicado')
+    elif context == 'production' and ('noindex' in robots[0] or 'nofollow' in robots[0]):
+        errors.append(f'{route}: producción bloqueada por robots')
+    elif context in ('deploy-preview', 'branch-deploy') and 'noindex' not in robots[0]:
+        errors.append(f'{route}: preview sin noindex')
     ids = [n.attrs['id'] for n in nodes if n.attrs.get('id')]
     for condition, issue in [
         (len(doc.find('h1')) == 1, 'H1 ausente o duplicado'),

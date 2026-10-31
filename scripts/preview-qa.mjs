@@ -26,7 +26,7 @@ function measure(){
 }
 function theme(value){desired=value;const d=frame.contentDocument;if(!d?.querySelector('#bringer-main'))return;const light=d.documentElement.classList.contains('light-mode');if(light!==(value==='light'))d.querySelector('.theme-toggle-button')?.click();setTimeout(measure,400)}
 frame.addEventListener('load',()=>{
- const style=frame.contentDocument.createElement('style');style.textContent='#bringer-main [data-appear], #bringer-main [data-split-appear], #bringer-main [data-split-appear] * {transform:none!important;opacity:1!important;visibility:visible!important;animation:none!important;transition:none!important}';frame.contentDocument.head.appendChild(style);
+ const style=frame.contentDocument.createElement('style');style.textContent='html, body, body * {transition:none!important} #bringer-main [data-appear], #bringer-main [data-split-appear], #bringer-main [data-split-appear] * {transform:none!important;opacity:1!important;visibility:visible!important;animation:none!important;transition:none!important}';frame.contentDocument.head.appendChild(style);
  theme(desired);setTimeout(measure,1800)});
 document.querySelector('#route').onchange=e=>{document.querySelector('#status').textContent='Cargando…';frame.src=e.target.value};
 document.querySelector('#width').onchange=e=>{frame.width=e.target.value;setTimeout(measure,500)};

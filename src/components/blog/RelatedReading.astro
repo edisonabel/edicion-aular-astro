@@ -1,0 +1,26 @@
+---
+import posts from '../../data/blog.json';
+interface Props { slugs: string[] }
+const { slugs } = Astro.props;
+const articles = slugs.map(slug => {
+  const article = posts.find(post => post.slug === slug);
+  if (!article) throw new Error(`Lectura relacionada inexistente: ${slug}`);
+  return article;
+});
+---
+{articles.length > 0 && <section id="lecturas-relacionadas" data-template="services.html#our-services" aria-labelledby="reading-title" class="divider-top related-reading">
+  <h2 id="reading-title">Para preparar tu proyecto</h2>
+  <p>Criterios y ejemplos para elegir el alcance antes de conectar herramientas.</p>
+  <div class="reading-grid">{articles.map(article => <article class="bringer-block">
+    <h3><a href={`/blog/${article.slug}/`}>{article.title}</a></h3>
+    <p>{article.excerpt}</p>
+  </article>)}</div>
+</section>}
+<style>
+  .reading-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; margin-top:1.5rem; }
+  h3 { font-size:1.25rem; line-height:1.4; margin:0 0 1rem; }
+  h3 a { color:var(--bringer-s-heading); text-decoration:underline; text-underline-offset:.2em; overflow-wrap:anywhere; }
+  p { color:var(--bringer-s-text); }
+  a:focus-visible { outline:3px solid var(--bringer-s-text-accent); outline-offset:4px; }
+  @media(max-width:700px) { .reading-grid { grid-template-columns:minmax(0,1fr); } }
+</style>

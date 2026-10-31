@@ -1,6 +1,6 @@
 {
   "paginas": 21,
-  "bloques_json_ld": 245,
+  "bloques_json_ld": 257,
   "errores": [],
   "detalle": [
     {
@@ -501,6 +501,11 @@
           "origen": "services.html#our-services"
         },
         {
+          "id": "lecturas-relacionadas",
+          "titulo": "Para preparar tu proyecto",
+          "origen": "services.html#our-services"
+        },
+        {
           "id": "marco-normativo",
           "titulo": "Datos y comunicaciones: referencias para el proyecto",
           "origen": "services.html#what-makes-us-best"
@@ -671,6 +676,11 @@
           "origen": "services.html#our-services"
         },
         {
+          "id": "lecturas-relacionadas",
+          "titulo": "Para preparar tu proyecto",
+          "origen": "services.html#our-services"
+        },
+        {
           "id": "marco-normativo",
           "titulo": "Datos y comunicaciones: referencias para el proyecto",
           "origen": "services.html#what-makes-us-best"
@@ -721,6 +731,11 @@
         {
           "id": "explorar-soluciones",
           "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "lecturas-relacionadas",
+          "titulo": "Para preparar tu proyecto",
           "origen": "services.html#our-services"
         },
         {
@@ -782,6 +797,11 @@
           "origen": "services.html#our-services"
         },
         {
+          "id": "lecturas-relacionadas",
+          "titulo": "Para preparar tu proyecto",
+          "origen": "services.html#our-services"
+        },
+        {
           "id": "marco-normativo",
           "titulo": "Datos y comunicaciones: referencias para el proyecto",
           "origen": "services.html#what-makes-us-best"
@@ -832,6 +852,11 @@
         {
           "id": "explorar-soluciones",
           "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "lecturas-relacionadas",
+          "titulo": "Para preparar tu proyecto",
           "origen": "services.html#our-services"
         },
         {
@@ -941,6 +966,11 @@
         {
           "id": "explorar-soluciones",
           "titulo": "",
+          "origen": "services.html#our-services"
+        },
+        {
+          "id": "lecturas-relacionadas",
+          "titulo": "Para preparar tu proyecto",
           "origen": "services.html#our-services"
         },
         {

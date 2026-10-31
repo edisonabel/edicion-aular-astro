@@ -291,7 +291,7 @@
     "authorImage": "/img/team/edison.jpg",
     "date": "2025-10-22",
     "readTime": "2 min",
-    "featured": true,
+    "featured": false,
     "tags": [
       "adopción de IA",
       "procesos",
@@ -493,5 +493,72 @@
     "readTime": "3 min",
     "imageWidth": 1536,
     "imageHeight": 1024
+  },
+  {
+    "id": 22,
+    "slug": "whatsapp-business-o-agente-ia-como-elegir",
+    "title": "WhatsApp Business o agente de IA: cómo elegir según tu operación",
+    "excerpt": "Compara atención humana organizada, automatizaciones definidas y agentes conectados a sistemas. Decide según consultas, seguimiento y mantenimiento.",
+    "content": "<h2>¿Necesitas WhatsApp Business o un agente de IA?</h2>\n<p>Si el equipo puede atender las consultas con información organizada y respuestas preparadas, empieza por ese proceso. Evalúa un agente cuando exista una tarea concreta que requiera interpretar preguntas o utilizar sistemas, y puedas probar su calidad. La cantidad de mensajes por sí sola no determina la solución.</p>\n<p>Son elementos distintos: WhatsApp es el canal y un agente es parte del sistema de atención. Un negocio puede utilizar el canal con personas, con flujos definidos o con apoyo de IA, según su configuración y las condiciones del producto.</p>\n<h2>Qué aporta la aplicación WhatsApp Business</h2>\n<p>La <a href=\"https://whatsappbusiness.com/products/business-app-features/\">documentación de la aplicación</a> describe respuestas rápidas, etiquetas y mensajes de ausencia. Estas funciones ayudan a organizar conversaciones y preparar contestaciones frecuentes. No equivalen por sí mismas a un agente generativo conectado a tu operación.</p>\n<p>Revisa primero si los horarios, la información de servicios y la responsabilidad de responder están claros. Un sistema más complejo seguirá necesitando esos datos.</p>\n<h2>Tres situaciones para decidir</h2>\n<ul><li><strong>Preguntas repetidas y atención manejable:</strong> ordena información y respuestas; observa qué dudas siguen necesitando una persona.</li><li><strong>Una secuencia predecible:</strong> considera un flujo definido para recoger una solicitud o enviar una notificación, con las reglas y permisos correspondientes.</li><li><strong>Consultas variables y acciones entre sistemas:</strong> evalúa un agente acotado, con revisión de respuestas, herramientas y excepciones.</li></ul>\n<p>Estas situaciones son criterios de diseño, no umbrales universales. También importan el horario, la complejidad de cada caso y la capacidad del equipo para mantener el sistema.</p>\n<h2>Ejemplo ilustrativo: solicitar una cita</h2>\n<p>Una persona pregunta por un servicio. El equipo puede explicar el alcance y enviar un enlace de agenda. Si después se necesita consultar disponibilidad desde la conversación, hay que integrar la agenda y comprobar sus respuestas. La cita solo se considera confirmada cuando existe en el sistema de destino.</p>\n<p>Antes de automatizar cambios de citas, define cómo se identifica la solicitud, qué debe confirmar la persona y qué ocurre si falla la conexión. Mantén una salida hacia atención humana.</p>\n<h2>Costes y acceso: separa las capas</h2>\n<p>La aplicación, WhatsApp Business Platform, el proveedor de integración y el modelo de IA pueden tener condiciones distintas. Consulta las <a href=\"https://whatsappbusiness.com/products/platform-pricing/\">tarifas oficiales de la plataforma</a> y el alcance del proveedor. No asumas que todo el flujo es gratuito porque una de sus herramientas lo sea.</p>\n<p>Incluye preparación, pruebas, mantenimiento y revisión de conversaciones en la evaluación. Una demostración que funciona una vez no muestra el esfuerzo de operarla.</p>\n<h2>Qué comprobar en una prueba</h2>\n<ol><li>Consultas habituales y preguntas fuera de alcance.</li><li>Datos necesarios y quién puede acceder a ellos.</li><li>Mensajes que necesitan revisión antes de enviarse.</li><li>Destino de solicitudes y reservas, incluidos fallos y duplicados.</li><li>Consultas atendidas y utilidad para el cliente, separadas de los clics.</li></ol>\n<p>Para preparar el proyecto, revisa <a href=\"/soluciones-ia/agentes-ia-whatsapp/\">agentes de IA para WhatsApp y web</a>. Si atiendes una clínica, consulta el <a href=\"/blog/consultas-citas-clinica-recepcion-ia/\">diseño del flujo de recepción</a>. Para conectar tareas previsibles, también puedes valorar <a href=\"/blog/n8n-agentes-ia-automatizacion-flujos/\">n8n y los flujos definidos</a>.</p>",
+    "image": "/img/ia/agente-whatsapp.webp",
+    "imageAlt": "Profesional con auriculares escribiendo junto a un portátil y un teléfono",
+    "imageWidth": 1536,
+    "imageHeight": 1024,
+    "author": "Edison Aular",
+    "date": "2026-10-30",
+    "category": "Marketing con IA",
+    "tags": [
+      "WhatsApp Business",
+      "agentes de IA",
+      "atención",
+      "agenda"
+    ],
+    "featured": true,
+    "readTime": "3 min"
+  },
+  {
+    "id": 23,
+    "slug": "consultas-citas-clinica-recepcion-ia",
+    "title": "Consultas y citas en una clínica: cómo diseñar la recepción con apoyo de IA",
+    "excerpt": "Organiza información administrativa, solicitudes y agenda con responsables claros. Un flujo ilustrativo que separa recepción y decisiones clínicas.",
+    "content": "<h2>¿Qué puede apoyar la IA en la recepción de una clínica?</h2>\n<p>Puede ayudar a explicar información administrativa aprobada, organizar solicitudes y orientar hacia una cita si existen los datos y las conexiones necesarias. El alcance debe separar recepción de valoración clínica. Un asistente administrativo no debe presentarse como quien diagnostica, recomienda un tratamiento o decide la prioridad de una atención.</p>\n<p>El objetivo inicial es que las consultas lleguen al lugar correcto con información suficiente. Antes de elegir una herramienta, revisa quién responde, qué puede confirmar y cómo atiende excepciones.</p>\n<h2>Prepara una base de información aprobada</h2>\n<ul><li>Servicios que realmente presta la clínica y cómo solicitar información.</li><li>Sedes y horarios verificados, sin inventar cobertura.</li><li>Condiciones de cita, cambios y cancelaciones vigentes.</li><li>Canales para preguntas que requieren al equipo clínico.</li><li>Responsable de mantener y aprobar las respuestas.</li></ul>\n<p>Si un dato no está confirmado, el asistente debe reconocerlo y ofrecer un canal de atención. No conviertas una respuesta generada en confirmación de disponibilidad, precio o cobertura.</p>\n<h2>Un flujo ilustrativo de solicitud</h2>\n<ol><li>La persona indica que desea información o una cita.</li><li>El sistema distingue la consulta administrativa de una pregunta que debe recibir el equipo clínico.</li><li>Explica qué datos son necesarios para gestionar la solicitud y su finalidad.</li><li>Presenta opciones de agenda únicamente si puede consultarlas de forma válida.</li><li>Confirma la reserva solo después de comprobar el resultado en la agenda.</li><li>Deriva a una persona si hay una duda, un fallo o una situación fuera del alcance aprobado.</li></ol>\n<p>Este ejemplo no describe una implantación realizada en un paciente o cliente. Las decisiones sobre atención y los canales para situaciones clínicas deben definirse con la clínica; no se diseña aquí un sistema de triaje.</p>\n<h2>Datos: recoge lo necesario para esta tarea</h2>\n<p>La <a href=\"https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981\">Ley 1581 de 2012, artículo 5</a>, incluye los datos relativos a la salud entre los datos sensibles. Revisa con los responsables del negocio y su asesoría las finalidades, autorizaciones aplicables, accesos, conservación y proveedores antes de conectar el flujo.</p>\n<p>Para pedir una cita, evita solicitar por defecto historias clínicas, fotografías o detalles que no hagan falta en ese paso. No copies datos de salud a herramientas de marketing. Para probar el recorrido, utiliza datos sintéticos claramente identificados en lugar de conversaciones de pacientes.</p>\n<h2>Prueba errores y cambios, no solo la reserva ideal</h2>\n<ul><li>Dos personas intentan elegir la misma franja.</li><li>Se pierde conexión antes de confirmar.</li><li>Una solicitud llega repetida o fuera de horario.</li><li>Alguien quiere cambiar una cita que no puede verificarse.</li><li>La pregunta requiere criterio clínico o información no aprobada.</li></ul>\n<p>Comprueba en cada caso qué se guarda, quién recibe la solicitud y qué entiende la persona. Registra además quién revisa los errores y cómo se corrigen.</p>\n<h2>Qué medir para mejorar recepción</h2>\n<p>Observa consultas recibidas y atendidas, solicitudes incompletas, reservas confirmadas y casos derivados. Contrasta el registro del sistema con la agenda y el trabajo del equipo. Un clic de WhatsApp no demuestra una conversación ni una cita.</p>\n<p>Consulta <a href=\"/sectores/clinicas-estetica/\">soluciones de IA para clínicas, odontología y estética</a> o compara <a href=\"/blog/whatsapp-business-o-agente-ia-como-elegir/\">WhatsApp Business y un agente</a>. El primer alcance puede consistir en organizar mejor la atención antes de añadir integraciones.</p>",
+    "image": "/img/ia/recepcion-clinica.webp",
+    "imageAlt": "Recepcionista de una clínica odontológica atendiendo el teléfono junto a un computador",
+    "imageWidth": 1536,
+    "imageHeight": 1024,
+    "author": "Edison Aular",
+    "date": "2026-10-30",
+    "category": "Marketing con IA",
+    "tags": [
+      "clínicas",
+      "recepción",
+      "citas",
+      "IA",
+      "datos sensibles"
+    ],
+    "featured": false,
+    "readTime": "3 min"
+  },
+  {
+    "id": 24,
+    "slug": "n8n-agentes-ia-automatizacion-flujos",
+    "title": "n8n y agentes de IA: cuándo basta un flujo y cuándo añadir un agente",
+    "excerpt": "Distingue reglas predecibles de decisiones asistidas por un modelo. Diseña conexiones, aprobaciones y recuperación de errores con un ejemplo práctico.",
+    "content": "<h2>¿n8n y un agente de IA son lo mismo?</h2>\n<p>No. n8n permite conectar pasos y servicios en flujos de trabajo. Un agente de IA es una parte posible de ese flujo: utiliza un modelo y herramientas para resolver una tarea. Puedes automatizar operaciones predecibles sin pedir a un modelo que decida cada paso.</p>\n<p>La <a href=\"https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/\">documentación del nodo AI Agent</a> indica que se conecta un modelo de chat y al menos una herramienta. El agente decide qué herramientas usar dentro de lo que hayas configurado. Ese acceso necesita límites, no solo instrucciones escritas.</p>\n<h2>Cuándo empezar por reglas definidas</h2>\n<p>Si llega una solicitud con campos conocidos, puedes validar lo obligatorio, guardarla y avisar al responsable mediante una secuencia prevista. Si falta un campo, el sistema sigue una rama de error. La condición se puede explicar y comprobar sin una interpretación generativa.</p>\n<p>Este enfoque encaja cuando la entrada y la salida están bien definidas. También permite mantener algunos pasos con reglas y reservar la IA para una tarea concreta, como preparar un resumen que alguien revise.</p>\n<h2>Cuándo evaluar un agente</h2>\n<ul><li>Las peticiones llegan con formulaciones variadas que necesitan interpretación.</li><li>La tarea requiere elegir entre consultas o herramientas permitidas.</li><li>Existen criterios para evaluar las decisiones y una salida para casos dudosos.</li><li>El equipo puede mantener información, permisos y pruebas.</li></ul>\n<p>Esas condiciones justifican una evaluación, no una decisión automática de usar agentes. Si el error tiene consecuencias importantes, reduce el alcance y conserva revisión humana.</p>\n<h2>Ejemplo ilustrativo: organizar una consulta de servicios</h2>\n<ol><li>Recibir una solicitud por un canal autorizado.</li><li>Validar los campos y comprobar si ya se registró.</li><li>Utilizar IA para sugerir categoría y resumen, si aporta utilidad.</li><li>Enviar los casos dudosos a una revisión.</li><li>Crear una tarea para el responsable y registrar el resultado.</li></ol>\n<p>El modelo no necesita permiso para enviar propuestas, modificar precios o borrar registros para hacer ese trabajo. Una conexión amplia añade posibilidades que el proceso puede no requerir.</p>\n<h2>Aprobaciones y recuperación de errores</h2>\n<p>n8n documenta la <a href=\"https://docs.n8n.io/advanced-ai/human-in-the-loop-tools/\">revisión humana antes de ejecutar herramientas concretas</a>. Puede servir para revisar parámetros de una acción antes de autorizarla. Comprueba la disponibilidad y configuración en tu versión.</p>\n<p>Diseña además qué ocurre si una llamada falla, si se repite una solicitud o si nadie aprueba una acción. Un reintento no debería producir dos reservas o dos mensajes. Registra lo necesario para investigar, evitando copiar información sensible a cada registro de diagnóstico.</p>\n<h2>Costes y mantenimiento</h2>\n<p>La <a href=\"https://docs.n8n.io/hosting/community-edition-features/\">documentación de las ediciones autoalojadas</a> describe Community y sus diferencias con otras opciones. Que exista una edición sin licencia de pago no elimina infraestructura, mantenimiento, uso de modelos o costes de los servicios conectados. Revisa también los términos de licencia para tu uso concreto.</p>\n<h2>Cómo evaluar un primer flujo</h2>\n<p>Prepara ejemplos normales, incompletos y repetidos. Comprueba los registros de destino, el esfuerzo de revisión y la recuperación cuando falla una conexión. Amplía el flujo solo cuando puedas explicar qué mejora y quién lo mantiene.</p>\n<p>Consulta <a href=\"/soluciones-ia/automatizacion-procesos-ia/\">automatización de procesos a medida</a>, los <a href=\"/blog/ai-agents-embudo-tendencia-2025/\">límites de un agente</a> y la <a href=\"/blog/adopcion-ia-embudos-marketing/\">priorización del primer proyecto</a>.</p>",
+    "image": "/img/ia/diagnostico-procesos.webp",
+    "imageAlt": "Vista desde arriba de tres profesionales revisando un diagrama de procesos sobre una mesa",
+    "imageWidth": 1536,
+    "imageHeight": 1024,
+    "author": "Edison Aular",
+    "date": "2026-10-30",
+    "category": "Marketing con IA",
+    "tags": [
+      "n8n",
+      "agentes de IA",
+      "automatización",
+      "flujos de trabajo"
+    ],
+    "featured": false,
+    "readTime": "3 min"
   }
 ]

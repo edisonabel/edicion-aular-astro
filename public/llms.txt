@@ -29,6 +29,15 @@
 - [IA para Hoteles y Turismo](https://edicionaular.com/sectores/turismo-hoteles): Agentes bilingües de reservas directas por WhatsApp y visualización de Registro Nacional de Turismo (RNT).
 - [IA para Inmobiliarias y Constructoras](https://edicionaular.com/sectores/inmobiliarias): Organización de solicitudes y agenda de visitas para revisión del equipo comercial.
 
+## Guías para preparar un proyecto
+
+- [WhatsApp Business o agente de IA](https://edicionaular.com/blog/whatsapp-business-o-agente-ia-como-elegir/): Criterios para elegir atención organizada, flujos definidos o un agente conectado a sistemas.
+- [Consultas y citas en clínicas](https://edicionaular.com/blog/consultas-citas-clinica-recepcion-ia/): Diseño administrativo de recepción con límites, responsables y revisión de datos.
+- [n8n y agentes de IA](https://edicionaular.com/blog/n8n-agentes-ia-automatizacion-flujos/): Diferencias entre un flujo predecible y decisiones asistidas por un modelo.
+- [Claude Design](https://edicionaular.com/blog/claude-design-que-cambio-diseno-marcas/): Cambios de producto y preparación de la marca antes de usar un prototipo.
+- [Kimi K3 y K3.1 Pro](https://edicionaular.com/blog/kimi-k3-k3-1-pro-capacidades-costes/): Capacidades anunciadas, formas de acceso y evaluación de una tarea real.
+- [Blog y archivo de artículos](https://edicionaular.com/blog/): Guías de IA, diseño y marketing con fechas y referencias.
+
 ## Marco Normativo y Cumplimiento en Colombia
 
 - [Ley 1581 de 2012](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981): Régimen General de Protección de Datos Personales (Habeas Data).

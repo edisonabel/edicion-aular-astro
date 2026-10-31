@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "node --test scripts/analytics.test.mjs && python scripts/auditar_sitio.py && python scripts/auditar_geo.py",
     "preview": "astro preview",
     "astro": "astro",
     "verificar": "node verificar.js",

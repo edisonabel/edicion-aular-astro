@@ -6,7 +6,7 @@
 
 [build.environment]
   # Asegura que se use una versión de Node.js compatible con Astro
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
 
 # COMPRESIÓN BROTLI + GZIP (GTmetrix Fix)
 [build.processing]

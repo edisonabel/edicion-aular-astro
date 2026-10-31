@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import RelatedReading from '../../components/blog/RelatedReading.astro';
+import { READINGS_BY_SECTOR } from '../../data/blog-relations';
 import EditorialImage from '../../components/geo/EditorialImage.astro';
 import { IMAGEN_SECTOR } from '../../data/ia/imagenes';
 import JsonLd from '../../components/geo/JsonLd.astro';
@@ -181,6 +183,7 @@ const schemaData = [
     )}
 
     <!-- Section: Normativa -->
+    <RelatedReading slugs={READINGS_BY_SECTOR[sector.slug] || []} />
     <Normativa claves={sector.normativa} nota={sector.notaLegal} />
 
     <!-- Section: FAQs con Acordeón Nativo -->

@@ -1,7 +1,7 @@
 {
-  "paginas": 65,
+  "paginas": 68,
   "errores": [],
-  "rss_articulos": 21,
+  "rss_articulos": 24,
   "detalle": [
     {
       "ruta": "/",
@@ -9,7 +9,7 @@
     },
     {
       "ruta": "/blog/",
-      "html_bytes": 68128
+      "html_bytes": 72264
     },
     {
       "ruta": "/branding/",
@@ -81,35 +81,35 @@
     },
     {
       "ruta": "/soluciones-ia/agentes-ia-whatsapp/",
-      "html_bytes": 49975
+      "html_bytes": 52374
     },
     {
       "ruta": "/soluciones-ia/automatizacion-procesos-ia/",
-      "html_bytes": 48415
+      "html_bytes": 50761
     },
     {
       "ruta": "/soluciones-ia/capacitacion-ia-empresas/",
-      "html_bytes": 47950
+      "html_bytes": 49861
     },
     {
       "ruta": "/soluciones-ia/contenido-video-ia/",
-      "html_bytes": 46165
+      "html_bytes": 48092
     },
     {
       "ruta": "/soluciones-ia/sitios-web-seo-geo/",
-      "html_bytes": 47711
+      "html_bytes": 49628
     },
     {
       "ruta": "/sectores/clinicas-estetica/",
-      "html_bytes": 48580
+      "html_bytes": 50520
     },
     {
       "ruta": "/sectores/inmobiliarias/",
-      "html_bytes": 47442
+      "html_bytes": 48089
     },
     {
       "ruta": "/sectores/turismo-hoteles/",
-      "html_bytes": 48269
+      "html_bytes": 48916
     },
     {
       "ruta": "/portfolio/agrosupreme/",
@@ -181,27 +181,31 @@
     },
     {
       "ruta": "/blog/adopcion-ia-embudos-marketing/",
-      "html_bytes": 41671
+      "html_bytes": 41658
     },
     {
       "ruta": "/blog/ai-agents-embudo-tendencia-2025/",
-      "html_bytes": 41752
+      "html_bytes": 41739
     },
     {
       "ruta": "/blog/asistente-ia-funnel-web-7-dias/",
-      "html_bytes": 44768
+      "html_bytes": 44755
     },
     {
       "ruta": "/blog/attractive-character-marca-personal/",
-      "html_bytes": 41518
+      "html_bytes": 41505
     },
     {
       "ruta": "/blog/chatgpt-5-1-explicado-facil/",
-      "html_bytes": 41424
+      "html_bytes": 41411
     },
     {
       "ruta": "/blog/claude-design-que-cambio-diseno-marcas/",
-      "html_bytes": 42899
+      "html_bytes": 42929
+    },
+    {
+      "ruta": "/blog/consultas-citas-clinica-recepcion-ia/",
+      "html_bytes": 42763
     },
     {
       "ruta": "/blog/cro-sistema-peep-laja-experimentos-que-pagan/",
@@ -209,47 +213,51 @@
     },
     {
       "ruta": "/blog/expert-secrets-autoridad-nicho/",
-      "html_bytes": 41513
+      "html_bytes": 41500
     },
     {
       "ruta": "/blog/formula-precios-alex-hormozi/",
-      "html_bytes": 41515
+      "html_bytes": 41502
     },
     {
       "ruta": "/blog/gemini-3-explicado-facil-2025/",
-      "html_bytes": 41411
+      "html_bytes": 41398
     },
     {
       "ruta": "/blog/hook-story-offer-formula-ventas/",
-      "html_bytes": 41485
+      "html_bytes": 41472
     },
     {
       "ruta": "/blog/kimi-k3-k3-1-pro-capacidades-costes/",
-      "html_bytes": 42769
+      "html_bytes": 42799
     },
     {
       "ruta": "/blog/landing-page-optimization-tim-ash-12-palancas/",
       "html_bytes": 41596
     },
     {
+      "ruta": "/blog/n8n-agentes-ia-automatizacion-flujos/",
+      "html_bytes": 42817
+    },
+    {
       "ruta": "/blog/nano-banana-2-guia-para-principiantes/",
-      "html_bytes": 41966
+      "html_bytes": 41986
     },
     {
       "ruta": "/blog/oferta-irresistible-alex-hormozi/",
-      "html_bytes": 41428
+      "html_bytes": 41415
     },
     {
       "ruta": "/blog/perfect-webinar-script-conversion/",
-      "html_bytes": 41573
+      "html_bytes": 41560
     },
     {
       "ruta": "/blog/sales-funnel-maquina-ventas/",
-      "html_bytes": 41597
+      "html_bytes": 41584
     },
     {
       "ruta": "/blog/stack-valor-presentacion-oferta/",
-      "html_bytes": 41596
+      "html_bytes": 41583
     },
     {
       "ruta": "/blog/the-one-thing-funnels-conversion/",
@@ -257,11 +265,15 @@
     },
     {
       "ruta": "/blog/traffic-secrets-fuentes-trafico/",
-      "html_bytes": 41670
+      "html_bytes": 41657
     },
     {
       "ruta": "/blog/value-ladder-maximizar-valor-cliente/",
-      "html_bytes": 41600
+      "html_bytes": 41587
+    },
+    {
+      "ruta": "/blog/whatsapp-business-o-agente-ia-como-elegir/",
+      "html_bytes": 42657
     }
   ]
 }

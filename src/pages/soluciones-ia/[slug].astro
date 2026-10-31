@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import RelatedReading from '../../components/blog/RelatedReading.astro';
+import { READINGS_BY_SOLUTION } from '../../data/blog-relations';
 import EditorialImage from '../../components/geo/EditorialImage.astro';
 import Programa from '../../components/geo/Programa.astro';
 import { IMAGEN_SOLUCION } from '../../data/ia/imagenes';
@@ -183,6 +185,7 @@ const schemaData = [
 
     {solucion.slug === 'sitios-web-seo-geo' && <p class="geo-example-note">Trabajamos con las <a href="https://developers.google.com/search/docs/appearance/ai-features?hl=es" target="_blank" rel="noopener">recomendaciones de Google para funciones de IA en la Búsqueda</a>. No hay un marcado especial ni un archivo que garantice aparecer en sus respuestas.</p>}
     <!-- Section: Normativa -->
+    <RelatedReading slugs={READINGS_BY_SOLUTION[solucion.slug] || []} />
     <Normativa claves={solucion.normativa} />
 
     <!-- Section: Preguntas Frecuentes Reales (Bringer Accordion) -->

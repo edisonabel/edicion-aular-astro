@@ -153,9 +153,10 @@ Imágenes compartidas: `medellin` × 1, `diagnostico` × 1, `canales` × 1, `age
 | 1 | Soluciones de IA para clínicas, consultorios odontológicos y centros de estética. | `#intro-bringer-style` | `services.html#intro` |
 | 2 | Los retos de este sector | `#the-challenge-our-approach-bringer-bento-case-study-style` | `portfolio-post01.html#the-challenge` |
 | 3 | Explora la cobertura para tu empresa | `#cobertura-sector` | `services.html#our-services` |
-| 4 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 5 | Preguntas frecuentes sobre IA para Clínicas, odontología y estética | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 6 | ¿Administras una empresa en Clínicas, odontología y estética? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 4 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 5 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 6 | Preguntas frecuentes sobre IA para Clínicas, odontología y estética | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 7 | ¿Administras una empresa en Clínicas, odontología y estética? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `clinica` × 2, `diagnostico` × 1, `agencia` × 1.
 
@@ -205,9 +206,10 @@ Imágenes compartidas: `hotel` × 2, `diagnostico` × 1, `agencia` × 1.
 | 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
 | 4 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
 | 5 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 6 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 7 | Preguntas frecuentes sobre Agentes de IA para WhatsApp y web | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 8 | ¿Interesado en implementar Agentes de IA para WhatsApp y web? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 6 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 8 | Preguntas frecuentes sobre Agentes de IA para WhatsApp y web | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 9 | ¿Interesado en implementar Agentes de IA para WhatsApp y web? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `canales` × 1, `diagnostico` × 1, `agencia` × 1.
 
@@ -220,9 +222,10 @@ Imágenes compartidas: `canales` × 1, `diagnostico` × 1, `agencia` × 1.
 | 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
 | 4 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
 | 5 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 6 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 7 | Preguntas frecuentes sobre Automatización de procesos con IA | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 8 | ¿Interesado en implementar Automatización de procesos con IA? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 6 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 8 | Preguntas frecuentes sobre Automatización de procesos con IA | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 9 | ¿Interesado en implementar Automatización de procesos con IA? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `automatizacion` × 1, `diagnostico` × 1, `agencia` × 1.
 
@@ -236,9 +239,10 @@ Imágenes compartidas: `automatizacion` × 1, `diagnostico` × 1, `agencia` × 1
 | 4 | Un taller que continúa en el trabajo diario | `#programa-formacion` | `home06.html#steps` |
 | 5 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
 | 6 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 8 | Preguntas frecuentes sobre Capacitación en IA para equipos | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 9 | ¿Interesado en implementar Capacitación en IA para equipos? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 7 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 8 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 9 | Preguntas frecuentes sobre Capacitación en IA para equipos | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 10 | ¿Interesado en implementar Capacitación en IA para equipos? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `formacion` × 1, `diagnostico` × 1, `agencia` × 1.
 
@@ -251,9 +255,10 @@ Imágenes compartidas: `formacion` × 1, `diagnostico` × 1, `agencia` × 1.
 | 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
 | 4 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
 | 5 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 6 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 7 | Preguntas frecuentes sobre Contenido, video y fotos de producto con IA | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 8 | ¿Interesado en implementar Contenido, video y fotos de producto con IA? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 6 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 8 | Preguntas frecuentes sobre Contenido, video y fotos de producto con IA | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 9 | ¿Interesado en implementar Contenido, video y fotos de producto con IA? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `contenido` × 1, `diagnostico` × 1, `agencia` × 1.
 
@@ -282,9 +287,10 @@ Imágenes compartidas: `agencia` × 2.
 | 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
 | 4 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
 | 5 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 6 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 7 | Preguntas frecuentes sobre Sitios web con IA + SEO/GEO | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 8 | ¿Interesado en implementar Sitios web con IA + SEO/GEO? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 6 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 8 | Preguntas frecuentes sobre Sitios web con IA + SEO/GEO | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 9 | ¿Interesado en implementar Sitios web con IA + SEO/GEO? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `web` × 1, `diagnostico` × 1, `agencia` × 1.
 

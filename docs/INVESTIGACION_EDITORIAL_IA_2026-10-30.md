@@ -1,5 +1,7 @@
 # Continuación editorial e investigación de IA
 
+> Actualización: el usuario autorizó su integración en `main`; esta tanda se publicó desde `18a1971`. Los tres temas siguientes y el radar de propuestas por Gmail se documentan en `docs/CONTINUIDAD_OPERACION_IA_2026-10-30.md` y `docs/RADAR_EDITORIAL_IA.md`.
+
 Revisión: 30 de octubre de 2026, zona America/Bogota. Rama: `feat/editorial-ia-tendencias`.
 
 ## Resultado preparado
