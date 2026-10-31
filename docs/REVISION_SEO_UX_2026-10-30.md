@@ -1,5 +1,7 @@
 # Revisión SEO, blog y contacto — 30 de octubre de 2026
 
+> Estado posterior a la revisión: el usuario indicó «a main». Esta tanda se integró y publicó en producción desde `87b2597`, despliegue Netlify `6ae538c59407277f47501a17`, con `index, follow` y canónico correctos. El resto del documento conserva el registro de su preparación y pruebas. La continuación editorial se documenta por separado en `docs/INVESTIGACION_EDITORIAL_IA_2026-10-30.md`.
+
 ## Entrega y alcance
 
 Cambios preparados en `feat/optimizacion-seo-blog-contacto`, desde `main` en `9ee8e29`.

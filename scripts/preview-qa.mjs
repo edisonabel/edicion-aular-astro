@@ -5,7 +5,8 @@ import { readFileSync, existsSync, statSync } from 'node:fs';
 import { resolve, extname, sep } from 'node:path';
 const root = resolve('dist');
 const report = JSON.parse(readFileSync('docs/auditoria-html.json', 'utf8'));
-const routes = ['/', '/blog/', '/blog/asistente-ia-funnel-web-7-dias/', '/contacto/', '/nosotros/', ...report.detalle.map(p => p.ruta)];
+const blogPosts = JSON.parse(readFileSync('src/data/blog.json', 'utf8'));
+const routes = ['/', '/blog/', ...blogPosts.map(post => `/blog/${post.slug}/`), '/contacto/', '/nosotros/', ...report.detalle.map(p => p.ruta)];
 const harness = `<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Revisión visual · Edición Aular</title><style>
 *{box-sizing:border-box}body{margin:0;background:#e9ebef;font:14px system-ui;color:#16191f}header{padding:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:white;border-bottom:1px solid #bcc1c9}button,select{font:inherit;padding:9px;border:1px solid #858b95;border-radius:5px;background:white;color:#16191f}button{cursor:pointer}button:focus-visible,select:focus-visible{outline:3px solid #b80046}#stage{display:flex;justify-content:center;padding:12px;overflow:auto}iframe{border:1px solid #858b95;height:800px;background:white;flex:none}#status{padding:10px 16px;background:#fff;white-space:pre-wrap;max-height:150px;overflow:auto;font-size:12px}label{display:flex;gap:6px;align-items:center}</style></head><body>
 <header><strong>QA local</strong><label>Página<select id="route">${routes.map(r => `<option>${r}</option>`).join('')}</select></label><label>Ancho<select id="width"><option value="390">Móvil 390</option><option value="768">Tablet 768</option><option value="1200" selected>Escritorio 1200</option></select></label><button id="dark">Modo oscuro</button><button id="light">Modo claro</button><button id="faq">Probar FAQ</button><button id="check">Medir página</button></header>

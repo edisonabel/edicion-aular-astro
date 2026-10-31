@@ -3,7 +3,7 @@ import { formatBlogDate } from '../../lib/blog';
 const { post } = Astro.props;
 ---
 <article class="blog-card bringer-block">
-  <img src={post.image} alt={post.imageAlt || post.title} width="800" height="450" loading="lazy" decoding="async" />
+  <img src={post.image} alt={post.imageAlt || post.title} width={post.imageWidth || 800} height={post.imageHeight || 450} loading="lazy" decoding="async" />
   <div class="blog-card-copy">
     <span class="blog-category">{post.category}</span>
     <h3><a href={`/blog/${post.slug}/`}>{post.title}</a></h3>

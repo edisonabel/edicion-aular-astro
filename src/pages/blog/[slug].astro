@@ -27,7 +27,7 @@ const articleSchema = {
         <h1 class="bringer-page-title">{post.title}</h1>
         <div class="article-meta"><a href="/nosotros/">Por {post.author}</a><span>Publicado: <time datetime={post.date}>{formatBlogDate(post.date)}</time></span>{post.dateModified && <span>Actualizado: <time datetime={post.dateModified}>{formatBlogDate(post.dateModified)}</time></span>}<span>{post.readTime} de lectura</span></div>
       </header>
-      <figure class="article-image"><img src={post.image} alt={post.imageAlt || post.title} width="1200" height="630" decoding="async" /></figure>
+      <figure class="article-image"><img src={post.image} alt={post.imageAlt || post.title} width={post.imageWidth || 1200} height={post.imageHeight || 630} decoding="async" /></figure>
       <div class="article-reading">
         <p class="article-excerpt bringer-large-text">{post.excerpt}</p>
         <div class="bringer-post-body" set:html={post.content} />

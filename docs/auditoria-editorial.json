@@ -1,0 +1,162 @@
+{
+  "fecha_revision": "2026-10-30",
+  "articulos_revisados": 18,
+  "articulos_nuevos": 2,
+  "urls_originales_conservadas": true,
+  "hallazgos": [
+    {
+      "id": 1,
+      "slug": "sales-funnel-maquina-ventas",
+      "titulo_anterior": "Sales Funnel: La Máquina de Ventas que Todo Negocio Necesita",
+      "titulo_revisado": "Embudo de ventas para servicios: etapas, contactos y medición",
+      "hallazgo": "Anecdotario en primera persona, mini-caso de 1.000 visitas y porcentajes sin evidencia; promesas de clientes o seguidores en siete días.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 2,
+      "slug": "hook-story-offer-formula-ventas",
+      "titulo_anterior": "Hook, Story, Offer: La Fórmula de Russell Brunson para Vender Cualquier Cosa",
+      "titulo_revisado": "Hook, Story, Offer: cómo estructurar un mensaje con evidencia",
+      "hallazgo": "Pruebas supuestamente reales de 10x y CPC cuatro veces menor; ganchos con porcentajes y resultados no acreditados.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 3,
+      "slug": "value-ladder-maximizar-valor-cliente",
+      "titulo_anterior": "Value Ladder: Cómo Maximizar el Valor de Cada Cliente",
+      "titulo_revisado": "Escalera de valor: cómo organizar servicios según la necesidad del cliente",
+      "hallazgo": "Relato personal no acreditado; rangos universales de precios; mentoría en la oferta y multiplicación de LTV presentada como certeza.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 4,
+      "slug": "expert-secrets-autoridad-nicho",
+      "titulo_anterior": "Expert Secrets: Cómo Posicionarte Como la Autoridad en Tu Nicho",
+      "titulo_revisado": "Expert Secrets y contenido de autoridad: qué puedes demostrar",
+      "hallazgo": "Clase y vivencia personal no verificadas; consejo de estar dos pasos por delante como suficiencia profesional; cita psicológica sin fuente.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 5,
+      "slug": "traffic-secrets-fuentes-trafico",
+      "titulo_anterior": "Traffic Secrets: Las 3 Fuentes de Tráfico que Domina Russell Brunson",
+      "titulo_revisado": "Traffic Secrets: cómo evaluar canales de tráfico para tu negocio",
+      "hallazgo": "Colaboraciones narradas como propias sin respaldo; contacto gratis cuando quieras; afirmación de canal mejor basada solo en un porcentaje.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 6,
+      "slug": "perfect-webinar-script-conversion",
+      "titulo_anterior": "Perfect Webinar Script: El Guion que Convierte al 10-20% (o Más)",
+      "titulo_revisado": "Webinar comercial: cómo preparar el guion y medir el recorrido",
+      "hallazgo": "Título prometía conversión del 10–20 %; webinars propios y guion supuestamente probado sin evidencia; presión y garantías como receta universal.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 7,
+      "slug": "the-one-thing-funnels-conversion",
+      "titulo_anterior": "The One Thing: El Concepto de Russell Brunson para Funnels que Convierten",
+      "titulo_revisado": "Un objetivo principal en tu landing: claridad sin perder información",
+      "hallazgo": "Prueba A/B propia de +45 % sin respaldo; eliminar siempre menú y pie; afirmaciones absolutas sobre elección y ventas.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 8,
+      "slug": "attractive-character-marca-personal",
+      "titulo_anterior": "Attractive Character: Cómo Crear una Marca Personal Magnética",
+      "titulo_revisado": "Marca personal: cómo comunicar experiencia con una voz coherente",
+      "hallazgo": "Alumna y diálogo no acreditados; cuatro arquetipos anunciados pero tres descritos; afirmaciones psicológicas generales y relato de confrontación como obligación.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 9,
+      "slug": "oferta-irresistible-alex-hormozi",
+      "titulo_anterior": "Oferta Irresistible: Cómo Hacer que tu Producto se Venda Solo Según Alex Hormozi",
+      "titulo_revisado": "La ecuación de valor de Hormozi: cómo revisar una oferta de servicios",
+      "hallazgo": "Venta automática, datos del autor y garantías copiadas sin sustento; ejemplos de salud/inversión inapropiados para justificar promesas comerciales.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 10,
+      "slug": "formula-precios-alex-hormozi",
+      "titulo_anterior": "La Fórmula de Precios de Alex Hormozi: Cobra 10x Más Sin Perder Clientes",
+      "titulo_revisado": "Precios de servicios: alcance, costes y valor antes de subir tarifas",
+      "hallazgo": "Promesa de cobrar 10x sin perder clientes, vivencia no acreditada, cita sin fuente y precio alto como filtro garantizado de buenos clientes.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 11,
+      "slug": "stack-valor-presentacion-oferta",
+      "titulo_anterior": "Stack de Valor: Cómo Presentar tu Oferta para que Parezca 10 Veces más Valiosa",
+      "titulo_revisado": "Stack de valor: presenta el alcance sin inflar precios ni descuentos",
+      "hallazgo": "Curso propio no acreditado; valoraciones arbitrarias y efecto 10x como certeza; sumar bonos para hacer parecer una ganga.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 13,
+      "slug": "adopcion-ia-embudos-marketing",
+      "titulo_anterior": "Adopción de IA al Estilo Paul Roetzer: Prioriza Proyectos que Mueven el Embudo",
+      "titulo_revisado": "Adopción de IA: cómo elegir el primer proceso que conviene mejorar",
+      "hallazgo": "Incrementos de CTR/CVR y calificación sin fuente; experiencia personal no comprobada; una semana para múltiples integraciones como receta; atribución de marco a Paul Roetzer no establecida.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 14,
+      "slug": "ai-agents-embudo-tendencia-2025",
+      "titulo_anterior": "AI Agents en tu Embudo: por qué están en tendencia (y cómo montarlos en 7 días)",
+      "titulo_revisado": "Agentes de IA en ventas: acciones, permisos y límites que debes definir",
+      "hallazgo": "Tendencia número uno no demostrada; implementación en siete días; score arbitrario y objetivos universales de conversión, asistencia y reserva.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 15,
+      "slug": "landing-page-optimization-tim-ash-12-palancas",
+      "titulo_anterior": "Landing Page Optimization al estilo Tim Ash: 12 palancas para duplicar conversiones sin más tráfico",
+      "titulo_revisado": "Landing page: qué revisar antes de invertir más en tráfico",
+      "hallazgo": "Duplicar conversiones en título; prueba personal y checklist atribuidos a Tim Ash sin verificar; plazos, campos y carga universal; falsa promesa de privacidad.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 16,
+      "slug": "cro-sistema-peep-laja-experimentos-que-pagan",
+      "titulo_anterior": "CRO con sistema al estilo Peep Laja: investigación, priorización y tests que pagan las cuentas",
+      "titulo_revisado": "CRO: cómo investigar, priorizar y comprobar mejoras de una web",
+      "hallazgo": "Proyecto de cliente y mejora de conversión narrados sin respaldo; programa A/B de treinta días sin atender muestra; mezcla de marcos PXL/ICE.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 17,
+      "slug": "chatgpt-5-1-explicado-facil",
+      "titulo_anterior": "ChatGPT 5.1 explicado fácil: qué cambió, por qué importa y cómo sacarle jugo (sin ser técnico)",
+      "titulo_revisado": "ChatGPT y GPT-5.1: cómo usar una guía histórica sin confundir versiones",
+      "hallazgo": "Despliegue de 2025 presentado como actual; vivencias no acreditadas; se confundían aplicación y disponibilidad de modelo; mejora de resultados asumida.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 18,
+      "slug": "gemini-3-explicado-facil-2025",
+      "titulo_anterior": "Gemini 3 explicado fácil: qué trae nuevo, cuándo gana frente a GPT-5.1/Claude y cómo probarlo sin gastar de más",
+      "titulo_revisado": "Gemini 3: capacidades, versiones y cómo evaluar una tarea real",
+      "hallazgo": "Comparativa con medallas, consenso de usuarios y cifras sin fuente; anécdota de cliente; Deep Think y Antigravity confundidos con garantías del modelo; precios históricos sin alcance.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    },
+    {
+      "id": 19,
+      "slug": "nano-banana-2-guia-para-principiantes",
+      "titulo_anterior": "Nano Banana 2 explicado fácil: qué es, por qué está de moda y 12 usos reales (con prompts)",
+      "titulo_revisado": "Nano Banana 2 y Nano Banana Pro: diferencias y usos para una marca",
+      "hallazgo": "Nano Banana 2 identificado como Pro antes de su lanzamiento; marcadores contentReference visibles; texto perfecto, consistencia absoluta y 4K tratados como universales; experiencia personal sin evidencia.",
+      "accion": "Revisión sustantiva, fuentes o límites explícitos; URL y publicación original conservadas."
+    }
+  ],
+  "nuevos": [
+    {
+      "slug": "claude-design-que-cambio-diseno-marcas",
+      "titulo": "Claude Design en 2026: qué cambió y cómo usarlo con tu marca"
+    },
+    {
+      "slug": "kimi-k3-k3-1-pro-capacidades-costes",
+      "titulo": "Kimi K3 y K3.1 Pro: capacidades, costes y cómo probarlos"
+    }
+  ]
+}
