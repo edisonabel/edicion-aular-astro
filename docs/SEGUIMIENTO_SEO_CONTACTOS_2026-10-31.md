@@ -11,6 +11,8 @@
 - `generate_lead` se produce después de la aceptación de Resend, solo con consentimiento de analítica. No demuestra lectura ni atención de la consulta. Los clics de WhatsApp, agenda, teléfono y correo se mantienen separados.
 - Los eventos contienen ruta, canal y ubicación del control; no nombre, correo ni respuestas. Las pruebas también comprueban que localhost y los previews no envían medición.
 - Publicada la versión 3 de GTM, «Consultas por correo · envío confirmado». `generate_lead` quedó marcado como evento clave en GA4, una vez por evento y sin valor monetario predeterminado.
+- Prueba real del orientador: abrió WhatsApp con un resumen ficticio y GA4 recibió `cta_whatsapp_click` (1 evento de prueba). No se envió el mensaje dentro de WhatsApp. Se retiró el importe predeterminado de 1 USD que Analytics tenía en los clics de WhatsApp y agenda; el ajuste se aplica a los eventos futuros.
+- Se inspeccionó el artículo nuevo de memoria: Google aún no lo reconocía. Se solicitó su indexación una sola vez y Search Console confirmó la incorporación a la cola de rastreo. Esto no equivale a que ya esté indexado.
 
 ## Radar
 
@@ -46,7 +48,7 @@ El canal se añade dentro del modal existente como opción secundaria a WhatsApp
 - El navegador consulta disponibilidad. No muestra el canal si falta configuración. Un fallo conserva las respuestas y permite reintentar o continuar por WhatsApp.
 - El nombre es opcional. Se requiere correo de respuesta y autorización para responder la consulta. No hay suscripción publicitaria ni envío a modelos de IA.
 
-La conexión efectiva y su comprobación de entrega se registran al terminar la configuración. No debe darse por recibida una consulta basándose solo en una respuesta HTTP de la API.
+Estado de correo al cierre de esta actualización: función publicada, canal oculto porque faltan las variables privadas. El dominio está validado; la clave creada antes de la interrupción no llegó a guardarse y no registra uso. Está pendiente confirmar su revocación y sustitución antes de instalarla en Netlify y probar la recepción en Gmail. No debe darse por recibida una consulta basándose solo en una respuesta HTTP de la API.
 
 ## Validación de implementación
 
