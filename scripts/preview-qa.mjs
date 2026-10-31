@@ -19,7 +19,7 @@ function color(v){const m=v.match(/[\\d.]+/g);return m?m.map(Number):[0,0,0,0]}
 function mix(f,b){const a=f.length>3?f[3]:1;return f.slice(0,3).map((x,i)=>x*a+b[i]*(1-a))}
 function lum(rgb){return rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0)}
 function measure(){
- const d=frame.contentDocument,w=frame.contentWindow,page=d.querySelector('.geo-page, .blog-index, .blog-article') || d.querySelector('#bringer-main');if(!page)return;
+ const d=frame.contentDocument,w=frame.contentWindow,page=d.querySelector('dialog[open]') || d.querySelector('.geo-page, .blog-index, .blog-article') || d.querySelector('#bringer-main');if(!page)return;
  const visible=e=>{if(e.closest('details:not([open])')&&!e.closest('summary'))return false;for(let n=e;n;n=n.parentElement){const s=w.getComputedStyle(n);if(s.display==='none'||s.visibility==='hidden')return false}return e.getBoundingClientRect().width>0};
  const overflow=[...page.querySelectorAll('*')].filter(e=>{const r=e.getBoundingClientRect();return visible(e)&&(r.left< -2||r.right>d.documentElement.clientWidth+2)}).map(e=>({elemento:e.tagName+'.'+e.className,left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,transform:w.getComputedStyle(e).transform})).slice(0,8);
  const contrast=[];for(const e of page.querySelectorAll('p,h1,h2,h3,h4,summary,a,legend,label,button,small,textarea,pre,.bringer-label')){if(!visible(e)||!e.textContent.trim())continue;const cs=w.getComputedStyle(e);let bg=[255,255,255];const ancestors=[];for(let n=e;n;n=n.parentElement)ancestors.unshift(n);let gradient=false;for(const n of ancestors){const s=w.getComputedStyle(n);if(s.backgroundImage!=='none')gradient=true;bg=mix(color(s.backgroundColor),bg)}if(gradient)continue;const fg=mix(color(cs.color),bg),a=lum(fg),b=lum(bg),ratio=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);const large=parseFloat(cs.fontSize)>=24||(parseFloat(cs.fontSize)>=18.66&&parseInt(cs.fontWeight)>=700);if(ratio<(large?3:4.5))contrast.push({texto:e.textContent.trim().slice(0,60),ratio:Math.round(ratio*100)/100,color:cs.color,fondo:bg});}
@@ -36,13 +36,14 @@ document.querySelector('#light').onclick=()=>theme('light');document.querySelect
 document.querySelector('#faq').onclick=()=>{const s=frame.contentDocument.querySelector('summary');s?.focus();s?.click();s?.scrollIntoView({block:'center'});setTimeout(measure,350)};
 document.querySelector('#guide-preview').onclick=()=>{
  const d=frame.contentDocument,form=d.querySelector('[data-project-guide]');if(!form)return;
+ if(!d.querySelector('#project-guide-modal')?.open)d.querySelector('[data-open-project-guide]')?.click();
  const edit=d.querySelector('[data-guide-edit]');if(!edit.closest('[hidden]'))edit.click();
  const back=d.querySelector('[data-guide-back]');while(!back.hidden&&!form.hidden)back.click();
  const state=Number(document.querySelector('#guide-state').value),goal=document.querySelector('#guide-path').value;
  if(state>0){d.querySelector('input[name="goal"][value="'+goal+'"]').click();form.requestSubmit();}
  if(state>1){d.querySelector('input[name="current"]').click();form.requestSubmit();}
  if(state>2){d.querySelector('#project-context').value='Prueba funcional: organizar las solicitudes de una tienda. Sin datos personales.';form.requestSubmit();}
- d.querySelector('#orientador-proyecto').scrollIntoView({block:'start'});measure();
+ d.querySelector('.guide-panel').scrollTop=0;measure();
 };
 </script></body></html>`;
 const mime = { '.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf','.mp4':'video/mp4','.xml':'application/xml','.txt':'text/plain' };
@@ -55,4 +56,4 @@ createServer((req,res)=>{
   if(existsSync(file)&&statSync(file).isDirectory())file=resolve(file,'index.html');
   if(!existsSync(file)){res.writeHead(404);res.end('No encontrado');return;}
   res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream','Cache-Control':'no-store'});res.end(readFileSync(file));
-}).listen(4322,'127.0.0.1',()=>console.log('QA: http://localhost:4322/__qa/'));
+}).listen(Number(process.env.QA_PORT||4322),'127.0.0.1',()=>console.log('QA: http://localhost:4322/__qa/'));

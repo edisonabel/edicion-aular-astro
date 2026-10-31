@@ -1,31 +1,48 @@
 ---
 import { PROJECT_PATHS } from '../lib/project-guide.js';
+const details = ['WhatsApp, web y seguimiento.', 'Conecta herramientas y procesos.', 'Diseño, claridad y velocidad.', 'Una imagen y un mensaje coherentes.', 'Piezas que cuentan lo que haces.', 'Anuncios y seguimiento comercial.', 'Te ayudamos a elegir un primer paso.'];
+const titles = ['Atención al cliente', 'Automatizar tareas', 'Página web', 'Identidad de marca', 'Contenido y video', 'Campañas y ventas', 'Necesito orientación'];
 ---
-<section id="orientador-proyecto" class="project-guide" aria-labelledby="guide-heading">
-  <div class="guide-intro"><span class="bringer-label">Orientador de proyectos</span><h2 id="guide-heading">Empecemos por lo que necesitas resolver<span class="bringer-accent">.</span></h2><p>Tres pasos para ordenar tu idea y preparar una conversación por WhatsApp. Puedes revisar y cambiar tus respuestas antes de compartirlas.</p></div>
-  <div class="bringer-block guide-panel">
-    <p class="guide-progress" role="status" aria-live="polite" data-guide-progress>Paso 1 de 3 · Tu necesidad</p>
+<dialog id="project-guide-modal" class="project-guide" aria-labelledby="guide-heading" aria-describedby="guide-description">
+  <header class="guide-header">
+    <div><span class="guide-eyebrow">EDICIÓN AULAR · TU PROYECTO</span><h2 id="guide-heading">Preparemos tu consulta<span>.</span></h2></div>
+    <button type="button" class="guide-close" data-close-project-guide aria-label="Cerrar orientador"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+  </header>
+  <div class="guide-panel">
+    <p class="guide-sr-only" role="status" aria-live="polite" data-guide-progress>Paso 1 de 3 · Tu necesidad</p>
+    <ol class="guide-steps" aria-label="Pasos del orientador">
+      {['Necesidad','Situación','Contexto'].map((title,index)=><li data-guide-marker aria-current={index===0?'step':undefined}><span class="guide-step-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span><span>{title}</span></li>)}
+    </ol>
+    <p id="guide-description" class="guide-sr-only">Responde tres preguntas y revisa tu mensaje antes de abrir WhatsApp. Puedes volver para cambiar tus respuestas.</p>
     <form data-project-guide>
-      <fieldset data-guide-step="0"><legend tabindex="-1">¿Qué te gustaría mejorar?</legend><div class="guide-options">{PROJECT_PATHS.map(path=><label class="guide-option"><input type="radio" name="goal" value={path.id} required /><span><strong>{path.label}</strong><small>{path.detail}</small></span></label>)}</div></fieldset>
-      <fieldset data-guide-step="1" hidden disabled><legend tabindex="-1" data-guide-question>Tu situación actual</legend><div class="guide-options" data-guide-choices></div></fieldset>
+      <fieldset data-guide-step="0">
+        <legend tabindex="-1">¿Qué quieres mejorar?</legend>
+        <p class="guide-hint">Elige el punto de partida de tu proyecto.</p>
+        <div class="guide-options">{PROJECT_PATHS.map((path,index)=><label class="guide-option"><input type="radio" name="goal" value={path.id} required /><span><strong>{titles[index]}</strong><small>{details[index]}</small></span></label>)}</div>
+      </fieldset>
+      <fieldset data-guide-step="1" hidden disabled><legend tabindex="-1" data-guide-question>Tu situación actual</legend><p class="guide-hint">Selecciona la opción que mejor describa tu negocio hoy.</p><div class="guide-options guide-options-single" data-guide-choices></div></fieldset>
       <fieldset data-guide-step="2" hidden disabled>
-        <legend tabindex="-1">¿Hay algo más que debamos saber?</legend>
-        <label for="project-context">Contexto de tu proyecto <span>(opcional)</span></label>
-        <textarea id="project-context" name="context" rows="4" maxlength="360" aria-describedby="context-help" placeholder="Por ejemplo: tenemos una tienda y nos cuesta dar seguimiento a las consultas que llegan cada día."></textarea>
-        <p id="context-help" class="guide-help">Hasta 360 caracteres. Describe el proceso; evita contraseñas, datos de pacientes o información privada de otras personas.</p>
+        <legend tabindex="-1">Cuéntanos un poco más<span class="guide-optional">Opcional</span></legend>
+        <p class="guide-hint">Una situación concreta nos ayuda a preparar la conversación.</p>
+        <label class="guide-field-label" for="project-context">¿Qué te gustaría resolver?</label>
+        <textarea id="project-context" name="context" rows="4" maxlength="360" aria-describedby="context-help" placeholder="Por ejemplo: nos llegan consultas por WhatsApp, pero algunas quedan sin respuesta."></textarea>
+        <p id="context-help" class="guide-help">Máximo 360 caracteres. Evita datos privados o de pacientes.</p>
       </fieldset>
       <div class="guide-actions"><button type="button" class="guide-secondary" data-guide-back hidden>Volver</button><button type="submit" class="guide-primary" data-guide-next disabled>Continuar</button></div>
     </form>
     <div data-guide-result hidden>
-      <h3 tabindex="-1" data-guide-result-title>Tu punto de partida</h3><p data-guide-explanation></p><p><strong>Para nuestra conversación:</strong> <span data-guide-next-step></span></p>
-      <h4>Este es el mensaje que prepararás</h4><pre class="guide-summary" data-guide-summary></pre>
-      <div class="guide-actions"><button type="button" class="guide-secondary" data-guide-edit>Cambiar respuestas</button><button type="button" class="guide-primary" data-guide-whatsapp data-contact-channel="whatsapp">Abrir WhatsApp con mi resumen</button></div>
-      <p class="guide-help">Se abrirá WhatsApp con el mensaje preparado. Tú decides cuándo enviarlo. Esta orientación es un primer paso; el alcance y la inversión se acuerdan al conversar.</p><a class="guide-service" data-guide-service>Conocer el servicio relacionado</a>
+      <span class="guide-eyebrow guide-ready">LISTO PARA CONVERSAR</span>
+      <h3 tabindex="-1" data-guide-result-title>Tu punto de partida</h3>
+      <p data-guide-explanation></p>
+      <div class="guide-recommendation"><strong>Un primer paso</strong><p data-guide-next-step></p><a class="guide-service" data-guide-service>Conocer el servicio relacionado</a></div>
+      <details class="guide-message"><summary>Revisar el mensaje para WhatsApp</summary><pre class="guide-summary" data-guide-summary></pre></details>
+      <div class="guide-actions"><button type="button" class="guide-secondary" data-guide-edit>Editar respuestas</button><button type="button" class="guide-primary" data-guide-whatsapp data-contact-channel="whatsapp">Continuar en WhatsApp <span aria-hidden="true">↗</span></button></div>
+      <p class="guide-help">El mensaje queda preparado. Tú decides cuándo enviarlo.</p>
     </div>
-    <p class="guide-privacy">Tus respuestas permanecen en esta página hasta que elijas compartir el resumen por WhatsApp. <a href="/politica-de-privacidad/">Política de privacidad</a>.</p>
-    <noscript><p>Para usar el orientador necesitas JavaScript. También puedes <a href="https://wa.me/573002730128">escribirnos directamente por WhatsApp</a> o <a href="https://cal.com/edicion-aular-website">agendar una conversación</a>.</p></noscript>
+    <p class="guide-privacy">Nada se envía hasta que tú lo decidas. <a href="/politica-de-privacidad/">Privacidad</a></p>
+    <noscript><p>Puedes <a href="https://wa.me/573002730128">escribirnos por WhatsApp</a> o <a href="https://cal.com/edicion-aular-website">agendar una conversación</a>.</p></noscript>
   </div>
-</section>
+</dialog>
 <script>
   import { PROJECT_PATHS, recommendProject } from '../lib/project-guide.js';
   const form=document.querySelector<HTMLFormElement>('[data-project-guide]');
@@ -33,11 +50,31 @@ import { PROJECT_PATHS } from '../lib/project-guide.js';
     const panel=form.parentElement!, steps=Array.from(form.querySelectorAll<HTMLFieldSetElement>('[data-guide-step]'));
     const progress=panel.querySelector<HTMLElement>('[data-guide-progress]')!,back=form.querySelector<HTMLButtonElement>('[data-guide-back]')!,next=form.querySelector<HTMLButtonElement>('[data-guide-next]')!,result=panel.querySelector<HTMLElement>('[data-guide-result]')!;
     let step=0, preparedWhatsapp=''; const answers={goal:'',current:'',context:''}; next.disabled=false;
+    const dialog=document.querySelector<HTMLDialogElement>('#project-guide-modal')!,trigger=document.querySelector<HTMLButtonElement>('[data-open-project-guide]')!;
+    let previousOverflow='';
+    trigger.hidden=false;
+    trigger.addEventListener('click',()=>{
+      previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';dialog.showModal();
+      const target=form.hidden?panel.querySelector<HTMLElement>('[data-guide-result-title]'):steps[step].querySelector<HTMLElement>('legend');
+      target?.focus({preventScroll:true});
+    });
+    dialog.querySelector('[data-close-project-guide]')!.addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('keydown', event => {
+      if(event.key !== 'Tab') return;
+      const controls = Array.from(dialog.querySelectorAll<HTMLElement>('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),a[href],summary,[tabindex="0"]'))
+        .filter(control => control.getClientRects().length > 0 && !control.closest('[hidden]'));
+      const first = controls[0], last = controls[controls.length - 1];
+      if(event.shiftKey && document.activeElement === first){event.preventDefault();last?.focus();}
+      else if(!event.shiftKey && document.activeElement === last){event.preventDefault();first?.focus();}
+    });
+    dialog.addEventListener('close',()=>{document.body.style.overflow=previousOverflow;trigger.focus({preventScroll:true});});
     function showStep(value:number){
       step=value;result.hidden=true;form!.hidden=false;
       steps.forEach((fieldset,index)=>{fieldset.hidden=index!==step;fieldset.disabled=index!==step;});
-      back.hidden=step===0;next.textContent=step===2?'Preparar mi consulta':'Continuar';
+      back.hidden=step===0;next.textContent=step===2?'Ver mi resumen':'Continuar';
       progress.textContent=`Paso ${step+1} de 3 · ${['Tu necesidad','Tu situación','Tu contexto'][step]}`;
+      panel.querySelectorAll('[data-guide-marker]').forEach((marker,index)=>{if(index===step)marker.setAttribute('aria-current','step');else marker.removeAttribute('aria-current');marker.classList.toggle('is-complete',index<step);});
+      panel.scrollTop=0;
       steps[step].querySelector<HTMLElement>('legend')!.focus();
     }
     function fillChoices(){
@@ -62,7 +99,7 @@ import { PROJECT_PATHS } from '../lib/project-guide.js';
         // El botón no expone la URL con respuestas a la medición automática de enlaces.
         preparedWhatsapp=recommendation.whatsapp;
         const service=panel.querySelector<HTMLAnchorElement>('[data-guide-service]')!;service.href=recommendation.service;service.textContent=`Conocer: ${recommendation.serviceLabel}`;
-        form.hidden=true;result.hidden=false;progress.textContent='Tu consulta está lista para revisar';panel.querySelector<HTMLElement>('[data-guide-result-title]')!.focus();
+        form.hidden=true;result.hidden=false;progress.textContent='Tu consulta está lista para revisar';panel.querySelectorAll('[data-guide-marker]').forEach(marker=>{marker.removeAttribute('aria-current');marker.classList.add('is-complete');});panel.scrollTop=0;panel.querySelector<HTMLElement>('[data-guide-result-title]')!.focus();
       }
     });
     back.addEventListener('click',()=>{if(step===2)answers.context=form.querySelector<HTMLTextAreaElement>('textarea')!.value;showStep(Math.max(0,step-1));});
@@ -73,16 +110,19 @@ import { PROJECT_PATHS } from '../lib/project-guide.js';
   }
 </script>
 <style>
-  .project-guide{scroll-margin-top:110px;padding-top:2rem}.guide-intro{max-width:850px;margin-bottom:2rem}h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.15}.guide-panel{padding:clamp(1.25rem,4vw,3rem)}
-  .guide-progress{color:var(--bringer-s-heading);font-weight:600;margin-bottom:1.5rem}fieldset{border:0;padding:0;margin:0;min-width:0}legend{color:var(--bringer-s-heading);font-size:clamp(1.3rem,3vw,1.8rem);font-weight:600;margin-bottom:1.5rem;width:100%;line-height:1.4}
-  label{font-size:1rem;font-weight:400;text-transform:none;letter-spacing:normal}
-  .guide-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}.guide-option{display:flex;align-items:flex-start;gap:.85rem;border:1px solid var(--bringer-s-text);border-radius:14px;padding:1.1rem;cursor:pointer;color:var(--bringer-s-heading);line-height:1.5}.guide-option:has(input:checked){outline:2px solid var(--bringer-s-text-accent);outline-offset:2px}
-  .guide-option input{appearance:auto;width:20px;height:20px;flex:none;margin:.2rem 0 0;accent-color:var(--bringer-s-accent)}.guide-option strong{display:block;font-weight:600}.guide-option small{display:block;color:var(--bringer-s-text);font-size:.95rem;margin-top:.35rem}
-  /* La tarjeta completa es el área táctil; el círculo conserva su tamaño visual. */
-  .guide-option input[type="radio"]{min-width:20px!important;min-height:20px!important}
-  textarea{display:block;width:100%;margin-top:.8rem;border:1px solid var(--bringer-s-text);color:var(--bringer-s-heading);background:transparent;border-radius:12px;padding:1rem;font:inherit;resize:vertical;box-sizing:border-box}textarea::placeholder{color:var(--bringer-s-text);opacity:1}
-  .guide-actions{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin:1.75rem 0 1rem}.guide-primary,.guide-secondary{display:inline-flex;justify-content:center;align-items:center;font:inherit;font-weight:600;line-height:1.5;padding:.9rem 1.2rem;border-radius:10px;border:1px solid var(--bringer-s-text);cursor:pointer;text-decoration:none;min-height:48px;box-sizing:border-box;white-space:normal;text-align:center}
-  .guide-primary{color:#fff;background:#b80046;border-color:#b80046}.guide-primary:hover{color:#fff;background:#970039}.guide-secondary{color:var(--bringer-s-heading);background:transparent}.guide-help,.guide-privacy{font-size:.95rem;color:var(--bringer-s-text);line-height:1.65}.guide-privacy{margin-top:1.75rem;padding-top:1rem;border-top:1px solid var(--bringer-s-text)}.guide-privacy a,.guide-service{color:var(--bringer-s-heading);text-decoration:underline;text-underline-offset:.2em}
-  h3{font-size:clamp(1.5rem,3vw,2rem);line-height:1.35}h4{font-size:1.1rem;margin-top:1.5rem}.guide-summary{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;color:var(--bringer-s-heading);background:transparent;border:1px solid var(--bringer-s-text);border-radius:12px;padding:1.1rem}
-  :is(button,input,textarea,a):focus-visible,legend:focus-visible,h3:focus-visible{outline:3px solid var(--bringer-s-text-accent);outline-offset:5px}[hidden]{display:none!important}@media(max-width:700px){.guide-options{grid-template-columns:minmax(0,1fr)}.guide-actions>*{width:100%}}
+  .project-guide{--guide-bg:#15171c;--guide-card:#1d2026;--guide-text:#f5f5f7;--guide-muted:#b6b9c3;--guide-border:#3c404b;--guide-selected:#30212b;--guide-accent:#ff80ad;box-sizing:border-box;width:min(760px,calc(100% - 32px));max-width:none;max-height:calc(100dvh - 32px);padding:0;margin:auto;border:1px solid var(--guide-border);border-radius:24px;background:var(--guide-bg);color:var(--guide-text);box-shadow:0 24px 90px #0006;overflow:hidden;color-scheme:dark}
+  .project-guide[open]{display:flex;flex-direction:column}.project-guide::backdrop{background:#050810b8;backdrop-filter:blur(7px)}
+  :global(html.light-mode) .project-guide{--guide-bg:#fff;--guide-card:#f7f7f9;--guide-text:#20232b;--guide-muted:#5c6270;--guide-border:#d8dbe2;--guide-selected:#fff0f5;--guide-accent:#b80046;color-scheme:light}
+  .guide-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 28px;border-bottom:1px solid var(--guide-border);flex:none}.guide-eyebrow{font-size:10px;letter-spacing:.14em;line-height:1.6;font-weight:600;color:var(--guide-muted)}h2{margin:4px 0 0;font-size:23px;line-height:1.3;letter-spacing:-.035em;color:var(--guide-text)}h2 span{color:var(--guide-accent)}
+  .project-guide .guide-close{display:grid;place-items:center;flex:none;min-width:44px;min-height:44px;width:44px;height:44px;padding:0;border:1px solid var(--guide-border);border-radius:50%;background:transparent;color:var(--guide-muted);cursor:pointer}.project-guide .guide-close:hover{background:var(--guide-card);color:var(--guide-text)}
+  .guide-panel{padding:20px 28px 18px;overflow-y:auto;overscroll-behavior:contain;min-height:0;scrollbar-gutter:stable;scroll-padding:20px}.guide-steps{display:flex;gap:20px;list-style:none;margin:0 0 22px;padding:0}.guide-steps li{display:flex;align-items:center;gap:8px;flex:1;min-width:0;color:var(--guide-muted);font-size:12px;line-height:1.5;border-top:2px solid var(--guide-border);padding-top:12px;white-space:nowrap}.guide-step-number{font-size:10px}.guide-steps li[aria-current]{color:var(--guide-accent);border-color:var(--guide-accent)}.guide-steps li.is-complete{color:var(--guide-text);border-color:var(--guide-accent)}
+  fieldset{border:0;padding:0;margin:0;min-width:0}legend{color:var(--guide-text);font-size:26px;letter-spacing:-.035em;font-weight:600;margin:0 0 8px;padding:0;width:100%;line-height:1.25}.guide-hint{color:var(--guide-muted);font-size:14px;line-height:1.6;margin:0 0 18px}
+  label{font-size:14px;font-weight:400;text-transform:none;letter-spacing:normal}.guide-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.guide-options-single{grid-template-columns:minmax(0,1fr)}.project-guide :global(.guide-option){display:flex;align-items:center;gap:12px;min-height:64px;margin:0;text-transform:none;letter-spacing:normal;font-size:14px;font-weight:400;box-sizing:border-box;border:1px solid var(--guide-border);border-radius:12px;padding:12px 14px;cursor:pointer;color:var(--guide-text);background:var(--guide-card);line-height:1.4;transition:border-color .15s,background .15s}.project-guide :global(.guide-option:hover){border-color:var(--guide-muted)}.project-guide :global(.guide-option:has(input:checked)){border-color:var(--guide-accent);background:var(--guide-selected);box-shadow:inset 0 0 0 1px var(--guide-accent)}
+  .project-guide :global(.guide-option input[type="radio"]){appearance:auto;min-width:18px!important;min-height:18px!important;width:18px;height:18px;flex:none;margin:0;accent-color:#b80046;box-shadow:none}.project-guide :global(.guide-option strong){display:block;font-size:14px;font-weight:600}.project-guide :global(.guide-option small){display:block;color:var(--guide-muted);font-size:12px;line-height:1.4;margin-top:4px}.project-guide :global(.guide-option:last-child:nth-child(odd)){grid-column:1/-1}
+  .guide-optional{display:inline-block;font-size:11px;font-weight:400;letter-spacing:0;vertical-align:middle;margin-left:10px;padding:4px 8px;border-radius:20px;border:1px solid var(--guide-border);color:var(--guide-muted)}.guide-field-label{display:block;color:var(--guide-text);margin:8px 0;font-weight:500}textarea{display:block;width:100%;border:1px solid var(--guide-border);color:var(--guide-text);background:var(--guide-card);border-radius:12px;padding:16px;font:inherit;font-size:14px;line-height:1.6;resize:vertical;box-sizing:border-box;min-height:140px;max-height:260px}textarea::placeholder{color:var(--guide-muted);opacity:1}
+  .guide-actions{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:18px 0 0;padding:16px 0 4px;background:var(--guide-bg);position:sticky;bottom:-1px;z-index:1}.project-guide .guide-primary,.project-guide .guide-secondary{display:inline-flex;gap:12px;justify-content:center;align-items:center;font:inherit;font-size:14px;font-weight:600;line-height:1.5;padding:12px 20px;border-radius:9px;border:1px solid var(--guide-border);cursor:pointer;min-height:46px;box-sizing:border-box;white-space:normal;text-align:center;text-transform:none;letter-spacing:0}.project-guide .guide-primary{color:#fff;background:#b80046;border-color:#b80046;margin-left:auto}.project-guide .guide-primary:hover{color:#fff;background:#970039}.project-guide .guide-secondary{color:var(--guide-text);background:transparent}.project-guide .guide-secondary:hover{background:var(--guide-card);color:var(--guide-text)}.guide-help,.guide-privacy{font-size:12px;color:var(--guide-muted);line-height:1.65;margin:10px 0 0}.guide-privacy{margin:16px 0 0}.guide-privacy a,.guide-service{color:var(--guide-text);text-decoration:underline;text-underline-offset:.2em}
+  h3{font-size:26px;letter-spacing:-.03em;line-height:1.3;margin:8px 0 16px;color:var(--guide-text)}[data-guide-result]>p{font-size:14px;line-height:1.7;color:var(--guide-muted);margin:0}.guide-ready{color:var(--guide-accent)}.guide-recommendation{padding:18px 20px;margin:20px 0;background:var(--guide-card);border:1px solid var(--guide-border);border-radius:12px;font-size:14px}.guide-recommendation strong{color:var(--guide-text)}.guide-recommendation p{font-size:14px;line-height:1.6;color:var(--guide-muted);margin:6px 0 12px}.guide-service{font-size:12px}.guide-message{border-top:1px solid var(--guide-border);padding:14px 0 0}.guide-message summary{cursor:pointer;font-size:13px;color:var(--guide-text);padding:4px 0;min-height:32px}.guide-summary{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:13px;line-height:1.7;color:var(--guide-muted);background:var(--guide-card);border:1px solid var(--guide-border);border-radius:12px;padding:16px;margin:12px 0 0}
+  :is(button,input,textarea,a,summary):focus-visible,legend:focus-visible,h3:focus-visible{outline:3px solid var(--guide-accent);outline-offset:4px}legend:focus,h3:focus{outline:none}.guide-options :global(input:focus-visible){outline:3px solid var(--guide-accent);outline-offset:4px}.guide-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}[hidden]{display:none!important}
+  @media(max-width:540px){.project-guide{width:calc(100% - 16px);max-height:calc(100dvh - 16px);border-radius:18px}.guide-header{padding:18px 20px}.guide-panel{padding:20px}h2{font-size:20px}.guide-eyebrow{font-size:9px}.guide-steps{gap:12px;margin-bottom:24px}.guide-steps li{font-size:11px;gap:6px}.guide-options{grid-template-columns:minmax(0,1fr)}.project-guide :global(.guide-option){min-height:64px;padding:12px 14px}.project-guide :global(.guide-option small){font-size:12px}legend,h3{font-size:24px}.guide-actions{gap:10px}.project-guide .guide-primary,.project-guide .guide-secondary{padding:12px 16px;font-size:13px}}
+  @media(prefers-reduced-motion:reduce){.project-guide :global(.guide-option){transition:none}}
 </style>
