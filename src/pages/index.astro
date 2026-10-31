@@ -68,9 +68,9 @@ const featuredProjects = portfolioData.filter(p => p.featured);
                 <!-- Additional Information Line -->
                 <div class="stg-row stg-valign-bottom">
                     <div class="stg-col-3 stg-tp-col-3 stg-m-col-6" data-appear="fade-up" data-delay="200" data-unload="fade-up">
-                        <div class="bringer-counter bringer-small-counter" data-delay="3000">
-                            <div class="bringer-counter-number">1500</div>
-                            <div class="bringer-counter-label">Proyectos Completados</div>
+                        <div class="home-project-proof">
+                            <a href="/portfolio/">Ver proyectos <span aria-hidden="true">↗</span></a>
+                            <div class="bringer-counter-label">Diseño, web y comunicación</div>
                         </div>
                     </div>
 
@@ -262,7 +262,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
         </div>
 
         <div class="align-center" data-appear="fade-up" data-unload="fade-up" data-delay="100">
-            <a href="/portfolio" class="bringer-button">Explora nuestro trabajo aquí</a>
+            <a href="/portfolio" class="bringer-button home-content-cta">Explora nuestro trabajo aquí</a>
         </div>
     </section>
 
@@ -382,7 +382,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
             </div><!-- .bringer-detailed-list-wrap -->
 
             <div class="align-center stg-top-gap" data-appear="fade-up" data-unload="zoom-out" data-delay="100">
-                <a href="/contacto/#orientador-proyecto" class="bringer-button">Encuentra un primer paso para tu proyecto</a>
+                <a href="/contacto/#orientador-proyecto" class="bringer-button home-content-cta">Encuentra un primer paso para tu proyecto</a>
             </div>
         </div><!-- .stg-container -->
     </section>
@@ -558,6 +558,14 @@ const featuredProjects = portfolioData.filter(p => p.featured);
 </BaseLayout>
 
 <style>
+    a.bringer-button.home-content-cta { color: #fff; background: #b80046; }
+    a.bringer-button.home-content-cta:hover { color: #fff; background: #970039; }
+    :global(html.light-mode) a.bringer-icon-link { color: var(--bringer-s-heading); }
+    .home-project-proof a { display: inline-flex; align-items: center; gap: .6rem; color: var(--bringer-s-heading); font-size: clamp(1.2rem, 2.2vw, 2rem); line-height: 1.35; font-weight: 600; letter-spacing: -.03em; min-height: 44px; text-decoration: none; }
+    .home-project-proof a:hover { text-decoration: underline; text-underline-offset: .2em; }
+    .home-project-proof a:focus-visible { outline: 3px solid var(--bringer-s-heading); outline-offset: 4px; }
+    .home-project-proof .bringer-counter-label { margin-top: .5rem; }
+
     /* ========================================
        ARREGLOS MODO CLARO/OSCURO - MÁXIMA ESPECIFICIDAD
     ======================================== */
@@ -572,7 +580,7 @@ const featuredProjects = portfolioData.filter(p => p.featured);
     
     /* Social Proof +479 - Mejor contraste (WCAG AA) */
     .bringer-hero-social-proof a {
-        color: #1a1a1a !important;
+        color: #111111 !important;
         font-weight: 700 !important;
         text-shadow: none !important;
     }

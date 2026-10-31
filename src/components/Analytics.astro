@@ -21,6 +21,30 @@
   .analytics-consent-actions { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
   .analytics-consent-actions button { cursor: pointer; border-radius: 8px; border: 1px solid var(--bringer-s-heading); padding: .65rem 1rem; font: inherit; color: var(--bringer-s-heading); background: transparent; min-height: 44px; }
   .analytics-consent-actions a { color: var(--bringer-s-heading); text-decoration: underline; text-underline-offset: .2em; font-size: .85rem; }
-  .analytics-preferences { cursor: pointer; display: inline-block; margin: .5rem 0 0; padding: .35rem .6rem; color: var(--bringer-s-text); font: inherit; font-size: .85rem; border: 0; background: transparent; text-decoration: underline; text-underline-offset: .2em; min-height: 44px; }
+  /* Más específico que los botones y sus estados de la plantilla. */
+  #bringer-footer button.analytics-preferences,
+  #bringer-footer button.analytics-preferences:is(:hover, :focus-visible, :active) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-height: 44px;
+    margin: .15rem 0 0;
+    padding: 0 .35rem;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    box-shadow: none;
+    color: var(--bringer-s-text);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #bringer-footer button.analytics-preferences:hover { text-decoration: underline; text-underline-offset: .25em; }
+  #bringer-footer button.analytics-preferences:focus-visible { outline: 2px solid var(--bringer-s-heading); outline-offset: 2px; }
   .analytics-consent-actions :is(button, a):focus-visible, .analytics-preferences:focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 4px; }
 </style>

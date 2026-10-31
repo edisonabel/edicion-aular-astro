@@ -5,7 +5,7 @@
   "detalle": [
     {
       "ruta": "/",
-      "html_bytes": 68200
+      "html_bytes": 69198
     },
     {
       "ruta": "/blog/",
@@ -17,7 +17,7 @@
     },
     {
       "ruta": "/contacto/",
-      "html_bytes": 46000
+      "html_bytes": 45689
     },
     {
       "ruta": "/diseno-web/",

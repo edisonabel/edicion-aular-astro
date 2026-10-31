@@ -4,7 +4,7 @@ Fecha: 30 de octubre de 2026, America/Bogota.
 
 ## Orientador
 
-Contacto conserva su diseño previo, imágenes, galería, tarjetas de contacto y contadores. El botón «Ayúdame a definir mi proyecto» abre un modal opcional con tres pasos: necesidad, situación actual y contexto opcional. Siete necesidades con tres situaciones cada una producen una recomendación acotada, un servicio relacionado y un resumen revisable para WhatsApp. Permite volver y cambiar respuestas; al cambiar de necesidad descarta la situación incompatible. Los canales directos de WhatsApp, agenda, correo y teléfono siguen disponibles.
+Contacto conserva su portada, galería y tarjetas de contacto. Su bloque final se adaptó después a la composición de home02.html, sin contadores; ver REVISION_ESTILO_CONTACTO_2026-10-30.md. El botón «Ayúdame a definir mi proyecto» abre un modal opcional con tres pasos: necesidad, situación actual y contexto opcional. Siete necesidades con tres situaciones cada una producen una recomendación acotada, un servicio relacionado y un resumen revisable para WhatsApp. Permite volver y cambiar respuestas; al cambiar de necesidad descarta la situación incompatible. Los canales directos de WhatsApp, agenda, correo y teléfono siguen disponibles.
 
 La orientación utiliza reglas y se presenta como orientador, sin afirmar que conversa con IA. No guarda las respuestas ni llama a una API. El contexto tiene límite de 360 caracteres. El texto se renderiza con textContent y se codifica para la URL. El botón de WhatsApp no expone un href con las respuestas; la navegación con el resumen ocurre al activar el botón. Así se evita añadir el contexto a la medición automática de enlaces. WhatsApp presenta el mensaje y el visitante decide cuándo enviarlo.
 

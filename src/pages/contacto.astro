@@ -124,53 +124,32 @@ import ProjectGuide from '../components/ProjectGuide.astro';
             </div>
         </section>
 
-        <!-- Section: CTA Form -->
-        <section class="backlight-top">
-            <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse">
-                <div class="stg-col-5" data-unload="fade-left">
-                    <div class="bringer-block contact-options">
-                        <h2>Conversemos sobre tu proyecto</h2>
-                        <p>Cuéntanos qué necesita tu negocio, cómo lo resuelves hoy y qué te gustaría mejorar. Elige el canal que te resulte más cómodo.</p>
-                        <button id="orientador-proyecto" type="button" class="bringer-button contact-guide-trigger" data-open-project-guide aria-haspopup="dialog" aria-controls="project-guide-modal" hidden>Ayúdame a definir mi proyecto <span aria-hidden="true">↗</span></button>
-                        <a href="https://cal.com/edicion-aular-website" class="bringer-button">Elegir un horario para conversar</a>
-                        <a href="https://wa.link/tjepy5" class="bringer-arrow-link">Escribir por WhatsApp</a>
-                        <a href="mailto:info@edicionaular.com" class="bringer-arrow-link">Enviar los detalles por correo</a>
-                    </div>
+        <!-- Composición adaptada del CTA bento de home02.html / services.html. -->
+        <section id="tu-proyecto" class="contact-project-section" aria-labelledby="contact-project-heading" data-template="home02.html · .bringer-bento-grid.bringer-grid-cta">
+            <div class="contact-project-grid">
+                <div class="contact-project-intro">
+                    <span class="contact-project-eyebrow">Hablemos de lo que viene</span>
+                    <h2 id="contact-project-heading">Tu idea merece<br>un buen comienzo<span class="bringer-accent">.</span></h2>
+                    <p>Marca, web, contenido o automatización. Cuéntanos qué quieres mejorar y definamos un primer paso.</p>
                 </div>
-                <div class="stg-col-6 stg-offset-1" data-unload="fade-right">
-                    <div class="bringer-cta-form-content">
-                        <div class="bringer-cta-form-title" data-split-appear="fade-up" data-split-delay="100" data-split-by="line">
-                            Hablemos de tu próximo proyecto creativo.
-                        </div>
-                        <div class="bringer-cta-text">
-                            <div class="stg-row stg-valign-middle">
-                                <div class="stg-col-2 stg-offset-2 stg-tp-col-1 stg-tp-offset-3 stg-m-col-1 stg-m-offset-2" data-appear="fade-right">
-                                    <i class="bringer-cta-icon"></i>
-                                </div>
-                                <div class="stg-col-8 stg-tp-col-7 stg-m-col-8 stg-m-offset-1" data-appear="fade-left">
-                                    <p class="bringer-large-text">Ayudamos a agencias creativas, diseñadores y otros profesionales creativos a mostrar su trabajo perfecto.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bringer-cta-counters bringer-grid-3cols bringer-m-grid-3cols" data-stagger-appear="fade-up" data-stagger-delay="100">
-                            <!-- Counter Item -->
-                            <div class="bringer-counter bringer-small-counter" data-delay="3000">
-                                <div class="bringer-counter-number">+1399</div>
-                                <div class="bringer-counter-label">Proyectos Completados</div>
-                            </div>
-                            <!-- Counter Item -->
-                            <div class="bringer-counter bringer-small-counter" data-delay="3000">
-                                <div class="bringer-counter-number" data-suffix="+">479</div>
-                                <div class="bringer-counter-label">Empresas Satisfechas</div>
-                            </div>
-                            <!-- Counter Item -->
-                            <div class="bringer-counter bringer-small-counter" data-delay="3000">
-                                <div class="bringer-counter-number" data-suffix="+">12</div>
-                                <div class="bringer-counter-label">De Experiencia</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button id="orientador-proyecto" type="button" class="contact-project-action contact-guide-trigger" data-open-project-guide aria-haspopup="dialog" aria-controls="project-guide-modal" hidden>
+                    <svg class="contact-project-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg>
+                    <span class="contact-action-meta">Orientador · 3 pasos</span>
+                    <span class="contact-action-title">Definir mi proyecto</span>
+                </button>
+                <a class="contact-project-action contact-call" href="https://cal.com/edicion-aular-website">
+                    <svg class="contact-project-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg>
+                    <span class="contact-action-meta">Elige un horario</span>
+                    <span class="contact-action-title">Agendar una llamada</span>
+                </a>
+                <figure class="contact-project-visual">
+                    <img src="/img/ia/agencia-ia.webp" alt="Personas revisando ideas y un mapa de trabajo en un estudio creativo" width="1536" height="1024" loading="lazy" decoding="async" />
+                    <figcaption><span>Creatividad para alcanzar el éxito</span><a href="/portfolio/">Ver proyectos <span aria-hidden="true">↗</span></a></figcaption>
+                </figure>
+            </div>
+            <div class="contact-project-direct">
+                <p>¿Prefieres escribirnos directamente?</p>
+                <div><a href="https://wa.link/tjepy5">WhatsApp <span aria-hidden="true">↗</span></a><a href="mailto:info@edicionaular.com">Correo <span aria-hidden="true">↗</span></a></div>
             </div>
         </section>
 
@@ -179,10 +158,78 @@ import ProjectGuide from '../components/ProjectGuide.astro';
 </BaseLayout>
 
 <style>
-.contact-options { display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
-.contact-options h2 { font-size: 1.7rem; margin: 0; }
-.contact-guide-trigger { scroll-margin-top: 120px; text-align: left; white-space: normal; }
-.contact-guide-trigger[hidden] { display: none !important; }
-.contact-guide-trigger span { margin-left: .5rem; }
-.contact-options :is(a, button):focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 4px; }
+    .contact-project-section { scroll-margin-top: 110px; }
+    .contact-project-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) repeat(2, minmax(0, .55fr));
+        grid-template-areas: "visual intro intro" "visual guide call";
+        gap: 20px;
+        align-items: stretch;
+    }
+    .contact-project-intro { grid-area: intro; padding: 8px 4px 16px 16px; }
+    .contact-project-eyebrow { display: block; color: var(--bringer-s-text); font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 20px; }
+    .contact-project-intro h2 { color: var(--bringer-s-heading); font-size: clamp(32px, 4.1vw, 60px); line-height: 1.07; letter-spacing: -.045em; margin: 0 0 22px; }
+    .contact-project-intro p { color: var(--bringer-s-text); max-width: 440px; margin: 0; font-size: 16px; line-height: 1.65; }
+    .contact-project-grid .contact-project-action {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        position: relative;
+        box-sizing: border-box;
+        min-width: 0;
+        min-height: 172px;
+        padding: 26px;
+        border: 1px solid var(--bringer-s-border);
+        border-radius: 20px;
+        text-align: left;
+        font: inherit;
+        text-transform: none;
+        letter-spacing: 0;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color .2s, border-color .2s;
+    }
+    .contact-project-grid button.contact-guide-trigger { grid-area: guide; scroll-margin-top: 120px; color: #fff; background: #b80046; border-color: #b80046; }
+    .contact-project-grid button.contact-guide-trigger:hover { color: #fff; background: #970039; border-color: #970039; }
+    .contact-guide-trigger[hidden] { display: none !important; }
+    .contact-project-grid .contact-call { grid-area: call; color: var(--bringer-s-heading); background: var(--bringer-s-container-bg); }
+    .contact-project-grid .contact-call:hover { color: var(--bringer-s-heading); border-color: var(--bringer-s-heading); }
+    .contact-project-arrow { position: absolute; right: 24px; top: 22px; }
+    .contact-action-meta { display: block; font-size: 11px; line-height: 1.5; margin-bottom: 9px; }
+    .contact-action-title { display: block; max-width: 160px; font-size: 22px; font-weight: 500; line-height: 1.2; letter-spacing: -.025em; }
+    .contact-project-visual { grid-area: visual; display: flex; flex-direction: column; overflow: hidden; min-width: 0; margin: 0; border-radius: 20px; background: #181b21; }
+    .contact-project-visual img { display: block; width: 100%; height: 0; min-height: 280px; flex: 1 1 auto; object-fit: cover; object-position: 50% 40%; }
+    .contact-project-visual figcaption { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 20px 24px; color: #e1e2e6; font-size: 11px; line-height: 1.5; }
+    .contact-project-visual figcaption a { color: #fff; font-size: 12px; white-space: nowrap; text-decoration: none; min-height: 28px; display: inline-flex; align-items: center; gap: 10px; }
+    .contact-project-visual figcaption a:hover { text-decoration: underline; text-underline-offset: .2em; }
+    .contact-project-direct { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 4px 0; }
+    .contact-project-direct p { font-size: 13px; line-height: 1.5; margin: 0; color: var(--bringer-s-text); }
+    .contact-project-direct > div { display: flex; align-items: center; gap: 28px; }
+    .contact-project-direct a { display: inline-flex; gap: 12px; align-items: center; color: var(--bringer-s-heading); font-size: 13px; line-height: 1.5; text-decoration: none; min-height: 44px; }
+    .contact-project-direct a:hover { text-decoration: underline; text-underline-offset: .25em; }
+    .contact-project-section :is(a, button):focus-visible { outline: 3px solid var(--bringer-s-heading); outline-offset: 5px; }
+    @media (max-width: 1023px) {
+        .contact-project-grid { grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, .6fr)); gap: 16px; }
+        .contact-project-intro { padding: 4px 0 10px 8px; }
+        .contact-project-intro h2 { font-size: 38px; }
+        .contact-project-grid .contact-project-action { padding: 22px; min-height: 162px; }
+        .contact-action-title { font-size: 20px; }
+    }
+    @media (max-width: 700px) {
+        .contact-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "intro intro" "guide call" "visual visual"; gap: 12px; }
+        .contact-project-intro { padding: 0 0 14px; }
+        .contact-project-intro h2 { font-size: clamp(32px, 7.5vw, 44px); }
+        .contact-project-intro p { font-size: 15px; }
+        .contact-project-eyebrow { font-size: 10px; margin-bottom: 16px; }
+        .contact-project-grid .contact-project-action { padding: 18px; min-height: 162px; border-radius: 16px; }
+        .contact-action-title { font-size: 19px; }
+        .contact-action-meta { font-size: 10px; }
+        .contact-project-arrow { right: 17px; top: 18px; width: 20px; height: 20px; }
+        .contact-project-visual { border-radius: 16px; }
+        .contact-project-visual img { min-height: 0; height: auto; aspect-ratio: 3/2; flex: none; }
+        .contact-project-visual figcaption { padding: 14px 18px; }
+        .contact-project-direct { flex-direction: column; align-items: flex-start; gap: 8px; padding-top: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .contact-project-grid .contact-project-action { transition: none; } }
 </style>
