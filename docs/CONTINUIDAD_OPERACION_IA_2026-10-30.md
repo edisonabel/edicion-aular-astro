@@ -2,6 +2,8 @@
 
 Fecha: 30 de octubre de 2026, America/Bogota.
 
+Nota de continuidad: el radar descrito en esta primera entrega se migró después a Google Apps Script. Consultar `RADAR_EDITORIAL_IA.md` para el estado actual y `ORIENTADOR_RADAR_GOOGLE_2026-10-30.md` para las correcciones visuales y el orientador.
+
 El usuario autorizó continuar el plan, aplicar mejoras SEO, publicar en `main` y recibir informes de tendencias en `edicionaular@gmail.com` si no se añadía un servicio de pago.
 
 ## Publicaciones

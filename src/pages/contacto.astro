@@ -1,182 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectGuide from '../components/ProjectGuide.astro';
 ---
-
-<BaseLayout 
-    title="Contacto | Edición Aular 🚀✨"
-    description="Ponte en contacto con Edición Aular. Ayudamos a negocios de todos los tamaños a alcanzar sus objetivos. ¡Hablemos de tu proyecto! 📞"
->
-    <div class="stg-container">
-        <!-- Section: Page Title -->
-        <section >
-            <div class="stg-row stg-bottom-gap-l">
-                <div class="stg-col-6 stg-offset-3 align-center">
-                    <h1 class="bringer-page-title" data-appear="fade-up" data-unload="fade-up">Ponte en Contacto</h1>
-                    <p class="bringer-large-text" data-appear="fade-up" data-delay="100" data-unload="fade-up">Ayudamos a negocios de todos los tamaños a alcanzar sus objetivos. Creemos que cada marca, grande o pequeña, merece brillar.</p>
-                </div>
-            </div>
-            <div class="bringer-parallax-media" data-parallax-speed="20" data-appear="fade-up" data-delay="200" data-unload="fade-up">
-                <img class="bringer-lazy" src="/img/null.png" data-src="/img/contact/contact 1.webp" alt="Get in Touch" width="1920" height="960">
-            </div>
-        </section>
-
-        <!-- Section: About Us -->
-        <section>
-            <!-- Section Title -->
-            <div class="stg-row stg-bottom-gap">
-                <div class="stg-col-8">
-                    <h2 data-split-appear="fade-up" data-unload="fade-up">¿Listo para encender el fuego de tu marca? 🔥 ¡Conectemos! 🤝</h2>
-                </div>
-                <div class="stg-col-4"></div>
-            </div>
-            <!-- Section Content -->
-            <div class="stg-row stg-bottom-gap-l">
-                <div class="stg-col-6 stg-offset-6" data-appear="fade-up" data-delay="200" data-unload="fade-up">
-                    <p>En Edición Aular, creemos en el poder de la colaboración y la pasión compartida. No somos solo un equipo creativo, somos tus socios para encender el potencial único de tu marca. Así que, ya sea que estés repleto de ideas o apenas comenzando a surgir, ¡contáctanos y hablemos!</p>
-                </div>
-            </div>
-            <!-- Grid Gallery -->
-            <div class="bringer-grid-3cols bringer-parallax-media bringer-m-grid-3cols stg-m-small-gap" data-stagger-appear="fade-up" data-delay="200" data-stagger-unload="fade-up">
-                <a href="/img/inner-pages/contacts02.jpg" class="bringer-lightbox-link" data-size="960x960">
-                    <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/1.webp" alt="Edición Aular" width="960" height="960">
-                </a>
-                <a href="/img/inner-pages/contacts03.jpg" class="bringer-lightbox-link" data-size="960x960">
-                    <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/brand 4.webp" alt="Edición Aular" width="960" height="960">
-                </a>
-                <a href="/img/inner-pages/contacts04.jpg" class="bringer-lightbox-link" data-size="960x960">
-                    <img class="bringer-lazy" src="/img/null.png" data-src="/img/inner-pages/2.webp" alt="Edición Aular" width="960" height="960">
-                </a>
-            </div>
-        </section>
-
-        <!-- Section: Let's Talk -->
-        <section class="backlight-top divider-bottom">
-            <!-- Section Title -->
-            <div class="stg-row bringer-section-title">
-                <div class="stg-col-8 stg-offset-2">
-                    <div class="align-center">
-                        <h2 data-appear="fade-up" data-unload="fade-up">¡Hablemos! 🗣</h2>
-                        <p class="bringer-large-text" data-appear="fade-up" data-delay="100" data-unload="fade-up">Cómo Conectar con Nosotros:</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Contacts Grid -->
-            <div class="stg-row" data-stagger-appear="fade-up" data-delay="200" data-stagger-unload="fade-up">
-                <div class="stg-col-4 stg-tp-col-6 stg-tp-bottom-gap">
-                    <!-- Phone -->
-                    <div class="bringer-block stg-aspect-square stg-vertical-space-between">
-                        <a href="tel:+573002730128" class="bringer-grid-item-link" aria-label="Llamar a Edición Aular al +57 300 273 0128"></a>
-                        <div>
-                            <h5>Teléfono<span class="bringer-accent">.</span></h5>
-                            <h6>+57 (300) 273-01-28</h6>
-                        </div>
-                        <p>Llámanos y charla directamente con nuestro amigable equipo. Siempre estamos felices de responder cualquier pregunta.</p>
-                    </div>
-                </div>
-                <div class="stg-col-4 stg-tp-col-6 stg-tp-bottom-gap">
-                    <!-- Email -->
-                    <div class="bringer-block stg-aspect-square stg-vertical-space-between">
-                        <a href="mailto:info@edicionaular.com" class="bringer-grid-item-link" aria-label="Enviar un correo a info@edicionaular.com"></a>
-                        <div>
-                            <h5>Correo<span class="bringer-accent">.</span></h5>
-                            <h6>info@edicionaular.com <br> <br>edicionaular@gmail.com</h6>
-                        </div>
-                        <p>Envíanos un mensaje detallado. Nos pondremos en contacto contigo lo antes posible para discutir tu proyecto creativo.</p>
-                    </div>
-                </div>
-                <div class="stg-col-4 stg-tp-col-12">
-                    <!-- Social Media -->
-                    <div class="bringer-block stg-aspect-square stg-tp-aspect-rectangle stg-vertical-space-between">
-                        <div>
-                            <h5>Redes Sociales:<span class="bringer-accent">.</span></h5>
-                            <ul class="bringer-socials-list stg-small-gap" data-stagger-appear="fade-up" data-stagger-delay="75">
-                                <li>
-                                    <a href="https://www.facebook.com/edicionaular" target="_blank" class="bringer-socials-facebook">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/edicion_aular/" target="_blank" class="bringer-socials-instagram">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://vimeo.com/user67007640" target="_blank" class="bringer-socials-vimeo">
-                                        <i class="fab fa-vimeo-v"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.tiktok.com/@edicionaular8" target="_blank" class="bringer-socials-tiktok">
-                                        <i class="fab fa-tiktok"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://wa.link/tjepy5" target="_blank" class="bringer-socials-whatsapp">
-                                        <i class="fab fa-whatsapp"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p>Síguenos en nuestras plataformas sociales para echar un vistazo a nuestro mundo creativo, obtener insights de la industria y conocer nuestros proyectos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: CTA Form -->
-        <section class="backlight-top">
-            <div class="stg-row stg-valign-middle stg-cta-with-image stg-tp-column-reverse">
-                <div class="stg-col-5" data-unload="fade-left">
-                    <div class="bringer-block contact-options">
-                        <h2>Conversemos sobre tu proyecto</h2>
-                        <p>Cuéntanos qué necesita tu negocio, cómo lo resuelves hoy y qué te gustaría mejorar. Elige el canal que te resulte más cómodo.</p>
-                        <a href="https://cal.com/edicion-aular-website" class="bringer-button">Elegir un horario para conversar</a>
-                        <a href="https://wa.link/tjepy5" class="bringer-arrow-link">Escribir por WhatsApp</a>
-                        <a href="mailto:info@edicionaular.com" class="bringer-arrow-link">Enviar los detalles por correo</a>
-                    </div>
-                </div>
-                <div class="stg-col-6 stg-offset-1" data-unload="fade-right">
-                    <div class="bringer-cta-form-content">
-                        <div class="bringer-cta-form-title" data-split-appear="fade-up" data-split-delay="100" data-split-by="line">
-                            Hablemos de tu próximo proyecto creativo.
-                        </div>
-                        <div class="bringer-cta-text">
-                            <div class="stg-row stg-valign-middle">
-                                <div class="stg-col-2 stg-offset-2 stg-tp-col-1 stg-tp-offset-3 stg-m-col-1 stg-m-offset-2" data-appear="fade-right">
-                                    <i class="bringer-cta-icon"></i>
-                                </div>
-                                <div class="stg-col-8 stg-tp-col-7 stg-m-col-8 stg-m-offset-1" data-appear="fade-left">
-                                    <p class="bringer-large-text">Ayudamos a agencias creativas, diseñadores y otros profesionales creativos a mostrar su trabajo perfecto.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bringer-cta-counters bringer-grid-3cols bringer-m-grid-3cols" data-stagger-appear="fade-up" data-stagger-delay="100">
-                            <!-- Counter Item -->
-                            <div class="bringer-counter bringer-small-counter" data-delay="3000">
-                                <div class="bringer-counter-number">+1399</div>
-                                <div class="bringer-counter-label">Proyectos Completados</div>
-                            </div>
-                            <!-- Counter Item -->
-                            <div class="bringer-counter bringer-small-counter" data-delay="3000">
-                                <div class="bringer-counter-number" data-suffix="+">479</div>
-                                <div class="bringer-counter-label">Empresas Satisfechas</div>
-                            </div>
-                            <!-- Counter Item -->
-                            <div class="bringer-counter bringer-small-counter" data-delay="3000">
-                                <div class="bringer-counter-number" data-suffix="+">12</div>
-                                <div class="bringer-counter-label">De Experiencia</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
+<BaseLayout title="Hablemos de tu proyecto | Edición Aular" description="Define qué necesita tu negocio con nuestro orientador de proyectos. Prepara una consulta por WhatsApp o agenda una conversación con Edición Aular.">
+  <div class="stg-container contact-page">
+    <section class="contact-intro">
+      <span class="bringer-label">De una idea a un primer paso</span>
+      <h1 class="bringer-page-title">Hablemos de tu proyecto<span class="bringer-accent">.</span></h1>
+      <p class="bringer-large-text">Cuéntanos qué quieres mejorar. Te ayudamos a ordenar la necesidad antes de elegir herramientas o definir el alcance.</p>
+    </section>
+    <ProjectGuide />
+    <section class="divider-top" aria-labelledby="direct-contact">
+      <h2 id="direct-contact">También podemos hablar directamente</h2>
+      <div class="contact-grid">
+        <article class="bringer-block"><h3>Por WhatsApp</h3><p>Si ya tienes clara tu consulta, escríbenos sin completar el orientador.</p><a href="https://wa.me/573002730128">Escribir por WhatsApp</a></article>
+        <article class="bringer-block"><h3>En una llamada</h3><p>Elige un horario disponible para conversar sobre tu proyecto.</p><a href="https://cal.com/edicion-aular-website">Agendar una conversación</a></article>
+        <article class="bringer-block"><h3>Por correo o teléfono</h3><p><a href="mailto:info@edicionaular.com">info@edicionaular.com</a></p><a href="tel:+573002730128">+57 300 273 0128</a></article>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
-
 <style>
-.contact-options { display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
-.contact-options h2 { font-size: 1.7rem; margin: 0; }
-.contact-options a:focus-visible { outline: 3px solid var(--bringer-s-text-accent); outline-offset: 4px; }
+  .contact-intro{max-width:1000px;padding-bottom:1rem}.contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}.contact-grid h3{font-size:1.4rem;line-height:1.4}.contact-grid a{color:var(--bringer-s-heading);text-decoration:underline;text-underline-offset:.2em;overflow-wrap:anywhere}a:focus-visible{outline:3px solid var(--bringer-s-text-accent);outline-offset:4px}@media(max-width:850px){.contact-grid{grid-template-columns:minmax(0,1fr)}}
 </style>

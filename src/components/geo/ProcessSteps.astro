@@ -1,0 +1,19 @@
+---
+interface Props { steps: { paso: string; detalle: string }[] }
+const { steps } = Astro.props;
+---
+<ol class="geo-process-steps" role="list" aria-label="Etapas del proyecto">
+  {steps.map((step,index)=><li class="geo-process-step">
+    <span class="bringer-label" aria-hidden="true">Paso {String(index+1).padStart(2,'0')}</span>
+    <h3>{step.paso}</h3>
+    <p>{step.detalle}</p>
+  </li>)}
+</ol>
+<style>
+  .geo-process-steps { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem;list-style:none;padding:0;margin:0; }
+  .geo-process-step { display:flex;flex-direction:column;gap:.75rem;min-width:0;border-top:1px solid var(--bringer-s-text);padding:1.25rem 0 0;margin:0;list-style:none; }
+  .geo-process-step .bringer-label { margin:0;font-size:.8rem;line-height:1.5; }
+  .geo-process-step h3 { margin:0;font-size:clamp(1.3rem,2.2vw,1.75rem);line-height:1.3;overflow-wrap:anywhere; }
+  .geo-process-step p { margin:0;line-height:1.65; }
+  @media(max-width:700px) { .geo-process-steps { grid-template-columns:minmax(0,1fr);gap:1.75rem; } }
+</style>

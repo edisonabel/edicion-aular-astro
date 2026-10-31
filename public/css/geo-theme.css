@@ -51,7 +51,6 @@ nav.bringer-nav li.menu-item-has-children:focus-within > ul.sub-menu { opacity: 
 .geo-program-module h3 { margin: 0; }
 .geo-module-delivery { padding-top: 1rem; margin-top: auto; border-top: 1px solid var(--bringer-s-border); color: var(--bringer-s-heading); }
 .geo-example-note { font-size: .85rem; color: var(--bringer-s-text); margin-top: 1rem; }
-.geo-page .bringer-subgrid-item h3 { margin: .5rem 0 1rem; }
 .geo-page .bringer-grid-4cols { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 959px) {
  .geo-page .bringer-grid-4cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }

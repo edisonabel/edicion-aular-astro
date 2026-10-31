@@ -1,0 +1,86 @@
+---
+import { PROJECT_PATHS } from '../lib/project-guide.js';
+---
+<section id="orientador-proyecto" class="project-guide" aria-labelledby="guide-heading">
+  <div class="guide-intro"><span class="bringer-label">Orientador de proyectos</span><h2 id="guide-heading">Empecemos por lo que necesitas resolver<span class="bringer-accent">.</span></h2><p>Tres pasos para ordenar tu idea y preparar una conversación por WhatsApp. Puedes revisar y cambiar tus respuestas antes de compartirlas.</p></div>
+  <div class="bringer-block guide-panel">
+    <p class="guide-progress" role="status" aria-live="polite" data-guide-progress>Paso 1 de 3 · Tu necesidad</p>
+    <form data-project-guide>
+      <fieldset data-guide-step="0"><legend tabindex="-1">¿Qué te gustaría mejorar?</legend><div class="guide-options">{PROJECT_PATHS.map(path=><label class="guide-option"><input type="radio" name="goal" value={path.id} required /><span><strong>{path.label}</strong><small>{path.detail}</small></span></label>)}</div></fieldset>
+      <fieldset data-guide-step="1" hidden disabled><legend tabindex="-1" data-guide-question>Tu situación actual</legend><div class="guide-options" data-guide-choices></div></fieldset>
+      <fieldset data-guide-step="2" hidden disabled>
+        <legend tabindex="-1">¿Hay algo más que debamos saber?</legend>
+        <label for="project-context">Contexto de tu proyecto <span>(opcional)</span></label>
+        <textarea id="project-context" name="context" rows="4" maxlength="360" aria-describedby="context-help" placeholder="Por ejemplo: tenemos una tienda y nos cuesta dar seguimiento a las consultas que llegan cada día."></textarea>
+        <p id="context-help" class="guide-help">Hasta 360 caracteres. Describe el proceso; evita contraseñas, datos de pacientes o información privada de otras personas.</p>
+      </fieldset>
+      <div class="guide-actions"><button type="button" class="guide-secondary" data-guide-back hidden>Volver</button><button type="submit" class="guide-primary" data-guide-next disabled>Continuar</button></div>
+    </form>
+    <div data-guide-result hidden>
+      <h3 tabindex="-1" data-guide-result-title>Tu punto de partida</h3><p data-guide-explanation></p><p><strong>Para nuestra conversación:</strong> <span data-guide-next-step></span></p>
+      <h4>Este es el mensaje que prepararás</h4><pre class="guide-summary" data-guide-summary></pre>
+      <div class="guide-actions"><button type="button" class="guide-secondary" data-guide-edit>Cambiar respuestas</button><button type="button" class="guide-primary" data-guide-whatsapp data-contact-channel="whatsapp">Abrir WhatsApp con mi resumen</button></div>
+      <p class="guide-help">Se abrirá WhatsApp con el mensaje preparado. Tú decides cuándo enviarlo. Esta orientación es un primer paso; el alcance y la inversión se acuerdan al conversar.</p><a class="guide-service" data-guide-service>Conocer el servicio relacionado</a>
+    </div>
+    <p class="guide-privacy">Tus respuestas permanecen en esta página hasta que elijas compartir el resumen por WhatsApp. <a href="/politica-de-privacidad/">Política de privacidad</a>.</p>
+    <noscript><p>Para usar el orientador necesitas JavaScript. También puedes <a href="https://wa.me/573002730128">escribirnos directamente por WhatsApp</a> o <a href="https://cal.com/edicion-aular-website">agendar una conversación</a>.</p></noscript>
+  </div>
+</section>
+<script>
+  import { PROJECT_PATHS, recommendProject } from '../lib/project-guide.js';
+  const form=document.querySelector<HTMLFormElement>('[data-project-guide]');
+  if(form){
+    const panel=form.parentElement!, steps=Array.from(form.querySelectorAll<HTMLFieldSetElement>('[data-guide-step]'));
+    const progress=panel.querySelector<HTMLElement>('[data-guide-progress]')!,back=form.querySelector<HTMLButtonElement>('[data-guide-back]')!,next=form.querySelector<HTMLButtonElement>('[data-guide-next]')!,result=panel.querySelector<HTMLElement>('[data-guide-result]')!;
+    let step=0, preparedWhatsapp=''; const answers={goal:'',current:'',context:''}; next.disabled=false;
+    function showStep(value:number){
+      step=value;result.hidden=true;form!.hidden=false;
+      steps.forEach((fieldset,index)=>{fieldset.hidden=index!==step;fieldset.disabled=index!==step;});
+      back.hidden=step===0;next.textContent=step===2?'Preparar mi consulta':'Continuar';
+      progress.textContent=`Paso ${step+1} de 3 · ${['Tu necesidad','Tu situación','Tu contexto'][step]}`;
+      steps[step].querySelector<HTMLElement>('legend')!.focus();
+    }
+    function fillChoices(){
+      const path=PROJECT_PATHS.find(item=>item.id===answers.goal)!;
+      panel.querySelector('[data-guide-question]')!.textContent=path.question;
+      panel.querySelector('[data-guide-choices]')!.replaceChildren(...path.choices.map(choice=>{
+        const label=document.createElement('label');label.className='guide-option';
+        const input=document.createElement('input');input.type='radio';input.name='current';input.value=choice;input.required=true;input.checked=choice===answers.current;
+        const span=document.createElement('span');span.textContent=choice;label.append(input,span);return label;
+      }));
+    }
+    form.addEventListener('submit',event=>{
+      event.preventDefault();if(!form.reportValidity())return;const data=new FormData(form);
+      if(step===0){const goal=String(data.get('goal'));if(answers.goal!==goal)answers.current='';answers.goal=goal;fillChoices();showStep(1);}
+      else if(step===1){answers.current=String(data.get('current'));showStep(2);}
+      else{
+        answers.context=String(data.get('context')||'');const recommendation=recommendProject(answers);
+        panel.querySelector('[data-guide-result-title]')!.textContent=recommendation.recommendation;
+        panel.querySelector('[data-guide-explanation]')!.textContent=recommendation.explanation;
+        panel.querySelector('[data-guide-next-step]')!.textContent=recommendation.next;
+        panel.querySelector('[data-guide-summary]')!.textContent=recommendation.summary;
+        // El botón no expone la URL con respuestas a la medición automática de enlaces.
+        preparedWhatsapp=recommendation.whatsapp;
+        const service=panel.querySelector<HTMLAnchorElement>('[data-guide-service]')!;service.href=recommendation.service;service.textContent=`Conocer: ${recommendation.serviceLabel}`;
+        form.hidden=true;result.hidden=false;progress.textContent='Tu consulta está lista para revisar';panel.querySelector<HTMLElement>('[data-guide-result-title]')!.focus();
+      }
+    });
+    back.addEventListener('click',()=>{if(step===2)answers.context=form.querySelector<HTMLTextAreaElement>('textarea')!.value;showStep(Math.max(0,step-1));});
+    panel.querySelector('[data-guide-edit]')!.addEventListener('click',()=>showStep(0));
+    panel.querySelector('[data-guide-whatsapp]')!.addEventListener('click',event=>{
+      event.preventDefault();if(preparedWhatsapp)window.location.assign(preparedWhatsapp);
+    });
+  }
+</script>
+<style>
+  .project-guide{scroll-margin-top:110px}.guide-intro{max-width:850px;margin-bottom:2rem}h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.15}.guide-panel{padding:clamp(1.25rem,4vw,3rem)}
+  .guide-progress{color:var(--bringer-s-heading);font-weight:600;margin-bottom:1.5rem}fieldset{border:0;padding:0;margin:0;min-width:0}legend{color:var(--bringer-s-heading);font-size:clamp(1.3rem,3vw,1.8rem);font-weight:600;margin-bottom:1.5rem;width:100%;line-height:1.4}
+  label{font-size:1rem;font-weight:400;text-transform:none;letter-spacing:normal}
+  .guide-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}.guide-option{display:flex;align-items:flex-start;gap:.85rem;border:1px solid var(--bringer-s-text);border-radius:14px;padding:1.1rem;cursor:pointer;color:var(--bringer-s-heading);line-height:1.5}.guide-option:has(input:checked){outline:2px solid var(--bringer-s-text-accent);outline-offset:2px}
+  .guide-option input{appearance:auto;width:20px;height:20px;flex:none;margin:.2rem 0 0;accent-color:var(--bringer-s-accent)}.guide-option strong{display:block;font-weight:600}.guide-option small{display:block;color:var(--bringer-s-text);font-size:.95rem;margin-top:.35rem}
+  textarea{display:block;width:100%;margin-top:.8rem;border:1px solid var(--bringer-s-text);color:var(--bringer-s-heading);background:transparent;border-radius:12px;padding:1rem;font:inherit;resize:vertical;box-sizing:border-box}textarea::placeholder{color:var(--bringer-s-text);opacity:1}
+  .guide-actions{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin:1.75rem 0 1rem}.guide-primary,.guide-secondary{display:inline-flex;justify-content:center;align-items:center;font:inherit;font-weight:600;line-height:1.5;padding:.9rem 1.2rem;border-radius:10px;border:1px solid var(--bringer-s-text);cursor:pointer;text-decoration:none;min-height:48px;box-sizing:border-box;white-space:normal;text-align:center}
+  .guide-primary{color:#fff;background:#b80046;border-color:#b80046}.guide-primary:hover{color:#fff;background:#970039}.guide-secondary{color:var(--bringer-s-heading);background:transparent}.guide-help,.guide-privacy{font-size:.95rem;color:var(--bringer-s-text);line-height:1.65}.guide-privacy{margin-top:1.75rem;padding-top:1rem;border-top:1px solid var(--bringer-s-text)}.guide-privacy a,.guide-service{color:var(--bringer-s-heading);text-decoration:underline;text-underline-offset:.2em}
+  h3{font-size:clamp(1.5rem,3vw,2rem);line-height:1.35}h4{font-size:1.1rem;margin-top:1.5rem}.guide-summary{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;color:var(--bringer-s-heading);background:transparent;border:1px solid var(--bringer-s-text);border-radius:12px;padding:1.1rem}
+  :is(button,input,textarea,a):focus-visible,legend:focus-visible,h3:focus-visible{outline:3px solid var(--bringer-s-text-accent);outline-offset:5px}[hidden]{display:none!important}@media(max-width:700px){.guide-options{grid-template-columns:minmax(0,1fr)}.guide-actions>*{width:100%}}
+</style>

@@ -4,6 +4,7 @@ import RelatedReading from '../../components/blog/RelatedReading.astro';
 import { READINGS_BY_SOLUTION } from '../../data/blog-relations';
 import EditorialImage from '../../components/geo/EditorialImage.astro';
 import Programa from '../../components/geo/Programa.astro';
+import ProcessSteps from '../../components/geo/ProcessSteps.astro';
 import { IMAGEN_SOLUCION } from '../../data/ia/imagenes';
 import JsonLd from '../../components/geo/JsonLd.astro';
 import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
@@ -100,9 +101,7 @@ const schemaData = [
       <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Del diagnóstico a la puesta en marcha</h2><p>Plazo orientativo: {solucion.tiempo} Confirmamos el calendario después de revisar el alcance.</p></div></div>
       <div class="stg-row stg-valign-middle stg-large-gap stg-tp-normal-gap">
         <div class="stg-col-6 stg-tp-bottom-gap-l"><EditorialImage imagen="diagnostico" /></div>
-        <div class="stg-col-6"><div class="bringer-grid-2cols stg-normal-gap">
-          {solucion.proceso.map((p, idx) => <div class="bringer-subgrid-item"><span class="bringer-label">Paso {String(idx + 1).padStart(2, '0')}</span><h3>{p.paso}</h3><p>{p.detalle}</p></div>)}
-        </div></div>
+        <div class="stg-col-6"><ProcessSteps steps={solucion.proceso} /></div>
       </div>
     </section>
 

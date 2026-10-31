@@ -76,9 +76,10 @@ export function installAnalytics(win, doc) {
       return;
     }
     if (!production || choice !== 'granted') return;
-    const link = event.target?.closest?.('a[href]');
+    const directButton = event.target?.closest?.('button[data-contact-channel="whatsapp"]');
+    const link = directButton || event.target?.closest?.('a[href]');
     if (!link) return;
-    const channel = contactChannel(link.getAttribute('href'), win.location.origin);
+    const channel = directButton ? 'whatsapp' : contactChannel(link.getAttribute('href'), win.location.origin);
     if (!channel) return;
     const area = link.closest('#bringer-header') ? 'header' : link.closest('#bringer-footer') ? 'footer' : link.closest('.whatsapp-float') ? 'floating' : 'content';
     win.dataLayer.push({

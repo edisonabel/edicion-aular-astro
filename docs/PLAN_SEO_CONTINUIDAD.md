@@ -1,5 +1,7 @@
 # Plan de continuidad SEO: del contenido a las consultas comerciales
 
+**Estado actualizado — 30/10/2026:** el blog tiene 24 artículos; las revisiones y nuevas guías están publicadas. El radar se migró a Google Apps Script, con temas y borradores iniciales, y el radar local está pausado. Contacto incorpora un orientador por reglas hacia WhatsApp. Ver `RADAR_EDITORIAL_IA.md` y `ORIENTADOR_RADAR_GOOGLE_2026-10-30.md`. El punto de partida que sigue documenta el diagnóstico original, no el estado actual.
+
 Preparado el 29 de octubre de 2026 para retomar en otra sesión. Calendario relativo al inicio del trabajo, sin publicaciones ni recordatorios programados.
 
 ## Objetivo y enfoque

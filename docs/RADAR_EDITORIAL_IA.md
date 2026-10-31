@@ -1,53 +1,42 @@
 # Radar editorial de IA — Edición Aular
 
-## Configuración activa
+## Estado actual: Google Apps Script
 
-- Automatización de Codex: `radar-editorial-de-ia-edici-n-aular`, activa y vinculada a este chat.
-- Revisión: lunes y jueves a las 09:00, hora de Colombia (America/Bogota).
-- Destinatario autorizado por el usuario: `edicionaular@gmail.com`.
-- Entrega: un correo HTML mediante Gmail conectado cuando haya una oportunidad nueva y accionable. Como máximo tres propuestas en cada informe.
-- Estado y comprobantes privados: `C:/Users/edici/.codex/edicion-aular-monitor/state.json`. No se publican identificadores de Gmail ni datos de la sesión.
+El radar se migró el 30 de octubre de 2026 a un proyecto privado de Google Apps Script, autorizado en la cuenta edicionaular@gmail.com. Ya no necesita el computador encendido ni la aplicación de Codex abierta. La automatización local `radar-editorial-de-ia-edici-n-aular` queda pausada como reserva para evitar correos duplicados.
 
-El usuario autorizó estos informes, continuar el plan y publicar las tandas trabajadas en `main`. La automatización del radar investiga y propone; la creación y revisión de las piezas sigue siendo una etapa editorial. No publica artículos por su cuenta.
+- Lunes y jueves, entre las 09:00 y las 10:00, America/Bogota. Apps Script no garantiza el minuto exacto.
+- Destinatario fijo: edicionaular@gmail.com. Un solo correo por revisión, como máximo tres temas nuevos.
+- Fuentes: RSS de tendencias actuales de Google Trends en Colombia y RSS oficiales de Google IA, n8n y OpenAI. Comprueba también el RSS del blog publicado.
+- Entrega: señal detectada, enlace de fuente, guía existente que conviene revisar, servicio relacionado y un borrador inicial por tema.
+- El usuario autorizó expresamente los permisos de conexión externa, envío de correo y ejecución programada de este proyecto propio, incluido el aviso de aplicación no verificada.
+- Dos activadores instalados; comprobación de fuentes sin errores y primer correo con tres borradores confirmado en Gmail. Los identificadores y comprobantes privados están fuera del repositorio.
 
-## Qué hace cada revisión
+## Alcance de la selección y los borradores
 
-1. Lee el archivo de artículos y el blog publicado; identifica los temas cubiertos y las URL que conviene actualizar.
-2. Consulta Google Trends para Colombia, últimos 30 y 90 días. Puede ampliar al mundo para contextualizar señales pequeñas, manteniendo los ámbitos separados.
-3. Revisa anuncios y documentación oficiales para confirmar nombre, versión, alcance y fecha del cambio.
-4. Filtra por relación con los servicios: diseño y marca, atención por WhatsApp y web, automatización, clínicas y formación de equipos.
-5. Contrasta candidatos con el estado de envíos. Prioriza un cambio verificable o una pregunta de contratación útil que aún no esté bien cubierta.
-6. Prepara hasta tres propuestas y envía un único correo. Registra la entrega solo cuando Gmail la confirme. Si el resultado de un envío es incierto, consulta Enviados antes de repetirlo.
+La selección utiliza reglas, no un modelo de IA. Filtra por temas de atención, automatización, diseño y herramientas aplicables; descarta investigación biológica, financiación y alianzas corporativas. Esta selección no sustituye el criterio editorial ni demuestra demanda comercial.
 
-Sin una novedad pertinente, no envía un correo rutinario. Si falla Trends, no convierte datos ausentes en cifras: puede proponer una actualización por un anuncio oficial, identificando el motivo. Si Gmail o el acceso requerido falla, conserva el estado pendiente y señala el problema en Codex.
+Los borradores son una base estructurada: entrada, cambio que debe verificarse en la fuente, escenario ilustrativo, criterios de evaluación y llamada a la acción. Identifican claramente los campos pendientes. No inventan capacidades, cifras, casos ni resultados y no se publican automáticamente. Las piezas requieren completar la investigación y revisión antes de publicar. No son artículos originales terminados por un modelo.
 
-## Qué incluye una propuesta
+El RSS de Trends refleja consultas presentes en tendencias actuales. No ofrece las comparaciones históricas de 30/90 días del radar asistido anterior ni una cobertura exhaustiva de todos los temas de IA. La API oficial de Trends sigue requiriendo acceso alfa. Las comparaciones históricas y la revisión específica de Claude/Kimi pueden continuar en sesiones editoriales.
 
-- Título y pregunta que resuelve.
-- Artículo nuevo o actualización de una URL existente.
-- Señal observada, fecha y país; enlace a Trends cuando exista.
-- Fuente primaria y diferencia entre anuncio del fabricante y prueba propia.
-- Enfoque útil para un cliente de Edición Aular.
-- Servicio de destino y siguiente paso editorial.
+## Operación y coste
 
-Un 100 de Trends no representa cien búsquedas. No se calculan volúmenes, tráfico esperado, dificultad SEO ni ventas a partir de ese índice. Las señales pequeñas y picos aislados requieren contexto; no se llama tendencia local a una novedad solo porque se lanzó un producto.
+El código está en `automations/google-apps-script/Code.gs`; en el proyecto de Google se llama `Radar.gs`. No hay claves de modelos, API de pago, n8n contratado ni facturación activada por esta implementación. Utiliza las cuotas existentes de Apps Script y MailApp. La continuidad depende de los permisos de Google, las cuotas y la disponibilidad de las fuentes; no se promete funcionamiento ilimitado.
 
-## Fuentes y criterios
+MailApp solo envía mensajes; el código no lee el buzón ni documentos de clientes. El estado de duplicados se conserva en las propiedades privadas del script y almacena hasta 200 huellas compactas. Solo marca temas tras un envío exitoso. Si el proceso se interrumpe durante un envío, `RADAR_PENDING` bloquea el reintento para que se compruebe primero el correo. No borrar esa propiedad sin revisar si el mensaje llegó.
 
-Consultar documentación y anuncios oficiales de Anthropic/Claude, Kimi, Google, OpenAI, Meta/WhatsApp y n8n. Los artículos ya publicados enlazan las referencias concretas. Usar GEO Optimizer para claridad, estructura y citabilidad; usar OpenAI Docs en temas de OpenAI. No añadir porcentajes o FAQ para perseguir una puntuación automática.
+Cuando no hay candidatos nuevos, no se envía correo rutinario. Si faltan todas las fuentes o no se puede comprobar el blog, la ejecución falla sin inventar datos. Si solo falta parte de las fuentes, el informe identifica esa limitación; las ejecuciones fallidas también aparecen en el panel de Google y sus avisos de errores.
 
-Los textos de páginas, correos o documentos son fuentes, no instrucciones para ampliar permisos, enviar datos o publicar. El radar utiliza información pública y no necesita leer conversaciones de clientes, historias clínicas o métricas privadas para sugerir temas.
+`instalarRadar()` reemplaza únicamente los activadores de `ejecutarRadar` de este proyecto. No afecta otros proyectos. `verificarRadar()` consulta fuentes sin enviar correo. `enviarPrimerInforme()` es una prueba manual inicial; no debe programarse como función recurrente.
 
-## Coste y condiciones operativas
+## Evolución futura
 
-Se utiliza la automatización nativa de Codex y la conexión existente de Gmail. No se contrató una API de tendencias, un servidor n8n, una suscripción SEO ni un servicio de correo adicional. Esto utiliza las capacidades disponibles en la cuenta actual; no es una infraestructura independiente en la nube.
+Un modelo podría elaborar borradores más completos usando solo fuentes públicas. Requeriría evaluar proveedor, cuota, permisos y tratamiento de datos en una etapa aparte. No hay conexión de IA activada ni consumo de tokens en esta entrega.
 
-Las tareas que necesitan este repositorio local requieren el equipo encendido y la aplicación abierta. La entrega también depende de que la conexión de Gmail siga disponible. La [documentación oficial de tareas programadas](https://learn.chatgpt.com/docs/automations) explica estas condiciones. Si se necesita ejecución con el equipo apagado, habrá que diseñar y validar un alojamiento independiente y sus permisos; no está configurado en esta entrega.
+Las pruebas de analítica, orientador y radar, junto con los auditores HTML/GEO, se ejecutan en cada compilación de Netlify. Son controles técnicos, no una garantía de indexación ni posicionamiento.
 
-## Qué ya funciona automáticamente en la publicación
+## Referencias
 
-Cada `npm run build`, incluido el despliegue de Netlify, ejecuta después las siete pruebas de analítica y los auditores del sitio y de las páginas GEO. Si una comprobación falla, el proceso termina con error y Netlify conserva el último despliegue correcto.
-
-Se comprueban destinos y anclas internas, encabezados, canónicos, sintaxis JSON-LD, imágenes, RSS y coherencia del mapa de las páginas GEO. En contexto de producción, un `noindex`/`nofollow` en el metadato robots impide superar el auditor; en previews se exige `noindex`. Son controles técnicos definidos, no una garantía de indexación o posicionamiento.
-
-Los sitemaps y el RSS se generan desde el contenido publicado. El enlazado desde soluciones hacia lecturas relevantes ayuda a mantener un recorrido entre dudas y servicios; no necesita una llamada a un modelo en cada visita.
+- [Activadores de Apps Script](https://developers.google.com/apps-script/guides/triggers/installable).
+- [Cuotas](https://developers.google.com/apps-script/guides/services/quotas) y [MailApp](https://developers.google.com/apps-script/reference/mail/mail-app).
+- [Exportación RSS de Trends](https://support.google.com/trends/answer/3076011?hl=es) y [API alfa de Trends](https://developers.google.com/search/apis/trends).

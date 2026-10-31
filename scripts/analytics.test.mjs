@@ -18,6 +18,7 @@ function fixture(hostname = 'edicionaular.com', saved = null) {
   installAnalytics(win, doc);
   return { win, doc, scripts, panel, accept, reject, preferences, storage, deletedCookies, reloads: () => reloads,
     openPreferences() { listeners.click({ target: { closest: selector => selector === '[data-analytics-preferences]' ? preferences : null } }); },
+    clickGuideButton() { listeners.click({ target: { closest(selector) { return selector === 'button[data-contact-channel="whatsapp"]' ? { closest: () => null, getAttribute() { throw new Error('El resumen no debe leerse para medir el clic'); } } : null; } } }); },
     click(href) { listeners.click({ target: { closest(selector) { return selector === 'a[href]' ? { getAttribute: () => href, closest: () => null } : null; } } }); } };
 }
 
@@ -90,4 +91,10 @@ test('Las preferencias reabren el aviso tras una elección guardada y permiten r
   f.reject.click();
   assert.equal(JSON.parse(f.storage.get(CONSENT_KEY)).value, 'denied');
   assert.equal(f.reloads(), 1);
+});
+test('el botón del orientador mide solo el canal con consentimiento y no lee las respuestas',()=>{
+  const f=fixture();f.clickGuideButton();assert.equal(f.win.dataLayer.length,0);
+  f.accept.click();f.clickGuideButton();
+  assert.deepEqual(f.win.dataLayer.filter(e=>e.event?.startsWith('cta_')),[{event:'cta_whatsapp_click',page_path:'/soluciones-ia/',link_channel:'whatsapp',cta_location:'content'}]);
+  f.reject.click();f.clickGuideButton();assert.equal(f.win.dataLayer.filter(e=>e.event?.startsWith('cta_')).length,1);
 });
