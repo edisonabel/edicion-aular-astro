@@ -1,0 +1,88 @@
+---
+import EditorialImage from './geo/EditorialImage.astro';
+import { IMAGEN_SOLUCION } from '../data/ia/imagenes';
+import { ESCENAS } from '../data/ia/solucion-escenas';
+import { NEGOCIO } from '../data/ia/negocio';
+const { solucion, destino = '#laboratorio' } = Astro.props;
+const escena = ESCENAS[solucion.slug];
+---
+<section class="sh slh" id="intro-solucion" data-template="home03.html#hero">
+  <div class="bringer-hero-block bringer-hero-type03">
+    <div class="slh-top">
+      <span class="bringer-label" data-appear="fade-up">Soluciones con IA · {solucion.tiempo}</span>
+      <h1 class="bringer-page-title" data-split-appear="fade-up" data-split-delay="100" data-split-by="line">{solucion.h1}</h1>
+      <div class="slh-row">
+        <p class="bringer-large-text" data-appear="fade-up" data-delay="150">{solucion.respuesta}</p>
+        <div class="sh-actions" data-appear="fade-left" data-delay="200">
+          <a href={destino} class="bringer-button sh-primary">Probarlo ahora</a>
+          <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="sh-ghost">Agendar un diagnóstico</a>
+        </div>
+      </div>
+    </div>
+    <div class="bringer-hero-media-wrap bringer-masked-block sh-media-wrap">
+      <div class="bringer-hero-media bringer-masked-media sh-media" data-appear="fade-up" data-delay="150" data-threshold="0">
+        <EditorialImage imagen={IMAGEN_SOLUCION[solucion.slug]} prioritaria />
+        <div class="sh-tint" aria-hidden="true"></div>
+        <div class="sh-scene" role="img" aria-label={`Ejemplo ilustrativo de ${solucion.nombre}, con avisos: ${escena.avisos.map(aviso => aviso.titulo).join(', ')}.`}>
+          <div class="sh-device" aria-hidden="true">
+            <div class:list={[escena.forma === 'telefono' ? 'sh-phone' : 'sh-window']}>
+              {escena.forma === 'telefono' ? <div class="sh-island"></div> : <div class="sh-bar"><i></i><i></i><i></i><span>{escena.app}</span></div>}
+              <div class="sh-screen">
+                <div class="sh-app-top"><span>{escena.forma === 'telefono' ? escena.app : 'Vista general'}</span><i>Ejemplo</i></div>
+                {escena.tipo === 'chat' && <div class="sh-chat">{escena.mensajes?.map(m => <p class:list={['sh-burbuja', `is-${m.de}`]}>{m.texto}</p>)}</div>}
+                {(escena.tipo === 'panel' || escena.tipo === 'curso') && <>
+                  <p class="sh-kicker">{escena.kicker}</p>
+                  <p class:list={['sh-big', { 'is-texto': escena.tipo === 'curso' }]}>{escena.grande}</p>
+                  <div class="sh-seg">{(escena.filas ?? []).map((_, index) => index < (escena.avance ?? 0) ? <b></b> : <u></u>)}</div>
+                  {escena.filas?.map(fila => <div class="sh-row"><span>{fila.nombre}</span><strong>{fila.valor}</strong></div>)}
+                </>}
+                {escena.tipo === 'video' && <>
+                  <div class="sh-video"><span class="sh-play"></span><small>Video vertical · 0:15</small></div>
+                  <div class="sh-row"><span>Guion</span><strong>Aprobado</strong></div>
+                  <div class="sh-row"><span>Versiones</span><strong>3</strong></div>
+                </>}
+                {escena.tipo === 'web' && <>
+                  <div class="sh-hero-web"><b></b><b></b><u></u></div>
+                  <div class="sh-resultado"><small>Resultado de búsqueda</small><strong>Tu servicio en Medellín</strong><span>Qué ofreces, para quién y cómo contactarte.</span></div>
+                  <div class="sh-row"><span>Velocidad</span><strong>Revisada</strong></div>
+                  <div class="sh-row"><span>Siguiente paso</span><strong>Claro</strong></div>
+                </>}
+              </div>
+            </div>
+            {escena.avisos.map((aviso, index) => <div class:list={['sh-aviso', ['is-a', 'is-b', 'is-c'][index]]}><span class="sh-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={aviso.icono}></svg></span><div><strong>{aviso.titulo}</strong><small>{aviso.texto}</small></div></div>)}
+          </div>
+        </div>
+      </div>
+      <div class="bringer-masked-content at-bottom-right" data-appear="zoom-out" data-delay="300" data-threshold="0">
+        <a href="#problema-solucion" class="bringer-square-button" aria-label="Seguir leyendo"><span class="bringer-icon bringer-icon-explore"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+<style is:global>
+  .sh .sh-media-wrap{position:relative}.sh .sh-media{position:relative;width:100%!important;max-width:100%;height:clamp(500px,60vw,720px);overflow:hidden;border-radius:var(--bringer-large-br);background:var(--bringer-s-body-bg)}
+  .slh .sh-media .geo-editorial-image{position:absolute;inset:0;width:100%;height:100%;margin:0;aspect-ratio:auto;border-radius:0}.slh .sh-media .geo-editorial-image img{width:100%;height:100%;object-fit:cover;border-radius:0;filter:saturate(.75) brightness(.7)}
+  .sh .sh-tint{position:absolute;inset:0;background:linear-gradient(180deg,#07090D33 0%,#07090D80 50%,#07090DF2 100%)}
+  .sh .sh-scene{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-start;padding-top:clamp(40px,6vw,72px)}.sh .sh-device{position:relative;flex:none}.sh .sh-scene:has(.sh-window){align-items:center;padding-top:0}
+  .sh .sh-phone{position:relative;width:clamp(250px,25vw,330px);aspect-ratio:9/18.6;padding:9px;box-sizing:border-box;border-radius:44px;background:#07090D;box-shadow:0 0 0 1px #F5F7FA27,0 40px 80px #0009;animation:sh-sube .6s cubic-bezier(.16,1,.3,1) .35s both}
+  .sh .sh-window{width:clamp(320px,44vw,600px);overflow:hidden;border-radius:18px;background:#F5F7FA;box-shadow:0 0 0 1px #F5F7FA27,0 40px 80px #0009;animation:sh-sube .6s cubic-bezier(.16,1,.3,1) .35s both}.sh .sh-bar{display:flex;align-items:center;gap:6px;padding:12px 16px;background:#07090D;color:#C5C7CE;font-size:12px}.sh .sh-bar i{width:9px;height:9px;border-radius:50%;background:#F5F7FA33}.sh .sh-bar span{margin-left:10px}
+  .sh .sh-island{position:absolute;top:18px;left:50%;width:30%;height:18px;margin-left:-15%;border-radius:12px;background:#000;z-index:1}
+  .sh .sh-screen{height:100%;padding:46px 18px 16px;box-sizing:border-box;border-radius:36px;background:#F5F7FA;color:#07090D;overflow:hidden}.sh .sh-window .sh-screen{height:auto;min-height:clamp(320px,32vw,420px);padding:clamp(18px,2.4vw,30px);border-radius:0}
+  .sh .sh-app-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:13px;font-weight:600}.sh .sh-app-top i{font-style:normal;font-size:11px;font-weight:400;color:#2A2D35}
+  .sh .sh-kicker{margin:0;font-size:12px;line-height:1.4;color:#2A2D35}.sh .sh-big{margin:0 0 10px;font-size:clamp(52px,5.4vw,72px);font-weight:600;line-height:1;letter-spacing:-.05em;color:#07090D}.sh .sh-big.is-texto{font-size:clamp(28px,3.2vw,42px);letter-spacing:-.035em}
+  .sh .sh-seg{display:flex;gap:3px;margin-bottom:14px}.sh .sh-seg>*{flex:1;height:8px;border-radius:3px;background:var(--ea-gradiente-diagonal)}.sh .sh-seg u{background:#07090D1f}
+  .sh .sh-row{display:flex;justify-content:space-between;gap:12px;padding:9px 2px;border-bottom:1px solid #07090D27;font-size:12px;color:#2A2D35}.sh .sh-row strong{font-weight:600;color:#07090D}
+  .sh .sh-chat{display:flex;flex-direction:column;gap:8px}.sh .sh-burbuja{max-width:86%;margin:0;padding:9px 12px;border-radius:14px;font-size:12px;line-height:1.35;opacity:0;animation:sh-aviso .3s cubic-bezier(.16,1,.3,1) both}.sh .sh-burbuja.is-bot{align-self:flex-start;background:#07090D;color:#F5F7FA}.sh .sh-burbuja.is-persona{align-self:flex-end;background:var(--ea-gradiente-diagonal);color:#fff}.sh .sh-burbuja:nth-child(1){animation-delay:.7s}.sh .sh-burbuja:nth-child(2){animation-delay:1.1s}.sh .sh-burbuja:nth-child(3){animation-delay:1.5s}.sh .sh-burbuja:nth-child(4){animation-delay:1.9s}
+  .sh .sh-video{position:relative;display:grid;place-items:center;aspect-ratio:9/12;margin-bottom:10px;border-radius:16px;background:var(--ea-gradiente);color:#fff}.sh .sh-play{width:0;height:0;margin-left:6px;border-style:solid;border-width:14px 0 14px 24px;border-color:transparent transparent transparent #fff}.sh .sh-video small{position:absolute;left:12px;bottom:10px;font-size:11px;color:#fff}
+  .sh .sh-hero-web{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}.sh .sh-hero-web>*{display:block;height:12px;border-radius:4px;background:#07090D}.sh .sh-hero-web>:nth-child(2){width:68%}.sh .sh-hero-web u{width:38%;height:26px;margin-top:6px;background:var(--ea-gradiente-diagonal)}
+  .sh .sh-resultado{display:block;margin-bottom:10px;padding:14px;border:1px solid #07090D27;border-radius:12px;background:#fff}.sh .sh-resultado small{display:block;margin-bottom:4px;font-size:11px;color:#2A2D35}.sh .sh-resultado strong{display:block;font-size:15px;font-weight:600;color:#07090D}.sh .sh-resultado span{font-size:12px;color:#2A2D35}
+  .sh .sh-aviso{position:absolute;display:flex;align-items:center;gap:10px;width:max-content;max-width:270px;padding:10px 14px 10px 10px;border:1px solid #F5F7FA27;border-radius:var(--bringer-small-br);background:#1A1D24;color:#F5F7FA;box-shadow:0 16px 40px #0007;animation:sh-aviso .4s cubic-bezier(.16,1,.3,1) both}.sh .sh-aviso strong{display:block;font-size:13px;font-weight:600;line-height:1.3;color:#F5F7FA}.sh .sh-aviso small{display:block;font-size:12px;line-height:1.35;color:#C5C7CE}
+  .sh .sh-mark{display:grid;place-items:center;flex:none;width:32px;height:32px;box-sizing:border-box;border:1px solid #F5F7FA;border-radius:9px;background:transparent;color:#F5F7FA}.sh .sh-mark svg{position:static;display:block;width:18px;height:18px;opacity:1!important;transform:none}
+  .sh .sh-aviso.is-a{top:11%;right:calc(100% - 12px);animation-delay:1s}.sh .sh-aviso.is-b{top:33%;left:calc(100% - 12px);animation-delay:1.6s}.sh .sh-aviso.is-c{top:72%;right:calc(100% - 26px);animation-delay:2.2s}
+  .sh .sh-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}.sh .sh-primary{min-height:48px}.sh .sh-ghost{color:var(--bringer-s-heading);font-size:15px;text-decoration:underline;text-underline-offset:.25em}
+  .slh .slh-top{margin-bottom:clamp(28px,4vw,48px)}.slh .slh-top h1{max-width:20ch;margin:12px 0 clamp(20px,2.4vw,32px)}.slh .slh-row{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:end}.slh .slh-row p{margin:0}
+  @keyframes sh-sube{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}@keyframes sh-aviso{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+  @media(max-width:1100px){.sh .sh-aviso.is-a{right:calc(100% - 70px)}.sh .sh-aviso.is-b{left:calc(100% - 70px)}.sh .sh-aviso.is-c{right:calc(100% - 80px)}}
+  @media(max-width:860px){.slh .slh-row{grid-template-columns:minmax(0,1fr);gap:20px}.sh .sh-media{height:640px}.sh .sh-scene{padding-top:32px}.sh .sh-scene:has(.sh-window){align-items:flex-start;padding-top:28px}.sh .sh-phone{width:262px}.sh .sh-window{width:calc(100vw - 72px);max-width:520px}.sh .sh-aviso{max-width:220px;padding:8px 12px 8px 8px}.sh .sh-aviso.is-a{top:auto;bottom:-104px;right:auto;left:-6px}.sh .sh-phone~.sh-aviso.is-a{top:68%;bottom:auto;left:-36px}.sh .sh-aviso.is-b{top:auto;bottom:-160px;left:auto;right:-6px}.sh .sh-phone~.sh-aviso.is-b{top:80%;bottom:auto;right:-36px}.sh .sh-aviso.is-c{top:auto;bottom:-216px;right:auto;left:-6px}.sh .sh-phone~.sh-aviso.is-c{top:91%;bottom:auto;left:-28px}.sh .bringer-masked-content{display:none}}
+  @media(prefers-reduced-motion:reduce){.sh .sh-phone,.sh .sh-window,.sh .sh-aviso,.sh .sh-burbuja{animation:none;opacity:1}}
+</style>

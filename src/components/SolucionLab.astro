@@ -1,0 +1,121 @@
+---
+import { SOLUCION_LABS } from '../lib/solucion-lab.js';
+const { solucion } = Astro.props;
+const lab = SOLUCION_LABS[solucion.slug];
+---
+<section class="sl" id="laboratorio" data-sl data-slug={solucion.slug} data-nombre={solucion.nombre} data-template="propio#laboratorio" aria-labelledby="sl-heading">
+  <header class="sl-intro">
+    <span class="bringer-label" data-appear="fade-up">{lab.eyebrow}</span>
+    <h2 id="sl-heading" data-appear="fade-up">{lab.titulo}<span class="bringer-accent">.</span></h2>
+    <p class="bringer-large-text" data-appear="fade-up" data-delay="100">{lab.descripcion} Nada se guarda ni se envía.</p>
+  </header>
+  <div class="sl-tabs" role="tablist" aria-label="Vista del laboratorio">
+    <button type="button" role="tab" aria-selected="true" aria-controls="sl-telefono" data-sl-tab="preguntas">Preguntas</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="sl-panel" data-sl-tab="resultado">Resultado<i data-sl-aviso hidden></i></button>
+  </div>
+  <div class="sl-stage" data-sl-stage data-vista="preguntas">
+    <div class="sl-phone" id="sl-telefono" data-appear="fade-up">
+      <div class="sl-island" aria-hidden="true"></div>
+      <div class="sl-screen">
+        <div class="sl-progress" aria-hidden="true" data-sl-progress></div>
+        <div class="sl-body" aria-live="polite" data-sl-body>
+          <p class="sl-kicker">Paso 1</p>
+          <h3>{lab.preguntas[0].texto}</h3>
+          <div class="sl-options">{lab.preguntas[0].opciones.map(opcion => <span>{opcion}</span>)}</div>
+        </div>
+        {lab.numeros && <div class="sl-numbers" data-sl-numbers hidden>
+          {lab.numeros.map(numero => <label class="sl-range"><span>{numero.label} <output data-sl-out={numero.id}></output></span><input type="range" min={numero.min} max={numero.max} step={numero.step} value={numero.valor} data-sl-in={numero.id} data-sufijo={numero.sufijo} /></label>)}
+        </div>}
+        <button type="button" class="sl-reset" data-sl-reset hidden>Empezar de nuevo</button>
+      </div>
+    </div>
+    <aside class="sl-panel" id="sl-panel" aria-label={lab.panel} data-appear="fade-up" data-delay="100">
+      <div class="sl-panel-top"><span>{lab.panel}</span><span>Orientativo</span></div>
+      <h3><span data-sl-titular></span><em data-sl-subtitulo></em></h3>
+      <div class="sl-destacado"><small data-sl-destacado-label></small><strong data-sl-destacado-valor></strong></div>
+      <dl class="sl-rows" data-sl-filas></dl>
+      <p class="sl-subtitle" data-sl-lista-titulo></p>
+      <ul class="sl-list" data-sl-lista></ul>
+      <button type="button" class="sl-cta" data-sl-whatsapp data-contact-channel="whatsapp">Conversar sobre esto <span aria-hidden="true">↗</span></button>
+      <p class="sl-help">El mensaje queda preparado. Tú decides cuándo enviarlo.</p>
+    </aside>
+  </div>
+  <noscript><p>Puedes <a href="https://wa.me/573002730128">escribirnos por WhatsApp</a> o <a href="https://cal.com/edicion-aular-website">agendar una conversación</a>.</p></noscript>
+</section>
+<script>
+  import { SOLUCION_LABS, labInicial, labResponder, labTerminado, labWhatsapp } from '../lib/solucion-lab.js';
+  const root=document.querySelector<HTMLElement>('[data-sl]');
+  if(root){
+    const q=<T extends Element>(selector:string)=>root.querySelector<T>(selector)!;
+    const slug=root.dataset.slug!,nombre=root.dataset.nombre!,lab=(SOLUCION_LABS as any)[slug],cuerpo=q<HTMLElement>('[data-sl-body]'),stage=q<HTMLElement>('[data-sl-stage]'),aviso=q<HTMLElement>('[data-sl-aviso]'),reset=q<HTMLElement>('[data-sl-reset]');
+    const numeros=root.querySelector<HTMLElement>('[data-sl-numbers]'),entradas=Array.from(root.querySelectorAll<HTMLInputElement>('[data-sl-in]'));
+    let estado=labInicial(slug),hayInteraccion=false;
+    function panel(){
+      const r=lab.resultado(estado.respuestas,estado.numeros);
+      q('[data-sl-titular]').textContent=r.titular;q('[data-sl-subtitulo]').textContent=r.subtitulo;
+      q('[data-sl-destacado-label]').textContent=r.destacado.label;q('[data-sl-destacado-valor]').textContent=r.destacado.valor;
+      q<HTMLElement>('.sl-destacado').classList.toggle('is-active',estado.paso>0);
+      q('[data-sl-filas]').replaceChildren(...r.filas.flatMap(([clave,valor]:[string,string])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=clave;dd.textContent=valor;return [dt,dd];}));
+      q('[data-sl-lista-titulo]').textContent=r.lista.titulo;
+      q('[data-sl-lista]').replaceChildren(...(r.lista.items.length?r.lista.items:['Sin pendientes por ahora.']).map((item:string)=>{const li=document.createElement('li');li.textContent=item;return li;}));
+    }
+    function progreso(){
+      const total=lab.preguntas.length;
+      q('[data-sl-progress]').replaceChildren(...lab.preguntas.map((_:unknown,index:number)=>{const b=document.createElement('b');if(index<estado.paso)b.className='is-done';return b;}));
+      if(total===1)q<HTMLElement>('[data-sl-progress]').hidden=true;
+    }
+    function pantalla(){
+      progreso();panel();
+      const terminado=labTerminado(slug,estado);
+      reset.hidden=estado.paso===0;
+      if(numeros)numeros.hidden=!terminado;
+      if(terminado){
+        const h=document.createElement('h3'),p=document.createElement('p'),k=document.createElement('p');
+        k.className='sl-kicker';k.textContent='Listo';h.textContent=numeros?'Ajusta tus números':'Tu resultado está listo';h.tabIndex=-1;
+        p.className='sl-note';p.textContent=numeros?'El cálculo usa solo lo que indicas. No es una promesa de ahorro.':'Es una orientación según tus respuestas, no un diagnóstico.';
+        cuerpo.replaceChildren(k,h,p);
+        if(stage.dataset.vista==='preguntas'&&matchMedia('(max-width:860px)').matches)aviso.hidden=false;
+        if(hayInteraccion)h.focus({preventScroll:true});
+        return;
+      }
+      const pregunta=lab.preguntas[estado.paso],k=document.createElement('p'),h=document.createElement('h3'),lista=document.createElement('div');
+      k.className='sl-kicker';k.textContent=`Paso ${estado.paso+1} de ${lab.preguntas.length}`;h.textContent=pregunta.texto;lista.className='sl-options';
+      lista.replaceChildren(...pregunta.opciones.map((opcion:string)=>{const b=document.createElement('button');b.type='button';b.textContent=opcion;b.addEventListener('click',()=>{hayInteraccion=true;estado=labResponder(slug,estado,opcion);pantalla();});return b;}));
+      cuerpo.replaceChildren(k,h,lista);
+      if(hayInteraccion)lista.querySelector('button')?.focus({preventScroll:true});
+    }
+    function pintarNumeros(){
+      entradas.forEach(input=>{root!.querySelector(`[data-sl-out="${input.dataset.slIn}"]`)!.textContent=`${input.value}${input.dataset.sufijo||''}`;input.style.setProperty('--sl-p',`${(Number(input.value)-Number(input.min))/(Number(input.max)-Number(input.min))*100}%`);});
+    }
+    entradas.forEach(input=>input.addEventListener('input',()=>{estado={...estado,numeros:{...estado.numeros,[input.dataset.slIn!]:Number(input.value)}};pintarNumeros();panel();}));
+    reset.addEventListener('click',()=>{estado=labInicial(slug);entradas.forEach(input=>{input.value=String(estado.numeros[input.dataset.slIn!]);});aviso.hidden=true;pintarNumeros();pantalla();});
+    root.querySelectorAll<HTMLElement>('[data-sl-tab]').forEach(tab=>tab.addEventListener('click',()=>{stage.dataset.vista=tab.dataset.slTab;root!.querySelectorAll<HTMLElement>('[data-sl-tab]').forEach(item=>item.setAttribute('aria-selected',String(item===tab)));if(tab.dataset.slTab==='resultado')aviso.hidden=true;}));
+    // Como en el orientador: el botón no expone la URL con respuestas a la medición automática de enlaces.
+    q('[data-sl-whatsapp]').addEventListener('click',()=>{window.location.assign(labWhatsapp(slug,nombre,estado).whatsapp);});
+    pintarNumeros();pantalla();
+  }
+</script>
+<style is:global>
+  .sl{padding:clamp(64px,9vw,120px) 0;scroll-margin-top:72px}.sl [hidden]{display:none!important}.sl-intro{max-width:640px;margin-bottom:clamp(28px,4vw,48px)}.sl-intro h2{margin:12px 0}.sl-intro p{margin:0}.sl-tabs{display:none}
+  .sl-stage{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:stretch}
+  .sl-phone{position:relative;box-sizing:border-box;width:100%;max-width:400px;min-height:660px;padding:10px;border-radius:52px;background:var(--bringer-s-body-bg);box-shadow:0 0 0 1px var(--bringer-s-border),0 30px 80px color-mix(in srgb,var(--bringer-s-accent) 15%,transparent),0 30px 60px #0006}
+  .sl-island{position:absolute;top:20px;left:50%;width:96px;height:24px;margin-left:-48px;border-radius:14px;background:#000;z-index:2}
+  .sl-screen{display:flex;flex-direction:column;height:100%;min-height:640px;box-sizing:border-box;padding:62px 22px 26px;border-radius:42px;background:var(--bringer-s-container-bg);color:var(--bringer-s-heading);overflow:hidden}
+  .sl-progress{display:flex;gap:4px;margin-bottom:22px}.sl-progress b{flex:1;height:6px;border-radius:3px;background:var(--bringer-s-border);transition:background .3s}.sl-progress b.is-done{background:var(--ea-gradiente-diagonal)}
+  .sl-body{animation:sl-entra .3s cubic-bezier(.16,1,.3,1)}.sl-kicker{margin:0;font-size:13px;color:var(--bringer-s-heading-fade)}.sl-body h3{margin:6px 0 22px;font-size:28px;font-weight:600;line-height:1.14;letter-spacing:-.035em;color:inherit}.sl-body h3:focus{outline:none}.sl-note{margin:0;font-size:15px;line-height:1.5;color:var(--bringer-s-heading)}
+  .sl-options{display:flex;flex-direction:column}.sl-options>span{display:block;padding:15px 2px;border-bottom:1px solid var(--bringer-s-border);font-size:16px}
+  .sl .sl-options button{position:relative;display:block;width:100%;min-height:54px;margin:0;padding:12px 30px 12px 2px;border:0;border-bottom:1px solid var(--bringer-s-border);border-radius:0;background:transparent;color:inherit;font:inherit;font-size:16px;line-height:1.3;letter-spacing:0;text-transform:none;text-align:left;white-space:normal;cursor:pointer;transition:color .15s;animation:sl-sube .2s cubic-bezier(.16,1,.3,1)}.sl .sl-options button::after{content:'→';position:absolute;top:50%;right:2px;color:var(--bringer-s-text-accent);transform:translateY(-50%);transition:transform .15s}.sl .sl-options button:hover{background:transparent;color:var(--bringer-s-text-accent)}.sl .sl-options button:hover::after{transform:translate(4px,-50%)}
+  .sl-numbers{display:flex;flex-direction:column;gap:20px;margin-top:26px}.sl-range{display:block;margin:0;font-size:14px;font-weight:400;letter-spacing:normal;text-transform:none;color:var(--bringer-s-heading)}.sl-range span{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.sl-range output{font-weight:600;font-variant-numeric:tabular-nums}
+  .sl .sl-range input[type="range"]{-webkit-appearance:none;appearance:none;display:block;width:100%;height:28px;min-height:28px;margin:0;padding:0;border:0;background:transparent;box-shadow:none;cursor:pointer}.sl .sl-range input[type="range"]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,#ff0078,#ff002c var(--sl-p,50%),var(--bringer-s-border) var(--sl-p,50%))}.sl .sl-range input[type="range"]::-moz-range-track{height:6px;border-radius:3px;background:var(--bringer-s-border)}.sl .sl-range input[type="range"]::-moz-range-progress{height:6px;border-radius:3px;background:var(--ea-gradiente-diagonal)}.sl .sl-range input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-9px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 8px #0006}.sl .sl-range input[type="range"]::-moz-range-thumb{width:24px;height:24px;border:0;border-radius:50%;background:#fff}
+  .sl .sl-reset{align-self:flex-start;min-height:44px;margin:auto 0 0;padding:8px 14px;border:1px solid var(--bringer-s-text-accent);border-radius:9px;background:transparent;color:inherit;font:inherit;font-size:14px;letter-spacing:0;text-transform:none;cursor:pointer}.sl .sl-reset:hover{background:color-mix(in srgb,var(--bringer-s-accent) 18%,transparent);color:inherit}
+  .sl-panel{display:flex;flex-direction:column;min-width:0;box-sizing:border-box;padding:clamp(20px,3vw,36px);border-radius:var(--bringer-large-br);background:#F5F7FA;color:#07090D}.sl-panel-top{display:flex;justify-content:space-between;margin-bottom:clamp(18px,3vw,32px);font-size:13px;color:#2A2D35}.sl-panel-top span:first-child{font-weight:600;color:#07090D}
+  .sl-panel h3{margin:0 0 18px;font-size:clamp(28px,3.4vw,44px);font-weight:600;line-height:1.08;letter-spacing:-.04em;color:#07090D}.sl-panel h3 em{display:block;font-style:normal;color:#07090DB0}
+  .sl-destacado{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;padding:18px 20px;border-radius:20px;background:#FFFFFF;transition:background .3s}.sl-destacado small{font-size:13px;color:#2A2D35}.sl-destacado strong{font-size:clamp(18px,2vw,24px);font-weight:600;line-height:1.2;letter-spacing:-.02em;color:#07090D}.sl-destacado.is-active{background:#07090D}.sl-destacado.is-active small{color:#FFFFFFC0}.sl-destacado.is-active strong{color:#fff}
+  .sl-rows{display:grid;grid-template-columns:auto minmax(0,1fr);margin:0 0 18px;font-size:14px;line-height:1.35}.sl-rows dt,.sl-rows dd{margin:0;padding:10px 0;border-bottom:1px solid #07090D27;animation:sl-fade .2s ease-out}.sl-rows dt{color:#2A2D35;font-weight:400}.sl-rows dd{padding-left:20px;text-align:right;font-weight:600;color:#07090D}
+  .sl-subtitle{margin:0 0 8px;font-size:13px;font-weight:600;color:#07090D}.sl .sl-list{flex:1 1 auto;margin:0 0 18px;padding:0;list-style:none;font-size:14px;line-height:1.35;color:#2A2D35}.sl .sl-list li{position:relative;margin:0 0 7px;padding:0 0 0 26px;list-style:none;animation:sl-sube .2s cubic-bezier(.16,1,.3,1)}.sl .sl-list li::marker{content:none}.sl .sl-list li::before{content:'✓';position:absolute;top:0;left:0;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#07090D;color:#fff;font-size:10px;font-weight:600}
+  .sl .sl-cta{display:inline-flex;justify-content:center;align-items:center;gap:10px;width:100%;min-height:52px;margin:0;padding:12px 20px;box-sizing:border-box;border:0;border-radius:6px;background:var(--ea-gradiente-diagonal);color:#fff;font:inherit;font-size:15px;font-weight:600;line-height:1.3;letter-spacing:0;text-transform:none;cursor:pointer;transition:filter .15s}.sl .sl-cta:hover{background:var(--ea-gradiente-diagonal);filter:brightness(.9);color:#fff}.sl-help{margin:10px 0 0;font-size:12px;line-height:1.5;text-align:center;color:#2A2D35}
+  .sl :is(button,input):focus-visible{outline:3px solid var(--bringer-s-text-accent);outline-offset:2px}
+  @keyframes sl-entra{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}@keyframes sl-sube{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes sl-fade{from{opacity:0}to{opacity:1}}
+  @media(max-width:860px){.sl-tabs{position:relative;z-index:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin:0 0 14px;padding:4px;border:1px solid var(--bringer-s-border);border-radius:16px;background:var(--bringer-s-container-bg)}.sl .sl-tabs button{min-height:44px;margin:0;padding:0 12px;border:0;border-radius:12px;background:transparent;color:var(--bringer-s-heading);font:inherit;font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer}.sl .sl-tabs button[aria-selected="true"]{background:var(--ea-gradiente-diagonal);color:#fff}.sl-tabs i{display:inline-block;width:8px;height:8px;margin-left:8px;border-radius:50%;background:var(--bringer-s-text-accent);vertical-align:middle}.sl-stage{grid-template-columns:minmax(0,1fr)}.sl-phone{max-width:420px;min-height:560px;margin:0 auto;padding:7px;border-radius:40px}.sl-screen{min-height:546px;padding:50px 18px 22px;border-radius:33px}.sl-island{top:15px;width:80px;height:20px;margin-left:-40px}.sl-stage[data-vista="preguntas"] .sl-panel,.sl-stage[data-vista="resultado"] .sl-phone{display:none}}
+  @media(prefers-reduced-motion:reduce){.sl-body,.sl .sl-options button,.sl-rows dt,.sl-rows dd,.sl .sl-list li{animation:none}}
+</style>

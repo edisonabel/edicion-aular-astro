@@ -2,16 +2,15 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RelatedReading from '../../components/blog/RelatedReading.astro';
 import { READINGS_BY_SOLUTION } from '../../data/blog-relations';
-import EditorialImage from '../../components/geo/EditorialImage.astro';
 import Programa from '../../components/geo/Programa.astro';
-import ProcessSteps from '../../components/geo/ProcessSteps.astro';
-import { IMAGEN_SOLUCION } from '../../data/ia/imagenes';
 import JsonLd from '../../components/geo/JsonLd.astro';
 import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
 import FaqList from '../../components/geo/FaqList.astro';
 import Normativa from '../../components/geo/Normativa.astro';
 import Cta from '../../components/geo/Cta.astro';
 import DemoAtencion from '../../components/DemoAtencion.astro';
+import SolucionHero from '../../components/SolucionHero.astro';
+import SolucionLab from '../../components/SolucionLab.astro';
 import { SOLUCIONES, type Solucion } from '../../data/ia/soluciones';
 import { ZONAS } from '../../data/ia/zonas';
 import { SECTORES } from '../../data/ia/sectores';
@@ -31,6 +30,7 @@ interface Props {
 
 const { solucion } = Astro.props;
 const pageUrl = `/soluciones-ia/${solucion.slug}`;
+const esAgente = solucion.slug === 'agentes-ia-whatsapp';
 
 const zonasRelevantes = ZONAS.filter((z) => z.enfoque.includes(solucion.slug)).slice(0, 4);
 const sectoresRelevantes = SECTORES.filter((s) => s.usos.some((u) => u.solucion === solucion.slug));
@@ -64,124 +64,47 @@ const schemaData = [
       { name: solucion.nombre }
     ]} />
 
-    <!-- Section: Intro (Bringer service-details.html Style) -->
-    <section id="intro-bringer-service-details-html-style" data-template="service-details.html#intro">
-      <div class="stg-row stg-large-gap stg-tp-normal-gap stg-tp-column-reverse">
-        <div class="stg-col-6 stg-vertical-space-between" data-unload="fade-left">
-          <div class="stg-tp-bottom-gap">
-            <span class="bringer-label">Tiempo estimado: {solucion.tiempo}</span>
-            <h1 class="bringer-page-title" data-split-appear="fade-up">{solucion.h1}</h1>
-            <p class="bringer-large-text" data-appear="fade-right" data-delay="100">{solucion.respuesta}</p>
-            <p class="bringer-large-text bringer-tp-normal-text" data-appear="fade-right" data-delay="200">{solucion.problema}</p>
-          </div>
-          <div class="align-right" data-appear="fade-right">
-            <a href={NEGOCIO.agenda} target="_blank" rel="noopener" class="bringer-icon-link">
-              <div class="bringer-icon-link-content">
-                <p class="geo-action-label">
-                  Hablemos de tu proyecto
-                  <br>
-                  y definamos el primer paso
-                </p>
-                <span class="bringer-label">Agenda un Diagnóstico</span>
-              </div>
-              <div class="bringer-icon-wrap">
-                <i class="bringer-icon bringer-icon-explore"></i>
-              </div>
-            </a>
-          </div>
-        </div>
+    <SolucionHero solucion={solucion} destino={esAgente ? '#demo-atencion' : '#laboratorio'} />
 
-        <div class="stg-col-6 stg-tp-bottom-gap-l bringer-parallax-media" data-appear="fade-left" data-unload="fade-right">
-          <EditorialImage imagen={IMAGEN_SOLUCION[solucion.slug]} prioritaria />
-        </div>
-      </div>
+    <section class="ss-problema" id="problema-solucion" data-template="propio#problema">
+      <span class="bringer-label" data-appear="fade-up">El problema real</span>
+      <p class="ss-frase" data-split-appear="fade-up" data-split-by="line">{solucion.problema}</p>
     </section>
 
-    {solucion.slug === 'agentes-ia-whatsapp' && <DemoAtencion titulo="Pruébalo dentro de un sistema completo" />}
+    {esAgente ? <DemoAtencion titulo="Pruébalo como lo haría un cliente" /> : <SolucionLab solucion={solucion} />}
 
-    <!-- Section: Proceso de implementación -->
-    <section id="proceso" data-template="home06.html#steps" class="backlight-bottom">
-      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Del diagnóstico a la puesta en marcha</h2><p>Plazo orientativo: {solucion.tiempo} Confirmamos el calendario después de revisar el alcance.</p></div></div>
-      <div class="stg-row stg-valign-middle stg-large-gap stg-tp-normal-gap">
-        <div class="stg-col-6 stg-tp-bottom-gap-l"><EditorialImage imagen="diagnostico" /></div>
-        <div class="stg-col-6"><ProcessSteps steps={solucion.proceso} /></div>
-      </div>
+    <section class="ss-proceso" id="proceso" data-template="home06.html#steps" data-ss-proceso>
+      <div class="ss-head"><span class="bringer-label" data-appear="fade-up">Plazo orientativo: {solucion.tiempo}</span><h2 data-split-appear="fade-up" data-split-by="line">Del diagnóstico a la puesta en marcha<span class="bringer-accent">.</span></h2><p class="bringer-large-text" data-appear="fade-up" data-delay="100">Confirmamos el calendario después de revisar el alcance.</p></div>
+      <ol class="ss-steps" aria-label="Etapas del proyecto">
+        {solucion.proceso.map((step, index) => <li style={`--i:${index}`}><span class="ss-num" aria-hidden="true">{index + 1}</span><h3>{step.paso}</h3><p>{step.detalle}</p></li>)}
+      </ol>
     </section>
 
-    <!-- Section: Entregables de la solución -->
-    <section id="que-incluye" data-template="service-details.html#offer">
-      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Qué incluye esta solución</h2><p>Definimos los entregables en la propuesta y dejamos claro qué podrá operar tu equipo.</p></div></div>
-      <div class="bringer-grid-2cols bringer-tp-grid-1col stg-normal-gap">
-        {solucion.incluye.map((item, idx) => <div class="bringer-block geo-deliverable"><span class="bringer-label">{String(idx + 1).padStart(2, '0')}</span><h3>{item}</h3></div>)}
-      </div>
-      {solucion.servicioRelacionado && <p class="stg-top-gap">Complementa el proyecto con <a href={solucion.servicioRelacionado.href}>{solucion.servicioRelacionado.label}</a>.</p>}
+    <section class="ss-incluye" id="que-incluye" data-template="service-details.html#offer">
+      <div class="ss-head"><span class="bringer-label" data-appear="fade-up">Entregables</span><h2 data-split-appear="fade-up" data-split-by="line">Qué incluye esta solución<span class="bringer-accent">.</span></h2><p class="bringer-large-text" data-appear="fade-up" data-delay="100">Definimos los entregables en la propuesta y dejamos claro qué podrá operar tu equipo.</p></div>
+      <ol class="ss-list" data-stagger-appear="fade-up" data-stagger-delay="60">
+        {solucion.incluye.map((item, index) => <li><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><h3>{item}</h3></li>)}
+      </ol>
+      {solucion.servicioRelacionado && <p class="ss-relacionado">Complementa el proyecto con <a href={solucion.servicioRelacionado.href}>{solucion.servicioRelacionado.label}</a>.</p>}
     </section>
     {solucion.slug === 'capacitacion-ia-empresas' && <Programa />}
 
-    <!-- Section: Qué incluye y de qué depende la inversión (estilo Bringer sticky block) -->
-    <section id="que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block" data-template="pricing.html#prices">
-      <div class="stg-row stg-large-gap stg-tp-normal-gap">
-        <div class="stg-col-6 stg-tp-bottom-gap-l" data-unload="fade-left">
-          <div class="bringer-sticky-block">
-            <h2>Variables de inversión y alcance</h2>
-            <p class="bringer-large-text">
-              No creemos en paquetes cerrados que no se adaptan a la realidad de tu empresa. La inversión se determina a partir de estos factores técnicos:
-            </p>
-            <div class="align-right">
-              <a href="/inversion" class="bringer-arrow-link">Ver Políticas de Inversión</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="stg-col-6">
-          <div class="bringer-grid-1col stg-normal-gap" data-stagger-appear="zoom-in" data-stagger-unload="zoom-out" data-threshold="0.5" data-stagger-delay="100">
-            {solucion.costoDepende.map((c) => (
-              <div class="bringer-block">
-                <h3>{c.factor}<span class="bringer-accent">.</span></h3>
-                <p>{c.impacto}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+    <section class="ss-inversion" id="variables-inversion" data-template="pricing.html#prices">
+      <div class="ss-inversion-head">
+        <span class="bringer-label" data-appear="fade-up">Inversión</span>
+        <h2 data-split-appear="fade-up" data-split-by="line">De qué depende<span class="bringer-accent">.</span></h2>
+        <p class="bringer-large-text" data-appear="fade-up" data-delay="100">No creemos en paquetes cerrados que no se adaptan a tu empresa. La inversión parte de estos factores.</p>
+        <a href="/inversion" class="bringer-arrow-link">Ver políticas de inversión</a>
       </div>
+      <dl class="ss-factores" data-stagger-appear="fade-up" data-stagger-delay="60">
+        {solucion.costoDepende.map((c) => <div><dt>{c.factor}</dt><dd>{c.impacto}</dd></div>)}
+      </dl>
     </section>
 
-    <!-- Section: Sectores y Zonas Relevantes -->
     {(sectoresRelevantes.length > 0 || zonasRelevantes.length > 0) && (
-      <section class="stg-bottom-gap-l" id="explorar-soluciones" data-template="services.html#our-services">
-        <div class="stg-row stg-large-gap stg-tp-normal-gap">
-          {sectoresRelevantes.length > 0 && (
-            <div class="stg-col-6 stg-tp-bottom-gap">
-              <div class="bringer-block">
-                <h3>Aplicaciones por sector</h3>
-                <p style="color: var(--bringer-s-heading); margin-top: 0.5rem;">Soluciones adaptadas a la dinámica comercial de cada industria:</p>
-                <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;">
-                  {sectoresRelevantes.map((sec) => (
-                    <a href={`/sectores/${sec.slug}`} class="bringer-arrow-link">
-                      {sec.nombre}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {zonasRelevantes.length > 0 && (
-            <div class="stg-col-6">
-              <div class="bringer-block">
-                <h3>Zonas comerciales en Medellín</h3>
-                <p style="color: var(--bringer-s-heading); margin-top: 0.5rem;">Cobertura presencial y virtual en el Valle de Aburrá:</p>
-                <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;">
-                  {zonasRelevantes.map((z) => (
-                    <a href={`/medellin/${z.slug}`} class="bringer-arrow-link">
-                      Empresas y comercios en {z.nombre}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+      <section class="ss-explorar" id="explorar-soluciones" data-template="services.html#our-services">
+        {sectoresRelevantes.length > 0 && <div><h2>Aplicaciones por sector</h2><div class="ss-enlaces">{sectoresRelevantes.map((sec) => <a href={`/sectores/${sec.slug}`}>{sec.nombre}<span aria-hidden="true">→</span></a>)}</div></div>}
+        {zonasRelevantes.length > 0 && <div><h2>Zonas en Medellín</h2><div class="ss-enlaces">{zonasRelevantes.map((z) => <a href={`/medellin/${z.slug}`}>Empresas y comercios en {z.nombre}<span aria-hidden="true">→</span></a>)}</div></div>}
       </section>
     )}
 
@@ -201,3 +124,24 @@ const schemaData = [
     />
   </div>
 </BaseLayout>
+<script>
+  // Dibuja la línea del proceso una sola vez, al entrar en pantalla.
+  const proceso=document.querySelector<HTMLElement>('[data-ss-proceso]');
+  if(proceso&&'IntersectionObserver' in window){
+    const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){proceso.classList.add('is-in');observer.disconnect();}},{threshold:.25});
+    proceso.classList.add('is-ready');observer.observe(proceso);
+  }
+</script>
+<style is:global>
+  .ss-problema{padding:clamp(72px,10vw,140px) 0 clamp(24px,4vw,48px);scroll-margin-top:72px}.ss-frase{max-width:30ch;margin:16px 0 0;font-size:clamp(26px,3.5vw,46px);font-weight:600;line-height:1.16;letter-spacing:-.035em;color:var(--bringer-s-heading)}
+  .ss-head{max-width:680px;margin-bottom:clamp(32px,5vw,64px)}.ss-head h2{margin:12px 0}.ss-head p{margin:0}
+  .ss-proceso,.ss-incluye,.ss-inversion,.ss-explorar{padding:clamp(64px,9vw,120px) 0}
+  .ss-steps{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));grid-auto-flow:column;gap:clamp(20px,3vw,40px);margin:0;padding:0;list-style:none}.ss-steps::before{content:'';position:absolute;top:24px;left:0;right:0;height:2px;background:var(--ea-gradiente-diagonal);transform-origin:left}
+  .ss-steps li{position:relative;margin:0;padding:0;list-style:none}.ss-steps li::marker{content:none}.ss-num{position:relative;display:grid;place-items:center;width:50px;height:50px;margin-bottom:20px;border-radius:15px;background:var(--ea-gradiente);color:#fff;font-size:18px;font-weight:600}.ss-steps h3{margin:0 0 8px;font-size:clamp(20px,2vw,26px);font-weight:600;line-height:1.2;letter-spacing:-.02em}.ss-steps p{margin:0;font-size:15px;line-height:1.5;color:var(--bringer-s-heading)}
+  .ss-proceso.is-ready .ss-steps::before{transform:scaleX(0);transition:transform .9s cubic-bezier(.16,1,.3,1) .1s}.ss-proceso.is-ready .ss-steps li{opacity:0;transform:translateY(12px);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i)*120ms + 150ms)}.ss-proceso.is-in .ss-steps::before{transform:none}.ss-proceso.is-in .ss-steps li{opacity:1;transform:none}
+  .ss-list{margin:0;padding:0;list-style:none}.ss-list li{display:grid;grid-template-columns:clamp(44px,8vw,120px) minmax(0,1fr);gap:16px;margin:0;padding:clamp(18px,2.4vw,28px) 0;border-top:1px solid var(--bringer-s-border);list-style:none}.ss-list li::marker{content:none}.ss-list li>span{padding-top:.35em;font-size:14px;color:var(--bringer-s-text-accent)}.ss-list h3{margin:0;font-size:clamp(20px,2.6vw,34px);font-weight:600;line-height:1.18;letter-spacing:-.025em}.ss-relacionado{margin:24px 0 0;font-size:16px;color:var(--bringer-s-heading)}.ss-relacionado a{color:var(--bringer-s-text-accent);text-decoration:underline;text-underline-offset:.2em}
+  .ss-inversion{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(32px,6vw,96px);align-items:start}.ss-inversion-head{position:sticky;top:110px}.ss-inversion-head h2{margin:12px 0}.ss-inversion-head p{margin:0 0 20px}.ss-factores{margin:0}.ss-factores>div{padding:clamp(18px,2.2vw,26px) 0;border-top:1px solid var(--bringer-s-border)}.ss-factores dt{margin:0 0 4px;font-size:clamp(20px,2.2vw,28px);font-weight:600;line-height:1.2;letter-spacing:-.02em;color:var(--bringer-s-heading)}.ss-factores dd{margin:0;font-size:15px;line-height:1.5;color:var(--bringer-s-heading-fade)}
+  .ss-explorar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,72px)}.ss-explorar h2{margin:0 0 16px;font-size:clamp(24px,2.6vw,34px)}.ss-enlaces{display:flex;flex-direction:column}.ss-enlaces a{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:52px;padding:10px 2px;border-bottom:1px solid var(--bringer-s-border);color:var(--bringer-s-heading);font-size:16px;text-decoration:none;transition:color .15s}.ss-enlaces a span{color:var(--bringer-s-text-accent);transition:transform .15s}.ss-enlaces a:hover{color:var(--bringer-s-text-accent)}.ss-enlaces a:hover span{transform:translateX(4px)}
+  @media(max-width:860px){.ss-steps{grid-auto-flow:row;grid-template-columns:minmax(0,1fr);gap:28px;padding-left:66px}.ss-steps::before{top:0;bottom:0;left:24px;right:auto;width:2px;height:auto;transform-origin:top}.ss-proceso.is-ready:not(.is-in) .ss-steps::before{transform:scaleY(0)}.ss-num{position:absolute;top:-4px;left:-66px;margin:0}.ss-inversion{grid-template-columns:minmax(0,1fr)}.ss-inversion-head{position:static}}
+  @media(prefers-reduced-motion:reduce){.ss-proceso.is-ready .ss-steps::before,.ss-proceso.is-ready .ss-steps li{opacity:1;transform:none;transition:none}}
+</style>

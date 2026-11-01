@@ -433,7 +433,7 @@ const isPreview = ['deploy-preview', 'branch-deploy'].includes(process.env.CONTE
                             <h6>Servicios</h6>
                             <div class="bringer-menu-widget">
                                 <ul>
-                                    <li><a href="/soluciones-ia" style="color: var(--color-accent, #ff0080);">Soluciones con IA</a></li>
+                                    <li><a href="/soluciones-ia">Soluciones con IA</a></li>
                                     <li><a href="/lanzamientos-digitales">Lanzamientos</a></li>
                                     <li><a href="/diseno-web">Diseño Web</a></li>
                                     <li><a href="/branding">Branding</a></li>
@@ -571,6 +571,12 @@ const isPreview = ['deploy-preview', 'branch-deploy'].includes(process.env.CONTE
     <script is:inline>
         document.addEventListener('DOMContentLoaded', function() {
             const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+            // Marca el enlace de la página actual en el pie.
+            document.querySelectorAll('.bringer-menu-widget a[href^="/"]').forEach(link => {
+                const destino = link.getAttribute('href').replace(/\/+$/, '') || '/';
+                const enSeccion = destino === '/soluciones-ia' && currentPath.startsWith('/soluciones-ia/');
+                if (destino === currentPath || enSeccion) link.setAttribute('aria-current', 'page');
+            });
             const menuItems = document.querySelectorAll('.main-menu > li');
             const subMenuItems = document.querySelectorAll('.sub-menu li');
             

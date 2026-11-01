@@ -76,3 +76,7 @@ nav.bringer-nav li.menu-item-has-children:focus-within > ul.sub-menu { opacity: 
 .geo-page .geo-breadcrumbs li::before { content: none !important; display: none; }
 .geo-page .geo-breadcrumbs li::marker { content: ""; }
 .geo-action-label { color: var(--bringer-s-heading); font-size: 1.15rem; font-weight: 600; line-height: 1.4; }
+.bringer-menu-widget a[aria-current="page"], .bringer-menu-widget a[aria-current="page"]:hover { color: var(--bringer-s-text-accent) !important; font-weight: 600; opacity: 1; }
+.guia-servicios { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2.5rem; }
+.guia-servicios p { flex: 1 1 22rem; margin: 0; }
+.guia-servicios .bringer-button { flex: none; }
