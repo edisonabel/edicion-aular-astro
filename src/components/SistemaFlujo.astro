@@ -13,7 +13,7 @@ const etapas = [
   <div class="sf-head">
     <span class="bringer-label" data-appear="fade-up">El mapa completo</span>
     <h2 data-split-appear="fade-up" data-split-by="line">Siete etapas, un solo equipo<span class="bringer-accent">.</span></h2>
-    <p data-appear="fade-up" data-delay="100">Toca una etapa para ver qué hace. Se implementa por partes: empezamos donde hoy pierdes más pacientes.</p>
+    <p class="bringer-large-text" data-appear="fade-up" data-delay="100">Toca una etapa para ver qué hace. Se implementa por partes: empezamos donde hoy pierdes más pacientes.</p>
   </div>
   <div class="sf-map">
     <div class="sf-root" aria-hidden="true"><span class="sf-glyph"></span><strong>Paciente</strong></div>
@@ -43,16 +43,16 @@ const etapas = [
   }
 </script>
 <style is:global>
-  .sf{padding:clamp(72px,10vw,140px) 0}.sf-head{max-width:640px;margin-bottom:clamp(36px,5vw,64px)}.sf-head h2{margin:12px 0}.sf-head p{margin:0;font-size:clamp(16px,1.4vw,19px);line-height:1.55}
+  .sf{padding:clamp(72px,10vw,140px) 0}.sf-head{max-width:640px;margin-bottom:clamp(36px,5vw,64px)}.sf-head h2{margin:12px 0}.sf-head p{margin:0}
   .sf-map{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 clamp(28px,5vw,72px);align-items:center}
   .sf-root{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--bringer-s-heading);font-size:14px}.sf-root::after{content:'';position:absolute;top:50%;left:100%;width:clamp(28px,5vw,72px);height:1px;background:var(--bringer-s-text-accent);transform-origin:left}.sf-root strong{font-weight:400}
-  .sf-glyph{display:block;width:clamp(72px,8vw,112px);aspect-ratio:1;border-radius:28%;background:var(--bringer-s-accent);box-shadow:0 0 0 1px var(--bringer-s-border),0 0 60px color-mix(in srgb,var(--bringer-s-accent) 25%,transparent)}
-  .sf-tree{position:relative;display:flex;flex-direction:column;gap:6px;margin:0;padding:0 0 0 clamp(20px,3vw,36px);list-style:none}.sf-tree::before{content:'';position:absolute;top:24px;bottom:24px;left:0;width:1px;background:var(--bringer-s-text-accent);transform-origin:top}
+  .sf-glyph{display:block;width:clamp(72px,8vw,112px);aspect-ratio:1;border-radius:28%;background:var(--ea-gradiente);box-shadow:0 0 0 1px var(--bringer-s-border),0 0 60px color-mix(in srgb,var(--bringer-s-accent) 25%,transparent)}
+  .sf-tree{position:relative;display:flex;flex-direction:column;gap:6px;margin:0;padding:0 0 0 clamp(20px,3vw,36px);list-style:none}.sf-tree::before{content:'';position:absolute;top:24px;bottom:24px;left:0;width:1px;background:var(--ea-gradiente);transform-origin:top}
   .sf-tree li{position:relative;margin:0;padding:0}.sf-tree li::before{content:'';position:absolute;top:24px;left:calc(clamp(20px,3vw,36px)*-1);width:clamp(20px,3vw,36px);height:1px;background:var(--bringer-s-text-accent);transform-origin:left}
   .sf-tree summary{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;min-height:48px;cursor:pointer;list-style:none}.sf-tree summary::-webkit-details-marker{display:none}
   .sf-node{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px 0 8px;border:1px solid var(--bringer-s-border);border-radius:14px;background:var(--bringer-s-container-bg);color:var(--bringer-s-heading);font-size:16px;font-weight:400;line-height:1;transition:border-color .15s,background .15s}.sf-node i{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:var(--bringer-s-border);font-style:normal;font-size:12px;color:var(--bringer-s-text-accent)}
-  .sf-tree summary:hover .sf-node{border-color:var(--bringer-s-text-accent)}.sf-tree details[open] .sf-node{border-color:var(--bringer-s-accent);background:color-mix(in srgb,var(--bringer-s-accent) 12%,transparent)}.sf-tree details[open] .sf-node i{background:var(--bringer-s-accent);color:#fff}
-  .sf-ramas{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;line-height:1.4;color:var(--bringer-s-text)}.sf-rama{position:relative;padding-left:14px}.sf-rama::before{content:'';position:absolute;top:50%;left:0;width:6px;height:1px;background:var(--bringer-s-text-accent)}
+  .sf-tree summary:hover .sf-node{border-color:var(--bringer-s-text-accent)}.sf-tree details[open] .sf-node{border-color:var(--bringer-s-accent);background:color-mix(in srgb,var(--bringer-s-accent) 12%,transparent)}.sf-tree details[open] .sf-node i{background:var(--ea-gradiente);color:#fff}
+  .sf-ramas{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;line-height:1.4;color:var(--bringer-s-heading-fade)}.sf-rama{position:relative;padding-left:14px}.sf-rama::before{content:'';position:absolute;top:50%;left:0;width:6px;height:1px;background:var(--bringer-s-text-accent)}
   .sf-tree details p{max-width:560px;margin:6px 0 14px 8px;font-size:15px;line-height:1.55;color:var(--bringer-s-heading);animation:sf-abre .2s cubic-bezier(.16,1,.3,1)}
   @keyframes sf-abre{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
   .sf.is-ready .sf-root,.sf.is-ready .sf-tree li{opacity:0;transform:translateX(-10px);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1)}.sf.is-ready .sf-tree li{transition-delay:calc(var(--i)*70ms + 150ms)}.sf.is-ready .sf-tree::before{transform:scaleY(0);transition:transform .7s cubic-bezier(.16,1,.3,1) .1s}.sf.is-ready .sf-root::after{transform:scaleX(0);transition:transform .3s cubic-bezier(.16,1,.3,1)}

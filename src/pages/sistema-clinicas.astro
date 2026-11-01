@@ -42,7 +42,7 @@ const schemaData = [
         {razones.map((razon, index) => (
           <li>
             <span aria-hidden="true">0{index + 1}</span>
-            <div><h3>{razon.titulo}</h3><p>{razon.texto}</p></div>
+            <div><h3>{razon.titulo}</h3><p class="bringer-large-text">{razon.texto}</p></div>
           </li>
         ))}
       </ol>
@@ -56,5 +56,5 @@ const schemaData = [
   </div>
 </BaseLayout>
 <style is:global>
-  .sr{padding:clamp(56px,8vw,112px) 0}.sr-list{margin:20px 0 0;padding:0;list-style:none}.sr-list li{display:grid;grid-template-columns:clamp(48px,8vw,120px) minmax(0,1fr);gap:16px;margin:0;padding:clamp(22px,3vw,36px) 0;border-top:1px solid var(--bringer-s-border)}.sr-list li>span{font-size:14px;color:var(--bringer-s-text-accent)}.sr-list h3{margin:0 0 8px;font-size:clamp(26px,3.6vw,48px);font-weight:600;line-height:1.08;letter-spacing:-.035em}.sr-list p{max-width:60ch;margin:0;font-size:clamp(16px,1.4vw,18px);line-height:1.55}
+  .sr{padding:clamp(56px,8vw,112px) 0}.sr-list{margin:20px 0 0;padding:0;list-style:none}.sr-list li{display:grid;grid-template-columns:clamp(48px,8vw,120px) minmax(0,1fr);gap:16px;margin:0;padding:clamp(22px,3vw,36px) 0;border-top:1px solid var(--bringer-s-border)}.sr-list li>span{font-size:14px;color:var(--bringer-s-text-accent)}.sr-list h3{margin:0 0 8px;font-size:clamp(26px,3.6vw,48px);font-weight:600;line-height:1.08;letter-spacing:-.035em}.sr-list p{max-width:60ch;margin:0}
 </style>

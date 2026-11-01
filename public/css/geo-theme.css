@@ -1,3 +1,4 @@
+:root { --ea-gradiente: linear-gradient(180deg, #ff0078, #ff002c); --ea-gradiente-diagonal: linear-gradient(135deg, #ff0078, #ff002c); }
 /* Extensiones de Bringer. Colores semánticos para ambos temas. */
 .geo-page { --geo-ink: var(--bringer-s-heading); --geo-copy: var(--bringer-s-text); --geo-line: var(--bringer-s-border); }
 html.light-mode .geo-page { --bringer-s-text-accent: #b80046; }
