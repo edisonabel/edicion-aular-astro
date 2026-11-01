@@ -1,0 +1,111 @@
+---
+import { DEMO_DEFAULT, DEMO_SECTORS, getDemoSector } from '../lib/demo-atencion.js';
+const { sector = DEMO_DEFAULT, titulo = 'Prueba cómo atendería tu negocio', fijarSector = false } = Astro.props;
+const inicial = getDemoSector(sector) ?? getDemoSector(DEMO_DEFAULT);
+---
+<section id="demo-atencion" class="demo-atencion" data-demo data-sector={inicial.id} data-fijar={fijarSector ? 'true' : undefined} data-template="propio#demo-atencion" aria-labelledby="demo-heading">
+  <header class="demo-header">
+    <span class="demo-eyebrow">DEMO SIMULADA · RESPUESTAS DE EJEMPLO, SIN IA EN VIVO</span>
+    <h2 id="demo-heading">{titulo}<span>.</span></h2>
+    <p>Elige una opción en cada paso y mira lo que recibe tu equipo. No guardamos ni enviamos tus respuestas.</p>
+  </header>
+  <div class="demo-chips" role="group" aria-label="Elige un tipo de negocio" data-demo-chips>
+    {DEMO_SECTORS.map(item=><button type="button" class="demo-chip" data-demo-chip={item.id} aria-pressed={item.id===inicial.id?'true':'false'}>{item.label}</button>)}
+  </div>
+  <div class="demo-grid">
+    <div class="demo-chat">
+      <div class="demo-chat-top"><span class="demo-dot" aria-hidden="true"></span><strong data-demo-name>{inicial.label}</strong><small>Asistente de WhatsApp</small></div>
+      <div class="demo-log" role="log" aria-live="polite" data-demo-log tabindex="0" aria-label="Conversación de la demo"></div>
+      <div class="demo-options" data-demo-options></div>
+    </div>
+    <div class="demo-side">
+      <div class="demo-card">
+        <h3>Así le llega a <span data-demo-receptor>{inicial.receptor}</span></h3>
+        <dl class="demo-rows" data-demo-rows></dl>
+      </div>
+      <div class="demo-card">
+        <h3>¿Cuánto tiempo toma responder hoy?</h3>
+        <label class="demo-range"><span>Consultas al día</span><input type="range" min="5" max="100" step="5" value="20" data-demo-consultas /><output data-demo-consultas-valor>20</output></label>
+        <label class="demo-range"><span>Minutos por consulta</span><input type="range" min="1" max="15" step="1" value="4" data-demo-minutos /><output data-demo-minutos-valor>4</output></label>
+        <p class="demo-hours" aria-live="polite"><strong data-demo-horas>35 horas</strong> al mes con tus números y 26 días de trabajo.</p>
+      </div>
+      <button type="button" class="demo-primary" data-demo-whatsapp data-contact-channel="whatsapp">Quiero esto para mi negocio <span aria-hidden="true">↗</span></button>
+      <p class="demo-help">El mensaje queda preparado. Tú decides cuándo enviarlo.</p>
+    </div>
+  </div>
+  <noscript><p>Puedes <a href="https://wa.me/573002730128">escribirnos por WhatsApp</a> o <a href="https://cal.com/edicion-aular-website">agendar una conversación</a>.</p></noscript>
+</section>
+<script>
+  import { DEMO_DEFAULT, demoAvanzar, demoCierre, demoHoras, demoWhatsapp, getDemoSector } from '../lib/demo-atencion.js';
+  const root=document.querySelector<HTMLElement>('[data-demo]');
+  if(root){
+    const log=root.querySelector<HTMLElement>('[data-demo-log]')!,options=root.querySelector<HTMLElement>('[data-demo-options]')!,rows=root.querySelector<HTMLElement>('[data-demo-rows]')!;
+    const consultas=root.querySelector<HTMLInputElement>('[data-demo-consultas]')!,minutos=root.querySelector<HTMLInputElement>('[data-demo-minutos]')!;
+    const pausa=matchMedia('(prefers-reduced-motion: reduce)').matches?0:700;
+    let sectorId=root.dataset.sector||DEMO_DEFAULT,labels:string[]=[],turno=0,usoIndicado=false,hayInteraccion=false;
+    // Un enlace puede abrir la demo en otro sector: /demo/?sector=inmobiliarias
+    if(root.dataset.fijar!=='true'){const pedido=new URLSearchParams(location.search).get('sector');if(pedido&&getDemoSector(pedido))sectorId=pedido;}
+    const mensaje=(texto:string,clase:string)=>{const p=document.createElement('p');p.className=`demo-msg ${clase}`;p.textContent=texto;log.append(p);log.scrollTop=log.scrollHeight;return p;};
+    function pintarFilas(prioridad=''){
+      const sector=getDemoSector(sectorId)!,{answers}=demoAvanzar(sectorId,labels);
+      const filas=sector.steps.map((step,index)=>[step.key,answers.find(item=>item.key===step.key)?.label??(prioridad?'No hace falta':index===answers.length?'Esperando respuesta…':'Pendiente')]);
+      filas.push(['Prioridad sugerida',prioridad||'Pendiente']);
+      rows.replaceChildren(...filas.flatMap(([key,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;if(key==='Prioridad sugerida'&&prioridad)dd.className=prioridad.startsWith('Urgente')?'is-urgent':'is-ready';return [dt,dd];}));
+    }
+    function botones(lista:string[],accion:(texto:string)=>void){
+      options.replaceChildren(...lista.map(texto=>{const b=document.createElement('button');b.type='button';b.className='demo-option';b.textContent=texto;b.addEventListener('click',()=>accion(texto));return b;}));
+      if(hayInteraccion)options.querySelector('button')?.focus({preventScroll:true});
+    }
+    function escribir(texto:string,despues:()=>void){
+      const actual=turno;options.replaceChildren();
+      const p=mensaje('Escribiendo…','is-bot is-typing');
+      setTimeout(()=>{if(actual!==turno)return;p.textContent=texto;p.classList.remove('is-typing');log.scrollTop=log.scrollHeight;despues();},pausa);
+    }
+    function preguntar(){
+      const {terminado,step}=demoAvanzar(sectorId,labels);
+      if(terminado){
+        const cierre=demoCierre(sectorId,labels);
+        escribir(cierre.text,()=>{pintarFilas(cierre.priority);botones(['Probar de nuevo'],()=>iniciar(sectorId));});
+        return;
+      }
+      escribir(step!.text,()=>botones(step!.options.map(option=>option.label),texto=>{hayInteraccion=true;mensaje(texto,'is-user');labels.push(texto);pintarFilas();preguntar();}));
+    }
+    function iniciar(id:string){
+      turno++;sectorId=id;labels=[];log.replaceChildren();options.replaceChildren();
+      const sector=getDemoSector(id)!;
+      root!.querySelector('[data-demo-name]')!.textContent=sector.label;
+      root!.querySelector('[data-demo-receptor]')!.textContent=sector.receptor;
+      root!.querySelectorAll<HTMLElement>('[data-demo-chip]').forEach(chip=>chip.setAttribute('aria-pressed',String(chip.dataset.demoChip===id)));
+      pintarFilas();preguntar();
+    }
+    function calcular(){
+      root!.querySelector('[data-demo-consultas-valor]')!.textContent=consultas.value;
+      root!.querySelector('[data-demo-minutos-valor]')!.textContent=minutos.value;
+      root!.querySelector('[data-demo-horas]')!.textContent=`${demoHoras(Number(consultas.value),Number(minutos.value))} horas`;
+    }
+    [consultas,minutos].forEach(input=>input.addEventListener('input',()=>{usoIndicado=true;calcular();}));
+    root.querySelectorAll<HTMLElement>('[data-demo-chip]').forEach(chip=>chip.addEventListener('click',()=>{hayInteraccion=true;iniciar(chip.dataset.demoChip!);}));
+    // Como en el orientador: el botón no expone la URL con respuestas a la medición automática de enlaces.
+    root.querySelector('[data-demo-whatsapp]')!.addEventListener('click',()=>{
+      window.location.assign(demoWhatsapp(sectorId,usoIndicado?{consultas:Number(consultas.value),minutos:Number(minutos.value)}:undefined).whatsapp);
+    });
+    calcular();iniciar(sectorId);
+  }
+</script>
+<style>
+  .demo-atencion{--demo-bg:#15171c;--demo-card:#1d2026;--demo-text:#f5f5f7;--demo-muted:#b6b9c3;--demo-border:#3c404b;--demo-selected:#30212b;--demo-accent:#ff80ad;box-sizing:border-box;margin:48px 0 64px;padding:28px;border:1px solid var(--demo-border);border-radius:24px;background:var(--demo-bg);color:var(--demo-text);scroll-margin-top:96px}
+  :global(html.light-mode) .demo-atencion{--demo-bg:#fff;--demo-card:#f7f7f9;--demo-text:#20232b;--demo-muted:#5c6270;--demo-border:#d8dbe2;--demo-selected:#fff0f5;--demo-accent:#b80046}
+  .demo-header{margin:0 0 18px}.demo-eyebrow{display:block;font-size:10px;letter-spacing:.14em;line-height:1.6;font-weight:600;color:var(--demo-muted)}.demo-header h2{margin:6px 0 8px;font-size:clamp(24px,3vw,32px);line-height:1.25;letter-spacing:-.035em;color:var(--demo-text)}.demo-header h2 span{color:var(--demo-accent)}.demo-header p{margin:0;max-width:62ch;font-size:15px;line-height:1.6;color:var(--demo-muted)}
+  .demo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}.demo-atencion .demo-chip,.demo-atencion :global(.demo-option){display:inline-flex;align-items:center;min-height:44px;margin:0;padding:8px 14px;box-sizing:border-box;border:1px solid var(--demo-border);border-radius:9px;background:transparent;color:var(--demo-text);font:inherit;font-size:14px;font-weight:500;line-height:1.3;letter-spacing:0;text-transform:none;text-align:left;white-space:normal;cursor:pointer;transition:border-color .15s,background .15s}.demo-atencion .demo-chip:hover,.demo-atencion :global(.demo-option:hover){border-color:var(--demo-accent);background:var(--demo-selected);color:var(--demo-text)}.demo-atencion .demo-chip[aria-pressed="true"]{border-color:var(--demo-accent);background:var(--demo-selected);box-shadow:inset 0 0 0 1px var(--demo-accent)}
+  .demo-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}.demo-chat,.demo-card{border:1px solid var(--demo-border);border-radius:16px;background:var(--demo-card)}
+  .demo-chat{display:flex;flex-direction:column;min-width:0;overflow:hidden}.demo-chat-top{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;padding:12px 16px;border-bottom:1px solid var(--demo-border);font-size:14px}.demo-chat-top strong{color:var(--demo-text);font-weight:600}.demo-chat-top small{width:100%;margin-left:16px;font-size:12px;color:var(--demo-muted)}.demo-dot{width:8px;height:8px;border-radius:50%;background:var(--demo-accent)}
+  .demo-log{display:flex;flex-direction:column;gap:8px;height:300px;padding:16px;overflow-y:auto;overscroll-behavior:contain}.demo-log:focus-visible{outline-offset:-3px}.demo-log :global(.demo-msg){max-width:85%;margin:0;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5;color:var(--demo-text)}.demo-log :global(.is-bot){align-self:flex-start;background:var(--demo-bg);border:1px solid var(--demo-border)}.demo-log :global(.is-user){align-self:flex-end;background:var(--demo-selected);border:1px solid var(--demo-accent)}.demo-log :global(.is-typing){color:var(--demo-muted)}
+  .demo-options{display:flex;flex-wrap:wrap;gap:8px;min-height:60px;padding:12px 16px;border-top:1px solid var(--demo-border);box-sizing:border-box}
+  .demo-side{display:flex;flex-direction:column;gap:12px;min-width:0}.demo-card{padding:16px}.demo-card h3{margin:0 0 12px;font-size:16px;font-weight:600;line-height:1.35;letter-spacing:-.01em;color:var(--demo-text)}.demo-rows{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0;margin:0;font-size:14px;line-height:1.45}.demo-rows :global(dt),.demo-rows :global(dd){margin:0;padding:7px 0;border-top:1px solid var(--demo-border)}.demo-rows :global(dt:first-child),.demo-rows :global(dt:first-child+dd){border-top:0}.demo-rows :global(dt){color:var(--demo-muted);font-weight:400}.demo-rows :global(dd){padding-left:16px;text-align:right;color:var(--demo-text)}.demo-rows :global(dd.is-ready){color:var(--demo-accent);font-weight:600}.demo-rows :global(dd.is-urgent){color:var(--demo-accent);font-weight:700}
+  .demo-range{display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:2px 8px;align-items:center;margin:0 0 10px;font-size:13px;font-weight:400;letter-spacing:normal;text-transform:none;color:var(--demo-muted)}.demo-range span{grid-column:1/-1}.demo-atencion .demo-range input[type="range"]{appearance:auto;width:100%;min-height:24px;margin:0;padding:0;border:0;background:transparent;box-shadow:none;accent-color:#b80046}.demo-range output{text-align:right;color:var(--demo-text);font-weight:600}.demo-hours{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--demo-muted)}.demo-hours strong{color:var(--demo-text);font-weight:600}
+  .demo-atencion .demo-primary{display:inline-flex;gap:10px;justify-content:center;align-items:center;width:100%;min-height:48px;padding:12px 20px;box-sizing:border-box;border:1px solid #b80046;border-radius:9px;background:#b80046;color:#fff;font:inherit;font-size:15px;font-weight:600;line-height:1.4;letter-spacing:0;text-transform:none;white-space:normal;cursor:pointer}.demo-atencion .demo-primary:hover{background:#970039;color:#fff}.demo-help{margin:0;font-size:12px;line-height:1.6;color:var(--demo-muted)}
+  .demo-atencion :is(button,input,[tabindex="0"]):focus-visible{outline:3px solid var(--demo-accent);outline-offset:2px}
+  @media(max-width:860px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
+  @media(max-width:540px){.demo-atencion{padding:18px 14px;border-radius:18px;margin:32px 0 48px}.demo-log{height:260px;padding:12px}.demo-options{padding:12px}.demo-atencion .demo-chip,.demo-atencion :global(.demo-option){font-size:13px;padding:8px 12px}.demo-log :global(.demo-msg){max-width:92%}}
+  @media(prefers-reduced-motion:reduce){.demo-atencion .demo-chip,.demo-atencion :global(.demo-option){transition:none}}
+</style>

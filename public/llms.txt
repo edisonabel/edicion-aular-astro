@@ -5,6 +5,7 @@
 ## Soluciones con Inteligencia Artificial
 
 - [Agentes de IA para WhatsApp y Web](https://edicionaular.com/soluciones-ia/agentes-ia-whatsapp): Asistentes conversacionales conectados a la API oficial de Meta y calendarios para captar prospectos, responder dudas 24/7 y agendar citas en Medellín.
+- [Demo de recepción por WhatsApp](https://edicionaular.com/demo/): Demostración guiada, sin IA en vivo, de cómo una clínica odontológica u otro negocio puede ordenar sus consultas y pasar las urgencias a una persona.
 - [Automatización de Procesos con IA](https://edicionaular.com/soluciones-ia/automatizacion-procesos-ia): Conexión de CRM, lectura inteligente de facturas, agendamiento y reportes sin fricción operativa.
 - [Contenido, Video y Fotos de Producto con IA](https://edicionaular.com/soluciones-ia/contenido-video-ia): Producción audiovisual y fotografía de producto potenciada con modelos generativos para marcas y pauta publicitaria.
 - [Sitios Web con SEO y GEO](https://edicionaular.com/soluciones-ia/sitios-web-seo-geo): Sitios web ultra rápidos en Astro optimizados para Google, ChatGPT Search, Perplexity y Google AI Overviews.

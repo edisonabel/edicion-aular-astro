@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/geo/JsonLd.astro';
+import Breadcrumbs from '../components/geo/Breadcrumbs.astro';
+import Cta from '../components/geo/Cta.astro';
+import DemoAtencion from '../components/DemoAtencion.astro';
+import { NEGOCIO } from '../data/ia/negocio';
+import { breadcrumbs, webPage } from '../lib/schema';
+
+const title = 'Demo de recepción por WhatsApp para clínicas | Edición Aular';
+const description = 'Prueba cómo una clínica odontológica puede recibir consultas por WhatsApp, ordenar cada solicitud y pasar las urgencias a una persona del equipo.';
+const pageUrl = '/demo';
+const schemaData = [
+  webPage({ name: title, description, path: pageUrl }),
+  breadcrumbs([
+    { name: 'Inicio', href: '/' },
+    { name: 'Demo de recepción por WhatsApp', href: pageUrl }
+  ])
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container geo-page">
+    <Breadcrumbs items={[
+      { name: 'Inicio', href: '/' },
+      { name: 'Demo de recepción por WhatsApp' }
+    ]} />
+
+    <section class="stg-bottom-gap" id="intro-demo">
+      <span class="bringer-label">Recepción por WhatsApp · Clínicas y otros negocios</span>
+      <h1 class="bringer-page-title">Prueba cómo atendería tu clínica por WhatsApp<span class="bringer-accent">.</span></h1>
+      <p class="bringer-large-text">Mientras recepción atiende a quien está en la clínica, los mensajes siguen llegando. Esta demo muestra una forma de ordenarlos: el asistente hace las preguntas básicas y tu equipo recibe la solicitud lista para confirmar.</p>
+    </section>
+
+    <DemoAtencion titulo="Responde como lo haría un paciente" />
+
+    <section class="stg-bottom-gap-l" id="demo-proyecto-real">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Qué cambia en un proyecto real</h2><p>Esta demo sigue un guion fijo para que veas el recorrido. En un proyecto se prepara con la información de tu negocio.</p></div></div>
+      <div class="bringer-block">
+        <ul class="bringer-marked-list">
+          <li>Partimos de las 20 a 30 preguntas que más recibes y de tus chats reales.</li>
+          <li>Usamos la API oficial de WhatsApp Business y lo conectamos con tu agenda.</li>
+          <li>Definimos cuándo interviene una persona. En una clínica, el asistente no da indicaciones de salud.</li>
+          <li>Acordamos cómo se tratan los datos personales y de salud según la Ley 1581.</li>
+        </ul>
+        <p class="stg-top-gap-s"><a href="/soluciones-ia/agentes-ia-whatsapp/" class="bringer-arrow-link">Ver cómo implementamos la recepción por WhatsApp</a></p>
+        <p><a href="/sectores/clinicas-estetica/" class="bringer-arrow-link">Ver soluciones para clínicas y odontología</a></p>
+      </div>
+    </section>
+
+    <Cta
+      titulo="¿Quieres verlo con las preguntas de tu clínica?"
+      subtitulo="Agenda una conversación gratis de 15 minutos. Revisamos cómo llegan tus consultas y qué conviene resolver primero."
+      enlace={NEGOCIO.agenda}
+    />
+  </div>
+</BaseLayout>
