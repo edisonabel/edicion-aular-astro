@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/geo/JsonLd.astro';
+import Breadcrumbs from '../components/geo/Breadcrumbs.astro';
+import Cta from '../components/geo/Cta.astro';
+import DemoAtencion from '../components/DemoAtencion.astro';
+import { NEGOCIO } from '../data/ia/negocio';
+import { breadcrumbs, service, webPage } from '../lib/schema';
+
+const title = 'Sistema de pacientes para clínicas y estética en Medellín';
+const description = 'Un sistema para clínicas, consultorios y centros de estética: atrae pacientes, responde por WhatsApp, agenda, confirma, cuida, los hace volver y mide cada paso.';
+const pageUrl = '/sistema-clinicas';
+const modulos = [
+  { titulo: 'Atraer', texto: 'Marca, página por tratamiento, video, SEO local y pauta, con el origen de cada consulta identificado.', enlace: '/servicios/' },
+  { titulo: 'Responder', texto: 'Asistente en WhatsApp y web con la información que tu equipo aprueba. Las dudas de salud pasan a una persona.', enlace: '/soluciones-ia/agentes-ia-whatsapp/' },
+  { titulo: 'Agendar', texto: 'Propone espacios según tu agenda y deja la solicitud lista para que recepción la confirme.', enlace: '/soluciones-ia/automatizacion-procesos-ia/' },
+  { titulo: 'Confirmar', texto: 'Recuerda la cita, permite reprogramar y ofrece el espacio libre a quien está en lista de espera.' },
+  { titulo: 'Cuidar', texto: 'Envía las indicaciones que aprobó el especialista y avisa al responsable si algo salió mal.' },
+  { titulo: 'Volver', texto: 'Recuerda controles, retoma a quienes dejaron de venir e invita a todos a opinar en Google.' },
+  { titulo: 'Medir', texto: 'Un reporte mensual con consultas, citas, asistencia y regreso por canal, para decidir dónde invertir.' },
+];
+const schemaData = [
+  webPage({ name: title, description, path: pageUrl }),
+  service({ name: 'Sistema de pacientes para clínicas y estética', description, path: pageUrl, audience: 'Clínicas, consultorios y centros de estética' }),
+  breadcrumbs([
+    { name: 'Inicio', href: '/' },
+    { name: 'Sistema de pacientes', href: pageUrl }
+  ])
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <JsonLd slot="head" data={schemaData} />
+
+  <div class="stg-container geo-page">
+    <Breadcrumbs items={[
+      { name: 'Inicio', href: '/' },
+      { name: 'Sistema de pacientes' }
+    ]} />
+
+    <section class="stg-bottom-gap" id="intro-sistema">
+      <span class="bringer-label">Clínicas · Odontología · Estética · Consultorios</span>
+      <h1 class="bringer-page-title">Un sistema para que cada paciente llegue, asista y vuelva<span class="bringer-accent">.</span></h1>
+      <p class="bringer-large-text">Un chatbot solo responde mensajes. Tu clínica también pierde pacientes antes de que escriban, cuando no asisten y cuando no regresan. Por eso unimos todo el recorrido en un solo sistema, con un solo equipo responsable.</p>
+    </section>
+
+    <DemoAtencion titulo="Vive el recorrido de un paciente" />
+
+    <section class="stg-bottom-gap-l" id="modulos-sistema">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>Qué incluye el sistema</h2><p>Se implementa por etapas. Empezamos donde hoy se pierden más pacientes y agregamos el resto cuando tenga sentido.</p></div></div>
+      <div class="bringer-grid-4cols stg-top-gap-s">
+        {modulos.map((modulo, index) => (
+          <div class="bringer-block" style="padding: 1.25rem;">
+            <span class="bringer-label">Etapa {index + 1}</span>
+            <h3>{modulo.titulo}<span class="bringer-accent">.</span></h3>
+            <p style="font-size: 0.95rem;">{modulo.texto}</p>
+            {modulo.enlace && <a href={modulo.enlace} class="bringer-arrow-link" style="font-size: 0.85rem;">Ver detalle</a>}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="stg-bottom-gap-l" id="diferencia-sistema">
+      <div class="stg-row bringer-section-title"><div class="stg-col-8"><h2>En qué se diferencia de contratar solo un chatbot</h2></div></div>
+      <div class="bringer-block">
+        <ul class="bringer-marked-list">
+          <li>Un solo equipo se encarga de la marca, la web, el video, la pauta y la automatización, así que el mensaje y la medición no se rompen entre proveedores.</li>
+          <li>El objetivo es que el paciente asista y regrese, no solo que reciba una respuesta rápida.</li>
+          <li>Una persona de tu equipo interviene en lo clínico, en lo urgente y en cualquier caso sensible.</li>
+          <li>Acordamos desde el inicio cómo se tratan los datos personales y de salud según la Ley 1581.</li>
+        </ul>
+      </div>
+    </section>
+
+    <Cta
+      titulo="¿Dónde está perdiendo pacientes tu clínica?"
+      subtitulo="Agenda una conversación gratis de 15 minutos. Revisamos cómo llegan tus consultas y por cuál etapa conviene empezar."
+      enlace={NEGOCIO.agenda}
+    />
+  </div>
+</BaseLayout>
