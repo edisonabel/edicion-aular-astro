@@ -1,9 +1,9 @@
 ---
 import { NEGOCIO } from '../data/ia/negocio';
 const avisos = [
-  { titulo: 'Nueva consulta', texto: 'Limpieza facial · desde un anuncio', clase: 'is-a' },
-  { titulo: 'Cita confirmada', texto: 'Mañana, 9:00 a. m.', clase: 'is-b' },
-  { titulo: 'Espacio recuperado', texto: 'Lo tomó la lista de espera', clase: 'is-c' },
+  { titulo: 'Nueva consulta', texto: 'Limpieza facial · desde un anuncio', clase: 'is-a', icono: '<path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1Z"/><path d="M8 10h8M8 13h5"/>' },
+  { titulo: 'Cita confirmada', texto: 'Mañana, 9:00 a. m.', clase: 'is-b', icono: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M9 15.5l2 2 4-4"/>' },
+  { titulo: 'Espacio recuperado', texto: 'Lo tomó la lista de espera', clase: 'is-c', icono: '<path d="M20 11a8 8 0 0 0-14.3-4L3 9.5"/><path d="M3 4v5.5h5.5"/><path d="M4 13a8 8 0 0 0 14.3 4l2.7-2.5"/><path d="M21 20v-5.5h-5.5"/>' },
 ];
 ---
 <section class="sh backlight-bottom" id="sistema-hero">
@@ -40,7 +40,7 @@ const avisos = [
               <div class="sh-tab"><b></b><u></u><u></u><u></u></div>
             </div>
           </div>
-          {avisos.map(aviso => <div class:list={['sh-aviso', aviso.clase]} aria-hidden="true"><span class="sh-mark"></span><div><strong>{aviso.titulo}</strong><small>{aviso.texto}</small></div></div>)}
+          {avisos.map(aviso => <div class:list={['sh-aviso', aviso.clase]} aria-hidden="true"><span class="sh-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={aviso.icono}></svg></span><div><strong>{aviso.titulo}</strong><small>{aviso.texto}</small></div></div>)}
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ const avisos = [
   .sh .sh-card{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding:14px;border-radius:var(--bringer-small-br);background:#07090D}.sh .sh-card small{font-size:12px;color:#FFFFFFC0}.sh .sh-card strong{font-size:26px;font-weight:600;line-height:1;color:#fff}
   .sh .sh-row{display:flex;justify-content:space-between;padding:9px 2px;border-bottom:1px solid #07090D27;font-size:12px;color:#2A2D35}.sh .sh-row strong{font-weight:600;color:#07090D}
   .sh .sh-tab{display:flex;justify-content:center;gap:8px;margin-top:16px}.sh .sh-tab>*{width:26px;height:26px;border-radius:50%;background:#07090D14}.sh .sh-tab b{background:#07090D}
-  .sh .sh-aviso{position:absolute;display:flex;align-items:center;gap:10px;max-width:270px;padding:10px 14px 10px 10px;border:1px solid #F5F7FA27;border-radius:var(--bringer-small-br);background:#1A1D24;color:#F5F7FA;box-shadow:0 16px 40px #0007;animation:sh-aviso .4s cubic-bezier(.16,1,.3,1) both}.sh .sh-aviso strong{display:block;font-size:13px;font-weight:600;line-height:1.3;color:#F5F7FA}.sh .sh-aviso small{display:block;font-size:12px;line-height:1.35;color:#C5C7CE}.sh .sh-mark{flex:none;width:28px;height:28px;border-radius:8px;background:var(--ea-gradiente)}
+  .sh .sh-aviso{position:absolute;display:flex;align-items:center;gap:10px;max-width:270px;padding:10px 14px 10px 10px;border:1px solid #F5F7FA27;border-radius:var(--bringer-small-br);background:#1A1D24;color:#F5F7FA;box-shadow:0 16px 40px #0007;animation:sh-aviso .4s cubic-bezier(.16,1,.3,1) both}.sh .sh-aviso strong{display:block;font-size:13px;font-weight:600;line-height:1.3;color:#F5F7FA}.sh .sh-aviso small{display:block;font-size:12px;line-height:1.35;color:#C5C7CE}.sh .sh-mark{display:grid;place-items:center;flex:none;width:32px;height:32px;box-sizing:border-box;border:1px solid #F5F7FA;border-radius:9px;background:transparent;color:#F5F7FA}.sh .sh-mark svg{position:static;display:block;width:18px;height:18px;opacity:1!important;transform:none}
   .sh .sh-aviso{width:max-content}.sh .sh-aviso.is-a{top:11%;right:calc(100% - 12px);animation-delay:1s}.sh .sh-aviso.is-b{top:33%;left:calc(100% - 12px);animation-delay:1.6s}.sh .sh-aviso.is-c{top:80%;right:calc(100% - 26px);animation-delay:2.2s}
   @keyframes sh-sube{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}@keyframes sh-aviso{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
   @media(max-width:860px){.sh .sh-top{grid-template-columns:minmax(0,1fr);gap:20px}.sh .sh-top h1{max-width:none}.sh .sh-media{height:640px}.sh .sh-scene{justify-content:center;padding:32px 0 0}.sh .sh-phone{width:262px}.sh .sh-aviso{max-width:220px;padding:8px 12px 8px 8px}.sh .sh-aviso.is-a{top:68%;right:auto;left:-36px}.sh .sh-aviso.is-b{top:80%;left:auto;right:-36px}.sh .sh-aviso.is-c{top:91%;right:auto;left:-28px}.sh .bringer-masked-content{display:none}.sh .sh-media>img{transform:scale(1.3);transform-origin:40% 100%;object-position:30% 100%}}
