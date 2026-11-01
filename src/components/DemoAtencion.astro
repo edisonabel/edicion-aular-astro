@@ -2,110 +2,107 @@
 import { DEMO_DEFAULT, DEMO_ESPECIALIDADES, DEMO_ETAPAS, DEMO_SECTORS, getDemoSector } from '../lib/demo-atencion.js';
 const { sector = DEMO_DEFAULT, titulo = 'Vive el recorrido completo', fijarSector = false } = Astro.props;
 const inicial = getDemoSector(sector) ?? getDemoSector(DEMO_DEFAULT);
+const otros = DEMO_SECTORS.filter(item => !item.salud);
 ---
-<section id="demo-atencion" class="demo-atencion" data-demo data-sector={inicial.id} data-fijar={fijarSector ? 'true' : undefined} data-template="propio#demo-atencion" aria-labelledby="demo-heading">
-  <header class="demo-header">
-    <span class="demo-eyebrow">DEMO SIMULADA · FUNCIONA CON REGLAS, SIN IA EN VIVO</span>
-    <h2 id="demo-heading">{titulo}<span>.</span></h2>
-    <p>Escribe como lo haría una persona real. Prueba, por ejemplo, “¿cuánto cuesta?” o “necesito hablar con alguien”. Nada de lo que escribas se guarda ni se envía.</p>
+<section id="demo-atencion" class="demo" data-demo data-sector={inicial.id} data-fijar={fijarSector ? 'true' : undefined} data-template="propio#demo-atencion" aria-labelledby="demo-heading">
+  <header class="demo-intro">
+    <span class="bringer-label" data-appear="fade-up">Demo simulada · funciona con reglas, sin IA en vivo</span>
+    <h2 id="demo-heading" data-appear="fade-up">{titulo}<span class="bringer-accent">.</span></h2>
+    <p data-appear="fade-up" data-delay="100">Escribe como un paciente y mira lo que recibe tu equipo. Nada se guarda ni se envía.</p>
   </header>
-  <div class="demo-controls">
-    {!fijarSector && <div class="demo-chips" role="group" aria-label="Tipo de negocio">
-      {DEMO_SECTORS.map(item=><button type="button" class="demo-chip" data-demo-chip={item.id} aria-pressed={item.id===inicial.id?'true':'false'}>{item.label}</button>)}
-    </div>}
-    <div class="demo-fields">
-      <label class="demo-field" data-demo-especialidad-campo hidden={!inicial.salud}><span>Especialidad</span>
-        <select data-demo-especialidad>{DEMO_ESPECIALIDADES.map(item=><option value={item.id}>{item.label}</option>)}</select>
-      </label>
-      <label class="demo-field"><span>Nombre de tu negocio (opcional)</span>
-        <input type="text" maxlength="40" autocomplete="organization" placeholder="Clínica Vital" data-demo-negocio />
-      </label>
-    </div>
+  <div class="demo-tabs" role="tablist" aria-label="Vista de la demo" data-demo-tabs>
+    <button type="button" role="tab" aria-selected="true" aria-controls="demo-telefono" id="demo-tab-paciente" data-demo-tab="paciente">Paciente</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="demo-recepcion-panel" id="demo-tab-recepcion" data-demo-tab="recepcion">Recepción<i data-demo-aviso hidden></i></button>
   </div>
-  <ol class="demo-etapas" aria-label="Etapas del sistema" data-demo-etapas>
-    {DEMO_ETAPAS.map((etapa,index)=><li data-demo-etapa={etapa}><span aria-hidden="true">{index+1}</span>{etapa}</li>)}
-  </ol>
-  <div class="demo-grid">
-    <div class="demo-chat">
-      <div class="demo-chat-top"><span class="demo-dot" aria-hidden="true"></span><strong data-demo-name>{inicial.label}</strong><small>Asistente de WhatsApp · ejemplo</small></div>
-      <div class="demo-log" role="log" aria-live="polite" data-demo-log tabindex="0" aria-label="Conversación de la demo"></div>
-      <div class="demo-options" data-demo-options></div>
-      <form class="demo-composer" data-demo-form>
-        <label class="demo-sr" for="demo-texto">Escribe tu mensaje</label>
-        <input id="demo-texto" type="text" maxlength="160" autocomplete="off" placeholder="Escribe un mensaje…" data-demo-texto />
-        <button type="submit" class="demo-send">Enviar</button>
-      </form>
-    </div>
-    <div class="demo-side">
-      <div class="demo-card">
-        <h3>La ficha que ve tu equipo</h3>
-        <dl class="demo-rows" data-demo-rows></dl>
-      </div>
-      <div class="demo-card">
-        <h3>Lo que hizo el sistema</h3>
-        <ol class="demo-eventos" data-demo-eventos></ol>
+  <div class="demo-stage" data-demo-stage data-vista="paciente">
+    <div class="demo-phone" id="demo-telefono" data-appear="fade-up">
+      <div class="demo-island" aria-hidden="true"></div>
+      <div class="demo-screen">
+        <div class="demo-welcome" data-demo-welcome>
+          <p class="demo-kicker">Empieza aquí</p>
+          <h3>¿Qué negocio quieres probar?</h3>
+          <label class="demo-name"><span>Nombre de tu negocio (opcional)</span>
+            <input type="text" maxlength="40" autocomplete="organization" placeholder="Clínica Vital" data-demo-negocio />
+          </label>
+          <p class="demo-group">Salud y estética</p>
+          <div class="demo-list">{DEMO_ESPECIALIDADES.map(item=><button type="button" data-demo-elegir={inicial.salud||!fijarSector?'clinicas-estetica':inicial.id} data-demo-especialidad={item.id}>{item.label}<span aria-hidden="true">→</span></button>)}</div>
+          <p class="demo-group">Otros negocios</p>
+          <div class="demo-list">{otros.map(item=><button type="button" data-demo-elegir={item.id}>{item.label}<span aria-hidden="true">→</span></button>)}</div>
+        </div>
+        <div class="demo-app" data-demo-app hidden>
+          <div class="demo-top">
+            <button type="button" class="demo-back" aria-label="Elegir otro negocio" data-demo-volver hidden={fijarSector}>←</button>
+            <span class="demo-avatar" aria-hidden="true" data-demo-inicial>C</span>
+            <div><strong data-demo-name>{inicial.label}</strong><small>Asistente · ejemplo</small></div>
+          </div>
+          <div class="demo-log" role="log" aria-live="polite" tabindex="0" aria-label="Conversación de la demo" data-demo-log></div>
+          <div class="demo-options" data-demo-options></div>
+          <form class="demo-composer" data-demo-form>
+            <label class="demo-sr" for="demo-texto">Escribe tu mensaje</label>
+            <input id="demo-texto" type="text" maxlength="160" autocomplete="off" placeholder="¿Cuánto cuesta?" data-demo-texto />
+            <button type="submit" aria-label="Enviar mensaje"><span aria-hidden="true">↑</span></button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="demo-fugas">
-    <div class="demo-card">
-      <h3>¿Dónde se te van hoy?</h3>
-      <p class="demo-help">Cambia los valores de ejemplo por los de tu negocio.</p>
-      <label class="demo-range"><span>Consultas al mes</span><input type="range" min="20" max="1000" step="10" value="200" data-demo-consultas /><output data-demo-consultas-valor></output></label>
-      <label class="demo-range"><span>De ellas, agendan</span><input type="range" min="5" max="100" step="5" value="40" data-demo-agendan /><output data-demo-agendan-valor></output></label>
-      <label class="demo-range"><span>De las citas, no asisten</span><input type="range" min="0" max="60" step="5" value="20" data-demo-noasisten /><output data-demo-noasisten-valor></output></label>
-      <label class="demo-range"><span>Valor promedio por atención</span><input type="range" min="50000" max="2000000" step="50000" value="150000" data-demo-valor /><output data-demo-valor-valor></output></label>
-    </div>
-    <div class="demo-card demo-resultado" aria-live="polite">
-      <h3>Con esos números, cada mes</h3>
-      <p><strong data-demo-sincita></strong> consultas no llegan a una cita.</p>
-      <p><strong data-demo-perdidas></strong> citas agendadas no se atienden.</p>
-      <p><strong data-demo-dinero></strong> equivalen a esas citas no atendidas.</p>
-      <p class="demo-help">Es solo un cálculo con tus números. No es una promesa de resultado.</p>
-      <button type="button" class="demo-primary" data-demo-whatsapp data-contact-channel="whatsapp">Quiero este sistema <span aria-hidden="true">↗</span></button>
+    <aside class="demo-panel" id="demo-recepcion-panel" aria-label="Lo que ve recepción" data-appear="fade-up" data-delay="100">
+      <div class="demo-panel-top"><span>Recepción</span><span>Ejemplo</span></div>
+      <h3><span data-demo-persona>Tu recepción</span><em data-demo-etapa-label>Esperando la primera consulta</em></h3>
+      <ol class="demo-seg" aria-hidden="true">{DEMO_ETAPAS.map(etapa=><li data-demo-etapa={etapa}></li>)}</ol>
+      <div class="demo-prio" data-demo-prio><small>Prioridad sugerida</small><strong data-demo-prio-valor>Pendiente</strong></div>
+      <dl class="demo-rows" data-demo-rows></dl>
+      <p class="demo-subtitle">Lo que hizo el sistema</p>
+      <ol class="demo-events" data-demo-eventos><li class="is-empty">Aparecerá aquí cuando empiece la conversación.</li></ol>
+      <button type="button" class="demo-cta" data-demo-whatsapp data-contact-channel="whatsapp">Quiero este sistema <span aria-hidden="true">↗</span></button>
       <p class="demo-help">El mensaje queda preparado. Tú decides cuándo enviarlo.</p>
-    </div>
+    </aside>
   </div>
   <noscript><p>Puedes <a href="https://wa.me/573002730128">escribirnos por WhatsApp</a> o <a href="https://cal.com/edicion-aular-website">agendar una conversación</a>.</p></noscript>
 </section>
 <script>
-  import { DEMO_DEFAULT, DEMO_ESPECIALIDADES, DEMO_RECORRIDO, demoEtapa, demoFugas, demoIniciar, demoResponder, demoWhatsapp, getDemoEspecialidad, getDemoSector, limpiarNegocio } from '../lib/demo-atencion.js';
+  import { DEMO_DEFAULT, DEMO_ESPECIALIDADES, DEMO_ETAPAS, DEMO_RECORRIDO, demoEtapa, demoIniciar, demoResponder, demoWhatsapp, getDemoEspecialidad, getDemoSector, limpiarNegocio } from '../lib/demo-atencion.js';
   const root=document.querySelector<HTMLElement>('[data-demo]');
   if(root){
     const q=<T extends Element>(selector:string)=>root.querySelector<T>(selector)!;
-    const log=q<HTMLElement>('[data-demo-log]'),options=q<HTMLElement>('[data-demo-options]'),rows=q<HTMLElement>('[data-demo-rows]'),eventos=q<HTMLElement>('[data-demo-eventos]');
-    const form=q<HTMLFormElement>('[data-demo-form]'),texto=q<HTMLInputElement>('[data-demo-texto]'),selector=q<HTMLSelectElement>('[data-demo-especialidad]'),negocio=q<HTMLInputElement>('[data-demo-negocio]');
-    const campos={consultas:q<HTMLInputElement>('[data-demo-consultas]'),agendan:q<HTMLInputElement>('[data-demo-agendan]'),noAsisten:q<HTMLInputElement>('[data-demo-noasisten]'),valor:q<HTMLInputElement>('[data-demo-valor]')};
-    const pausa=matchMedia('(prefers-reduced-motion: reduce)').matches?0:650,moneda=new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0});
-    let sectorId=root.dataset.sector||DEMO_DEFAULT,actual:any=null,turno=0,ocupado=false,usoIndicado=false,hayInteraccion=false,fase='chat',recorrido=0,extras:Record<string,string>={},eventosExtra:string[]=[];
-    // Un enlace puede preparar la demo para un prospecto: ?negocio=Clínica%20Vital&especialidad=estetica&sector=inmobiliarias
+    const log=q<HTMLElement>('[data-demo-log]'),options=q<HTMLElement>('[data-demo-options]'),rows=q<HTMLElement>('[data-demo-rows]'),eventos=q<HTMLElement>('[data-demo-eventos]'),stage=q<HTMLElement>('[data-demo-stage]');
+    const welcome=q<HTMLElement>('[data-demo-welcome]'),app=q<HTMLElement>('[data-demo-app]'),form=q<HTMLFormElement>('[data-demo-form]'),texto=q<HTMLInputElement>('[data-demo-texto]'),negocio=q<HTMLInputElement>('[data-demo-negocio]'),aviso=q<HTMLElement>('[data-demo-aviso]');
+    const pausa=matchMedia('(prefers-reduced-motion: reduce)').matches?0:650,fijo=root.dataset.fijar==='true';
+    let sectorId=root.dataset.sector||DEMO_DEFAULT,especialidadId=DEMO_ESPECIALIDADES[0].id,actual:any=null,turno=0,ocupado=false,hayInteraccion=false,fase='chat',recorrido=0,extras:Record<string,string>={},eventosExtra:string[]=[];
+    // Un enlace puede preparar la demo para un prospecto: ?negocio=Clínica%20Vital&especialidad=estetica
     const pedido=new URLSearchParams(location.search);
-    if(root.dataset.fijar!=='true'&&getDemoSector(pedido.get('sector')||''))sectorId=pedido.get('sector')!;
-    if(getDemoEspecialidad(pedido.get('especialidad')||''))selector.value=pedido.get('especialidad')!;
+    const especialidadPedida=getDemoEspecialidad(pedido.get('especialidad')||''),sectorPedido=!fijo&&getDemoSector(pedido.get('sector')||'');
+    if(especialidadPedida)especialidadId=especialidadPedida.id;
+    if(sectorPedido)sectorId=sectorPedido.id;
     negocio.value=limpiarNegocio(pedido.get('negocio'));
     const hora=()=>new Date().toLocaleTimeString('es-CO',{hour:'numeric',minute:'2-digit'});
     function mensaje(contenido:string,clase:string){
       const p=document.createElement('div');p.className=`demo-msg ${clase}`;
       const cuerpo=document.createElement('span');cuerpo.textContent=contenido;
       const meta=document.createElement('small');meta.textContent=clase==='is-user'?`${hora()} ✓✓`:hora();
-      p.append(cuerpo,meta);log.append(p);log.scrollTop=log.scrollHeight;return p;
+      p.append(cuerpo,meta);log.append(p);log.scrollTop=log.scrollHeight;
     }
     function separador(contenido:string){const p=document.createElement('p');p.className='demo-dia';p.textContent=contenido;log.append(p);log.scrollTop=log.scrollHeight;}
-    function marcarEtapas(hasta:string[]){
-      root!.querySelectorAll<HTMLElement>('[data-demo-etapa]').forEach(item=>{const activa=hasta.includes(item.dataset.demoEtapa!);item.classList.toggle('is-done',activa);if(item.dataset.demoEtapa===hasta[hasta.length-1])item.setAttribute('aria-current','step');else item.removeAttribute('aria-current');});
+    function marcarEtapas(cuantas:number){
+      root!.querySelectorAll<HTMLElement>('[data-demo-etapa]').forEach((item,index)=>item.classList.toggle('is-done',index<cuantas));
+      q('[data-demo-etapa-label]').textContent=`Etapa ${cuantas} de ${DEMO_ETAPAS.length} · ${DEMO_ETAPAS[cuantas-1]}`;
     }
+    function avisar(){if(stage.dataset.vista==='paciente')aviso.hidden=false;}
     function pintarPaneles(){
-      const {state,pasos}=actual,filas:[string,string,string?][]=[['Origen',state.motivo?`Anuncio de ejemplo · ${state.motivo}`:'Anuncio de ejemplo']];
-      pasos.forEach((key:string,index:number)=>filas.push([key,state.ficha[key]??(state.fin?'No hace falta':index===state.paso?'Esperando respuesta…':'Pendiente')]));
-      filas.push(['Prioridad',state.prioridad||'Pendiente',state.prioridad?(state.prioridad.startsWith('Urgente')?'is-urgent':'is-ready'):'']);
+      const {state,pasos}=actual,sector=getDemoSector(state.sectorId)!,filas:[string,string][]=[['Origen','Anuncio de ejemplo']];
+      pasos.forEach((key:string,index:number)=>filas.push([key,state.ficha[key]??(state.fin?'No hace falta':index===state.paso?'Esperando…':'—')]));
       Object.entries(extras).forEach(([key,value])=>filas.push([key,value]));
-      rows.replaceChildren(...filas.flatMap(([key,value,clase])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;if(clase)dd.className=clase;return [dt,dd];}));
-      const lista=[...state.eventos,...eventosExtra];
-      eventos.replaceChildren(...(lista.length?lista:['Esperando el primer mensaje…']).map((item:string)=>{const li=document.createElement('li');li.textContent=item;if(!lista.length)li.className='is-empty';return li;}));
-      eventos.scrollTop=eventos.scrollHeight;
+      rows.replaceChildren(...filas.flatMap(([key,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;return [dt,dd];}));
+      q('[data-demo-persona]').textContent=state.motivo||state.ficha.Motivo||`Nuevo ${sector.persona}`;
+      q('[data-demo-prio-valor]').textContent=state.prioridad||'Pendiente';
+      const caja=q<HTMLElement>('[data-demo-prio]');caja.classList.toggle('is-active',Boolean(state.prioridad));caja.classList.toggle('is-urgent',state.prioridad.startsWith('Urgente'));
+      const lista=[...state.eventos,...eventosExtra].slice(-5);
+      eventos.replaceChildren(...(lista.length?lista:['Aparecerá aquí cuando empiece la conversación.']).map((item:string)=>{const li=document.createElement('li');li.textContent=item;if(!lista.length)li.className='is-empty';return li;}));
+      root!.dataset.actualSector=state.sectorId;root!.dataset.actualEspecialidad=state.especialidadId;root!.dataset.actualNegocio=state.negocio;
+      if(state.eventos.length||eventosExtra.length)avisar();
     }
     function botones(lista:string[],accion:(valor:string)=>void){
-      options.replaceChildren(...lista.map(valor=>{const b=document.createElement('button');b.type='button';b.className='demo-option';b.textContent=valor;b.addEventListener('click',()=>{hayInteraccion=true;accion(valor);});return b;}));
+      options.replaceChildren(...lista.map(valor=>{const b=document.createElement('button');b.type='button';b.textContent=valor;b.addEventListener('click',()=>{hayInteraccion=true;accion(valor);});return b;}));
+      log.scrollTop=log.scrollHeight;
       if(hayInteraccion&&document.activeElement!==texto)options.querySelector('button')?.focus({preventScroll:true});
     }
     function escribir(respuestas:string[],despues:()=>void){
@@ -121,26 +118,23 @@ const inicial = getDemoSector(sector) ?? getDemoSector(DEMO_DEFAULT);
     function ofrecer(){
       pintarPaneles();
       if(!actual.state.fin){botones(actual.quick,responderTexto);return;}
-      marcarEtapas(actual.state.cita?['Atraer','Responder','Agendar']:['Atraer','Responder']);
       fase='recorrido';recorrido=0;
-      botones(['Ver qué pasa después','Probar de nuevo'],valor=>valor==='Probar de nuevo'?iniciar():avanzarRecorrido());
+      botones(['Ver qué pasa después','Empezar de nuevo'],valor=>valor==='Empezar de nuevo'?iniciar():avanzarRecorrido());
     }
     function responderTexto(valor:string){
       mensaje(valor,'is-user');actual=demoResponder(actual.state,valor);pintarPaneles();
-      if(actual.state.cita)marcarEtapas(['Atraer','Responder','Agendar']);
+      if(actual.state.cita)marcarEtapas(3);
       escribir(actual.replies,ofrecer);
     }
     function avanzarRecorrido(){
       if(recorrido>=DEMO_RECORRIDO.length){
-        fase='fin';marcarEtapas(['Atraer','Responder','Agendar','Confirmar','Cuidar','Volver','Medir']);
-        eventosExtra.push('Sumó este recorrido al reporte de la clínica');pintarPaneles();
+        fase='fin';marcarEtapas(DEMO_ETAPAS.length);eventosExtra.push('Sumó este recorrido al reporte mensual');pintarPaneles();
         separador('Reporte para tu equipo');
-        escribir(['Cada mes ves cuántas consultas llegaron, por qué canal, cuántas agendaron, cuántas asistieron y cuántas volvieron.'],()=>botones(['Probar de nuevo'],()=>iniciar()));
+        escribir(['Cada mes ves cuántas consultas llegaron, por qué canal, cuántas agendaron, asistieron y volvieron.'],()=>botones(['Empezar de nuevo'],()=>iniciar()));
         return;
       }
-      const etapa=demoEtapa(DEMO_RECORRIDO[recorrido],actual.state),nombres=['Atraer','Responder','Agendar','Confirmar','Cuidar','Volver'];
-      marcarEtapas(nombres.slice(0,nombres.indexOf(etapa.etapa)+1));
-      separador(etapa.dia);
+      const etapa=demoEtapa(DEMO_RECORRIDO[recorrido],actual.state);
+      marcarEtapas(DEMO_ETAPAS.indexOf(etapa.etapa)+1);separador(etapa.dia);
       escribir([etapa.text],()=>botones(Object.keys(etapa.opciones),valor=>{
         const opcion=etapa.opciones[valor];
         mensaje(valor,'is-user');extras[etapa.campo]=opcion.ficha;eventosExtra.push(...opcion.eventos);pintarPaneles();recorrido++;
@@ -148,59 +142,85 @@ const inicial = getDemoSector(sector) ?? getDemoSector(DEMO_DEFAULT);
       }));
     }
     function iniciar(){
-      turno++;ocupado=false;fase='chat';recorrido=0;extras={};eventosExtra=[];log.replaceChildren();options.replaceChildren();
-      const sector=getDemoSector(sectorId)!;
-      actual=demoIniciar({sectorId,especialidadId:selector.value||DEMO_ESPECIALIDADES[0].id,negocio:negocio.value});
-      q('[data-demo-name]').textContent=limpiarNegocio(negocio.value)||sector.label;
-      q<HTMLElement>('[data-demo-especialidad-campo]').hidden=!sector.salud;
-      root!.querySelectorAll<HTMLElement>('[data-demo-chip]').forEach(chip=>chip.setAttribute('aria-pressed',String(chip.dataset.demoChip===sectorId)));
-      marcarEtapas(['Atraer','Responder']);pintarPaneles();
+      turno++;ocupado=false;fase='chat';recorrido=0;extras={};eventosExtra=[];log.replaceChildren();options.replaceChildren();aviso.hidden=true;
+      welcome.hidden=true;app.hidden=false;
+      actual=demoIniciar({sectorId,especialidadId,negocio:negocio.value});
+      const sector=getDemoSector(sectorId)!,nombre=limpiarNegocio(negocio.value)||(sector.salud?getDemoEspecialidad(especialidadId)!.label:sector.label);
+      q('[data-demo-name]').textContent=nombre;q('[data-demo-inicial]').textContent=nombre[0].toUpperCase();
+      marcarEtapas(2);pintarPaneles();
       escribir(actual.replies,ofrecer);
     }
-    function calcular(){
-      const datos={consultas:Number(campos.consultas.value),agendan:Number(campos.agendan.value),noAsisten:Number(campos.noAsisten.value),valor:Number(campos.valor.value)},r=demoFugas(datos);
-      q('[data-demo-consultas-valor]').textContent=String(datos.consultas);q('[data-demo-agendan-valor]').textContent=`${datos.agendan} %`;q('[data-demo-noasisten-valor]').textContent=`${datos.noAsisten} %`;q('[data-demo-valor-valor]').textContent=moneda.format(datos.valor);
-      q('[data-demo-sincita]').textContent=String(r.sinCita);q('[data-demo-perdidas]').textContent=String(r.perdidas);q('[data-demo-dinero]').textContent=moneda.format(r.valorPerdido);
-      return datos;
+    function vista(nombre:string){
+      stage.dataset.vista=nombre;
+      root!.querySelectorAll<HTMLElement>('[data-demo-tab]').forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.demoTab===nombre)));
+      if(nombre==='recepcion')aviso.hidden=true;
     }
-    Object.values(campos).forEach(input=>input.addEventListener('input',()=>{usoIndicado=true;calcular();}));
+    root.querySelectorAll<HTMLElement>('[data-demo-tab]').forEach(tab=>tab.addEventListener('click',()=>vista(tab.dataset.demoTab!)));
+    root.querySelectorAll<HTMLElement>('[data-demo-elegir]').forEach(boton=>boton.addEventListener('click',()=>{
+      hayInteraccion=true;sectorId=boton.dataset.demoElegir!;if(boton.dataset.demoEspecialidad)especialidadId=boton.dataset.demoEspecialidad;iniciar();
+    }));
+    q('[data-demo-volver]').addEventListener('click',()=>{turno++;app.hidden=true;welcome.hidden=false;welcome.scrollTop=0;welcome.querySelector('button')?.focus({preventScroll:true});});
     form.addEventListener('submit',event=>{
       event.preventDefault();const valor=texto.value.trim();if(!valor||ocupado)return;texto.value='';hayInteraccion=true;
       if(fase==='chat'){responderTexto(valor);return;}
-      mensaje(valor,'is-user');escribir(['En esta parte de la demo elige una de las opciones. En un proyecto, el asistente también entiende mensajes escritos.'],()=>{const actuales=options.children.length;if(!actuales){if(fase==='fin')botones(['Probar de nuevo'],()=>iniciar());else if(recorrido===0)botones(['Ver qué pasa después','Probar de nuevo'],v=>v==='Probar de nuevo'?iniciar():avanzarRecorrido());else botones(['Seguir el recorrido'],()=>avanzarRecorrido());}});
+      const previas=Array.from(options.querySelectorAll('button')).map(boton=>boton.textContent||'');
+      mensaje(valor,'is-user');escribir(['En esta parte de la demo elige una opción. En un proyecto, el asistente también entiende mensajes escritos.'],()=>{
+        if(fase==='fin')botones(['Empezar de nuevo'],()=>iniciar());
+        else if(recorrido===0)botones(['Ver qué pasa después','Empezar de nuevo'],v=>v==='Empezar de nuevo'?iniciar():avanzarRecorrido());
+        else botones(previas.length?previas:['Seguir el recorrido'],()=>avanzarRecorrido());
+      });
     });
-    root.querySelectorAll<HTMLElement>('[data-demo-chip]').forEach(chip=>chip.addEventListener('click',()=>{hayInteraccion=true;sectorId=chip.dataset.demoChip!;iniciar();}));
-    selector.addEventListener('change',iniciar);negocio.addEventListener('change',iniciar);
-    negocio.addEventListener('input',()=>{q('[data-demo-name]').textContent=limpiarNegocio(negocio.value)||getDemoSector(sectorId)!.label;});
     // Como en el orientador: el botón no expone la URL con respuestas a la medición automática de enlaces.
     q('[data-demo-whatsapp]').addEventListener('click',()=>{
-      const datos=calcular();window.location.assign(demoWhatsapp({sectorId,especialidadId:selector.value,negocio:negocio.value},usoIndicado?datos:undefined).whatsapp);
+      window.location.assign(demoWhatsapp({sectorId,especialidadId,negocio:negocio.value}).whatsapp);
     });
-    calcular();iniciar();
+    // Sin contexto previo, primero se elige el negocio. Con enlace personalizado o página de sector, se entra directo.
+    if(fijo||especialidadPedida||sectorPedido||negocio.value)iniciar();
   }
 </script>
-<style>
-  .demo-atencion{--demo-bg:#15171c;--demo-card:#1d2026;--demo-text:#f5f5f7;--demo-muted:#b6b9c3;--demo-border:#3c404b;--demo-selected:#30212b;--demo-accent:#ff80ad;box-sizing:border-box;margin:48px 0 64px;padding:28px;border:1px solid var(--demo-border);border-radius:24px;background:var(--demo-bg);color:var(--demo-text);scroll-margin-top:96px}
-  :global(html.light-mode) .demo-atencion{--demo-bg:#fff;--demo-card:#f7f7f9;--demo-text:#20232b;--demo-muted:#5c6270;--demo-border:#d8dbe2;--demo-selected:#fff0f5;--demo-accent:#b80046}
-  .demo-atencion [hidden]{display:none!important}
-  .demo-header{margin:0 0 18px}.demo-eyebrow{display:block;font-size:10px;letter-spacing:.14em;line-height:1.6;font-weight:600;color:var(--demo-muted)}.demo-header h2{margin:6px 0 8px;font-size:clamp(24px,3vw,32px);line-height:1.25;letter-spacing:-.035em;color:var(--demo-text)}.demo-header h2 span{color:var(--demo-accent)}.demo-header p{margin:0;max-width:66ch;font-size:15px;line-height:1.6;color:var(--demo-muted)}
-  .demo-controls{display:flex;flex-direction:column;gap:12px;margin:0 0 16px}.demo-chips{display:flex;flex-wrap:wrap;gap:8px}.demo-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.demo-field{display:flex;flex-direction:column;gap:6px;margin:0;font-size:13px;font-weight:400;letter-spacing:normal;text-transform:none;color:var(--demo-muted)}
-  .demo-atencion .demo-field :is(input,select),.demo-atencion .demo-composer input{width:100%;min-height:44px;margin:0;padding:10px 12px;box-sizing:border-box;border:1px solid var(--demo-border);border-radius:9px;background:var(--demo-card);color:var(--demo-text);font:inherit;font-size:16px;line-height:1.3;letter-spacing:normal;text-transform:none;box-shadow:none;appearance:auto}.demo-atencion input::placeholder{color:var(--demo-muted);opacity:1}
-  .demo-atencion .demo-chip,.demo-atencion :global(.demo-option),.demo-atencion .demo-send{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:8px 14px;box-sizing:border-box;border:1px solid var(--demo-border);border-radius:9px;background:transparent;color:var(--demo-text);font:inherit;font-size:14px;font-weight:500;line-height:1.3;letter-spacing:0;text-transform:none;text-align:left;white-space:normal;cursor:pointer;transition:border-color .15s,background .15s}.demo-atencion .demo-chip:hover,.demo-atencion :global(.demo-option:hover),.demo-atencion .demo-send:hover{border-color:var(--demo-accent);background:var(--demo-selected);color:var(--demo-text)}.demo-atencion .demo-chip[aria-pressed="true"]{border-color:var(--demo-accent);background:var(--demo-selected);box-shadow:inset 0 0 0 1px var(--demo-accent)}
-  .demo-etapas{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;list-style:none;margin:0 0 16px;padding:0}.demo-etapas li{display:flex;align-items:center;gap:6px;min-width:0;padding:8px 0 0;border-top:3px solid var(--demo-border);font-size:12px;line-height:1.3;color:var(--demo-muted);transition:color .2s,border-color .2s}.demo-etapas li span{font-size:10px}.demo-etapas li.is-done{border-color:var(--demo-accent);color:var(--demo-text)}.demo-etapas li[aria-current]{font-weight:600}
-  .demo-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:stretch}.demo-chat,.demo-card{border:1px solid var(--demo-border);border-radius:16px;background:var(--demo-card)}
-  .demo-chat{display:flex;flex-direction:column;min-width:0;overflow:hidden}.demo-chat-top{display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;padding:12px 16px;border-bottom:1px solid var(--demo-border);font-size:14px}.demo-chat-top strong{color:var(--demo-text);font-weight:600}.demo-chat-top small{width:100%;margin-left:16px;font-size:12px;color:var(--demo-muted)}.demo-dot{width:8px;height:8px;border-radius:50%;background:var(--demo-accent)}
-  .demo-log{display:flex;flex-direction:column;gap:8px;flex:1 1 auto;height:380px;padding:16px;overflow-y:auto;overscroll-behavior:contain}.demo-log:focus-visible{outline-offset:-3px}.demo-log :global(.demo-msg){display:flex;flex-direction:column;gap:2px;max-width:85%;padding:9px 13px;border-radius:14px;font-size:14px;line-height:1.45;color:var(--demo-text)}.demo-log :global(.demo-msg small){align-self:flex-end;font-size:10px;line-height:1.2;color:var(--demo-muted)}.demo-log :global(.is-bot){align-self:flex-start;background:var(--demo-bg);border:1px solid var(--demo-border)}.demo-log :global(.is-user){align-self:flex-end;background:var(--demo-selected);border:1px solid var(--demo-accent)}.demo-log :global(.is-typing){flex-direction:row;gap:4px;padding:13px}.demo-log :global(.is-typing i){width:6px;height:6px;border-radius:50%;background:var(--demo-muted);animation:demo-punto 1s infinite}.demo-log :global(.is-typing i:nth-child(2)){animation-delay:.15s}.demo-log :global(.is-typing i:nth-child(3)){animation-delay:.3s}.demo-log :global(.demo-dia){align-self:center;margin:6px 0;padding:3px 10px;border:1px solid var(--demo-border);border-radius:20px;font-size:11px;line-height:1.5;color:var(--demo-muted)}
-  @keyframes demo-punto{0%,60%,100%{opacity:.35}30%{opacity:1}}
-  .demo-options{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px 0;box-sizing:border-box;border-top:1px solid var(--demo-border);min-height:57px}.demo-composer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:12px 16px}
-  .demo-side{display:flex;flex-direction:column;gap:12px;min-width:0}.demo-card{padding:16px}.demo-card h3{margin:0 0 12px;font-size:16px;font-weight:600;line-height:1.35;letter-spacing:-.01em;color:var(--demo-text)}.demo-rows{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0;margin:0;font-size:13px;line-height:1.4}.demo-rows :global(dt),.demo-rows :global(dd){margin:0;padding:6px 0;border-top:1px solid var(--demo-border)}.demo-rows :global(dt:first-child),.demo-rows :global(dt:first-child+dd){border-top:0}.demo-rows :global(dt){color:var(--demo-muted);font-weight:400}.demo-rows :global(dd){padding-left:16px;text-align:right;color:var(--demo-text)}.demo-rows :global(dd.is-ready){color:var(--demo-accent);font-weight:600}.demo-rows :global(dd.is-urgent){color:var(--demo-accent);font-weight:700}
-  .demo-eventos{display:flex;flex-direction:column;gap:6px;max-height:190px;margin:0;padding:0;list-style:none;overflow-y:auto;font-size:13px;line-height:1.4;color:var(--demo-text)}.demo-eventos :global(li){position:relative;padding-left:18px}.demo-eventos :global(li::before){content:'✓';position:absolute;left:0;color:var(--demo-accent);font-weight:700}.demo-eventos :global(li.is-empty){padding-left:0;color:var(--demo-muted)}.demo-eventos :global(li.is-empty::before){content:none}
-  .demo-fugas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px}.demo-range{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:2px 8px;align-items:center;margin:0 0 10px;font-size:13px;font-weight:400;letter-spacing:normal;text-transform:none;color:var(--demo-muted)}.demo-range span{grid-column:1/-1}.demo-atencion .demo-range input[type="range"]{appearance:auto;width:100%;min-height:24px;margin:0;padding:0;border:0;background:transparent;box-shadow:none;accent-color:#b80046}.demo-range output{text-align:right;color:var(--demo-text);font-weight:600;font-size:12px}
-  .demo-resultado p{margin:0 0 8px;font-size:14px;line-height:1.5;color:var(--demo-muted)}.demo-resultado strong{color:var(--demo-accent);font-weight:700;font-size:18px}.demo-resultado .demo-primary{margin-top:6px}
-  .demo-atencion .demo-primary{display:inline-flex;gap:10px;justify-content:center;align-items:center;width:100%;min-height:48px;padding:12px 20px;box-sizing:border-box;border:1px solid #b80046;border-radius:9px;background:#b80046;color:#fff;font:inherit;font-size:15px;font-weight:600;line-height:1.4;letter-spacing:0;text-transform:none;white-space:normal;cursor:pointer}.demo-atencion .demo-primary:hover{background:#970039;color:#fff}.demo-help{margin:0 0 10px;font-size:12px;line-height:1.6;color:var(--demo-muted)}.demo-resultado p.demo-help{font-size:12px}
+<style is:global>
+  .demo{padding:clamp(64px,9vw,120px) 0;scroll-margin-top:72px}.demo [hidden]{display:none!important}
+  .demo-intro{max-width:640px;margin-bottom:clamp(28px,4vw,48px)}.demo-intro h2{margin:12px 0}.demo-intro p{margin:0;font-size:clamp(16px,1.4vw,19px);line-height:1.55}
+  .demo-tabs{display:none}
+  .demo-stage{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:stretch}
+  .demo-phone{position:relative;box-sizing:border-box;width:100%;max-width:400px;height:780px;padding:10px;border-radius:52px;background:var(--bringer-s-body-bg);box-shadow:0 0 0 1px var(--bringer-s-border),0 30px 80px color-mix(in srgb,var(--bringer-s-accent) 15%,transparent),0 30px 60px #0006}
+  .demo-island{position:absolute;top:20px;left:50%;width:96px;height:24px;margin-left:-48px;border-radius:14px;background:#000;z-index:2}
+  .demo-screen{position:relative;height:100%;box-sizing:border-box;border-radius:42px;background:var(--bringer-s-container-bg);color:var(--bringer-s-heading);overflow:hidden}
+  
+  .demo-welcome{height:100%;box-sizing:border-box;padding:60px 20px 20px;overflow-y:auto;overscroll-behavior:contain;animation:demo-entra .3s cubic-bezier(.16,1,.3,1)}.demo-kicker{margin:0;font-size:12px;color:var(--bringer-s-text)}.demo-welcome h3{margin:4px 0 14px;font-size:26px;font-weight:600;line-height:1.12;letter-spacing:-.035em;color:inherit}
+  .demo-name{display:block;margin:0 0 12px;font-size:13px;font-weight:400;letter-spacing:normal;text-transform:none;color:var(--bringer-s-text)}.demo-name span{display:block;margin-bottom:6px}
+  .demo .demo-name input,.demo .demo-composer input{width:100%;min-height:46px;margin:0;padding:10px 14px;box-sizing:border-box;border:1px solid var(--bringer-s-border);border-radius:var(--bringer-small-br);background:var(--bringer-s-body-bg);color:inherit;font:inherit;font-size:16px;line-height:1.3;letter-spacing:normal;text-transform:none;box-shadow:none}.demo input::placeholder{color:var(--bringer-s-text);opacity:.8}
+  
+  .demo-group{margin:12px 0 2px;font-size:12px;font-weight:600;color:var(--bringer-s-text)}
+  .demo .demo-list{display:flex;flex-direction:column}.demo .demo-list button{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:45px;margin:0;padding:0 2px;border:0;border-bottom:1px solid var(--bringer-s-border);border-radius:0;background:transparent;color:inherit;font:inherit;font-size:16px;font-weight:400;letter-spacing:0;text-transform:none;text-align:left;cursor:pointer;transition:padding .15s,color .15s}.demo .demo-list button span{color:var(--bringer-s-text-accent);transition:transform .15s}.demo .demo-list button:hover{color:var(--bringer-s-text-accent);background:transparent}.demo .demo-list button:hover span{transform:translateX(4px)}
+  
+  .demo-app{display:flex;flex-direction:column;height:100%;animation:demo-entra .3s cubic-bezier(.16,1,.3,1)}
+  .demo-top{display:flex;align-items:center;gap:10px;padding:54px 14px 12px;border-bottom:1px solid var(--bringer-s-border)}.demo-top strong{display:block;font-size:15px;font-weight:600;line-height:1.25;color:inherit}.demo-top small{display:block;font-size:12px;line-height:1.3;color:var(--bringer-s-text)}
+  .demo .demo-back{display:grid;place-items:center;flex:none;width:36px;height:44px;min-height:44px;margin:0;padding:0;border:0;background:transparent;color:inherit;font-size:20px;line-height:1;cursor:pointer}.demo .demo-back:hover{background:transparent;color:var(--bringer-s-text-accent)}
+  .demo-avatar{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:13px;background:var(--bringer-s-accent);color:#fff;font-size:16px;font-weight:600}
+  .demo-log{display:flex;flex:1 1 auto;flex-direction:column;gap:8px;min-height:0;padding:14px;overflow-y:auto;overscroll-behavior:contain}.demo-log:focus-visible{outline:2px solid var(--bringer-s-text-accent);outline-offset:-4px}
+  .demo-msg{display:flex;flex-direction:column;gap:2px;max-width:84%;padding:9px 13px;border-radius:18px;font-size:15px;line-height:1.4;animation:demo-msg .2s cubic-bezier(.16,1,.3,1)}.demo-msg small{align-self:flex-end;font-size:10px;line-height:1.2;opacity:.65}.demo-msg.is-bot{align-self:flex-start;border-bottom-left-radius:6px;background:var(--bringer-s-body-bg);color:inherit}.demo-msg.is-user{align-self:flex-end;border-bottom-right-radius:6px;background:var(--bringer-s-accent);color:#fff}
+  .demo-msg.is-typing{flex-direction:row;gap:4px;padding:14px}.demo-msg.is-typing i{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.4;animation:demo-punto 1s infinite}.demo-msg.is-typing i:nth-child(2){animation-delay:.15s}.demo-msg.is-typing i:nth-child(3){animation-delay:.3s}
+  .demo-dia{align-self:center;margin:8px 0 2px;font-size:12px;font-weight:600;line-height:1.4;color:var(--bringer-s-text-accent)}
+  .demo .demo-options{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;padding:0 14px 8px}.demo .demo-options:empty{display:none}.demo .demo-options button{min-height:40px;margin:0;padding:8px 13px;border:1px solid var(--bringer-s-text-accent);border-radius:14px;background:transparent;color:inherit;font:inherit;font-size:14px;font-weight:400;line-height:1.2;letter-spacing:0;text-transform:none;text-align:left;white-space:normal;cursor:pointer;animation:demo-msg .2s cubic-bezier(.16,1,.3,1);transition:background .15s}.demo .demo-options button:hover{background:color-mix(in srgb,var(--bringer-s-accent) 18%,transparent);color:inherit}
+  .demo-composer{display:grid;grid-template-columns:minmax(0,1fr) 46px;gap:8px;padding:6px 14px 22px}.demo .demo-composer button{display:grid;place-items:center;width:46px;height:46px;min-height:46px;margin:0;padding:0;border:0;border-radius:50%;background:var(--bringer-s-accent);color:#fff;font-size:20px;line-height:1;cursor:pointer}.demo .demo-composer button:hover{background:var(--bringer-button-hover-bg);color:#fff}
+  .demo-panel{display:flex;flex-direction:column;min-width:0;box-sizing:border-box;padding:clamp(20px,3vw,36px);border-radius:var(--bringer-large-br);background:#F5F7FA;color:#07090D}
+  .demo-panel-top{display:flex;justify-content:space-between;margin-bottom:clamp(18px,3vw,32px);font-size:13px;color:#2A2D35}.demo-panel-top span:first-child{font-weight:600;color:#07090D}
+  .demo-panel h3{margin:0 0 16px;font-size:clamp(28px,3.4vw,44px);font-weight:600;line-height:1.08;letter-spacing:-.04em;color:#07090D}.demo-panel h3 em{display:block;font-style:normal;color:#07090D8c}
+  .demo-seg{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:0 0 20px;padding:0;list-style:none}.demo-seg li{height:12px;margin:0;padding:0;border-radius:4px;background:#07090D1f;transition:background .3s}.demo-seg li,.demo-events li{list-style:none!important}.demo-seg li::marker,.demo-events li::marker{content:none}.demo-seg li::before,.demo-seg li::after{content:none!important;display:none!important}.demo-seg li.is-done{background:#ff005f}
+  .demo-prio{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 16px;margin-bottom:12px;padding:18px 20px;border-radius:20px;background:#FFFFFF;transition:background .3s}.demo-prio small{font-size:13px;color:#2A2D35}.demo-prio strong{font-size:clamp(18px,2vw,24px);font-weight:600;line-height:1.15;letter-spacing:-.02em;color:#07090D}.demo-prio.is-active{background:#07090D}.demo-prio.is-active small{color:#FFFFFFC0}.demo-prio.is-active strong{color:#fff}.demo-prio.is-urgent{background:#ff005f}.demo-prio.is-urgent small,.demo-prio.is-urgent strong{color:#fff}
+  .demo-rows{display:grid;grid-template-columns:auto minmax(0,1fr);margin:0 0 18px;font-size:14px;line-height:1.35}.demo-rows dt,.demo-rows dd{margin:0;padding:10px 0;border-bottom:1px solid #07090D27;animation:demo-fade .2s ease-out}.demo-rows dt{color:#2A2D35;font-weight:400}.demo-rows dd{padding-left:20px;text-align:right;font-weight:400;color:#07090D}
+  .demo-subtitle{margin:0 0 8px;font-size:13px;font-weight:600;color:#07090D}
+  .demo-events{display:flex;flex:1 1 auto;flex-direction:column;gap:7px;margin:0 0 18px;padding:0;list-style:none;font-size:14px;line-height:1.35;color:#2A2D35}.demo-events li{position:relative;margin:0;padding:0 0 0 26px;animation:demo-msg .2s cubic-bezier(.16,1,.3,1)}.demo-events li::before{content:'✓';position:absolute;top:0;left:0;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#07090D;color:#fff;font-size:10px;font-weight:600}.demo-events li.is-empty{padding-left:0;color:#2A2D35}.demo-events li.is-empty::before{content:none}
+  .demo .demo-cta{display:inline-flex;justify-content:center;align-items:center;gap:10px;width:100%;min-height:52px;margin:0;padding:12px 20px;box-sizing:border-box;border:0;border-radius:6px;background:var(--bringer-s-accent);color:#fff;font:inherit;font-size:15px;font-weight:600;line-height:1.3;letter-spacing:0;text-transform:none;cursor:pointer;transition:background .15s}.demo .demo-cta:hover{background:var(--bringer-button-hover-bg);color:#fff}
+  .demo-help{margin:10px 0 0;font-size:12px;line-height:1.5;text-align:center;color:#2A2D35}
   .demo-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
-  .demo-atencion :is(button,input,select,[tabindex="0"]):focus-visible{outline:3px solid var(--demo-accent);outline-offset:2px}
-  @media(max-width:860px){.demo-grid,.demo-fugas{grid-template-columns:minmax(0,1fr)}.demo-etapas li{flex-direction:column;align-items:flex-start;gap:0;font-size:11px}}
-  @media(max-width:540px){.demo-atencion{padding:18px 14px;border-radius:18px;margin:32px 0 48px}.demo-fields{grid-template-columns:minmax(0,1fr)}.demo-etapas{display:flex;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}.demo-etapas li{flex:0 0 68px}.demo-log{height:320px;padding:12px}.demo-options{padding:12px 12px 0}.demo-composer{padding:12px}.demo-atencion .demo-chip,.demo-atencion :global(.demo-option){font-size:13px;padding:8px 12px}.demo-log :global(.demo-msg){max-width:92%}}
-  @media(prefers-reduced-motion:reduce){.demo-atencion .demo-chip,.demo-atencion :global(.demo-option),.demo-etapas li{transition:none}.demo-log :global(.is-typing i){animation:none}}
+  .demo :is(button,input):focus-visible{outline:3px solid var(--bringer-s-text-accent);outline-offset:2px}
+  @keyframes demo-entra{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}@keyframes demo-msg{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes demo-fade{from{opacity:0}to{opacity:1}}@keyframes demo-punto{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  @media(max-width:860px){
+    .demo-tabs{position:relative;z-index:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin:0 0 14px;padding:4px;border:1px solid var(--bringer-s-border);border-radius:16px;background:var(--bringer-s-container-bg)}.demo .demo-tabs button{position:relative;min-height:44px;margin:0;padding:0 12px;border:0;border-radius:12px;background:transparent;color:var(--bringer-s-heading);font:inherit;font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;transition:background .15s}.demo .demo-tabs button[aria-selected="true"]{background:var(--bringer-s-accent);color:#fff}.demo-tabs i{display:inline-block;width:8px;height:8px;margin-left:8px;border-radius:50%;background:var(--bringer-s-text-accent);vertical-align:middle}
+    .demo-stage{grid-template-columns:minmax(0,1fr)}.demo-phone{max-width:420px;height:min(78dvh,680px);min-height:540px;margin:0 auto;padding:7px;border-radius:40px}.demo-screen{border-radius:33px}.demo-island{top:15px;width:80px;height:20px;margin-left:-40px}.demo-top{padding-top:44px}.demo-welcome{padding-top:52px}
+    .demo-stage[data-vista="paciente"] .demo-panel,.demo-stage[data-vista="recepcion"] .demo-phone{display:none}.demo-panel{animation:demo-fade .2s ease-out}
+  }
+  @media(prefers-reduced-motion:reduce){.demo-welcome,.demo-app,.demo-msg,.demo-options button,.demo-rows dt,.demo-rows dd,.demo-events li,.demo-panel{animation:none!important}.demo-msg.is-typing i{animation:none}}
 </style>
