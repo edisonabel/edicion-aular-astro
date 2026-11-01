@@ -1,0 +1,66 @@
+---
+---
+<section class="sg" id="fugas-sistema" data-sg>
+  <div class="sg-result">
+    <span class="bringer-label" data-appear="fade-up">Calcúlalo con tus números</span>
+    <p class="sg-label">Cada mes se te van</p>
+    <p class="sg-number" aria-live="polite" data-sg-dinero>$ 2.400.000</p>
+    <p class="sg-label">en citas agendadas que no se atienden.</p>
+    <div class="sg-stats">
+      <div><strong data-sg-perdidas>16</strong><span>citas no atendidas</span></div>
+      <div><strong data-sg-sincita>120</strong><span>consultas sin cita</span></div>
+    </div>
+    <p class="sg-note">Es solo un cálculo con los valores que indicas. No es una promesa de resultado.</p>
+  </div>
+  <div class="sg-controls">
+    <label class="sg-range"><span>Consultas al mes <output data-sg-out="consultas"></output></span><input type="range" min="20" max="1000" step="10" value="200" data-sg-in="consultas" /></label>
+    <label class="sg-range"><span>Agendan una cita <output data-sg-out="agendan"></output></span><input type="range" min="5" max="100" step="5" value="40" data-sg-in="agendan" /></label>
+    <label class="sg-range"><span>No asisten a la cita <output data-sg-out="noAsisten"></output></span><input type="range" min="0" max="60" step="5" value="20" data-sg-in="noAsisten" /></label>
+    <label class="sg-range"><span>Valor promedio por atención <output data-sg-out="valor"></output></span><input type="range" min="50000" max="2000000" step="50000" value="150000" data-sg-in="valor" /></label>
+    <button type="button" class="sg-cta" data-sg-whatsapp data-contact-channel="whatsapp">Revisar mis números por WhatsApp <span aria-hidden="true">↗</span></button>
+    <p class="sg-note">El mensaje queda preparado. Tú decides cuándo enviarlo.</p>
+  </div>
+</section>
+<script>
+  import { DEMO_DEFAULT, demoFugas, demoWhatsapp } from '../lib/demo-atencion.js';
+  const root=document.querySelector<HTMLElement>('[data-sg]');
+  if(root){
+    const moneda=new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0});
+    const entradas=Array.from(root.querySelectorAll<HTMLInputElement>('[data-sg-in]'));
+    let usoIndicado=false;
+    const leer=()=>Object.fromEntries(entradas.map(input=>[input.dataset.sgIn,Number(input.value)])) as {consultas:number;agendan:number;noAsisten:number;valor:number};
+    function pintar(){
+      const datos=leer(),resultado=demoFugas(datos);
+      const cifra=root!.querySelector<HTMLElement>('[data-sg-dinero]')!;cifra.textContent=moneda.format(resultado.valorPerdido);cifra.style.setProperty('--sg-n',String(cifra.textContent.length));
+      root!.querySelector('[data-sg-perdidas]')!.textContent=String(resultado.perdidas);
+      root!.querySelector('[data-sg-sincita]')!.textContent=String(resultado.sinCita);
+      root!.querySelector('[data-sg-out="consultas"]')!.textContent=String(datos.consultas);
+      root!.querySelector('[data-sg-out="agendan"]')!.textContent=`${datos.agendan} %`;
+      root!.querySelector('[data-sg-out="noAsisten"]')!.textContent=`${datos.noAsisten} %`;
+      root!.querySelector('[data-sg-out="valor"]')!.textContent=moneda.format(datos.valor);
+      entradas.forEach(input=>input.style.setProperty('--sg-p',`${(Number(input.value)-Number(input.min))/(Number(input.max)-Number(input.min))*100}%`));
+    }
+    entradas.forEach(input=>input.addEventListener('input',()=>{usoIndicado=true;pintar();}));
+    // Toma el negocio de la demo, si el visitante ya la probó en esta página.
+    root.querySelector('[data-sg-whatsapp]')!.addEventListener('click',()=>{
+      const demo=document.querySelector<HTMLElement>('[data-demo]')?.dataset;
+      window.location.assign(demoWhatsapp({sectorId:demo?.actualSector||DEMO_DEFAULT,especialidadId:demo?.actualEspecialidad,negocio:demo?.actualNegocio},usoIndicado?leer():undefined).whatsapp);
+    });
+    pintar();
+  }
+</script>
+<style is:global>
+  .sg{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(36px,6vw,96px);align-items:center;padding:clamp(72px,10vw,140px) 0}
+  .sg-label{margin:0;font-size:clamp(18px,1.8vw,24px);line-height:1.35;color:var(--bringer-s-heading)}.sg .bringer-label{display:block;margin-bottom:20px}
+  .sg-result{container-type:inline-size;min-width:0}.sg-number{display:block;width:max-content;max-width:100%;margin:6px 0;font-size:min(112px,calc(100cqw/(var(--sg-n,11)*.6)));font-weight:600;line-height:1;letter-spacing:-.055em;padding-bottom:.08em;background:var(--ea-gradiente-diagonal);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums;white-space:nowrap}
+  
+  .sg-stats{display:flex;gap:clamp(28px,4vw,56px);margin:clamp(24px,3vw,40px) 0 18px}.sg-stats strong{display:block;font-size:clamp(28px,3vw,40px);font-weight:600;line-height:1.1;letter-spacing:-.03em;color:var(--bringer-s-heading);font-variant-numeric:tabular-nums}.sg-stats span{font-size:14px;color:var(--bringer-s-heading-fade)}
+  .sg-note{margin:0;font-size:13px;line-height:1.55;color:var(--bringer-s-heading-fade)}
+  .sg-controls{display:flex;flex-direction:column;gap:22px}.sg-range{display:block;margin:0;font-size:15px;font-weight:400;letter-spacing:normal;text-transform:none;color:var(--bringer-s-heading)}.sg-range span{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}.sg-range output{font-weight:600;color:var(--bringer-s-heading);font-variant-numeric:tabular-nums}
+  .sg .sg-range input[type="range"]{-webkit-appearance:none;appearance:none;display:block;width:100%;height:28px;min-height:28px;margin:0;padding:0;border:0;background:transparent;box-shadow:none;cursor:pointer}
+  .sg .sg-range input[type="range"]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,#ff0078,#ff002c var(--sg-p,50%),var(--bringer-s-border) var(--sg-p,50%))}.sg .sg-range input[type="range"]::-moz-range-track{height:6px;border-radius:3px;background:var(--bringer-s-border)}.sg .sg-range input[type="range"]::-moz-range-progress{height:6px;border-radius:3px;background:var(--ea-gradiente-diagonal)}
+  .sg .sg-range input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-9px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 8px #0006,0 0 0 1px #0000001f}.sg .sg-range input[type="range"]::-moz-range-thumb{width:24px;height:24px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 8px #0006}
+  .sg .sg-cta{display:inline-flex;justify-content:center;align-items:center;gap:10px;width:100%;min-height:52px;margin:6px 0 -8px;padding:12px 20px;box-sizing:border-box;border:0;border-radius:6px;background:var(--ea-gradiente-diagonal);color:#fff;font:inherit;font-size:15px;font-weight:600;line-height:1.3;letter-spacing:0;text-transform:none;cursor:pointer;transition:filter .15s}.sg .sg-cta:hover{background:var(--ea-gradiente-diagonal);filter:brightness(.9);color:#fff}
+  .sg :is(button,input):focus-visible{outline:3px solid var(--bringer-s-text-accent);outline-offset:3px}
+  @media(max-width:860px){.sg{grid-template-columns:minmax(0,1fr)}}
+</style>

@@ -11,6 +11,7 @@ import Breadcrumbs from '../../components/geo/Breadcrumbs.astro';
 import FaqList from '../../components/geo/FaqList.astro';
 import Normativa from '../../components/geo/Normativa.astro';
 import Cta from '../../components/geo/Cta.astro';
+import DemoAtencion from '../../components/DemoAtencion.astro';
 import { SOLUCIONES, type Solucion } from '../../data/ia/soluciones';
 import { ZONAS } from '../../data/ia/zonas';
 import { SECTORES } from '../../data/ia/sectores';
@@ -95,6 +96,8 @@ const schemaData = [
         </div>
       </div>
     </section>
+
+    {solucion.slug === 'agentes-ia-whatsapp' && <DemoAtencion titulo="Pruébalo dentro de un sistema completo" />}
 
     <!-- Section: Proceso de implementación -->
     <section id="proceso" data-template="home06.html#steps" class="backlight-bottom">
