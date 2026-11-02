@@ -1,0 +1,43 @@
+---
+// Ficha ilustrativa de lo que el equipo ve de un paciente. Los puntos no representan un análisis clínico.
+const puntos = [
+  { titulo: 'Motivo', valor: 'Valoración estética', x: 62, y: 19 },
+  { titulo: 'Próxima cita', valor: 'Martes, 9:00 a. m.', x: 53, y: 47 },
+  { titulo: 'Indicaciones', valor: 'Enviadas por recepción', x: 64, y: 62 },
+  { titulo: 'Control', valor: 'En tres meses', x: 49, y: 84 },
+];
+---
+<section class="sp" id="ficha-paciente" data-sp>
+  <div class="sp-media">
+    <img src="/img/ia/rostro-estetica.webp" alt="Escultura digital de un rostro con los ojos cerrados y una luz de rosa a rojo en su contorno" width="1536" height="1024" loading="lazy" />
+    {puntos.map((punto, index) => <span class="sp-pin" style={`--x:${punto.x}%;--y:${punto.y}%;--i:${index}`} aria-hidden="true">{index + 1}</span>)}
+  </div>
+  <div class="sp-text">
+    <span class="bringer-label" data-appear="fade-up">La ficha del paciente</span>
+    <h2 data-split-appear="fade-up" data-split-by="line">Detrás de cada mensaje hay una persona<span class="bringer-accent">.</span></h2>
+    <p class="bringer-large-text" data-appear="fade-up" data-delay="100">Tu equipo ve en un solo lugar lo que necesita para atenderla, sin pedirle que repita su historia.</p>
+    <ol class="sp-list">
+      {puntos.map((punto, index) => <li style={`--i:${index}`}><span aria-hidden="true">{index + 1}</span><div><strong>{punto.titulo}</strong><small>{punto.valor}</small></div></li>)}
+    </ol>
+    <p class="sp-note">Ficha de ejemplo. Los puntos ordenan la información de la atención y no son un análisis clínico.</p>
+  </div>
+</section>
+<script>
+  // Muestra los puntos una sola vez, al entrar en pantalla.
+  const ficha=document.querySelector<HTMLElement>('[data-sp]');
+  if(ficha&&'IntersectionObserver' in window){
+    const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){ficha.classList.add('is-in');observer.disconnect();}},{threshold:.3});
+    ficha.classList.add('is-ready');observer.observe(ficha);
+  }
+</script>
+<style is:global>
+  .sp{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center;padding:clamp(48px,7vw,96px) 0}
+  .sp-media{position:relative;overflow:hidden;aspect-ratio:3/2;border-radius:var(--bringer-large-br);background:#07090D}.sp-media img{display:block;width:100%;height:100%;object-fit:cover}
+  .sp-pin{position:absolute;top:var(--y);left:var(--x);display:grid;place-items:center;width:32px;height:32px;margin:-16px 0 0 -16px;box-sizing:border-box;border:1px solid #F5F7FA;border-radius:50%;background:#07090DCC;color:#F5F7FA;font-size:13px;font-weight:600;line-height:1}
+  .sp-text h2{margin:12px 0}.sp-text>p.bringer-large-text{margin:0 0 20px}
+  .sp .sp-list{margin:0;padding:0;list-style:none}.sp .sp-list li{display:flex;align-items:center;gap:14px;margin:0;padding:12px 0;border-top:1px solid var(--bringer-s-border);list-style:none}.sp .sp-list li::marker{content:none}.sp .sp-list li>span{display:grid;place-items:center;flex:none;width:32px;height:32px;box-sizing:border-box;border:1px solid var(--bringer-s-heading);border-radius:50%;color:var(--bringer-s-heading);font-size:13px;font-weight:600}.sp .sp-list strong{display:block;font-size:16px;font-weight:600;line-height:1.3;color:var(--bringer-s-heading)}.sp .sp-list small{display:block;font-size:14px;line-height:1.35;color:var(--bringer-s-heading-fade)}
+  .sp-note{margin:14px 0 0;font-size:13px;line-height:1.5;color:var(--bringer-s-heading-fade)}
+  .sp.is-ready .sp-pin,.sp.is-ready .sp-list li{opacity:0;transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i)*180ms + 150ms)}.sp.is-ready .sp-pin{transform:scale(.7)}.sp.is-ready .sp-list li{transform:translateY(8px)}.sp.is-in .sp-pin,.sp.is-in .sp-list li{opacity:1;transform:none}
+  @media(max-width:860px){.sp{grid-template-columns:minmax(0,1fr)}.sp-pin{width:28px;height:28px;margin:-14px 0 0 -14px;font-size:12px}}
+  @media(prefers-reduced-motion:reduce){.sp.is-ready .sp-pin,.sp.is-ready .sp-list li{opacity:1;transform:none;transition:none}}
+</style>

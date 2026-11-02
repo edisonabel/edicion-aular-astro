@@ -6,6 +6,7 @@ import DemoAtencion from '../components/DemoAtencion.astro';
 import SistemaFlujo from '../components/SistemaFlujo.astro';
 import SistemaFugas from '../components/SistemaFugas.astro';
 import SistemaHero from '../components/SistemaHero.astro';
+import SistemaRostro from '../components/SistemaRostro.astro';
 import { NEGOCIO } from '../data/ia/negocio';
 import { breadcrumbs, service, webPage } from '../lib/schema';
 
@@ -27,12 +28,13 @@ const schemaData = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image="/img/ia/hero-sistema.webp">
   <JsonLd slot="head" data={schemaData} />
 
   <div class="stg-container">
     <SistemaHero />
     <SistemaFlujo />
+    <SistemaRostro />
     <DemoAtencion titulo="Vive el recorrido de un paciente" />
     <SistemaFugas />
 

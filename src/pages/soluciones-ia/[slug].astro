@@ -11,6 +11,7 @@ import Cta from '../../components/geo/Cta.astro';
 import DemoAtencion from '../../components/DemoAtencion.astro';
 import SolucionHero from '../../components/SolucionHero.astro';
 import SolucionLab from '../../components/SolucionLab.astro';
+import { IMAGENES, IMAGEN_SOLUCION } from '../../data/ia/imagenes';
 import { SOLUCIONES, type Solucion } from '../../data/ia/soluciones';
 import { ZONAS } from '../../data/ia/zonas';
 import { SECTORES } from '../../data/ia/sectores';
@@ -31,6 +32,7 @@ interface Props {
 const { solucion } = Astro.props;
 const pageUrl = `/soluciones-ia/${solucion.slug}`;
 const esAgente = solucion.slug === 'agentes-ia-whatsapp';
+const imagenSocial = `/img/ia/${IMAGENES[IMAGEN_SOLUCION[solucion.slug]].archivo}`;
 
 const zonasRelevantes = ZONAS.filter((z) => z.enfoque.includes(solucion.slug)).slice(0, 4);
 const sectoresRelevantes = SECTORES.filter((s) => s.usos.some((u) => u.solucion === solucion.slug));
@@ -54,7 +56,7 @@ const schemaData = [
 
 ---
 
-<BaseLayout title={solucion.title} description={solucion.description}>
+<BaseLayout title={solucion.title} description={solucion.description} image={imagenSocial}>
   <JsonLd slot="head" data={schemaData} />
 
   <div class="stg-container geo-page">
