@@ -29,3 +29,6 @@ CREDENCIALES-CMS.md
 
 # Python audit caches
 __pycache__/
+
+# Local Netlify folder
+.netlify

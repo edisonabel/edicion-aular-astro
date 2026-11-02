@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "postbuild": "node --test scripts/analytics.test.mjs scripts/project-guide.test.mjs scripts/radar.test.mjs scripts/contact-email.test.mjs scripts/demo-atencion.test.mjs scripts/solucion-lab.test.mjs && python scripts/auditar_sitio.py && python scripts/auditar_geo.py",
+    "postbuild": "node --test scripts/analytics.test.mjs scripts/project-guide.test.mjs scripts/radar.test.mjs scripts/contact-email.test.mjs scripts/demo-atencion.test.mjs scripts/solucion-lab.test.mjs scripts/editorial.test.mjs && python scripts/auditar_sitio.py && python scripts/auditar_geo.py",
     "preview": "astro preview",
     "astro": "astro",
     "verificar": "node verificar.js",
@@ -18,12 +18,15 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
+    "@netlify/blobs": "10.7.13",
+    "@netlify/identity": "2.0.0",
     "astro": "^5.14.5",
     "astro-seo": "^0.8.4",
     "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.3",
     "express-rate-limit": "^8.1.0",
-    "express-session": "^1.18.2"
+    "express-session": "^1.18.2",
+    "sanitize-html": "2.18.1"
   },
   "devDependencies": {
     "cors": "^2.8.5",

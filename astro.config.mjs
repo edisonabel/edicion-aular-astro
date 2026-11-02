@@ -41,6 +41,7 @@ export default defineConfig({
   
   integrations: [
     sitemap({
+      filter: (page) => !new URL(page).pathname.startsWith('/admin/'),
       // Generar un solo sitemap en /sitemap-0.xml
       customPages: [],
       serialize(item) {

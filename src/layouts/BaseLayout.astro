@@ -24,6 +24,12 @@ const isPreview = ['deploy-preview', 'branch-deploy'].includes(process.env.CONTE
 <head>
     <meta charset="UTF-8">
     <script is:inline>
+      // Identity invitation/recovery links land at the site root; handle them in the private studio.
+      if (/^#(?:invite_token|recovery_token|confirmation_token|access_token)=/.test(location.hash)) {
+        location.replace('/admin/' + location.hash);
+      }
+    </script>
+    <script is:inline>
       try { document.documentElement.classList.toggle('light-mode', localStorage.getItem('theme') === 'light'); } catch (_) {}
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

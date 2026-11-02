@@ -30,7 +30,7 @@ const articleSchema = {
         <div class="bringer-post-meta"><span>Por <a href="/nosotros/">{post.author}</a></span><time datetime={post.date}>{formatBlogDate(post.date)}</time><span>{post.readTime} de lectura</span>{post.dateModified && <span>Actualizado: <time datetime={post.dateModified}>{formatBlogDate(post.dateModified)}</time></span>}</div>
       </div></div></div>
     </section>
-    <section class="article-cover"><div class="stg-row"><div class="stg-col-8 stg-offset-2"><figure class="st-expandable-wrap"><img src={post.image} alt={post.imageAlt || post.title} width={post.imageWidth || 1200} height={post.imageHeight || 630} decoding="async" /></figure></div></div></section>
+    <section class="article-cover"><div class="stg-row"><div class="stg-col-8 stg-offset-2"><figure class="st-expandable-wrap"><img src={post.image} alt={post.imageAlt || post.title} width={post.imageWidth || 1200} height={post.imageHeight || 630} decoding="async" />{'imageCredit' in post && <figcaption class="image-credit">{post.imageCredit}</figcaption>}</figure></div></div></section>
     <section class="article-content-section"><div class="stg-row"><div class="stg-col-8 stg-offset-2">
       <article class="bringer-post-content">
         <div class="bringer-post-excerpt"><p class="bringer-large-text">{post.excerpt}</p></div>
@@ -79,6 +79,7 @@ const articleSchema = {
   .article-cover { padding: 2rem 0 3rem; }
   .st-expandable-wrap { margin: 0; border-radius: 18px; overflow: hidden; }
   .st-expandable-wrap img { display: block; width: 100%; height: auto; }
+  .image-credit { padding: .65rem 0; color: var(--bringer-s-text); font-size: .75rem; }
   .article-content-section { padding-top: 0; }
   .bringer-post-content { font-size: 1.0625rem; line-height: 1.9; overflow-wrap: anywhere; }
   .bringer-post-excerpt { margin-bottom: 3.5rem; padding: 2rem 1.75rem; border-left: 4px solid #b80046; border-radius: 8px; background: var(--bringer-s-container-bg); }

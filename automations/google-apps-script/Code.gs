@@ -127,6 +127,7 @@ function renderInforme_(items,report,date,initial) {
   let html='<html lang="es"><body style="font:16px/1.65 Arial,sans-serif;max-width:760px;margin:24px auto;padding:16px;color:#222"><h1>Radar editorial de IA</h1><p>'+esc_(date)+' · Edición Aular</p>';
   if(initial)html+='<p><strong>Prueba inicial del radar en Google.</strong> Programado para lunes y jueves entre 09:00 y 10:00 de Colombia, sin depender de tu computador.</p>';
   html+='<p>Selección por reglas, sin modelo de IA ni API de pago. Los borradores son una base editorial con campos pendientes; no son artículos terminados ni se publican automáticamente. Una novedad oficial no demuestra por sí sola una tendencia de búsquedas.</p>';
+  html+='<p><a href="https://edicionaular.com/admin/" style="display:inline-block;background:#b80046;color:#ffffff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold">Abrir mi estudio editorial →</a></p><p>El panel requiere tu cuenta autorizada. Publicar necesita una revisión y una confirmación dentro del panel; abrir este enlace no publica contenido. Los temas del radar deben desarrollarse antes de incorporarlos como borradores al estudio.</p>';
   if(!items.length)html+='<p>No se encontraron temas nuevos y pertinentes en las fuentes consultadas. Este correo inicial comprueba el envío; las siguientes revisiones sin novedades no enviarán un correo rutinario.</p>';
   items.forEach((item,index)=>{
     const profile=perfilTema_(item.title),existing=report.published.find(post=>post.link===('https://edicionaular.com'+profile.existing));

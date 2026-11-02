@@ -16,13 +16,15 @@ for file, doc in documents.items():
     context = os.environ.get('CONTEXT', '')
     if len(robots) != 1:
         errors.append(f'{route}: robots ausente o duplicado')
-    elif context == 'production' and ('noindex' in robots[0] or 'nofollow' in robots[0]):
+    elif route.startswith('/admin/') and 'noindex' not in robots[0]:
+        errors.append(f'{route}: panel privado sin noindex')
+    elif context == 'production' and not route.startswith('/admin/') and ('noindex' in robots[0] or 'nofollow' in robots[0]):
         errors.append(f'{route}: producción bloqueada por robots')
     elif context in ('deploy-preview', 'branch-deploy') and 'noindex' not in robots[0]:
         errors.append(f'{route}: preview sin noindex')
     ids = [n.attrs['id'] for n in nodes if n.attrs.get('id')]
     for condition, issue in [
-        (len(doc.find('h1')) == 1, 'H1 ausente o duplicado'),
+        (len(doc.find('h1')) == (2 if route.startswith('/admin/') else 1), 'H1 ausente o duplicado'),
         (len(doc.find('title')) == 1, 'title ausente o duplicado'),
         (len(ids) == len(set(ids)), 'IDs duplicados'),
         (sum(n.attrs.get('name') == 'description' and bool(n.attrs.get('content')) for n in doc.find('meta')) == 1, 'descripción ausente o duplicada'),

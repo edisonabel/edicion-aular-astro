@@ -1,5 +1,5 @@
 // Service Worker para caché inteligente
-const CACHE_VERSION = 'v1.0.1';
+const CACHE_VERSION = 'v1.0.2';
 const CACHE_NAME = `edicion-aular-${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [
@@ -38,7 +38,11 @@ self.addEventListener('fetch', (event) => {
     if (event.request.method !== 'GET') return;
     
     // Skip external requests
-    if (!event.request.url.startsWith(self.location.origin)) return;
+    const requestUrl = new URL(event.request.url);
+    if (requestUrl.origin !== self.location.origin) return;
+    // Private editorial/authentication responses must never enter the offline cache.
+    if (/^\/(?:admin(?:\/|$)|api(?:\/|$)|\.netlify(?:\/|$))/.test(requestUrl.pathname)) return;
+    if (event.request.headers.has('authorization')) return;
 
     event.respondWith(
         fetch(event.request)
@@ -47,7 +51,7 @@ self.addEventListener('fetch', (event) => {
                 const responseClone = response.clone();
                 
                 // Cache successful responses
-                if (response.status === 200) {
+                if (response.status === 200 && !/private|no-store/i.test(response.headers.get('cache-control') || '')) {
                     caches.open(CACHE_NAME).then(cache => {
                         cache.put(event.request, responseClone);
                     });
