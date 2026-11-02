@@ -8,6 +8,10 @@
   # Asegura que se use una versión de Node.js compatible con Astro
   NODE_VERSION = "22"
 
+[functions.editorial]
+  # Bundle CJS/ESM sanitizer dependencies together for Lambda's module settings.
+  node_bundler = "esbuild"
+
 # COMPRESIÓN BROTLI + GZIP (GTmetrix Fix)
 [build.processing]
   skip_processing = false
