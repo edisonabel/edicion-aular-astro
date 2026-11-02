@@ -66,7 +66,13 @@ La condición beta se comprobó en el anuncio y la documentación. El calendario
 
 La suite incorpora pruebas de autorización, conservación del archivo, actualización de fechas, saneado, revisión obligatoria, concurrencia, reintentos, fallos del proveedor y exclusión de caché privada. La simulación local utiliza proveedores en memoria y no publica en GitHub ni en Netlify.
 
-El propietario autorizó el 2 de noviembre la activación, la invitación y la credencial acotada. Identity está activado y el registro restringido a invitaciones. Continúan pendientes la invitación, el rol del propietario y la credencial. La primera contraseña debe crearla el propietario. No afirmar que el panel publica realmente hasta comprobar autenticación y el circuito autorizado en producción.
+El propietario autorizó el 2 de noviembre la activación, la invitación y la credencial acotada. Identity está activado, el registro restringido a invitaciones y la confirmación de correo requerida. Se envió la invitación y se asignó el rol editorial-admin al propietario. La primera contraseña debe crearla el propietario.
+
+La credencial «Edición Aular · panel editorial» se creó limitada al repositorio edisonabel/edicion-aular-astro, Contents lectura/escritura y Metadata lectura obligatoria; sin permisos de cuenta. Caduca el 31 de enero de 2027. Se comprobó su lectura del archivo del blog y su almacenamiento exacto como EDITORIAL_GITHUB_TOKEN en el contexto privado de producción de Netlify. La copia temporal se eliminó después de verificar. Antes de la caducidad se requiere renovar esa credencial sin ampliar su alcance.
+
+El panel se desplegó en main; los tres artículos continúan como borradores. El acceso anónimo a la API se comprobó rechazado con HTTP 401. La comprobación con la sesión del propietario se realiza después de aplicar la variable al nuevo despliegue; no confundir estas verificaciones con una publicación real de un artículo.
+
+La función se prepara con scripts/preparar-editorial.mjs antes de construir Astro. El bundle privado evita require(ESM), desactivado por AWS Lambda, y se prueba con esas restricciones. El entrypoint v2 de Netlify conserva rutas y autorización; no se activan flags experimentales globales ni se rebaja la versión del saneador HTML.
 
 El cambio del botón del correo está preparado en `automations/google-apps-script/Code.gs`; no afirmar que los correos programados ya lo incluyen hasta sincronizar el proyecto vivo de Apps Script. El botón abre el estudio, nunca publica mediante un enlace GET.
 
