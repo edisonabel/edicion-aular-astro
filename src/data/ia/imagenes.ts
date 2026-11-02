@@ -11,11 +11,16 @@ export const IMAGENES = {
   hotel: { archivo: 'recepcion-hotel.webp', titulo: 'Atención antes de la llegada', detalle: 'Reservas y consultas conectadas con recepción.', alt: 'Recepcionista revisando un teléfono junto a un portátil en un vestíbulo con plantas', escena: 'Recepcionista latinoamericano en hotel boutique de Medellín con madera, fibras naturales y plantas; consulta una reserva en un portátil mientras revisa un teléfono; luz de mañana, ambiente acogedor y real, sin marcas ni datos de huéspedes.' },
   inmobiliaria: { archivo: 'formacion-equipos.webp', titulo: 'Más contexto para cada visita', detalle: 'Solicitudes organizadas para tus asesores.', alt: 'Equipo revisando un mapa de procesos y organizando tarjetas en una mesa', escena: 'Asesora inmobiliaria latinoamericana en una mesa de trabajo con portátil, plano arquitectónico sencillo y llaves; revisa una agenda de visitas con un compañero; fondo de oficina cálida, sin documentos financieros ni datos personales.' },
   diagnostico: { archivo: 'diagnostico-procesos.webp', titulo: 'Primero, entender el problema', detalle: 'De una conversación a un plan de trabajo.', alt: 'Vista desde arriba de tres profesionales revisando un mapa de procesos sobre una mesa', escena: 'Vista cenital ligeramente oblicua de una reunión de diagnóstico: manos de tres profesionales organizando tarjetas de papel, libreta abierta y portátil; mapa de proceso con líneas simples, sin palabras legibles, madera cálida, luz de ventana y objetos cotidianos.' },
+  heroAgentes: { archivo: 'hero-agentes.webp', titulo: 'Conversaciones atendidas a tiempo', detalle: 'Atención por WhatsApp desde cualquier lugar.', alt: 'Dueña de un negocio revisando mensajes en su teléfono junto a un mostrador de madera' },
+  heroAutomatizacion: { archivo: 'hero-automatizacion.webp', titulo: 'Menos papeles por revisar', detalle: 'Datos que llegan a donde se necesitan.', alt: 'Profesional revisando una pila de documentos en un escritorio junto a una tableta' },
+  heroContenido: { archivo: 'hero-contenido.webp', titulo: 'Producción con dirección', detalle: 'Contenido con intención y revisión.', alt: 'Cámara de cine grabando un frasco cosmético sin marca en un set con luz rosa' },
+  heroWeb: { archivo: 'hero-web.webp', titulo: 'Una web pensada con calma', detalle: 'Diseño, contenido y rendimiento juntos.', alt: 'Diseñadora revisando una página web de noche frente a una ventana con vista a las montañas de la ciudad' },
+  heroCapacitacion: { archivo: 'hero-capacitacion.webp', titulo: 'Aprender sobre tu propio trabajo', detalle: 'Talleres prácticos para tu equipo.', alt: 'Facilitadora conversando con un grupo pequeño alrededor de una mesa con portátiles' },
 } as const;
 export type ImagenId = keyof typeof IMAGENES;
 export const IMAGEN_SOLUCION: Record<string, ImagenId> = {
-  'agentes-ia-whatsapp': 'canales', 'automatizacion-procesos-ia': 'automatizacion',
-  'contenido-video-ia': 'contenido', 'sitios-web-seo-geo': 'web', 'capacitacion-ia-empresas': 'formacion',
+  'agentes-ia-whatsapp': 'heroAgentes', 'automatizacion-procesos-ia': 'heroAutomatizacion',
+  'contenido-video-ia': 'heroContenido', 'sitios-web-seo-geo': 'heroWeb', 'capacitacion-ia-empresas': 'heroCapacitacion',
 };
 export const IMAGEN_SECTOR: Record<string, ImagenId> = {
   'clinicas-estetica': 'clinica', 'turismo-hoteles': 'hotel', 'inmobiliarias': 'inmobiliaria',

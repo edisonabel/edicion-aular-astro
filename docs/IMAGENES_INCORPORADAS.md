@@ -22,3 +22,19 @@ Los nombres públicos se definen en `src/data/ia/imagenes.ts`. `EditorialImage.a
 El catálogo original de prompts se conserva como referencia para posibles reemplazos. Los SHA-256 y tamaños de los archivos incorporados están en `evidencias/imagenes-incorporadas.json`.
 
 Verificación: compilación de 63 páginas, auditoría de las 21 páginas nuevas sin errores y 44 combinaciones de ruta, ancho y tema sin incidencias de distribución. Registro: `evidencias/verificacion-fotos.json`.
+
+## Heros del sistema y las soluciones (1 de noviembre de 2026)
+
+Generadas por el propietario en ChatGPT y optimizadas a WebP de 1536 × 1024. Son ilustrativas: no presentan clientes, sedes ni resultados reales.
+
+| Archivo | Uso |
+| --- | --- |
+| `hero-sistema.webp` | Hero de `/sistema-clinicas/` |
+| `rostro-estetica.webp` | Ficha del paciente en `/sistema-clinicas/` |
+| `hero-agentes.webp` | Hero de `/soluciones-ia/agentes-ia-whatsapp/` |
+| `hero-automatizacion.webp` | Hero de `/soluciones-ia/automatizacion-procesos-ia/` |
+| `hero-contenido.webp` | Hero de `/soluciones-ia/contenido-video-ia/` |
+| `hero-web.webp` | Hero de `/soluciones-ia/sitios-web-seo-geo/` |
+| `hero-capacitacion.webp` | Hero de `/soluciones-ia/capacitacion-ia-empresas/` |
+
+Las diez fotografías anteriores se conservan porque otras páginas siguen usándolas.
