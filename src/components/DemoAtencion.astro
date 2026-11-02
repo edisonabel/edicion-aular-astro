@@ -222,6 +222,10 @@ const otros = DEMO_SECTORS.filter(item => !item.salud);
     .demo-tabs{position:relative;z-index:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin:0 0 14px;padding:4px;border:1px solid var(--bringer-s-border);border-radius:16px;background:var(--bringer-s-container-bg)}.demo .demo-tabs button{position:relative;min-height:44px;margin:0;padding:0 12px;border:0;border-radius:12px;background:transparent;color:var(--bringer-s-heading);font:inherit;font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;cursor:pointer;transition:background .15s}.demo .demo-tabs button[aria-selected="true"]{background:var(--ea-gradiente-diagonal);color:#fff}.demo-tabs i{display:inline-block;width:8px;height:8px;margin-left:8px;border-radius:50%;background:var(--bringer-s-text-accent);vertical-align:middle}
     .demo-stage{grid-template-columns:minmax(0,1fr)}.demo-phone{max-width:420px;height:min(78dvh,680px);min-height:540px;margin:0 auto;padding:7px;border-radius:40px}.demo-screen{border-radius:33px}.demo-island{top:15px;width:80px;height:20px;margin-left:-40px}.demo-top{padding-top:44px}.demo-welcome{padding-top:52px}
     .demo-stage[data-vista="paciente"] .demo-panel,.demo-stage[data-vista="recepcion"] .demo-phone{display:none}.demo-panel{animation:demo-fade .2s ease-out}
+    /* Al pasar el dedo sobre la demo, la página debe seguir bajando: la lista inicial no es una caja con scroll propio y el chat deja seguir a la página al llegar al final.
+       La sombra es más corta porque el desenfoque grande cuesta dibujarlo en teléfonos con poca memoria. */
+    .demo-phone{box-shadow:0 0 0 1px var(--bringer-s-border),0 16px 32px #0006}.demo-screen{contain:layout paint}.demo-log{overscroll-behavior:auto}
+    @supports selector(:has(*)){.demo-phone:has(.demo-welcome:not([hidden])){height:auto}.demo-welcome{height:auto;overflow:visible}}
   }
   @media(prefers-reduced-motion:reduce){.demo-welcome,.demo-app,.demo-msg,.demo-options button,.demo-rows dt,.demo-rows dd,.demo-events li,.demo-panel{animation:none!important}.demo-msg.is-typing i{animation:none}}
 </style>

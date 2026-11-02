@@ -1299,14 +1299,19 @@ jQuery(function ($) {
     });
 
     // Window Events
+    let resizeSettle;
     $(window).on('load', function() {
         Layout();
         setTimeout(function() {
             jQuery(window).trigger('resize');
         }, 500);
-    }).on('resize', function() {
+    }).on('resize', function(e) {
         Layout();
-        setTimeout(function() {
+        // Solo un resize real programa la pasada final. Si el resize disparado por código también la programaba,
+        // quedaba un ciclo sin fin de 10 recálculos por segundo; en móvil arrancaba al ocultarse la barra del navegador.
+        if (e.isTrigger) return;
+        clearTimeout(resizeSettle);
+        resizeSettle = setTimeout(function() {
             jQuery(window).trigger('resize');
         }, 100);
     });
