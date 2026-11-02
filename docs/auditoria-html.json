@@ -1,6 +1,6 @@
 {
   "paginas": 21,
-  "bloques_json_ld": 265,
+  "bloques_json_ld": 271,
   "errores": [],
   "detalle": [
     {
@@ -491,6 +491,11 @@
           "origen": "services.html#intro"
         },
         {
+          "id": "demo-atencion",
+          "titulo": "Vive el recorrido completo.",
+          "origen": "propio#demo-atencion"
+        },
+        {
           "id": "the-challenge-our-approach-bringer-bento-case-study-style",
           "titulo": "Los retos de este sector",
           "origen": "portfolio-post01.html#the-challenge"
@@ -570,6 +575,11 @@
           "origen": "services.html#intro"
         },
         {
+          "id": "demo-atencion",
+          "titulo": "Vive el recorrido completo.",
+          "origen": "propio#demo-atencion"
+        },
+        {
           "id": "the-challenge-our-approach-bringer-bento-case-study-style",
           "titulo": "Los retos de este sector",
           "origen": "portfolio-post01.html#the-challenge"
@@ -613,6 +623,11 @@
           "origen": "services.html#intro"
         },
         {
+          "id": "demo-atencion",
+          "titulo": "Vive el recorrido completo.",
+          "origen": "propio#demo-atencion"
+        },
+        {
           "id": "the-challenge-our-approach-bringer-bento-case-study-style",
           "titulo": "Los retos de este sector",
           "origen": "portfolio-post01.html#the-challenge"
@@ -651,28 +666,38 @@
       "description": "Agentes de IA que atienden, califican y agendan clientes por WhatsApp y tu web 24/7. Implementación con API oficial de Meta en Medellín.",
       "secciones": [
         {
-          "id": "intro-bringer-service-details-html-style",
+          "id": "intro-solucion",
           "titulo": "Agentes de IA para WhatsApp y web en Medellín",
-          "origen": "service-details.html#intro"
+          "origen": "home03.html#hero"
+        },
+        {
+          "id": "problema-solucion",
+          "titulo": "",
+          "origen": "propio#problema"
+        },
+        {
+          "id": "demo-atencion",
+          "titulo": "Pruébalo como lo haría un cliente.",
+          "origen": "propio#demo-atencion"
         },
         {
           "id": "proceso",
-          "titulo": "Del diagnóstico a la puesta en marcha",
+          "titulo": "Del diagnóstico a la puesta en marcha.",
           "origen": "home06.html#steps"
         },
         {
           "id": "que-incluye",
-          "titulo": "Qué incluye esta solución",
+          "titulo": "Qué incluye esta solución.",
           "origen": "service-details.html#offer"
         },
         {
-          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
-          "titulo": "Variables de inversión y alcance",
+          "id": "variables-inversion",
+          "titulo": "De qué depende.",
           "origen": "pricing.html#prices"
         },
         {
           "id": "explorar-soluciones",
-          "titulo": "",
+          "titulo": "Aplicaciones por sector",
           "origen": "services.html#our-services"
         },
         {
@@ -697,8 +722,7 @@
         }
       ],
       "imagenes": {
-        "canales": 1,
-        "diagnostico": 1,
+        "heroAgentes": 1,
         "agencia": 1
       },
       "faqs": 6
@@ -709,28 +733,38 @@
       "description": "Automatizamos tareas repetitivas con IA: CRM, facturas, agendamiento, reportes y seguimiento de clientes. Soluciones a la medida para empresas de Medellín.",
       "secciones": [
         {
-          "id": "intro-bringer-service-details-html-style",
+          "id": "intro-solucion",
           "titulo": "Automatización de procesos con IA para empresas en Medellín",
-          "origen": "service-details.html#intro"
+          "origen": "home03.html#hero"
+        },
+        {
+          "id": "problema-solucion",
+          "titulo": "",
+          "origen": "propio#problema"
+        },
+        {
+          "id": "laboratorio",
+          "titulo": "Diseña tu primer flujo.",
+          "origen": "propio#laboratorio"
         },
         {
           "id": "proceso",
-          "titulo": "Del diagnóstico a la puesta en marcha",
+          "titulo": "Del diagnóstico a la puesta en marcha.",
           "origen": "home06.html#steps"
         },
         {
           "id": "que-incluye",
-          "titulo": "Qué incluye esta solución",
+          "titulo": "Qué incluye esta solución.",
           "origen": "service-details.html#offer"
         },
         {
-          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
-          "titulo": "Variables de inversión y alcance",
+          "id": "variables-inversion",
+          "titulo": "De qué depende.",
           "origen": "pricing.html#prices"
         },
         {
           "id": "explorar-soluciones",
-          "titulo": "",
+          "titulo": "Aplicaciones por sector",
           "origen": "services.html#our-services"
         },
         {
@@ -755,8 +789,7 @@
         }
       ],
       "imagenes": {
-        "automatizacion": 1,
-        "diagnostico": 1,
+        "heroAutomatizacion": 1,
         "agencia": 1
       },
       "faqs": 5
@@ -767,18 +800,28 @@
       "description": "Talleres prácticos de inteligencia artificial para equipos de ventas, marketing y operación. Casos prácticos con tus procesos reales en Medellín.",
       "secciones": [
         {
-          "id": "intro-bringer-service-details-html-style",
+          "id": "intro-solucion",
           "titulo": "Capacitación en inteligencia artificial para equipos",
-          "origen": "service-details.html#intro"
+          "origen": "home03.html#hero"
+        },
+        {
+          "id": "problema-solucion",
+          "titulo": "",
+          "origen": "propio#problema"
+        },
+        {
+          "id": "laboratorio",
+          "titulo": "Encuentra el punto de partida de tu equipo.",
+          "origen": "propio#laboratorio"
         },
         {
           "id": "proceso",
-          "titulo": "Del diagnóstico a la puesta en marcha",
+          "titulo": "Del diagnóstico a la puesta en marcha.",
           "origen": "home06.html#steps"
         },
         {
           "id": "que-incluye",
-          "titulo": "Qué incluye esta solución",
+          "titulo": "Qué incluye esta solución.",
           "origen": "service-details.html#offer"
         },
         {
@@ -787,13 +830,13 @@
           "origen": "home06.html#steps"
         },
         {
-          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
-          "titulo": "Variables de inversión y alcance",
+          "id": "variables-inversion",
+          "titulo": "De qué depende.",
           "origen": "pricing.html#prices"
         },
         {
           "id": "explorar-soluciones",
-          "titulo": "",
+          "titulo": "Zonas en Medellín",
           "origen": "services.html#our-services"
         },
         {
@@ -818,8 +861,7 @@
         }
       ],
       "imagenes": {
-        "formacion": 1,
-        "diagnostico": 1,
+        "heroCapacitacion": 1,
         "agencia": 1
       },
       "faqs": 4
@@ -830,28 +872,38 @@
       "description": "Producción audiovisual potenciada con IA: fotos de producto, videos cortos, avatares y piezas para pauta en menos tiempo. Atención en Medellín.",
       "secciones": [
         {
-          "id": "intro-bringer-service-details-html-style",
+          "id": "intro-solucion",
           "titulo": "Contenido, video y fotografía de producto con IA en Medellín",
-          "origen": "service-details.html#intro"
+          "origen": "home03.html#hero"
+        },
+        {
+          "id": "problema-solucion",
+          "titulo": "",
+          "origen": "propio#problema"
+        },
+        {
+          "id": "laboratorio",
+          "titulo": "Arma el brief de tu pieza.",
+          "origen": "propio#laboratorio"
         },
         {
           "id": "proceso",
-          "titulo": "Del diagnóstico a la puesta en marcha",
+          "titulo": "Del diagnóstico a la puesta en marcha.",
           "origen": "home06.html#steps"
         },
         {
           "id": "que-incluye",
-          "titulo": "Qué incluye esta solución",
+          "titulo": "Qué incluye esta solución.",
           "origen": "service-details.html#offer"
         },
         {
-          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
-          "titulo": "Variables de inversión y alcance",
+          "id": "variables-inversion",
+          "titulo": "De qué depende.",
           "origen": "pricing.html#prices"
         },
         {
           "id": "explorar-soluciones",
-          "titulo": "",
+          "titulo": "Aplicaciones por sector",
           "origen": "services.html#our-services"
         },
         {
@@ -876,8 +928,7 @@
         }
       ],
       "imagenes": {
-        "contenido": 1,
-        "diagnostico": 1,
+        "heroContenido": 1,
         "agencia": 1
       },
       "faqs": 4
@@ -944,28 +995,38 @@
       "description": "Diseñamos sitios web optimizados para Google y para respuestas de IA (ChatGPT, Gemini, AI Overviews). SEO local y GEO para empresas de Medellín.",
       "secciones": [
         {
-          "id": "intro-bringer-service-details-html-style",
+          "id": "intro-solucion",
           "titulo": "Sitios web con SEO y contenido preparado para búsquedas con IA",
-          "origen": "service-details.html#intro"
+          "origen": "home03.html#hero"
+        },
+        {
+          "id": "problema-solucion",
+          "titulo": "",
+          "origen": "propio#problema"
+        },
+        {
+          "id": "laboratorio",
+          "titulo": "Revisa tu web en seis preguntas.",
+          "origen": "propio#laboratorio"
         },
         {
           "id": "proceso",
-          "titulo": "Del diagnóstico a la puesta en marcha",
+          "titulo": "Del diagnóstico a la puesta en marcha.",
           "origen": "home06.html#steps"
         },
         {
           "id": "que-incluye",
-          "titulo": "Qué incluye esta solución",
+          "titulo": "Qué incluye esta solución.",
           "origen": "service-details.html#offer"
         },
         {
-          "id": "que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block",
-          "titulo": "Variables de inversión y alcance",
+          "id": "variables-inversion",
+          "titulo": "De qué depende.",
           "origen": "pricing.html#prices"
         },
         {
           "id": "explorar-soluciones",
-          "titulo": "",
+          "titulo": "Aplicaciones por sector",
           "origen": "services.html#our-services"
         },
         {
@@ -990,8 +1051,7 @@
         }
       ],
       "imagenes": {
-        "web": 1,
-        "diagnostico": 1,
+        "heroWeb": 1,
         "agencia": 1
       },
       "faqs": 5

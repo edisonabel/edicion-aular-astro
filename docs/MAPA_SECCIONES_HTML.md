@@ -151,12 +151,13 @@ Imágenes compartidas: `medellin` × 1, `diagnostico` × 1, `canales` × 1, `age
 | Orden | Sección | Ancla | Referencia HTML |
 | --- | --- | --- | --- |
 | 1 | Soluciones de IA para clínicas, consultorios odontológicos y centros de estética. | `#intro-bringer-style` | `services.html#intro` |
-| 2 | Los retos de este sector | `#the-challenge-our-approach-bringer-bento-case-study-style` | `portfolio-post01.html#the-challenge` |
-| 3 | Explora la cobertura para tu empresa | `#cobertura-sector` | `services.html#our-services` |
-| 4 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
-| 5 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 6 | Preguntas frecuentes sobre IA para Clínicas, odontología y estética | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 7 | ¿Administras una empresa en Clínicas, odontología y estética? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 2 | Vive el recorrido completo. | `#demo-atencion` | `propio#demo-atencion` |
+| 3 | Los retos de este sector | `#the-challenge-our-approach-bringer-bento-case-study-style` | `portfolio-post01.html#the-challenge` |
+| 4 | Explora la cobertura para tu empresa | `#cobertura-sector` | `services.html#our-services` |
+| 5 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 6 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 7 | Preguntas frecuentes sobre IA para Clínicas, odontología y estética | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 8 | ¿Administras una empresa en Clínicas, odontología y estética? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `clinica` × 2, `diagnostico` × 1, `agencia` × 1.
 
@@ -176,11 +177,12 @@ Imágenes compartidas: `agencia` × 1.
 | Orden | Sección | Ancla | Referencia HTML |
 | --- | --- | --- | --- |
 | 1 | Soluciones de IA para inmobiliarias y constructoras. | `#intro-bringer-style` | `services.html#intro` |
-| 2 | Los retos de este sector | `#the-challenge-our-approach-bringer-bento-case-study-style` | `portfolio-post01.html#the-challenge` |
-| 3 | Explora la cobertura para tu empresa | `#cobertura-sector` | `services.html#our-services` |
-| 4 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 5 | Preguntas frecuentes sobre IA para Inmobiliarias y constructoras | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 6 | ¿Administras una empresa en Inmobiliarias y constructoras? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 2 | Vive el recorrido completo. | `#demo-atencion` | `propio#demo-atencion` |
+| 3 | Los retos de este sector | `#the-challenge-our-approach-bringer-bento-case-study-style` | `portfolio-post01.html#the-challenge` |
+| 4 | Explora la cobertura para tu empresa | `#cobertura-sector` | `services.html#our-services` |
+| 5 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 6 | Preguntas frecuentes sobre IA para Inmobiliarias y constructoras | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 7 | ¿Administras una empresa en Inmobiliarias y constructoras? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `inmobiliaria` × 2, `diagnostico` × 1, `agencia` × 1.
 
@@ -189,11 +191,12 @@ Imágenes compartidas: `inmobiliaria` × 2, `diagnostico` × 1, `agencia` × 1.
 | Orden | Sección | Ancla | Referencia HTML |
 | --- | --- | --- | --- |
 | 1 | Soluciones de IA para hoteles, hostales y empresas de turismo. | `#intro-bringer-style` | `services.html#intro` |
-| 2 | Los retos de este sector | `#the-challenge-our-approach-bringer-bento-case-study-style` | `portfolio-post01.html#the-challenge` |
-| 3 | Explora la cobertura para tu empresa | `#cobertura-sector` | `services.html#our-services` |
-| 4 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 5 | Preguntas frecuentes sobre IA para Turismo y hoteles | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 6 | ¿Administras una empresa en Turismo y hoteles? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 2 | Vive el recorrido completo. | `#demo-atencion` | `propio#demo-atencion` |
+| 3 | Los retos de este sector | `#the-challenge-our-approach-bringer-bento-case-study-style` | `portfolio-post01.html#the-challenge` |
+| 4 | Explora la cobertura para tu empresa | `#cobertura-sector` | `services.html#our-services` |
+| 5 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 6 | Preguntas frecuentes sobre IA para Turismo y hoteles | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 7 | ¿Administras una empresa en Turismo y hoteles? | `#contacto-proyecto` | `services.html#grid-cta` |
 
 Imágenes compartidas: `hotel` × 2, `diagnostico` × 1, `agencia` × 1.
 
@@ -201,66 +204,74 @@ Imágenes compartidas: `hotel` × 2, `diagnostico` × 1, `agencia` × 1.
 
 | Orden | Sección | Ancla | Referencia HTML |
 | --- | --- | --- | --- |
-| 1 | Agentes de IA para WhatsApp y web en Medellín | `#intro-bringer-service-details-html-style` | `service-details.html#intro` |
-| 2 | Del diagnóstico a la puesta en marcha | `#proceso` | `home06.html#steps` |
-| 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
-| 4 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
-| 5 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 6 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
-| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 8 | Preguntas frecuentes sobre Agentes de IA para WhatsApp y web | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 9 | ¿Interesado en implementar Agentes de IA para WhatsApp y web? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 1 | Agentes de IA para WhatsApp y web en Medellín | `#intro-solucion` | `home03.html#hero` |
+| 2 |  | `#problema-solucion` | `propio#problema` |
+| 3 | Pruébalo como lo haría un cliente. | `#demo-atencion` | `propio#demo-atencion` |
+| 4 | Del diagnóstico a la puesta en marcha. | `#proceso` | `home06.html#steps` |
+| 5 | Qué incluye esta solución. | `#que-incluye` | `service-details.html#offer` |
+| 6 | De qué depende. | `#variables-inversion` | `pricing.html#prices` |
+| 7 | Aplicaciones por sector | `#explorar-soluciones` | `services.html#our-services` |
+| 8 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 9 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 10 | Preguntas frecuentes sobre Agentes de IA para WhatsApp y web | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 11 | ¿Interesado en implementar Agentes de IA para WhatsApp y web? | `#contacto-proyecto` | `services.html#grid-cta` |
 
-Imágenes compartidas: `canales` × 1, `diagnostico` × 1, `agencia` × 1.
+Imágenes compartidas: `heroAgentes` × 1, `agencia` × 1.
 
 ### /soluciones-ia/automatizacion-procesos-ia/
 
 | Orden | Sección | Ancla | Referencia HTML |
 | --- | --- | --- | --- |
-| 1 | Automatización de procesos con IA para empresas en Medellín | `#intro-bringer-service-details-html-style` | `service-details.html#intro` |
-| 2 | Del diagnóstico a la puesta en marcha | `#proceso` | `home06.html#steps` |
-| 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
-| 4 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
-| 5 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 6 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
-| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 8 | Preguntas frecuentes sobre Automatización de procesos con IA | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 9 | ¿Interesado en implementar Automatización de procesos con IA? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 1 | Automatización de procesos con IA para empresas en Medellín | `#intro-solucion` | `home03.html#hero` |
+| 2 |  | `#problema-solucion` | `propio#problema` |
+| 3 | Diseña tu primer flujo. | `#laboratorio` | `propio#laboratorio` |
+| 4 | Del diagnóstico a la puesta en marcha. | `#proceso` | `home06.html#steps` |
+| 5 | Qué incluye esta solución. | `#que-incluye` | `service-details.html#offer` |
+| 6 | De qué depende. | `#variables-inversion` | `pricing.html#prices` |
+| 7 | Aplicaciones por sector | `#explorar-soluciones` | `services.html#our-services` |
+| 8 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 9 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 10 | Preguntas frecuentes sobre Automatización de procesos con IA | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 11 | ¿Interesado en implementar Automatización de procesos con IA? | `#contacto-proyecto` | `services.html#grid-cta` |
 
-Imágenes compartidas: `automatizacion` × 1, `diagnostico` × 1, `agencia` × 1.
+Imágenes compartidas: `heroAutomatizacion` × 1, `agencia` × 1.
 
 ### /soluciones-ia/capacitacion-ia-empresas/
 
 | Orden | Sección | Ancla | Referencia HTML |
 | --- | --- | --- | --- |
-| 1 | Capacitación en inteligencia artificial para equipos | `#intro-bringer-service-details-html-style` | `service-details.html#intro` |
-| 2 | Del diagnóstico a la puesta en marcha | `#proceso` | `home06.html#steps` |
-| 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
-| 4 | Un taller que continúa en el trabajo diario | `#programa-formacion` | `home06.html#steps` |
-| 5 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
-| 6 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 7 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
-| 8 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 9 | Preguntas frecuentes sobre Capacitación en IA para equipos | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 10 | ¿Interesado en implementar Capacitación en IA para equipos? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 1 | Capacitación en inteligencia artificial para equipos | `#intro-solucion` | `home03.html#hero` |
+| 2 |  | `#problema-solucion` | `propio#problema` |
+| 3 | Encuentra el punto de partida de tu equipo. | `#laboratorio` | `propio#laboratorio` |
+| 4 | Del diagnóstico a la puesta en marcha. | `#proceso` | `home06.html#steps` |
+| 5 | Qué incluye esta solución. | `#que-incluye` | `service-details.html#offer` |
+| 6 | Un taller que continúa en el trabajo diario | `#programa-formacion` | `home06.html#steps` |
+| 7 | De qué depende. | `#variables-inversion` | `pricing.html#prices` |
+| 8 | Zonas en Medellín | `#explorar-soluciones` | `services.html#our-services` |
+| 9 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 10 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 11 | Preguntas frecuentes sobre Capacitación en IA para equipos | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 12 | ¿Interesado en implementar Capacitación en IA para equipos? | `#contacto-proyecto` | `services.html#grid-cta` |
 
-Imágenes compartidas: `formacion` × 1, `diagnostico` × 1, `agencia` × 1.
+Imágenes compartidas: `heroCapacitacion` × 1, `agencia` × 1.
 
 ### /soluciones-ia/contenido-video-ia/
 
 | Orden | Sección | Ancla | Referencia HTML |
 | --- | --- | --- | --- |
-| 1 | Contenido, video y fotografía de producto con IA en Medellín | `#intro-bringer-service-details-html-style` | `service-details.html#intro` |
-| 2 | Del diagnóstico a la puesta en marcha | `#proceso` | `home06.html#steps` |
-| 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
-| 4 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
-| 5 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 6 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
-| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 8 | Preguntas frecuentes sobre Contenido, video y fotos de producto con IA | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 9 | ¿Interesado en implementar Contenido, video y fotos de producto con IA? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 1 | Contenido, video y fotografía de producto con IA en Medellín | `#intro-solucion` | `home03.html#hero` |
+| 2 |  | `#problema-solucion` | `propio#problema` |
+| 3 | Arma el brief de tu pieza. | `#laboratorio` | `propio#laboratorio` |
+| 4 | Del diagnóstico a la puesta en marcha. | `#proceso` | `home06.html#steps` |
+| 5 | Qué incluye esta solución. | `#que-incluye` | `service-details.html#offer` |
+| 6 | De qué depende. | `#variables-inversion` | `pricing.html#prices` |
+| 7 | Aplicaciones por sector | `#explorar-soluciones` | `services.html#our-services` |
+| 8 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 9 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 10 | Preguntas frecuentes sobre Contenido, video y fotos de producto con IA | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 11 | ¿Interesado en implementar Contenido, video y fotos de producto con IA? | `#contacto-proyecto` | `services.html#grid-cta` |
 
-Imágenes compartidas: `contenido` × 1, `diagnostico` × 1, `agencia` × 1.
+Imágenes compartidas: `heroContenido` × 1, `agencia` × 1.
 
 ### /soluciones-ia/
 
@@ -282,17 +293,19 @@ Imágenes compartidas: `agencia` × 2.
 
 | Orden | Sección | Ancla | Referencia HTML |
 | --- | --- | --- | --- |
-| 1 | Sitios web con SEO y contenido preparado para búsquedas con IA | `#intro-bringer-service-details-html-style` | `service-details.html#intro` |
-| 2 | Del diagnóstico a la puesta en marcha | `#proceso` | `home06.html#steps` |
-| 3 | Qué incluye esta solución | `#que-incluye` | `service-details.html#offer` |
-| 4 | Variables de inversión y alcance | `#que-incluye-y-de-que-depende-la-inversion-estilo-bringer-sticky-block` | `pricing.html#prices` |
-| 5 |  | `#explorar-soluciones` | `services.html#our-services` |
-| 6 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
-| 7 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
-| 8 | Preguntas frecuentes sobre Sitios web con IA + SEO/GEO | `#preguntas-frecuentes` | `pricing.html#faq` |
-| 9 | ¿Interesado en implementar Sitios web con IA + SEO/GEO? | `#contacto-proyecto` | `services.html#grid-cta` |
+| 1 | Sitios web con SEO y contenido preparado para búsquedas con IA | `#intro-solucion` | `home03.html#hero` |
+| 2 |  | `#problema-solucion` | `propio#problema` |
+| 3 | Revisa tu web en seis preguntas. | `#laboratorio` | `propio#laboratorio` |
+| 4 | Del diagnóstico a la puesta en marcha. | `#proceso` | `home06.html#steps` |
+| 5 | Qué incluye esta solución. | `#que-incluye` | `service-details.html#offer` |
+| 6 | De qué depende. | `#variables-inversion` | `pricing.html#prices` |
+| 7 | Aplicaciones por sector | `#explorar-soluciones` | `services.html#our-services` |
+| 8 | Para preparar tu proyecto | `#lecturas-relacionadas` | `services.html#our-services` |
+| 9 | Datos y comunicaciones: referencias para el proyecto | `#marco-normativo` | `services.html#what-makes-us-best` |
+| 10 | Preguntas frecuentes sobre Sitios web con IA + SEO/GEO | `#preguntas-frecuentes` | `pricing.html#faq` |
+| 11 | ¿Interesado en implementar Sitios web con IA + SEO/GEO? | `#contacto-proyecto` | `services.html#grid-cta` |
 
-Imágenes compartidas: `web` × 1, `diagnostico` × 1, `agencia` × 1.
+Imágenes compartidas: `heroWeb` × 1, `agencia` × 1.
 
 ## Catálogo completo de la carpeta HTML
 
