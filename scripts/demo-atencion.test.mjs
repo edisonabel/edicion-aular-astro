@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DEMO_DEFAULT, DEMO_ESPECIALIDADES, DEMO_RECORRIDO, DEMO_SECTORS, demoEtapa, demoFugas, demoHorarios, demoIniciar, demoResponder, demoWhatsapp, limpiarNegocio } from '../src/lib/demo-atencion.js';
+import { DEMO_DEFAULT, DEMO_ESPECIALIDADES, DEMO_RECORRIDO, DEMO_SECTORS, demoEtapa, demoFugas, demoHorarios, demoIniciar, demoResponder, demoWhatsapp, fundadorasWhatsapp, limpiarNegocio } from '../src/lib/demo-atencion.js';
 const AHORA=new Date(2026,10,1,12);
 const salud=especialidadId=>demoIniciar({sectorId:DEMO_DEFAULT,especialidadId},AHORA);
 const decir=(inicio,...textos)=>textos.reduce((actual,texto)=>demoResponder(actual.state,texto),inicio);
@@ -100,4 +100,9 @@ test('el enlace lleva el resumen exacto y los datos solo si existen',()=>{
   assert.ok(base.summary.includes('Salud y estética, Medicina estética'));assert.ok(!base.summary.includes('consultas al mes'));assert.ok(!base.summary.includes('Mi negocio:'));
   const lleno=demoWhatsapp({sectorId:DEMO_DEFAULT,especialidadId:'estetica',negocio:'Clínica Vital'},{consultas:200,agendan:40,noAsisten:20}).summary;
   assert.ok(lleno.includes('Mi negocio: Clínica Vital.'));assert.ok(lleno.includes('200 consultas al mes'));
+});
+test('la postulación de clínicas fundadoras lleva el mensaje exacto',()=>{
+  const {summary,whatsapp}=fundadorasWhatsapp(),url=new URL(whatsapp);
+  assert.equal(url.hostname,'wa.me');assert.equal(url.pathname,'/573002730128');assert.equal(url.searchParams.get('text'),summary);
+  assert.ok(summary.includes('clínica fundadora'));
 });

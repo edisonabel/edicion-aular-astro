@@ -2,29 +2,29 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import JsonLd from '../components/geo/JsonLd.astro';
 import Cta from '../components/geo/Cta.astro';
+import FaqList from '../components/geo/FaqList.astro';
+import SistemaEquipo from '../components/SistemaEquipo.astro';
+import SistemaFundadoras from '../components/SistemaFundadoras.astro';
+import { FAQS_SISTEMA } from '../data/ia/sistema-oferta';
 import DemoAtencion from '../components/DemoAtencion.astro';
 import SistemaFlujo from '../components/SistemaFlujo.astro';
 import SistemaFugas from '../components/SistemaFugas.astro';
 import SistemaHero from '../components/SistemaHero.astro';
 import SistemaRostro from '../components/SistemaRostro.astro';
 import { NEGOCIO } from '../data/ia/negocio';
-import { breadcrumbs, service, webPage } from '../lib/schema';
+import { breadcrumbs, faqPage, service, webPage } from '../lib/schema';
 
 const title = 'Sistema de pacientes para clínicas y estética en Medellín';
 const description = 'Un sistema para clínicas, consultorios y centros de estética: atrae pacientes, responde por WhatsApp, agenda, confirma, cuida, los hace volver y mide cada paso.';
 const pageUrl = '/sistema-clinicas';
-const razones = [
-  { titulo: 'Un solo equipo responsable', texto: 'Marca, web, video, pauta y automatización trabajan con el mismo mensaje y la misma medición.' },
-  { titulo: 'La meta es que asista y vuelva', texto: 'Una respuesta rápida no basta si la cita se pierde o el paciente no regresa.' },
-  { titulo: 'Tu equipo decide lo clínico', texto: 'Lo urgente y lo sensible pasa a una persona. Los datos se tratan según la Ley 1581.' },
-];
 const schemaData = [
   webPage({ name: title, description, path: pageUrl }),
   service({ name: 'Sistema de pacientes para clínicas y estética', description, path: pageUrl, audience: 'Clínicas, consultorios y centros de estética' }),
   breadcrumbs([
     { name: 'Inicio', href: '/' },
     { name: 'Sistema de pacientes', href: pageUrl }
-  ])
+  ]),
+  faqPage(FAQS_SISTEMA)
 ];
 ---
 
@@ -38,17 +38,9 @@ const schemaData = [
     <DemoAtencion titulo="Vive el recorrido de un paciente" />
     <SistemaFugas />
 
-    <section class="sr" id="diferencia-sistema">
-      <span class="bringer-label" data-appear="fade-up">Por qué es distinto</span>
-      <ol class="sr-list" data-stagger-appear="fade-up" data-stagger-delay="100">
-        {razones.map((razon, index) => (
-          <li>
-            <span aria-hidden="true">0{index + 1}</span>
-            <div><h3>{razon.titulo}</h3><p class="bringer-large-text">{razon.texto}</p></div>
-          </li>
-        ))}
-      </ol>
-    </section>
+    <SistemaFundadoras />
+    <SistemaEquipo />
+    <FaqList faqs={FAQS_SISTEMA} titulo="Preguntas frecuentes sobre el sistema" categoria="Sistema de pacientes" />
 
     <Cta
       titulo="¿Dónde está perdiendo pacientes tu clínica?"
@@ -57,6 +49,3 @@ const schemaData = [
     />
   </div>
 </BaseLayout>
-<style is:global>
-  .sr{padding:clamp(56px,8vw,112px) 0}.sr-list{margin:20px 0 0;padding:0;list-style:none}.sr-list li{display:grid;grid-template-columns:clamp(48px,8vw,120px) minmax(0,1fr);gap:16px;margin:0;padding:clamp(22px,3vw,36px) 0;border-top:1px solid var(--bringer-s-border)}.sr-list li>span{font-size:14px;color:var(--bringer-s-text-accent)}.sr-list h3{margin:0 0 8px;font-size:clamp(26px,3.6vw,48px);font-weight:600;line-height:1.08;letter-spacing:-.035em}.sr-list p{max-width:60ch;margin:0}
-</style>

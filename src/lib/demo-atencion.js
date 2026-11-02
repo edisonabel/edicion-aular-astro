@@ -162,3 +162,7 @@ export function demoWhatsapp({sectorId,especialidadId,negocio}={},uso){
   const summary=['Hola, probé el sistema de pacientes en EdicionAular.com.','',...(nombre?[`Mi negocio: ${nombre}.`]:[]),`Tipo de negocio: ${tipo}.`,...(uso?[`Con mis números: ${uso.consultas} consultas al mes, ${uso.agendan} % agenda y ${uso.noAsisten} % no asiste.`]:[]),'','Quiero saber cómo sería este sistema para mi negocio.'].join('\n');
   return {summary,whatsapp:`https://wa.me/573002730128?text=${encodeURIComponent(summary)}`};
 }
+export function fundadorasWhatsapp(){
+  const summary=['Hola, me interesa ser clínica fundadora del sistema de pacientes de EdicionAular.com.','','Mi clínica:','Especialidad:','Ciudad:'].join('\n');
+  return {summary,whatsapp:`https://wa.me/573002730128?text=${encodeURIComponent(summary)}`};
+}

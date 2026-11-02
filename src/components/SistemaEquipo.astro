@@ -1,0 +1,56 @@
+---
+import portfolio from '../data/portfolio.json';
+import { TRABAJOS } from '../data/ia/sistema-oferta';
+import { NEGOCIO } from '../data/ia/negocio';
+const trabajos = TRABAJOS.flatMap(({ slug, sector }) => {
+  const proyecto = portfolio.find(item => item.slug === slug);
+  return proyecto ? [{ slug, sector, titulo: proyecto.title, servicio: proyecto.service, imagen: proyecto.image }] : [];
+});
+const datos = [
+  { valor: '+479', texto: 'clientes en otros sectores' },
+  { valor: '+20', texto: 'años en diseño gráfico' },
+  { valor: '12', texto: 'años en audiovisuales' },
+];
+const razones = [
+  { titulo: 'Un solo equipo responsable', texto: 'Marca, web, video, pauta y automatización trabajan con el mismo mensaje y la misma medición.' },
+  { titulo: 'La meta es que asista y vuelva', texto: 'Una respuesta rápida no basta si la cita se pierde o el paciente no regresa.' },
+  { titulo: 'Tu equipo decide lo clínico', texto: 'Lo urgente y lo sensible pasa a una persona. Los datos se tratan según la Ley 1581.' },
+];
+---
+<section class="se" id="quien-esta-detras">
+  <div class="se-head">
+    <span class="bringer-label" data-appear="fade-up">Quién está detrás</span>
+    <h2 data-split-appear="fade-up" data-split-by="line">Experiencia real, ahora aplicada a salud<span class="bringer-accent">.</span></h2>
+    <p class="bringer-large-text" data-appear="fade-up" data-delay="100">Estos son trabajos hechos para otros negocios. Te muestran cómo trabajamos, no resultados de este sistema.</p>
+  </div>
+  <dl class="se-datos" data-stagger-appear="fade-up" data-stagger-delay="80">
+    {datos.map(dato => <div><dt>{dato.valor}</dt><dd>{dato.texto}</dd></div>)}
+  </dl>
+  <div class="se-trabajos" data-stagger-appear="fade-up" data-stagger-delay="100">
+    {trabajos.map(trabajo => (
+      <a href={`/portfolio/${trabajo.slug}/`} class="se-trabajo">
+        <span class="se-img"><img src={trabajo.imagen} alt={`Proyecto de ${trabajo.titulo}`} width="800" height="600" loading="lazy" /></span>
+        <small>{trabajo.sector}</small>
+        <strong>{trabajo.titulo}</strong>
+        <span class="se-servicio">{trabajo.servicio}</span>
+      </a>
+    ))}
+  </div>
+  <div class="se-enlaces">
+    <a href="/portfolio/" class="bringer-arrow-link">Ver todo el portafolio</a>
+    <a href={NEGOCIO.googleMaps} target="_blank" rel="noopener" class="bringer-arrow-link">Ver reseñas en Google</a>
+    <a href="/nosotros/" class="bringer-arrow-link">Conocer al equipo</a>
+  </div>
+  <ol class="se-razones" data-stagger-appear="fade-up" data-stagger-delay="100">
+    {razones.map((razon, index) => <li><span aria-hidden="true">0{index + 1}</span><div><h3>{razon.titulo}</h3><p class="bringer-large-text">{razon.texto}</p></div></li>)}
+  </ol>
+</section>
+<style is:global>
+  .se{padding:clamp(56px,8vw,112px) 0}.se-head{max-width:680px;margin-bottom:clamp(28px,4vw,48px)}.se-head h2{margin:12px 0}.se-head p{margin:0}
+  .se-datos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);margin:0 0 clamp(32px,5vw,56px)}.se-datos>div{padding-top:14px;border-top:1px solid var(--bringer-s-border)}.se-datos dt{font-size:clamp(34px,5vw,64px);font-weight:600;line-height:1;letter-spacing:-.045em;color:var(--bringer-s-heading)}.se-datos dd{margin:6px 0 0;font-size:14px;line-height:1.35;color:var(--bringer-s-heading-fade)}
+  .se-trabajos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px)}.se-trabajo{display:flex;flex-direction:column;min-width:0;color:var(--bringer-s-heading);text-decoration:none}.se-trabajo:hover{color:var(--bringer-s-heading)}.se-img{position:relative;display:block;overflow:hidden;aspect-ratio:4/3;margin-bottom:14px;border-radius:var(--bringer-default-br);background:var(--bringer-s-container-bg)}.se-img img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s cubic-bezier(.16,1,.3,1)}.se-trabajo:hover .se-img img{transform:scale(1.03)}.se-trabajo small{font-size:13px;line-height:1.35;color:var(--bringer-s-text-accent)}.se-trabajo strong{margin:3px 0;font-size:clamp(18px,1.8vw,22px);font-weight:600;line-height:1.2;letter-spacing:-.02em}.se-servicio{font-size:14px;line-height:1.35;color:var(--bringer-s-heading-fade)}
+  .se-enlaces{display:flex;flex-wrap:wrap;gap:12px 32px;margin:clamp(24px,3vw,36px) 0 clamp(48px,7vw,88px)}
+  .se .se-razones{margin:0;padding:0;list-style:none}.se .se-razones li{display:grid;grid-template-columns:clamp(48px,8vw,120px) minmax(0,1fr);gap:16px;margin:0;padding:clamp(22px,3vw,36px) 0;border-top:1px solid var(--bringer-s-border);list-style:none}.se .se-razones li::marker{content:none}.se-razones li>span{font-size:14px;color:var(--bringer-s-text-accent)}.se-razones h3{margin:0 0 8px;font-size:clamp(26px,3.6vw,48px);font-weight:600;line-height:1.08;letter-spacing:-.035em}.se-razones p{max-width:60ch;margin:0}
+  @media(max-width:700px){.se-trabajos{grid-template-columns:minmax(0,1fr)}}
+  @media(prefers-reduced-motion:reduce){.se-img img{transition:none}}
+</style>
