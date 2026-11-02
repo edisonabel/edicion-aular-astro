@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { cleanArticle, validateDraft, mergePublication, isEditor, DRAFT_KEY, BLOG_PATH } from '../src/lib/editorial.mjs';
-import { createEditorialHandler } from '../netlify/functions/editorial.mjs';
+import { createEditorialHandler } from '../src/server/editorial-handler.mjs';
 // Public test fixtures only. Real unpublished drafts live in private Netlify Blobs.
 const basePosts=JSON.parse(readFileSync('src/data/blog.json','utf8'));
 const memory=basePosts.find(p=>p.slug==='memoria-agentes-ia-que-guardar');
