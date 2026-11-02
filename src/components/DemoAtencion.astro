@@ -6,16 +6,17 @@ const otros = DEMO_SECTORS.filter(item => !item.salud);
 ---
 <section id="demo-atencion" class="demo" data-demo data-sector={inicial.id} data-fijar={fijarSector ? 'true' : undefined} data-template="propio#demo-atencion" aria-labelledby="demo-heading">
   <header class="demo-intro">
-    <span class="bringer-label" data-appear="fade-up">Demo simulada · funciona con reglas, sin IA en vivo</span>
-    <h2 id="demo-heading" data-appear="fade-up">{titulo}<span class="bringer-accent">.</span></h2>
-    <p class="bringer-large-text" data-appear="fade-up" data-delay="100">Escribe como un paciente y mira lo que recibe tu equipo. Nada se guarda ni se envía.</p>
+    <span class="bringer-label">Demo simulada · funciona con reglas, sin IA en vivo</span>
+    <h2 id="demo-heading">{titulo}<span class="bringer-accent">.</span></h2>
+    <p class="bringer-large-text">Escribe como un paciente y mira lo que recibe tu equipo. Nada se guarda ni se envía.</p>
   </header>
   <div class="demo-tabs" role="tablist" aria-label="Vista de la demo" data-demo-tabs>
     <button type="button" role="tab" aria-selected="true" aria-controls="demo-telefono" id="demo-tab-paciente" data-demo-tab="paciente">Paciente</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="demo-recepcion-panel" id="demo-tab-recepcion" data-demo-tab="recepcion">Recepción<i data-demo-aviso hidden></i></button>
   </div>
+  <!-- Sin data-appear: la demo se ve aunque el JavaScript del theme no haya terminado de cargar, que en móvil tarda varios segundos. -->
   <div class="demo-stage" data-demo-stage data-vista="paciente">
-    <div class="demo-phone" id="demo-telefono" data-appear="fade-up">
+    <div class="demo-phone" id="demo-telefono">
       <div class="demo-island" aria-hidden="true"></div>
       <div class="demo-screen">
         <div class="demo-welcome" data-demo-welcome>
@@ -45,7 +46,7 @@ const otros = DEMO_SECTORS.filter(item => !item.salud);
         </div>
       </div>
     </div>
-    <aside class="demo-panel" id="demo-recepcion-panel" aria-label="Lo que ve recepción" data-appear="fade-up" data-delay="100">
+    <aside class="demo-panel" id="demo-recepcion-panel" aria-label="Lo que ve recepción">
       <div class="demo-panel-top"><span>Recepción</span><span>Ejemplo</span></div>
       <h3><span data-demo-persona>Tu recepción</span><em data-demo-etapa-label>Esperando la primera consulta</em></h3>
       <ol class="demo-seg" aria-hidden="true">{DEMO_ETAPAS.map(etapa=><li data-demo-etapa={etapa}></li>)}</ol>
@@ -66,7 +67,7 @@ const otros = DEMO_SECTORS.filter(item => !item.salud);
     const q=<T extends Element>(selector:string)=>root.querySelector<T>(selector)!;
     const log=q<HTMLElement>('[data-demo-log]'),options=q<HTMLElement>('[data-demo-options]'),rows=q<HTMLElement>('[data-demo-rows]'),eventos=q<HTMLElement>('[data-demo-eventos]'),stage=q<HTMLElement>('[data-demo-stage]');
     const welcome=q<HTMLElement>('[data-demo-welcome]'),app=q<HTMLElement>('[data-demo-app]'),form=q<HTMLFormElement>('[data-demo-form]'),texto=q<HTMLInputElement>('[data-demo-texto]'),negocio=q<HTMLInputElement>('[data-demo-negocio]'),aviso=q<HTMLElement>('[data-demo-aviso]');
-    const pausa=matchMedia('(prefers-reduced-motion: reduce)').matches?0:650,fijo=root.dataset.fijar==='true';
+    const pausa=matchMedia('(prefers-reduced-motion: reduce)').matches?0:400,fijo=root.dataset.fijar==='true';
     let sectorId=root.dataset.sector||DEMO_DEFAULT,especialidadId=DEMO_ESPECIALIDADES[0].id,actual:any=null,turno=0,ocupado=false,hayInteraccion=false,fase='chat',recorrido=0,extras:Record<string,string>={},eventosExtra:string[]=[];
     // Un enlace puede preparar la demo para un prospecto: ?negocio=Clínica%20Vital&especialidad=estetica
     const pedido=new URLSearchParams(location.search);

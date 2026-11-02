@@ -4,7 +4,8 @@ import { TRABAJOS } from '../data/ia/sistema-oferta';
 import { NEGOCIO } from '../data/ia/negocio';
 const trabajos = TRABAJOS.flatMap(({ slug, sector }) => {
   const proyecto = portfolio.find(item => item.slug === slug);
-  return proyecto ? [{ slug, sector, titulo: proyecto.title, servicio: proyecto.service, imagen: proyecto.image }] : [];
+  // Miniatura de 960 px en public/img/portfolio/miniaturas: las originales pesan hasta 150 KB para una tarjeta pequeña.
+  return proyecto ? [{ slug, sector, titulo: proyecto.title, servicio: proyecto.service, imagen: `/img/portfolio/miniaturas/${slug}.webp` }] : [];
 });
 const datos = [
   { valor: '+479', texto: 'clientes en otros sectores' },
@@ -29,7 +30,7 @@ const razones = [
   <div class="se-trabajos" data-stagger-appear="fade-up" data-stagger-delay="100">
     {trabajos.map(trabajo => (
       <a href={`/portfolio/${trabajo.slug}/`} class="se-trabajo">
-        <span class="se-img"><img src={trabajo.imagen} alt={`Proyecto de ${trabajo.titulo}`} width="800" height="600" loading="lazy" /></span>
+        <span class="se-img"><img src={trabajo.imagen} alt={`Proyecto de ${trabajo.titulo}`} width="800" height="600" loading="lazy" decoding="async" /></span>
         <small>{trabajo.sector}</small>
         <strong>{trabajo.titulo}</strong>
         <span class="se-servicio">{trabajo.servicio}</span>

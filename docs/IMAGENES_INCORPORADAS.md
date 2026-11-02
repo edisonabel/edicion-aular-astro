@@ -38,3 +38,5 @@ Generadas por el propietario en ChatGPT y optimizadas a WebP de 1536 × 1024. So
 | `hero-capacitacion.webp` | Hero de `/soluciones-ia/capacitacion-ia-empresas/` |
 
 Las diez fotografías anteriores se conservan porque otras páginas siguen usándolas.
+
+Versiones livianas para móvil, generadas con sharp desde los originales (no son imágenes nuevas): `hero-sistema-800.webp` y `rostro-estetica-800.webp` (800 px, en `srcset`), y `public/img/portfolio/miniaturas/` (960 px) para las tarjetas de trabajos de `/sistema-clinicas/`.
