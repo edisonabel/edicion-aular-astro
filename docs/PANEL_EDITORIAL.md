@@ -44,7 +44,7 @@ Tres desarrollos de aproximadamente cinco minutos de lectura:
 | Memoria en agentes de IA: qué guardar y cuándo borrar información | Actualización, conserva URL | `/blog/memoria-agentes-ia-que-guardar/` |
 | n8n 3.0 está en beta: qué revisar antes de migrar tus automatizaciones | Nueva publicación | `/blog/n8n-3-beta-preparar-migracion/` |
 
-Estado editorial al preparar este documento: **los tres siguen como borradores**. El blog conserva sus 26 artículos. Si el propietario publica las tres operaciones, tendrá 28 artículos y una actualización de la guía existente.
+Estado comprobado el 2 de noviembre: **el propietario publicó las tres operaciones desde el panel**. GitHub registró los tres commits y Netlify completó sus despliegues. El blog tiene 28 artículos: dos publicaciones nuevas y la actualización de la guía existente. Los otros 25 registros se conservaron íntegros y no se eliminó ninguna URL.
 
 La selección procede del correo del radar del 2 de noviembre aportado por el propietario. Su recepción a las 09:21 constituye evidencia aportada del envío programado del lunes; no se volvió a inspeccionar Gmail en esta tarea.
 
@@ -70,10 +70,10 @@ El propietario autorizó el 2 de noviembre la activación, la invitación y la c
 
 La credencial «Edición Aular · panel editorial» se creó limitada al repositorio edisonabel/edicion-aular-astro, Contents lectura/escritura y Metadata lectura obligatoria; sin permisos de cuenta. Caduca el 31 de enero de 2027. Se comprobó su lectura del archivo del blog y su almacenamiento exacto como EDITORIAL_GITHUB_TOKEN en el contexto privado de producción de Netlify. La copia temporal se eliminó después de verificar. Antes de la caducidad se requiere renovar esa credencial sin ampliar su alcance.
 
-El panel se desplegó en main; los tres artículos continúan como borradores. El acceso anónimo a la API se comprobó rechazado con HTTP 401. La comprobación con la sesión del propietario se realiza después de aplicar la variable al nuevo despliegue; no confundir estas verificaciones con una publicación real de un artículo.
+El panel se desplegó en main. El acceso anónimo a la API se comprobó rechazado con HTTP 401. El propietario entró y publicó los tres contenidos entre las 14:57 y las 14:58 de Colombia; la última compilación quedó publicada a las 14:58:49. Las tres páginas públicas responden HTTP 200, tienen portadas distintas y aparecen en el listado de Todos los Artículos. La sección Destacados conserva su selección anterior; no equivale a las novedades del archivo.
 
 La función se prepara con scripts/preparar-editorial.mjs antes de construir Astro. El bundle privado evita require(ESM), desactivado por AWS Lambda, y se prueba con esas restricciones. El entrypoint v2 de Netlify conserva rutas y autorización; no se activan flags experimentales globales ni se rebaja la versión del saneador HTML.
 
-El cambio del botón del correo está preparado en `automations/google-apps-script/Code.gs`; no afirmar que los correos programados ya lo incluyen hasta sincronizar el proyecto vivo de Apps Script. El botón abre el estudio, nunca publica mediante un enlace GET.
+El cambio del botón del correo de `automations/google-apps-script/Code.gs` se sincronizó con Radar.gs del proyecto vivo de Apps Script. Se respaldó el código anterior y se comprobó que el guardado coincide exactamente con la copia local. verificarRadar terminó correctamente, consultó las cuatro fuentes y reconoció los 28 artículos publicados, sin avisos y sin enviar correo. El botón aparecerá en futuros informes que tengan novedades; no se modifican mensajes ya recibidos. Abre el estudio y nunca publica mediante un enlace GET.
 
 No hay servicios de pago nuevos ni API de un modelo de IA en el panel. Identity y Blobs usan los recursos incluidos de Netlify; se mantienen los límites del plan gratuito, sin activar sobreconsumo o mejoras de plan.

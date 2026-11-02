@@ -12,3 +12,5 @@ Los permisos son conexión a servicios externos, envío de correo y ejecución p
 Las propiedades RADAR_STATE y RADAR_PENDING son privadas. Si hay un envío pendiente, comprobar el buzón antes de reintentar. No publicar las propiedades del proyecto en Git. Mantener el radar local de Codex en pausa mientras los activadores de Google estén activos.
 
 Para modificar el código, guardar la versión revisada en Google y ejecutar verificarRadar antes de cualquier envío de prueba. La copia local no sincroniza cambios por sí sola. Consultar docs/RADAR_EDITORIAL_IA.md para alcance, fuentes y límites.
+
+El 2 de noviembre de 2026 se sincronizó Radar.gs con esta copia para añadir el botón «Abrir mi estudio editorial» hacia `/admin/`. Se comprobó la coincidencia del código guardado y verificarRadar terminó sin avisos, reconociendo los 28 artículos publicados. No se envió otro correo de prueba. El botón aparecerá en los futuros informes con novedades.
