@@ -9,7 +9,7 @@ const puntos = [
 ---
 <section class="sp" id="ficha-paciente" data-sp>
   <div class="sp-media">
-    <img src="/img/ia/rostro-estetica.webp" alt="Escultura digital de un rostro con los ojos cerrados y una luz de rosa a rojo en su contorno" width="1536" height="1024" loading="lazy" />
+    <img src="/img/ia/rostro-estetica.webp" srcset="/img/ia/rostro-estetica-800.webp 800w, /img/ia/rostro-estetica.webp 1536w" sizes="(max-width: 860px) 100vw, 56vw" decoding="async" alt="Escultura digital de un rostro con los ojos cerrados y una luz de rosa a rojo en su contorno" width="1536" height="1024" loading="lazy" />
     {puntos.map((punto, index) => <span class="sp-pin" style={`--x:${punto.x}%;--y:${punto.y}%;--i:${index}`} aria-hidden="true">{index + 1}</span>)}
   </div>
   <div class="sp-text">
