@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { cleanArticle, validateDraft, mergePublication, isEditor, DRAFT_KEY, BLOG_PATH } from '../src/lib/editorial.mjs';
 import { createEditorialHandler } from '../src/server/editorial-handler.mjs';
+import { editorialRevision } from '../src/lib/editorial-status.mjs';
 // Public test fixtures only. Real unpublished drafts live in private Netlify Blobs.
 const basePosts=JSON.parse(readFileSync('src/data/blog.json','utf8'));
 const memory=basePosts.find(p=>p.slug==='memoria-agentes-ia-que-guardar');
@@ -47,6 +48,29 @@ test('publicar un artículo preserva íntegros todos los registros anteriores y 
 test('actualizar conserva ID, URL y fecha original; los otros artículos no cambian',()=>{
   const next=mergePublication(originals,drafts[1],'2026-11-02');assert.equal(next.length,originals.length);
   for(let i=0;i<originals.length;i++)if(originals[i].slug!==drafts[1].targetSlug)assert.deepEqual(next[i],originals[i]);else{assert.equal(next[i].id,originals[i].id);assert.equal(next[i].date,originals[i].date);assert.equal(next[i].dateModified,'2026-11-02');}
+});
+
+test('actualizar una guía destacada conserva su selección editorial',()=>{
+  const posts=structuredClone(originals);posts.find(p=>p.slug===drafts[1].targetSlug).featured=true;
+  assert.equal(mergePublication(posts,drafts[1]).find(p=>p.slug===drafts[1].targetSlug).featured,true);
+});
+
+test('la confirmación pública distingue una versión antigua aunque la URL ya exista',async()=>{
+  const post=validateDraft(drafts[0]).post;
+  const digest=await editorialRevision(post);assert.match(digest,/^[a-f0-9]{64}$/);
+  assert.notEqual(await editorialRevision({...post,content:post.content+'<p>Nueva revisión.</p>'}),digest);
+  assert.equal(await editorialRevision({...post,featured:true,dateModified:'2026-11-03'}),digest);
+});
+
+test('editar un artículo recién publicado prepara actualización sin duplicar URL ni cambiar su fecha',async()=>{
+  const f=fixture();assert.equal((await f.request(f.publish())).status,200);
+  const current=f.posts.find(p=>p.slug===drafts[0].post.slug);
+  const changed={...drafts[0].post,title:'Nueva versión revisada del artículo ya publicado'};
+  assert.equal((await f.request({...f.publish(),action:'save',post:changed})).status,200);
+  const data=await (await f.request()).json();const saved=data.drafts.find(d=>d.key===drafts[0].key);
+  assert.equal(saved.kind,'update');assert.equal(saved.published,false);assert.equal(saved.targetSlug,current.slug);
+  const published=await f.request({...f.publish(),revision:data.revision,post:saved.post});assert.equal(published.status,200);
+  const after=f.posts.find(p=>p.slug===current.slug);assert.equal(after.id,current.id);assert.equal(after.date,current.date);assert.equal(f.posts.length,originals.length+1);
 });
 test('usuarios anónimos, otra cuenta o rol de metadatos editables no pueden leer ni publicar',async()=>{
   for(const user of [null,{...editor,email:'other@example.com'},{...editor,roles:[],userMetadata:{roles:['editorial-admin']}}]){assert.equal(isEditor(user),false);const f=fixture({user});assert.equal((await f.request()).status,401);assert.equal((await f.request(f.publish())).status,401);assert.equal(f.calls,0);}

@@ -1,9 +1,12 @@
 import { login, logout, getUser, getSettings, handleAuthCallback, acceptInvite, requestPasswordRecovery, updateUser, refreshSession } from '@netlify/identity';
 import { cleanArticle } from './editorial.mjs';
+import { editorialRevision, revisionSource } from './editorial-status.mjs';
 
 const $ = id => document.getElementById(id);
 const escape = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=null, selected=null, dirty=false, busy=false, invitation=null, recovery=false;
+let libraryView='pending', verification=0, lastSent=null;
+const liveVersions=new Map();
 let previewObserver;
 $('preview').addEventListener('load',()=>{previewObserver?.disconnect();const body=$('preview').contentDocument?.body;if(body){const resize=()=>{$('preview').style.height=Math.ceil(body.scrollHeight+48)+'px';};previewObserver=new ResizeObserver(resize);previewObserver.observe(body);resize();}});
 function setTheme(theme){ document.documentElement.dataset.theme=theme; $('theme').textContent=theme==='dark'?'Modo claro':'Modo oscuro'; $('theme').setAttribute('aria-label',theme==='dark'?'Cambiar a modo claro':'Cambiar a modo oscuro'); }
@@ -11,8 +14,41 @@ let initialTheme;try{initialTheme=localStorage.getItem('theme');}catch{}
 setTheme(initialTheme==='light'||initialTheme==='dark'?initialTheme:window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
 $('theme').addEventListener('click',()=>{const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';setTheme(theme);try{localStorage.setItem('theme',theme);}catch{}preview();});
 
-const message = (text,error=false) => { $('message').textContent=text; $('message').dataset.error=String(error); };
-const lock = value => {busy=value; for(const id of ['save','review','reload','publish'])$(id).disabled=value; if(!value)checkReview();};
+const message = (text,error=false,title=error?'Revisa este paso':'Información') => { $('message').textContent=text; $('message').dataset.error=String(error);$('notice').dataset.error=String(error);$('notice-title').textContent=title;$('notice').hidden=!text;if($('publish-dialog').open&&error){$('publish-error').textContent=text;$('publish-error').hidden=false;} };
+$('dismiss-notice').addEventListener('click',()=>{$('notice').hidden=true;});
+const lock = value => {busy=value; for(const id of ['save','review','reload','publish','show-pending','show-published','draft-picker','logout'])$(id).disabled=value; if(!value){$('review').disabled=!selected||selected.published||dirty;checkReview();}};
+const publicUrl=d=>`${location.origin}/blog/${d.post.slug}/`;
+const isLive=d=>liveVersions.get(d.key)===revisionSource(d.post);
+function statusText(d){return !d.published?'Borrador pendiente de envío':isLive(d)?'Publicado en la web':'Enviado · comprobando publicación';}
+function appendPublicLink(url){const a=document.createElement('a');a.href=url;a.textContent='Ver artículo en la web ↗';a.target='_blank';a.rel='noopener noreferrer';$('message').append(a);}
+function renderList(preferredKey) {
+  const pending=state.drafts.filter(d=>!d.published),sent=state.drafts.filter(d=>d.published);
+  $('show-pending').textContent=`Pendientes (${pending.length})`;$('show-published').textContent=`Publicaciones (${sent.length})`;
+  $('show-pending').setAttribute('aria-pressed',String(libraryView==='pending'));$('show-published').setAttribute('aria-pressed',String(libraryView==='published'));
+  $('list-heading').textContent=libraryView==='pending'?'Pendientes de envío':'Publicaciones enviadas';
+  const items=libraryView==='pending'?pending:sent;
+  $('draft-list').replaceChildren();$('draft-picker').replaceChildren();$('picker-label').hidden=!items.length;
+  for(const d of items){const option=document.createElement('option');option.value=d.key;option.textContent=d.post.title;$('draft-picker').append(option);const b=document.createElement('button');b.type='button';b.dataset.key=d.key;b.append(document.createTextNode(d.post.title));const small=document.createElement('small');small.textContent=statusText(d);b.append(small);b.addEventListener('click',()=>choose(d.key));$('draft-list').append(b);}
+  $('empty-list').hidden=!!items.length;
+  $('empty-heading').textContent=libraryView==='pending'?'No hay borradores pendientes.':'Todavía no hay publicaciones enviadas.';
+  $('empty-description').textContent=libraryView==='pending'?'Los envíos realizados están en Publicaciones. Allí puedes consultarlos y preparar una actualización.':'Revisa un borrador en Pendientes y envíalo cuando esté listo.';
+  const item=items.find(d=>d.key===preferredKey)||items[0];
+  if(item)choose(item.key,true);else{selected=null;$('editor').hidden=true;$('preview').srcdoc='';previewObserver?.disconnect();}
+}
+function switchLibrary(view){if(busy||(dirty&&!window.confirm('¿Descartar los cambios sin guardar y cambiar de listado?')))return;dirty=false;libraryView=view;renderList();lock(false);}
+$('show-pending').addEventListener('click',()=>switchLibrary('pending'));
+$('show-published').addEventListener('click',()=>switchLibrary('published'));
+async function verifyPublications(attempt=0,generation=++verification){
+  const items=(state?.drafts||[]).filter(d=>d.published);
+  await Promise.allSettled(items.map(async d=>{
+    try{const expected=await editorialRevision(d.post),response=await fetch(publicUrl(d),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(7000)});if(!response.ok)return;const doc=new DOMParser().parseFromString(await response.text(),'text/html');if(doc.querySelector('meta[name="editorial-revision"]')?.content!==expected)return;if(generation!==verification)return;liveVersions.set(d.key,revisionSource(d.post));
+      for(const button of $('draft-list').children)if(button.dataset.key===d.key)button.querySelector('small').textContent='Publicado en la web';
+      if(selected?.key===d.key)$('entry-status').textContent='Publicado en la web. Esta versión ya está disponible para tus lectores.';
+      if(lastSent===d.key&&!dirty){message('La versión enviada ya está disponible en el blog.',false,'Publicado correctamente');appendPublicLink(publicUrl(d));lastSent=null;}
+    }catch{/* A missing or slow public page is not a failed GitHub commit. */}
+  }));
+  if(generation===verification&&attempt<7&&items.some(d=>!isLive(d)))setTimeout(()=>{if(generation===verification)verifyPublications(attempt+1,generation);},10000);
+}
 async function api(body) {
   await refreshSession();
   const response = await fetch('/api/editorial',{method:body?'POST':'GET',credentials:'same-origin',cache:'no-store',headers:body?{'Content-Type':'application/json'}:{},...(body?{body:JSON.stringify(body)}:{})});
@@ -32,12 +68,15 @@ function tab(id) {
   for(const name of ['preview','edit']) { const active=name===id; $('tab-'+name).setAttribute('aria-selected',String(active));$('tab-'+name).tabIndex=active?0:-1;$(name+'-panel').hidden=!active; }
   if(previewMode)preview();
 }
-function choose(key) {
+function choose(key,internal=false) {
+  if(busy&&!internal)return;
   if(dirty&&!window.confirm('Hay cambios sin guardar. ¿Quieres descartarlos y abrir otro artículo?')){$('draft-picker').value=selected.key;return;}
   selected=state.drafts.find(d=>d.key===key);dirty=false;$('draft-picker').value=key;
   $('editor').hidden=false;$('editor-heading').textContent=selected.post.title;
-  $('entry-kind').textContent=selected.kind==='update'?'ACTUALIZAR · SE CONSERVA LA URL':'NUEVO ARTÍCULO';
-  $('entry-status').textContent=selected.published?'La versión guardada coincide con el blog en GitHub.':'Borrador pendiente de publicación.';
+  $('entry-kind').textContent=selected.published?'PUBLICACIÓN ENVIADA':selected.kind==='update'?'ACTUALIZAR · SE CONSERVA LA URL':'NUEVO ARTÍCULO';
+  $('entry-status').textContent=selected.published?(isLive(selected)?'Publicado en la web. Esta versión ya está disponible para tus lectores.':'Envío confirmado. Comprobando que Netlify haya actualizado la web.'):'Borrador pendiente de envío.';
+  $('public-link').hidden=!selected.published;$('public-link').href=publicUrl(selected);
+  $('review').disabled=selected.published;$('review').textContent=selected.published?'Esta versión ya fue enviada':selected.kind==='update'?'Revisar actualización':'Revisar y publicar';
   $('post-title').value=selected.post.title;$('post-excerpt').value=selected.post.excerpt;$('post-content').value=selected.post.content;
   $('dirty-note').textContent='';$('source-list').replaceChildren();
   for(const source of selected.sources){const li=document.createElement('li'),a=document.createElement('a');a.textContent=source.title;a.href=source.url;a.target='_blank';a.rel='noopener noreferrer';li.append(a);$('source-list').append(li);}
@@ -48,41 +87,40 @@ async function load(preferredKey) {
   lock(true);
   try {
     state=await api();$('login-panel').hidden=true;$('workspace').hidden=false;$('logout').hidden=false;
-    $('draft-list').replaceChildren();$('draft-picker').replaceChildren();
-    for(const d of state.drafts){const option=document.createElement('option');option.value=d.key;option.textContent=d.post.title;$('draft-picker').append(option);const b=document.createElement('button');b.type='button';b.dataset.key=d.key;b.append(document.createTextNode(d.post.title));const small=document.createElement('small');small.textContent=(d.kind==='update'?'Actualización':'Nuevo artículo')+' · '+(d.published?'En GitHub':'Borrador');b.append(small);b.addEventListener('click',()=>choose(d.key));$('draft-list').append(b);}
-    dirty=false;if(state.drafts.length)choose(preferredKey||state.drafts[0].key);message('');
+    dirty=false;if(preferredKey){const item=state.drafts.find(d=>d.key===preferredKey);if(item)libraryView=item.published?'published':'pending';}
+    renderList(preferredKey);message('');verifyPublications();return true;
   }catch(err){message(err.message,true);}finally{lock(false);}
 }
 $('draft-picker').addEventListener('change',()=>choose($('draft-picker').value));
-for(const id of ['post-title','post-excerpt','post-content'])$(id).addEventListener('input',()=>{dirty=true;$('dirty-note').textContent='Tienes cambios sin guardar.';});
+for(const id of ['post-title','post-excerpt','post-content'])$(id).addEventListener('input',()=>{dirty=true;$('dirty-note').textContent='Tienes cambios sin guardar. Guarda el borrador antes de enviarlo.';$('review').disabled=true;});
 for(const name of ['preview','edit']) {
   $('tab-'+name).addEventListener('click',()=>tab(name));
   $('tab-'+name).addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const next=['ArrowLeft','Home'].includes(event.key)?'preview':'edit';tab(next);$('tab-'+next).focus();}});
 }
-$('reload').addEventListener('click',()=>{if(!dirty||window.confirm('¿Descartar los cambios sin guardar y actualizar el listado?'))load(selected?.key);});
+$('reload').addEventListener('click',async()=>{if(!dirty||window.confirm('¿Descartar los cambios sin guardar y actualizar el listado?')){const ok=await load(selected?.key);if(ok)message('Se actualizaron los pendientes y las publicaciones enviadas.',false,'Listado actualizado');}});
 $('save').addEventListener('click',async()=>{
   if(busy)return;lock(true);
-  try{const result=await api({action:'save',key:selected.key,revision:state.revision,post:editedPost()});if(!result.saved)throw new Error('No se confirmó el guardado.');const key=selected.key;dirty=false;await load(key);message('Borrador guardado. El artículo aún no se ha publicado.');}catch(err){message(err.message,true);}finally{lock(false);}
+  try{const result=await api({action:'save',key:selected.key,revision:state.revision,post:editedPost()});if(!result.saved)throw new Error('No se confirmó el guardado.');const key=selected.key;liveVersions.delete(key);dirty=false;const ok=await load(key);if(ok)message(selected?.published?'Esta versión ya coincide con el envío realizado.':'Los cambios están en Pendientes. Todavía no se enviaron a publicar.',false,'Borrador guardado');}catch(err){message(err.message,true);}finally{lock(false);}
 });
 function checkReview(){ $('publish').disabled=busy||!['sources','content','image'].every(x=>$('check-'+x).checked); }
 for(const item of ['sources','content','image'])$('check-'+item).addEventListener('change',checkReview);
 $('review').addEventListener('click',()=>{
   if(dirty){message('Guarda primero el borrador para revisar y publicar exactamente esa versión.',true);return;}
-  preview();for(const item of ['sources','content','image'])$('check-'+item).checked=false;
+  if(!selected||selected.published)return;
+  preview();$('publish-error').hidden=true;for(const item of ['sources','content','image'])$('check-'+item).checked=false;
   $('publish-summary').textContent=selected.kind==='update'?'Se actualizará esta guía conservando su dirección y fecha de publicación original.':'Se añadirá este artículo al blog. Los artículos anteriores se conservan.';
   $('publish').textContent=selected.kind==='update'?'Publicar actualización':'Publicar artículo';checkReview();$('publish-dialog').showModal();
 });
 $('publish').addEventListener('click',async()=>{
-  if(busy||$('publish').disabled)return;lock(true);
+  if(busy||$('publish').disabled)return;lock(true);$('publish').textContent='Enviando…';$('publish-dialog').setAttribute('aria-busy','true');
   try{
     const result=await api({action:'publish',key:selected.key,revision:state.revision,blogRevision:state.blogRevision,post:editedPost(),review:{sources:$('check-sources').checked,content:$('check-content').checked,image:$('check-image').checked}});
     if(!result.committed)throw new Error('No se confirmó la publicación.');
-    dirty=false;$('publish-dialog').close();message(result.alreadyPublished?'Este artículo ya estaba guardado en el blog.':'Artículo enviado a Netlify. La web se actualizará cuando termine la compilación.');
-    const link=document.createElement('a');link.href=result.url;link.textContent=' Comprobar artículo público ↗';link.target='_blank';link.rel='noopener noreferrer';$('message').append(link);
-    $('entry-status').textContent='Guardado en GitHub. Comprueba el despliegue antes de compartir.';
-    // Reload metadata, not the edited fields: preserve the text if the network fails after commit.
-    try{const fresh=await api();state=fresh;selected=fresh.drafts.find(d=>d.key===selected.key);for(const button of $('draft-list').children){const d=fresh.drafts.find(item=>item.key===button.dataset.key);button.querySelector('small').textContent=(d.kind==='update'?'Actualización':'Nuevo artículo')+' · '+(d.published?'En GitHub':'Borrador');}}catch{/* The confirmed commit remains valid even if refreshing the list fails. */}
-  }catch(err){message(err.message,true);}finally{lock(false);}
+    const sent=selected;dirty=false;lastSent=sent.key;sent.published=true;liveVersions.delete(sent.key);$('publish-dialog').close();
+    libraryView='pending';renderList();message('El artículo pasó a Publicaciones. Netlify está actualizando la web; no necesitas volver a enviarlo.',false,result.alreadyPublished?'Este envío ya estaba confirmado':'Enviado correctamente');appendPublicLink(result.url);$('notice').focus({preventScroll:true});
+    // The commit is confirmed even if refreshing metadata fails afterwards.
+    try{state=await api();renderList();}catch{/* Keep the confirmed article out of Pending. */}verifyPublications();
+  }catch(err){message(err.message,true);}finally{$('publish-dialog').removeAttribute('aria-busy');$('publish').textContent=selected?.kind==='update'?'Publicar actualización':'Publicar artículo';lock(false);}
 });
 $('login-form').addEventListener('submit',async event=>{
   event.preventDefault();const button=$('login-form').querySelector('button');button.disabled=true;message('Comprobando acceso…');
@@ -94,7 +132,7 @@ $('invite-form').addEventListener('submit',async event=>{
   try{if(recovery)await updateUser({password});else await acceptInvite(invitation,password);invitation=null;$('invite-password').value='';$('invite-confirm').value='';$('invite-form').hidden=true;await load();}catch{message('No se pudo activar el acceso. Comprueba que la invitación sigue vigente.',true);}
 });
 $('recovery').addEventListener('click',async()=>{try{await requestPasswordRecovery($('login-email').value);message('Si tu cuenta está registrada, recibirás el enlace de recuperación.');}catch{message('No se pudo solicitar la recuperación. Inténtalo más tarde.',true);}});
-$('logout').addEventListener('click',async()=>{if(dirty&&!window.confirm('¿Salir y descartar los cambios sin guardar?'))return;await logout();state=null;selected=null;dirty=false;$('workspace').hidden=true;$('logout').hidden=true;$('login-panel').hidden=false;$('preview').srcdoc='';$('draft-list').replaceChildren();message('Sesión cerrada.');});
+$('logout').addEventListener('click',async()=>{if(dirty&&!window.confirm('¿Salir y descartar los cambios sin guardar?'))return;await logout();verification++;lastSent=null;liveVersions.clear();state=null;selected=null;dirty=false;$('workspace').hidden=true;$('logout').hidden=true;$('login-panel').hidden=false;$('preview').srcdoc='';$('draft-list').replaceChildren();message('Sesión cerrada.');});
 window.addEventListener('beforeunload',event=>{if(dirty){event.preventDefault();event.returnValue='';}});
 async function init(){
   try{

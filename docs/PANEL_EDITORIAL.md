@@ -11,6 +11,10 @@ Ruta prevista: `https://edicionaular.com/admin/`. El panel administra borradores
 5. Pulsar **Publicar artículo** o **Publicar actualización**.
 6. Esperar el despliegue y comprobar la URL pública. Un commit aceptado no demuestra que Netlify haya terminado la compilación.
 
+El panel separa **Pendientes** de **Publicaciones**. Al confirmar un envío aparece un aviso fijo «Enviado correctamente» y el artículo sale de Pendientes. Cuando la versión exacta del texto y portada se comprueba en el HTML público, cambia a «Publicado en la web». Una URL existente con una versión anterior no basta para confirmar la actualización. El envío confirmado no se pierde si falla la recarga del listado. Las publicaciones se conservan para preparar actualizaciones y no se vuelven a enviar sin cambios.
+
+La guía de memoria se incorporó a Destacados por solicitud del propietario. Las actualizaciones conservan su selección como destacada, ID, URL y fecha original. La suite incluye 59 pruebas; la simulación del aviso y del movimiento entre listados no modifica el blog real.
+
 Los temas enviados por el radar no se convierten automáticamente en artículos terminados. Hay que desarrollarlos, contrastarlos y cargarlos como borradores antes de publicarlos.
 
 ## Autorización y almacenamiento

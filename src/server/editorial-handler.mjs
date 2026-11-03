@@ -31,7 +31,9 @@ export function createEditorialHandler({ user=getUser, fetcher=fetch, token=()=>
       let body;try{body=JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{return json({error:'Documento no válido.'},400);}
       if(!['save','publish'].includes(body.action)||body.revision!==drafts.sha)return json({error:'El borrador cambió. Recarga el listado antes de continuar.'},409);
       const index=drafts.data.findIndex(d=>d.key===body.key);if(index<0)return json({error:'Borrador no encontrado.'},404);
-      const draft=validateDraft({...drafts.data[index],post:{...drafts.data[index].post,...body.post}});
+      const storedDraft=drafts.data[index];
+      const existing=blog.data.find(p=>p.slug===storedDraft.post.slug);
+      const draft=validateDraft({...storedDraft,...(existing?{kind:'update',targetSlug:storedDraft.post.slug}:{}),post:{...storedDraft.post,...body.post}});
       // Route and operation kind are immutable in the panel; updates cannot overwrite other articles.
       if(draft.post.slug!==drafts.data[index].post.slug)return json({error:'La URL del borrador debe conservarse.'},400);
       if(body.action==='save'){

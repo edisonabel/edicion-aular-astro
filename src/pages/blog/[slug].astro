@@ -5,6 +5,7 @@ import JsonLd from '../../components/geo/JsonLd.astro';
 import blogData from '../../data/blog.json';
 import { blogDestination, formatBlogDate } from '../../lib/blog';
 import { ORG_ID, breadcrumbs } from '../../lib/schema';
+import { editorialRevision } from '../../lib/editorial-status.mjs';
 import '../../styles/blog-brand.css';
 export function getStaticPaths() { return blogData.map(post => ({ params: { slug: post.slug }, props: { post } })); }
 const { post } = Astro.props;
@@ -20,6 +21,7 @@ const articleSchema = {
 };
 ---
 <BaseLayout title={`${post.title} | Blog Edición Aular`} description={post.excerpt} image={post.image} type="article">
+  <meta slot="head" name="editorial-revision" content={await editorialRevision(post)} />
   <JsonLd slot="head" data={[articleSchema, breadcrumbs([{ name: 'Inicio', href: '/' }, { name: 'Blog', href: '/blog/' }, { name: post.title, href: `/blog/${post.slug}/` }])]} />
   <div id="reading-progress-bar" aria-hidden="true"></div>
   <div class="stg-container blog-article">

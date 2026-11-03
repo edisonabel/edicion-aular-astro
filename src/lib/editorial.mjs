@@ -55,7 +55,7 @@ export function mergePublication(posts, draft, date = colombiaDate()) {
   if (item.kind === 'new' && index >= 0) throw new Error('Esta URL ya existe. Actualiza el listado antes de continuar.');
   const result = posts.slice();
   const previous = posts[index];
-  const post = { ...item.post, id: previous?.id ?? Math.max(0,...posts.map(p=>Number(p.id)||0))+1,
+  const post = { ...item.post, featured: previous?.featured ?? item.post.featured, id: previous?.id ?? Math.max(0,...posts.map(p=>Number(p.id)||0))+1,
     date: previous?.date || date, ...(previous ? { dateModified: date } : {}) };
   if (index < 0) result.push(post); else result[index] = { ...previous, ...post };
   return result;
