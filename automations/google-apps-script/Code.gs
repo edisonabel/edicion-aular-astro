@@ -1,4 +1,4 @@
-/** Radar editorial privado. Sin claves, modelos de IA, facturación ni publicación automática. */
+/** Radar editorial privado. Sin modelos de IA de pago ni publicación automática. La conexión privada usa firma HMAC. */
 const RADAR = Object.freeze({
   recipient: 'edicionaular@gmail.com', timezone: 'America/Bogota', maxItems: 3,
   feeds: [
@@ -36,7 +36,12 @@ function procesarRadar_(initial) {
     const report=recopilarRadar_();
     const state=JSON.parse(props.getProperty('RADAR_STATE')||'{"sent":[],"lastCheck":null}');
     const sent=new Set(state.sent);
-    const selected=report.candidates.filter(x=>!sent.has(x.key)).slice(0,RADAR.maxItems);
+    const sourcesUsed=new Set(),profilesUsed=new Set();
+    const selected=report.candidates.filter(x=>{
+      const profile=perfilTema_(x.title).name;
+      if(sent.has(x.key)||sourcesUsed.has(x.source)||profilesUsed.has(profile))return false;
+      sourcesUsed.add(x.source);profilesUsed.add(profile);return true;
+    }).slice(0,RADAR.maxItems);
     const now=new Date(),date=Utilities.formatDate(now,RADAR.timezone,'yyyy-MM-dd');
     state.lastCheck=now.toISOString();
     if(!selected.length && !initial) {
@@ -46,7 +51,9 @@ function procesarRadar_(initial) {
       return;
     }
     if(MailApp.getRemainingDailyQuota()<1) throw new Error('No hay cuota de correo disponible. Temas conservados sin marcar.');
-    const subject='[Radar IA · Edición Aular] '+(initial?'Radar en Google y borradores · ':'Temas y borradores · ')+date;
+    const subject='[Radar IA · Edición Aular] '+(initial?'Radar en Google y borradores · ':'Temas para desarrollar · ')+date;
+    // Primero guardar en el estudio: nunca enviar un enlace a un listado desconectado.
+    if(selected.length) sincronizarEstudio_(selected,date);
     const html=renderInforme_(selected,report,date,initial);
     props.setProperty('RADAR_PENDING',JSON.stringify({subject:subject,started:now.toISOString(),keys:selected.map(x=>x.key)}));
     // Un único destinatario fijo. MailApp no necesita acceso de lectura al buzón.
@@ -77,7 +84,7 @@ function recopilarRadar_() {
         const text=item.title;
         if(!esTemaPertinente_(text))return;
         const age=Date.now()-new Date(item.date).getTime();
-        if(!Number.isFinite(age)||age< -86400000||age>14*86400000)return;
+        if(!Number.isFinite(age)||age< -86400000||age>7*86400000)return;
         const key=huella_(feed.url+'|'+(item.guid||item.link));
         candidates.push(Object.assign(item,{key:key,source:feed.name,kind:feed.kind,score:puntuarTema_(text)+(feed.kind==='trend'?3:0)}));
       });
@@ -100,7 +107,7 @@ function leerRss_(xml) {
 }
 function esTemaPertinente_(title) {
   // Alcance comercial acotado: evitar ruido de investigación, financiación y alianzas.
-  if(/biolog|genom|brain|neuro|molecular|drug|teen|safety report|partnership|partner with|investment|funding|economy|foundation|summit|festival|acquisition|automation team|our team|refreshed.*brand|DGX|NVIDIA/i.test(title))return false;
+  if(/biolog|genom|brain|neuro|molecular|drug|teen|safety report|\bROI\b|pilot|enterprise self-service|partnership|partner with|investment|funding|economy|foundation|summit|festival|acquisition|automation team|our team|refreshed.*brand|DGX|NVIDIA/i.test(title))return false;
   return /\b(claude|kimi|n8n|whatsapp|chatgpt|gemini|gpt[ -]?\d|ai agents?|ai workflow|ai design|inteligencia artificial|agentes de ia|automatizaci[oó]n)\b/i.test(title);
 }
 function puntuarTema_(title) {return (/\b(agent|workflow|automation|automatiz|whatsapp|design|diseño|business|small business|website|code|coding|voice)\w*/i.test(title)?5:1)+(/\b(launch|introduc|new|release|update|nuev|actualiz)\w*/i.test(title)?2:0);}
@@ -110,24 +117,31 @@ function perfilTema_(title) {
   if(/design|diseño|website|image|video|brand/i.test(title))return {name:'diseño y contenido',question:'¿Cómo encaja esta novedad en una pieza de marca que deba publicarse?',service:'/diseno-web/',existing:'/blog/claude-design-que-cambio-diseno-marcas/',example:'un primer boceto de una página de servicio revisado contra el sistema visual de la marca',checks:['coherencia de tipografía, color y composición','lectura y navegación en móvil y con teclado','exactitud del contenido y derechos de los recursos']};
   return {name:'uso de IA en un proceso de negocio',question:'¿Qué tarea conviene probar y con qué criterio se aceptará el resultado?',service:'/soluciones-ia/',existing:'/blog/adopcion-ia-embudos-marketing/',example:'un borrador de respuesta preparado con información pública y revisado por el equipo',checks:['disponibilidad del producto y versión exacta','condiciones de acceso, límites y costes vigentes','fuentes, errores y revisión humana del resultado']};
 }
+function fichaTema_(item) {
+  const p=perfilTema_(item.title);
+  const angle=/gpt.*terra/i.test(item.title)?'GPT-6.1 Terra: qué probar antes de conectarlo a un proceso de tu empresa':/ROI|pilot/i.test(item.title)?'Cómo medir un piloto de IA sin prometer el ROI de otra empresa':/self.service/i.test(item.title)?'Atención autónoma con IA: información, permisos y derivación humana':limpiar_(item.title,160)+' · aplicación en '+p.name;
+  return {key:item.key,title:item.title,link:item.link,date:item.date,source:item.source,kind:item.kind,angle:angle,
+    summary:'Enfoque propuesto: '+p.question+' Usar la noticia «'+limpiar_(item.title,180)+'» como punto de partida, contrastar la fuente y explicar un caso aplicable a pequeñas empresas. La señal es editorial; no demuestra demanda de búsqueda.',
+    checks:['Leer la fuente completa y confirmar qué cambió, para quién está disponible y sus límites.'].concat(p.checks).concat(['Revisar el archivo del blog: actualizar una guía existente si responde a la misma intención.'])};
+}
+function sincronizarEstudio_(items,date) {
+  const key=PropertiesService.getScriptProperties().getProperty('EDITORIAL_RADAR_SECRET');
+  if(!key)throw new Error('Falta conectar el estudio editorial. No se envió un correo con un listado vacío.');
+  const raw=JSON.stringify({date:date,items:items.map(fichaTema_)}),time=String(Date.now());
+  const signature=Utilities.computeHmacSha256Signature(time+'.'+raw,key).map(b=>('0'+((b+256)%256).toString(16)).slice(-2)).join('');
+  const response=UrlFetchApp.fetch('https://edicionaular.com/api/editorial-radar',{method:'post',contentType:'application/json',payload:raw,headers:{'X-Radar-Time':time,'X-Radar-Signature':signature},muteHttpExceptions:true,followRedirects:false});
+  if(response.getResponseCode()!==200)throw new Error('El estudio no confirmó las sugerencias (HTTP '+response.getResponseCode()+'). No se marcó el informe como enviado.');
+  const result=JSON.parse(response.getContentText());if(result.received!==true)throw new Error('No se confirmó el guardado en el estudio.');
+}
 function borradorTema_(item,profile) {
-  const title=limpiar_(item.title,130);
-  return '<h3>Borrador inicial · requiere completar y verificar</h3>'+
-    '<p><strong>Título de trabajo:</strong> '+esc_(title)+': qué revisar antes de aplicarlo a tu negocio</p>'+
-    '<p><strong>Entrada propuesta.</strong> Antes de incorporar una novedad a tu operación, define una tarea y el resultado que esperas comprobar. En '+esc_(profile.name)+', la pregunta útil es: '+esc_(profile.question)+'</p>'+
-    '<h4>Qué se anunció y qué falta confirmar</h4><p>La fuente detectada presenta «'+esc_(title)+'». <strong>[COMPLETAR:</strong> explicar el cambio con palabras propias después de leer la fuente primaria; confirmar fecha, versión, disponibilidad y límites. No trasladar métricas del fabricante como resultados propios.<strong>]</strong></p>'+
-    '<h4>Cómo llevarlo a una tarea concreta</h4><p>Un escenario ilustrativo para preparar la prueba es '+esc_(profile.example)+'. Describe la información de entrada, la acción esperada y quién revisa el resultado. Este ejemplo sirve para diseñar una prueba; no representa una implementación ni un resultado de un cliente.</p>'+
-    '<p>Empieza con información pública o datos sintéticos identificados como tales. Registra lo que hace la herramienta y las correcciones necesarias antes de ampliar el alcance.</p>'+
-    '<h4>Tres puntos para evaluar</h4><ul>'+profile.checks.map(x=>'<li>'+esc_(x)+'.</li>').join('')+'</ul>'+
-    '<h4>Cuándo conviene avanzar</h4><p>La decisión depende de la tarea, las conexiones necesarias y el mantenimiento. Si el resultado no cumple el criterio acordado, revisa el alcance antes de sumar herramientas. <strong>[COMPLETAR: resultado de una prueba propia, si existe; en caso contrario, dejar el texto como guía de evaluación.]</strong></p>'+
-    '<h4>Siguiente paso</h4><p>¿Quieres evaluar una necesidad de tu negocio? Prepara tu consulta con el <a href="https://edicionaular.com/contacto/#orientador-proyecto">orientador de proyectos de Edición Aular</a> y conversemos sobre un primer alcance.</p>'+
-    '<p><strong>Antes de publicar:</strong> completar los campos pendientes, comprobar enlaces y afirmaciones, revisar solapamiento con el blog y añadir una imagen pertinente. No publicar este borrador sin revisión.</p>';
+  const ficha=fichaTema_(item);
+  return '<h3>Ficha editorial · requiere completar y verificar</h3><p><strong>Enfoque:</strong> '+esc_(ficha.angle)+'</p><p>'+esc_(ficha.summary)+'</p><h4>Qué debe resolver el artículo</h4><ul>'+ficha.checks.map(x=>'<li>'+esc_(x)+'</li>').join('')+'</ul><p>Esta ficha no es un artículo terminado. Hace falta redactar una explicación propia, contrastar afirmaciones y preparar una portada pertinente antes de publicarla.</p>';
 }
 function renderInforme_(items,report,date,initial) {
   let html='<html lang="es"><body style="font:16px/1.65 Arial,sans-serif;max-width:760px;margin:24px auto;padding:16px;color:#222"><h1>Radar editorial de IA</h1><p>'+esc_(date)+' · Edición Aular</p>';
   if(initial)html+='<p><strong>Prueba inicial del radar en Google.</strong> Programado para lunes y jueves entre 09:00 y 10:00 de Colombia, sin depender de tu computador.</p>';
-  html+='<p>Selección por reglas, sin modelo de IA ni API de pago. Los borradores son una base editorial con campos pendientes; no son artículos terminados ni se publican automáticamente. Una novedad oficial no demuestra por sí sola una tendencia de búsquedas.</p>';
-  html+='<p><a href="https://edicionaular.com/admin/" style="display:inline-block;background:#b80046;color:#ffffff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold">Abrir mi estudio editorial →</a></p><p>El panel requiere tu cuenta autorizada. Publicar necesita una revisión y una confirmación dentro del panel; abrir este enlace no publica contenido. Los temas del radar deben desarrollarse antes de incorporarlos como borradores al estudio.</p>';
+  html+='<p>Selección por reglas, sin modelo de IA ni API de pago. Las fichas proponen un enfoque y comprobaciones; todavía requieren redactar el artículo. No se publican automáticamente. Una novedad oficial no demuestra por sí sola una tendencia de búsquedas.</p>';
+  html+='<p><a href="https://edicionaular.com/admin/" style="display:inline-block;background:#b80046;color:#ffffff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold">Abrir mi estudio editorial →</a></p><p>El panel requiere tu cuenta autorizada. Publicar necesita una revisión y una confirmación dentro del panel; abrir este enlace no publica contenido. Estos temas ya están guardados en Sugerencias dentro del estudio. Pendientes contiene únicamente los artículos desarrollados para revisión.</p>';
   if(!items.length)html+='<p>No se encontraron temas nuevos y pertinentes en las fuentes consultadas. Este correo inicial comprueba el envío; las siguientes revisiones sin novedades no enviarán un correo rutinario.</p>';
   items.forEach((item,index)=>{
     const profile=perfilTema_(item.title),existing=report.published.find(post=>post.link===('https://edicionaular.com'+profile.existing));

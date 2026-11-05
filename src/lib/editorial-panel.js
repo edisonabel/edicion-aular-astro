@@ -5,7 +5,7 @@ import { editorialRevision, revisionSource } from './editorial-status.mjs';
 const $ = id => document.getElementById(id);
 const escape = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=null, selected=null, dirty=false, busy=false, invitation=null, recovery=false;
-let libraryView='pending', verification=0, lastSent=null;
+let libraryView='suggestions', verification=0, lastSent=null;
 const liveVersions=new Map();
 let previewObserver;
 $('preview').addEventListener('load',()=>{previewObserver?.disconnect();const body=$('preview').contentDocument?.body;if(body){const resize=()=>{$('preview').style.height=Math.ceil(body.scrollHeight+48)+'px';};previewObserver=new ResizeObserver(resize);previewObserver.observe(body);resize();}});
@@ -16,12 +16,16 @@ $('theme').addEventListener('click',()=>{const theme=document.documentElement.da
 
 const message = (text,error=false,title=error?'Revisa este paso':'Información') => { $('message').textContent=text; $('message').dataset.error=String(error);$('notice').dataset.error=String(error);$('notice-title').textContent=title;$('notice').hidden=!text;if($('publish-dialog').open&&error){$('publish-error').textContent=text;$('publish-error').hidden=false;} };
 $('dismiss-notice').addEventListener('click',()=>{$('notice').hidden=true;});
-const lock = value => {busy=value; for(const id of ['save','review','reload','publish','show-pending','show-published','draft-picker','logout'])$(id).disabled=value; if(!value){$('review').disabled=!selected||selected.published||dirty;checkReview();}};
+const lock = value => {busy=value; for(const id of ['save','review','reload','publish','show-suggestions','show-pending','show-published','draft-picker','logout'])$(id).disabled=value; if(!value){$('review').disabled=!selected||selected.published||dirty;checkReview();}};
 const publicUrl=d=>`${location.origin}/blog/${d.post.slug}/`;
 const isLive=d=>liveVersions.get(d.key)===revisionSource(d.post);
 function statusText(d){return !d.published?'Borrador pendiente de envío':isLive(d)?'Publicado en la web':'Enviado · comprobando publicación';}
 function appendPublicLink(url){const a=document.createElement('a');a.href=url;a.textContent='Ver artículo en la web ↗';a.target='_blank';a.rel='noopener noreferrer';$('message').append(a);}
 function renderList(preferredKey) {
+  $('show-suggestions').textContent=`Sugerencias (${(state.suggestions||[]).length})`;
+  $('show-suggestions').setAttribute('aria-pressed',String(libraryView==='suggestions'));
+  $('suggestions').hidden=libraryView!=='suggestions';
+  if(libraryView==='suggestions'){renderSuggestions();return;}
   const pending=state.drafts.filter(d=>!d.published),sent=state.drafts.filter(d=>d.published);
   $('show-pending').textContent=`Pendientes (${pending.length})`;$('show-published').textContent=`Publicaciones (${sent.length})`;
   $('show-pending').setAttribute('aria-pressed',String(libraryView==='pending'));$('show-published').setAttribute('aria-pressed',String(libraryView==='published'));
@@ -30,11 +34,34 @@ function renderList(preferredKey) {
   $('draft-list').replaceChildren();$('draft-picker').replaceChildren();$('picker-label').hidden=!items.length;
   for(const d of items){const option=document.createElement('option');option.value=d.key;option.textContent=d.post.title;$('draft-picker').append(option);const b=document.createElement('button');b.type='button';b.dataset.key=d.key;b.append(document.createTextNode(d.post.title));const small=document.createElement('small');small.textContent=statusText(d);b.append(small);b.addEventListener('click',()=>choose(d.key));$('draft-list').append(b);}
   $('empty-list').hidden=!!items.length;
-  $('empty-heading').textContent=libraryView==='pending'?'No hay borradores pendientes.':'Todavía no hay publicaciones enviadas.';
-  $('empty-description').textContent=libraryView==='pending'?'Los envíos realizados están en Publicaciones. Allí puedes consultarlos y preparar una actualización.':'Revisa un borrador en Pendientes y envíalo cuando esté listo.';
+  $('empty-heading').textContent=libraryView==='pending'?'No hay artículos listos para revisar.':'Todavía no hay publicaciones enviadas.';
+  $('empty-description').textContent=libraryView==='pending'?'Consulta Sugerencias para ver los temas del radar. Los artículos ya enviados están en Publicaciones.':'Revisa un borrador en Pendientes y envíalo cuando esté listo.';
   const item=items.find(d=>d.key===preferredKey)||items[0];
   if(item)choose(item.key,true);else{selected=null;$('editor').hidden=true;$('preview').srcdoc='';previewObserver?.disconnect();}
 }
+function renderSuggestions(){
+  selected=null;$('editor').hidden=true;$('preview').srcdoc='';previewObserver?.disconnect();
+  $('draft-list').replaceChildren();$('draft-picker').replaceChildren();$('picker-label').hidden=true;
+  $('show-pending').textContent=`Pendientes (${state.drafts.filter(d=>!d.published).length})`;
+  $('show-published').textContent=`Publicaciones (${state.drafts.filter(d=>d.published).length})`;
+  for(const id of ['show-pending','show-published'])$(id).setAttribute('aria-pressed','false');
+  $('list-heading').textContent='Radar editorial';
+  const items=state.suggestions||[];$('empty-list').hidden=!!items.length;$('suggestion-cards').replaceChildren();
+  $('empty-heading').textContent='Todavía no hay sugerencias sincronizadas.';
+  $('empty-description').textContent='El radar se revisa los lunes y jueves. Los artículos publicados siguen disponibles en Publicaciones.';
+  for(const item of items){
+    const card=document.createElement('article');card.className='suggestion-card';
+    const add=(tag,value,css)=>{const el=document.createElement(tag);el.textContent=value;if(css)el.className=css;card.append(el);return el;};
+    add('p',`${item.receivedOn} · ${item.kind==='trend'?'Señal de Google Trends':'Novedad de fuente oficial'}`,'eyebrow');
+    add('h2',item.angle);add('p',item.summary);add('p',item.title,'source-title');
+    const a=add('a','Leer la fuente original ↗');a.href=item.link;a.target='_blank';a.rel='noopener noreferrer';
+    add('p',`${item.source} · Fecha de la fuente: ${item.date}`,'small');
+    add('h3','Antes de convertirlo en artículo');const ul=document.createElement('ul');for(const check of item.checks){const li=document.createElement('li');li.textContent=check;ul.append(li);}card.append(ul);
+    const copy=add('button','Copiar ficha para desarrollar');copy.type='button';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText([item.angle,item.summary,'Fuente: '+item.link,...item.checks.map(x=>'• '+x)].join('\n\n'));message('La ficha está copiada. Requiere desarrollar el texto y elegir una portada antes de cargarlo para publicación.',false,'Ficha copiada');}catch{message('No se pudo copiar la ficha. Puedes seleccionar su texto.',true);}});
+    $('suggestion-cards').append(card);
+  }
+}
+$('show-suggestions').addEventListener('click',()=>switchLibrary('suggestions'));
 function switchLibrary(view){if(busy||(dirty&&!window.confirm('¿Descartar los cambios sin guardar y cambiar de listado?')))return;dirty=false;libraryView=view;renderList();lock(false);}
 $('show-pending').addEventListener('click',()=>switchLibrary('pending'));
 $('show-published').addEventListener('click',()=>switchLibrary('published'));

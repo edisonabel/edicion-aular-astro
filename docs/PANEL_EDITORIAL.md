@@ -81,3 +81,14 @@ La función se prepara con scripts/preparar-editorial.mjs antes de construir Ast
 El cambio del botón del correo de `automations/google-apps-script/Code.gs` se sincronizó con Radar.gs del proyecto vivo de Apps Script. Se respaldó el código anterior y se comprobó que el guardado coincide exactamente con la copia local. verificarRadar terminó correctamente, consultó las cuatro fuentes y reconoció los 28 artículos publicados, sin avisos y sin enviar correo. El botón aparecerá en futuros informes que tengan novedades; no se modifican mensajes ya recibidos. Abre el estudio y nunca publica mediante un enlace GET.
 
 No hay servicios de pago nuevos ni API de un modelo de IA en el panel. Identity y Blobs usan los recursos incluidos de Netlify; se mantienen los límites del plan gratuito, sin activar sobreconsumo o mejoras de plan.
+
+
+## Corrección del radar · 5 de noviembre de 2026
+
+El correo de Apps Script y el panel eran circuitos independientes. Se añade una bandeja privada **Sugerencias**, diferenciada de **Pendientes** (artículos desarrollados) y **Publicaciones** (envíos confirmados).
+
+La función POST `/api/editorial-radar` recibe únicamente fichas desde el radar, firmadas con HMAC SHA-256 sobre `timestamp.cuerpoJSON`; rechaza firmas inválidas, solicitudes con más de cinco minutos, cuerpos mayores de 30 KB, HTML y fuentes ajenas a los dominios autorizados. La clave `EDITORIAL_RADAR_SECRET` se configura en Netlify (solo producción, funciones) y Script Properties del proyecto existente. Nunca se guarda en Git ni se envía al navegador. Esta credencial no permite leer datos privados, cambiar borradores, publicar ni acceder a GitHub.
+
+Las fichas se guardan en `editorial-private/radar-suggestions` mediante escrituras condicionadas por ETag. Se conservan hasta 120 fichas, sin duplicados por clave o URL; los reintentos no duplican lotes. Solo la cuenta editorial autorizada puede leerlas a través de `/api/editorial`. Se recuperan las tres fuentes del correo del 5/11, con enfoques distintos y advertencias sobre métricas comerciales.
+
+Apps Script debe recibir confirmación de guardado antes de enviar el correo. Si falla la sincronización, no envía un correo que anuncie sugerencias inexistentes ni las marca como enviadas. Las fichas todavía requieren redacción y portada: no se convierten en artículos automáticamente ni tienen un botón de publicación prematura. La autenticación y el flujo de revisión de los artículos se mantienen.

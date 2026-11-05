@@ -29,7 +29,7 @@ function fixture({user=editor,providerStatus=200,storeConflict=false}={}){
     return Response.json({type:'file',encoding:'base64',sha:blogRevision,content:Buffer.from(JSON.stringify(posts)).toString('base64')});
   };
   const store={getWithMetadata:async key=>{assert.equal(key,DRAFT_KEY);return{etag:draftRevision,data:structuredClone(currentDrafts)};},setJSON:async(key,value,options)=>{assert.equal(key,DRAFT_KEY);if(storeConflict||options.onlyIfMatch!==draftRevision)return{modified:false};currentDrafts=value;draftRevision='draft2';draftWrites.push(value);return{modified:true,etag:draftRevision};}};
-  const handler=createEditorialHandler({user:async()=>user,fetcher,token:()=> 'fake-test-token',draftStore:()=>store});
+  const handler=createEditorialHandler({user:async()=>user,fetcher,token:()=> 'fake-test-token',suggestionStore:()=>({get:async()=>null}),draftStore:()=>store});
   const request=body=>handler(new Request('https://edicionaular.com/api/editorial',body?{method:'POST',headers:{Origin:'https://edicionaular.com','Content-Type':'application/json'},body:JSON.stringify(body)}:{}));
   const publish=(i=0)=>({action:'publish',key:drafts[i].key,revision:draftRevision,blogRevision,post:drafts[i].post,review:{sources:true,content:true,image:true}});
   return{request,publish,writes,draftWrites,handler,get posts(){return posts},get calls(){return calls}};
@@ -107,3 +107,5 @@ test('el worker público no intercepta el panel, las API, Identity ni solicitude
   }
   let intercepted=false;handlers.fetch({request:new Request('https://edicionaular.com/any',{headers:{authorization:'Bearer test'}}),respondWith:()=>{intercepted=true}});assert.equal(intercepted,false);
 });
+
+ test('las sugerencias privadas solo se devuelven tras verificar al editor',async()=>{let reads=0;const suggestionStore=()=>({get:async()=>{reads++;return{items:[{key:'private-source'}],lastReceived:'2026-11-05'};}});const anonymous=createEditorialHandler({user:async()=>null,suggestionStore});assert.equal((await anonymous(new Request('https://edicionaular.com/api/editorial'))).status,401);assert.equal(reads,0);});

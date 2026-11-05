@@ -1,3 +1,4 @@
+import { RADAR_KEY, radarStore } from './radar-handler.mjs';
 import { getUser } from '@netlify/identity';
 import { getStore } from '@netlify/blobs';
 import { isEditor, validateDraft, mergePublication, sameArticle, BLOG_PATH, DRAFT_KEY, DRAFT_STORE } from '../lib/editorial.mjs';
@@ -5,7 +6,7 @@ import { isEditor, validateDraft, mergePublication, sameArticle, BLOG_PATH, DRAF
 const ORIGIN = 'https://edicionaular.com';
 const BASE = 'https://api.github.com/repos/edisonabel/edicion-aular-astro/contents/';
 const json = (body, status=200) => Response.json(body, { status, headers: { 'Cache-Control':'private, no-store', 'Vary':'Cookie, Authorization', 'X-Content-Type-Options':'nosniff' } });
-export function createEditorialHandler({ user=getUser, fetcher=fetch, token=()=>process.env.EDITORIAL_GITHUB_TOKEN, draftStore=()=>getStore({name:DRAFT_STORE,consistency:'strong'}) }={}) {
+export function createEditorialHandler({ user=getUser, fetcher=fetch, token=()=>process.env.EDITORIAL_GITHUB_TOKEN, suggestionStore=radarStore, draftStore=()=>getStore({name:DRAFT_STORE,consistency:'strong'}) }={}) {
   return async req => {
     if (!['GET','POST'].includes(req.method)) return json({error:'Método no permitido.'},405);
     if (req.method==='POST' && (req.headers.get('origin')!==ORIGIN || req.headers.get('content-type')?.split(';')[0]!=='application/json')) return json({error:'Solicitud no permitida.'},403);
@@ -23,7 +24,10 @@ export function createEditorialHandler({ user=getUser, fetcher=fetch, token=()=>
       const store=draftStore(),stored=await store.getWithMetadata(DRAFT_KEY,{type:'json',consistency:'strong'});
       if(!stored?.etag||!Array.isArray(stored.data))return json({error:'Todavía no hay borradores cargados en el estudio.'},503);
       const drafts={sha:stored.etag,data:stored.data},blog=await read(BLOG_PATH);
-      if (req.method==='GET') return json({revision:drafts.sha,blogRevision:blog.sha,drafts:drafts.data.map(d=>({...validateDraft(d),published:sameArticle(blog.data.find(p=>p.slug===d.post.slug),d)})),account:editor.email});
+      if (req.method==='GET') {
+        const radar=await suggestionStore().get(RADAR_KEY,{type:'json',consistency:'strong'});
+        return json({suggestions:radar?.items||[],radarLastReceived:radar?.lastReceived||null,revision:drafts.sha,blogRevision:blog.sha,drafts:drafts.data.map(d=>({...validateDraft(d),published:sameArticle(blog.data.find(p=>p.slug===d.post.slug),d)})),account:editor.email});
+      }
       // A bounded body prevents a valid session from accidentally posting oversized documents.
       const reader=req.body?.getReader(); let length=0, chunks=[];
       if(!reader)return json({error:'Falta el contenido.'},400);
