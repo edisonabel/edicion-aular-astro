@@ -35,7 +35,7 @@ export function validateDraft(input) {
   if (!Array.isArray(refs) || !refs.length || refs.length > 12 || refs.some(x => !/^https:\/\/[^\s<>"']+$/.test(x.url || '') || !x.title)) throw new Error('Añade las fuentes verificadas.');
   const wordCount = sanitizeHtml(content, { allowedTags: [], allowedAttributes: {} }).split(/\s+/).length;
   return {
-    key: input.key, kind: input.kind, ...(input.kind === 'update' ? { targetSlug: input.targetSlug } : {}),
+    key: input.key, kind: input.kind, ...(input.sourceKey && /^[a-z0-9-]{1,80}$/.test(input.sourceKey) ? {sourceKey:input.sourceKey} : {}), ...(input.kind === 'update' ? { targetSlug: input.targetSlug } : {}),
     sources: refs.map(x => ({ title: text(x.title, 'el título de fuente', 3, 180), url: x.url })),
     post: {
       slug, title: text(p.title, 'el título', 12, 120), excerpt: text(p.excerpt, 'el resumen', 50, 240),

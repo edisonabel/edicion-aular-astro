@@ -50,14 +50,32 @@ function renderSuggestions(){
   $('empty-heading').textContent='Todavía no hay sugerencias sincronizadas.';
   $('empty-description').textContent='El radar se revisa los lunes y jueves. Los artículos publicados siguen disponibles en Publicaciones.';
   for(const item of items){
+    const draft=state.drafts.find(d=>d.sourceKey===item.key),requested=(state.requests||[]).some(r=>r.key===item.key);
     const card=document.createElement('article');card.className='suggestion-card';
     const add=(tag,value,css)=>{const el=document.createElement(tag);el.textContent=value;if(css)el.className=css;card.append(el);return el;};
     add('p',`${item.receivedOn} · ${item.kind==='trend'?'Señal de Google Trends':'Novedad de fuente oficial'}`,'eyebrow');
-    add('h2',item.angle);add('p',item.summary);add('p',item.title,'source-title');
+    add('h2',draft?.post.title||item.angle);add('p',draft?.post.excerpt||item.summary);add('p',item.title,'source-title');
     const a=add('a','Leer la fuente original ↗');a.href=item.link;a.target='_blank';a.rel='noopener noreferrer';
     add('p',`${item.source} · Fecha de la fuente: ${item.date}`,'small');
-    add('h3','Antes de convertirlo en artículo');const ul=document.createElement('ul');for(const check of item.checks){const li=document.createElement('li');li.textContent=check;ul.append(li);}card.append(ul);
-    const copy=add('button','Copiar ficha para desarrollar');copy.type='button';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText([item.angle,item.summary,'Fuente: '+item.link,...item.checks.map(x=>'• '+x)].join('\n\n'));message('La ficha está copiada. Requiere desarrollar el texto y elegir una portada antes de cargarlo para publicación.',false,'Ficha copiada');}catch{message('No se pudo copiar la ficha. Puedes seleccionar su texto.',true);}});
+    add('h3',draft?'Puntos para revisar':'Antes de redactar');const ul=document.createElement('ul');for(const check of item.checks){const li=document.createElement('li');li.textContent=check;ul.append(li);}card.append(ul);
+    const status=add('p',draft?(draft.published?'Artículo enviado a publicación':'Artículo completo · listo para tu revisión'):requested?'Redacción solicitada · pendiente de preparar en nuestro chat':'Tema disponible para solicitar redacción','small');
+    const action=add('button',draft?(draft.published?'Ver artículo enviado':'Revisar artículo'):requested?'Redacción solicitada':'Solicitar redacción');action.type='button';action.className='primary';action.disabled=!draft&&requested;
+    action.addEventListener('click',async()=>{
+      if(busy)return;
+      if(draft){libraryView=draft.published?'published':'pending';renderList(draft.key);lock(false);$('editor-heading').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});return;}
+      lock(true);action.disabled=true;action.textContent='Guardando solicitud…';
+      try{
+        const result=await api({action:'request-redaction',key:item.key});
+        if(!result.requested)throw new Error('No se confirmó la solicitud.');
+        if(result.preparedKey){await load(result.preparedKey);return;}
+        state.requests=state.requests||[];state.requests.push({key:item.key});
+        action.textContent='Redacción solicitada';status.textContent='Redacción solicitada · pendiente de preparar en nuestro chat';
+        message('La solicitud quedó guardada. Escríbeme «redacta mis solicitudes» en nuestro chat; recogeré los temas del panel y prepararé sus artículos. Todavía no se ha generado ni publicado el texto.',false,'Solicitud guardada');
+      }catch(err){action.disabled=false;action.textContent='Solicitar redacción';message(err.message,true);}finally{lock(false);}
+    });
+    const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Fuente y comprobaciones';details.append(summary);
+    for(const node of [...card.children].slice(3))if(node!==status&&node!==action)details.append(node);
+    card.append(details);
     $('suggestion-cards').append(card);
   }
 }

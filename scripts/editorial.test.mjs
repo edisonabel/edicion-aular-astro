@@ -109,3 +109,28 @@ test('el worker público no intercepta el panel, las API, Identity ni solicitude
 });
 
  test('las sugerencias privadas solo se devuelven tras verificar al editor',async()=>{let reads=0;const suggestionStore=()=>({get:async()=>{reads++;return{items:[{key:'private-source'}],lastReceived:'2026-11-05'};}});const anonymous=createEditorialHandler({user:async()=>null,suggestionStore});assert.equal((await anonymous(new Request('https://edicionaular.com/api/editorial'))).status,401);assert.equal(reads,0);});
+
+function requestFixture({prepared=false,conflict=false,user=editor}={}){
+  const suggestion={key:'public-source-key',angle:'Tema de prueba para redacción',link:'https://openai.com/index/example/'};
+  const pending=structuredClone(drafts);if(prepared)pending[0].sourceKey=suggestion.key;
+  let queue=null,etag='queue0';const calls={queueWrites:0,blogWrites:0};
+  const store={get:async key=>key==='radar-suggestions'?{items:[suggestion]}:queue,getWithMetadata:async()=>queue?{data:queue,etag}:null,setJSON:async(key,value,options)=>{assert.equal(key,'editorial-requests');if(conflict)return{modified:false};assert.ok(options.onlyIfNew||options.onlyIfMatch===etag);queue=value;etag='queue1';calls.queueWrites++;return{modified:true};}};
+  const handler=createEditorialHandler({user:async()=>user,token:()=> 'test',suggestionStore:()=>store,draftStore:()=>({getWithMetadata:async()=>({data:pending,etag:'draft1'})}),fetcher:async(url,options)=>{if(options.method){calls.blogWrites++;throw new Error('No debe publicar');}return Response.json({type:'file',encoding:'base64',sha:'blog1',content:Buffer.from(JSON.stringify(originals)).toString('base64')});}});
+  const request=body=>handler(new Request('https://edicionaular.com/api/editorial',body?{method:'POST',headers:{Origin:'https://edicionaular.com','Content-Type':'application/json'},body:JSON.stringify(body)}:{}));
+  return{request,calls,suggestion};
+}
+test('solicitar redacción guarda una sola solicitud privada, no genera ni publica artículos',async()=>{
+  const f=requestFixture(),body={action:'request-redaction',key:f.suggestion.key};assert.equal((await f.request(body)).status,200);assert.deepEqual(await(await f.request(body)).json(),{requested:true,alreadyRequested:true});
+  const data=await(await f.request()).json();assert.equal(data.requests.length,1);assert.equal(data.requests[0].key,f.suggestion.key);assert.equal(data.drafts.length,drafts.length);assert.equal(f.calls.queueWrites,1);assert.equal(f.calls.blogWrites,0);
+});
+test('una ficha con artículo preparado abre el existente sin duplicar solicitudes',async()=>{
+  const f=requestFixture({prepared:true}),r=await(await f.request({action:'request-redaction',key:f.suggestion.key})).json();assert.equal(r.preparedKey,drafts[0].key);assert.equal(f.calls.queueWrites,0);
+});
+test('rechaza solicitudes desconocidas, anónimas y conflictos sin anunciar guardado',async()=>{
+  assert.equal((await requestFixture().request({action:'request-redaction',key:'unknown'})).status,404);
+  assert.equal((await requestFixture({user:null}).request({action:'request-redaction',key:'public-source-key'})).status,401);
+  assert.equal((await requestFixture({conflict:true}).request({action:'request-redaction',key:'public-source-key'})).status,409);
+});
+test('conserva la asociación con la sugerencia al validar, sin añadir datos privados al artículo público',()=>{
+  const draft={...drafts[0],sourceKey:'public-source-key'};assert.equal(validateDraft(draft).sourceKey,'public-source-key');assert.equal(mergePublication(originals,draft).at(-1).sourceKey,undefined);
+});

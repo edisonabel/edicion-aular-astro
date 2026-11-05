@@ -98,3 +98,11 @@ Apps Script debe recibir confirmación de guardado antes de enviar el correo. Si
 El propietario autorizó el 5/11/2026 crear la clave compartida entre el proyecto de Apps Script existente y Netlify. Se usa una variable privada estándar de producción porque la API rechaza el alcance limitado a funciones en el plan actual. La clave no lleva prefijo público, no se incorpora a archivos ni al JavaScript del navegador y solo se lee en la función del radar.
 
 `verificarConexionEstudio()` comprueba la firma y la respuesta desde Google sin correo ni nuevas fichas. La sonda firmada no devuelve datos editoriales. `verificarRadar()` comprueba las fuentes, también sin correo. No se debe usar la función de envío para probar la conexión ni reinstalar activadores existentes.
+
+## Redacción en el chat y revisión completa · 5/11/2026
+
+El propietario eligió continuar la redacción con el asistente en el chat, sin Gemini ni otra API. El panel incorpora **Solicitar redacción** con una cola privada idempotente y confirmación explícita. Cuando el asistente carga el texto completo, **Revisar artículo** abre directamente ese borrador. La propiedad privada `sourceKey` vincula ficha y texto y nunca se copia al artículo público.
+
+La ruta POST existente `/api/editorial` añade la acción `request-redaction`, limitada al propietario autenticado, al origen permitido y a sugerencias existentes. Guarda `editorial-requests` con ETag; no publica, no genera texto ni permite introducir fuentes arbitrarias. Los reintentos no duplican solicitudes. Si ya hay un borrador asociado, devuelve su referencia.
+
+El procedimiento para recoger solicitudes y cargar artículos completos con el chat está en [REDACTAR_SOLICITUDES.md](REDACTAR_SOLICITUDES.md). El script `scripts/editorial-workspace.mjs` utiliza la sesión existente de Netlify CLI y protege contra sobrescrituras simultáneas. Las tres piezas del 5/11 se preparan como borradores, no como publicaciones aprobadas. Las portadas utilizan otras personas; no el rostro del propietario.

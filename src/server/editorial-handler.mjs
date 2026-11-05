@@ -4,6 +4,7 @@ import { getStore } from '@netlify/blobs';
 import { isEditor, validateDraft, mergePublication, sameArticle, BLOG_PATH, DRAFT_KEY, DRAFT_STORE } from '../lib/editorial.mjs';
 
 const ORIGIN = 'https://edicionaular.com';
+export const REQUEST_KEY='editorial-requests';
 const BASE = 'https://api.github.com/repos/edisonabel/edicion-aular-astro/contents/';
 const json = (body, status=200) => Response.json(body, { status, headers: { 'Cache-Control':'private, no-store', 'Vary':'Cookie, Authorization', 'X-Content-Type-Options':'nosniff' } });
 export function createEditorialHandler({ user=getUser, fetcher=fetch, token=()=>process.env.EDITORIAL_GITHUB_TOKEN, suggestionStore=radarStore, draftStore=()=>getStore({name:DRAFT_STORE,consistency:'strong'}) }={}) {
@@ -26,13 +27,30 @@ export function createEditorialHandler({ user=getUser, fetcher=fetch, token=()=>
       const drafts={sha:stored.etag,data:stored.data},blog=await read(BLOG_PATH);
       if (req.method==='GET') {
         const radar=await suggestionStore().get(RADAR_KEY,{type:'json',consistency:'strong'});
-        return json({suggestions:radar?.items||[],radarLastReceived:radar?.lastReceived||null,revision:drafts.sha,blogRevision:blog.sha,drafts:drafts.data.map(d=>({...validateDraft(d),published:sameArticle(blog.data.find(p=>p.slug===d.post.slug),d)})),account:editor.email});
+        const requests=await suggestionStore().get(REQUEST_KEY,{type:'json',consistency:'strong'});
+        return json({requests:requests?.items||[],suggestions:radar?.items||[],radarLastReceived:radar?.lastReceived||null,revision:drafts.sha,blogRevision:blog.sha,drafts:drafts.data.map(d=>({...validateDraft(d),published:sameArticle(blog.data.find(p=>p.slug===d.post.slug),d)})),account:editor.email});
       }
       // A bounded body prevents a valid session from accidentally posting oversized documents.
       const reader=req.body?.getReader(); let length=0, chunks=[];
       if(!reader)return json({error:'Falta el contenido.'},400);
       while(true){const {done,value}=await reader.read();if(done)break;length+=value.length;if(length>160000){await reader.cancel();return json({error:'El documento es demasiado grande.'},413);}chunks.push(value);}
       let body;try{body=JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{return json({error:'Documento no válido.'},400);}
+      if(body.action==='request-redaction') {
+        const queue=suggestionStore(),radar=await queue.get(RADAR_KEY,{type:'json',consistency:'strong'});
+        const suggestion=radar?.items?.find(item=>item.key===body.key);
+        if(!suggestion)return json({error:'La sugerencia ya no está disponible. Actualiza el listado.'},404);
+        const prepared=drafts.data.find(d=>d.sourceKey===suggestion.key);
+        if(prepared)return json({requested:true,preparedKey:prepared.key});
+        for(let attempt=0;attempt<3;attempt++){
+          const saved=await queue.getWithMetadata(REQUEST_KEY,{type:'json',consistency:'strong'});
+          const items=saved?.data?.items||[];
+          if(items.some(item=>item.key===suggestion.key))return json({requested:true,alreadyRequested:true});
+          const next={items:[...items,{key:suggestion.key,title:suggestion.angle,source:suggestion.link,requestedAt:new Date().toISOString()}].slice(-120)};
+          const result=await queue.setJSON(REQUEST_KEY,next,saved?.etag?{onlyIfMatch:saved.etag}:{onlyIfNew:true});
+          if(result.modified)return json({requested:true});
+        }
+        return json({error:'Se está guardando otra solicitud. Actualiza antes de reintentar.'},409);
+      }
       if(!['save','publish'].includes(body.action)||body.revision!==drafts.sha)return json({error:'El borrador cambió. Recarga el listado antes de continuar.'},409);
       const index=drafts.data.findIndex(d=>d.key===body.key);if(index<0)return json({error:'Borrador no encontrado.'},404);
       const storedDraft=drafts.data[index];
