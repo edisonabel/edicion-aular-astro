@@ -87,8 +87,14 @@ No hay servicios de pago nuevos ni API de un modelo de IA en el panel. Identity 
 
 El correo de Apps Script y el panel eran circuitos independientes. Se añade una bandeja privada **Sugerencias**, diferenciada de **Pendientes** (artículos desarrollados) y **Publicaciones** (envíos confirmados).
 
-La función POST `/api/editorial-radar` recibe únicamente fichas desde el radar, firmadas con HMAC SHA-256 sobre `timestamp.cuerpoJSON`; rechaza firmas inválidas, solicitudes con más de cinco minutos, cuerpos mayores de 30 KB, HTML y fuentes ajenas a los dominios autorizados. La clave `EDITORIAL_RADAR_SECRET` se configura en Netlify (solo producción, funciones) y Script Properties del proyecto existente. Nunca se guarda en Git ni se envía al navegador. Esta credencial no permite leer datos privados, cambiar borradores, publicar ni acceder a GitHub.
+La función POST `/api/editorial-radar` recibe únicamente fichas desde el radar, firmadas con HMAC SHA-256 sobre `timestamp.cuerpoJSON`; rechaza firmas inválidas, solicitudes con más de cinco minutos, cuerpos mayores de 30 KB, HTML y fuentes ajenas a los dominios autorizados. La clave `EDITORIAL_RADAR_SECRET` se configura en Netlify (variable privada, solo producción; el plan gratuito no permite acotarla por función) y Script Properties del proyecto existente. Nunca se guarda en Git ni se envía al navegador. Esta credencial no permite leer datos privados, cambiar borradores, publicar ni acceder a GitHub.
 
 Las fichas se guardan en `editorial-private/radar-suggestions` mediante escrituras condicionadas por ETag. Se conservan hasta 120 fichas, sin duplicados por clave o URL; los reintentos no duplican lotes. Solo la cuenta editorial autorizada puede leerlas a través de `/api/editorial`. Se recuperan las tres fuentes del correo del 5/11, con enfoques distintos y advertencias sobre métricas comerciales.
 
 Apps Script debe recibir confirmación de guardado antes de enviar el correo. Si falla la sincronización, no envía un correo que anuncie sugerencias inexistentes ni las marca como enviadas. Las fichas todavía requieren redacción y portada: no se convierten en artículos automáticamente ni tienen un botón de publicación prematura. La autenticación y el flujo de revisión de los artículos se mantienen.
+
+
+### Conexión autorizada y activación
+El propietario autorizó el 5/11/2026 crear la clave compartida entre el proyecto de Apps Script existente y Netlify. Se usa una variable privada estándar de producción porque la API rechaza el alcance limitado a funciones en el plan actual. La clave no lleva prefijo público, no se incorpora a archivos ni al JavaScript del navegador y solo se lee en la función del radar.
+
+`verificarConexionEstudio()` comprueba la firma y la respuesta desde Google sin correo ni nuevas fichas. La sonda firmada no devuelve datos editoriales. `verificarRadar()` comprueba las fuentes, también sin correo. No se debe usar la función de envío para probar la conexión ni reinstalar activadores existentes.

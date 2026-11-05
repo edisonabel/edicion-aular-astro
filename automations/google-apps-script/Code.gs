@@ -22,6 +22,11 @@ function verificarRadar() {
   const report=recopilarRadar_();
   console.log(JSON.stringify({fuentes:report.sources,avisos:report.warnings,candidatos:report.candidates.slice(0,3).map(x=>({titulo:x.title,fuente:x.source,url:x.link})),publicados:report.published.length}));
 }
+function verificarConexionEstudio() {
+  const result=enviarAlEstudio_({probe:true});
+  if(result.connected!==true)throw new Error('No se confirmó la conexión privada.');
+  console.log('Conexión privada del radar con el estudio confirmada. Sin correo, sin nuevas sugerencias y sin publicación.');
+}
 function enviarPrimerInforme() { procesarRadar_(true); }
 function ejecutarRadar() { procesarRadar_(false); }
 
@@ -125,13 +130,17 @@ function fichaTema_(item) {
     checks:['Leer la fuente completa y confirmar qué cambió, para quién está disponible y sus límites.'].concat(p.checks).concat(['Revisar el archivo del blog: actualizar una guía existente si responde a la misma intención.'])};
 }
 function sincronizarEstudio_(items,date) {
+  const result=enviarAlEstudio_({date:date,items:items.map(fichaTema_)});
+  if(result.received!==true)throw new Error('No se confirmó el guardado en el estudio.');
+}
+function enviarAlEstudio_(payload) {
   const key=PropertiesService.getScriptProperties().getProperty('EDITORIAL_RADAR_SECRET');
   if(!key)throw new Error('Falta conectar el estudio editorial. No se envió un correo con un listado vacío.');
-  const raw=JSON.stringify({date:date,items:items.map(fichaTema_)}),time=String(Date.now());
+  const raw=JSON.stringify(payload),time=String(Date.now());
   const signature=Utilities.computeHmacSha256Signature(time+'.'+raw,key).map(b=>('0'+((b+256)%256).toString(16)).slice(-2)).join('');
   const response=UrlFetchApp.fetch('https://edicionaular.com/api/editorial-radar',{method:'post',contentType:'application/json',payload:raw,headers:{'X-Radar-Time':time,'X-Radar-Signature':signature},muteHttpExceptions:true,followRedirects:false});
   if(response.getResponseCode()!==200)throw new Error('El estudio no confirmó las sugerencias (HTTP '+response.getResponseCode()+'). No se marcó el informe como enviado.');
-  const result=JSON.parse(response.getContentText());if(result.received!==true)throw new Error('No se confirmó el guardado en el estudio.');
+  return JSON.parse(response.getContentText());
 }
 function borradorTema_(item,profile) {
   const ficha=fichaTema_(item);

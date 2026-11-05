@@ -25,7 +25,9 @@ export function createRadarHandler({store=radarStore,secret=()=>process.env.EDIT
       const chunks=[];let size=0;while(true){const part=await reader.read();if(part.done)break;size+=part.value.length;if(size>30000){await reader.cancel();return reply({error:'Lote demasiado grande.'},413);}chunks.push(part.value);}
       const raw=Buffer.concat(chunks).toString('utf8'),expected=createHmac('sha256',key).update(time+'.'+raw).digest();
       if(!timingSafeEqual(expected,Buffer.from(signature,'hex')))return reply({error:'Solicitud no autorizada.'},401);
-      const batch=validateBatch(JSON.parse(raw)),db=store();
+      const payload=JSON.parse(raw);
+      if(payload?.probe===true&&Object.keys(payload).length===1)return reply({connected:true});
+      const batch=validateBatch(payload),db=store();
       for(let attempt=0;attempt<3;attempt++){
         const saved=await db.getWithMetadata(RADAR_KEY,{type:'json',consistency:'strong'});
         const previous=saved?.data?.items||[],known=new Set(previous.map(x=>x.key)),urls=new Set(previous.map(x=>x.link)),added=batch.items.filter(x=>{if(known.has(x.key)||urls.has(x.link))return false;known.add(x.key);urls.add(x.link);return true;});
