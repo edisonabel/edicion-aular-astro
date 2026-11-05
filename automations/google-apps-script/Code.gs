@@ -112,7 +112,7 @@ function leerRss_(xml) {
 }
 function esTemaPertinente_(title) {
   // Alcance comercial acotado: evitar ruido de investigación, financiación y alianzas.
-  if(/biolog|genom|brain|neuro|molecular|drug|teen|safety report|\bROI\b|pilot|enterprise self-service|partnership|partner with|investment|funding|economy|foundation|summit|festival|acquisition|automation team|our team|refreshed.*brand|DGX|NVIDIA/i.test(title))return false;
+  if(/biolog|genom|brain|neuro|molecular|drug|teen|safety report|\bROI\b|pilot|delivers autonomous self-service|enterprise self-service|partnership|partner with|investment|funding|economy|foundation|summit|festival|acquisition|automation team|our team|refreshed.*brand|DGX|NVIDIA/i.test(title))return false;
   return /\b(claude|kimi|n8n|whatsapp|chatgpt|gemini|gpt[ -]?\d|ai agents?|ai workflow|ai design|inteligencia artificial|agentes de ia|automatizaci[oó]n)\b/i.test(title);
 }
 function puntuarTema_(title) {return (/\b(agent|workflow|automation|automatiz|whatsapp|design|diseño|business|small business|website|code|coding|voice)\w*/i.test(title)?5:1)+(/\b(launch|introduc|new|release|update|nuev|actualiz)\w*/i.test(title)?2:0);}

@@ -30,7 +30,7 @@ test('el filtro comercial descarta investigación y alianzas, y conserva herrami
   for(const title of ['Introducing n8n 3.0','AI Agent Memory: How LLM Agents Manage State in Production','Claude Design update','WhatsApp Business'])assert.equal(r.run(`esTemaPertinente_(${JSON.stringify(title)})`),true,title);
 });
 
- test('descarta métricas comerciales de pilotos y casos empresariales como tendencias automáticas',()=>{const r=runtime();for(const title of ['Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot','DevRev delivers autonomous enterprise self-service with GPT-6.1 Sol'])assert.equal(r.run(`esTemaPertinente_(${JSON.stringify(title)})`),false);});
+ test('descarta métricas comerciales de pilotos y casos empresariales como tendencias automáticas',()=>{const r=runtime();for(const title of ['Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot','DevRev delivers autonomous self-service with GPT-6.1 Sol'])assert.equal(r.run(`esTemaPertinente_(${JSON.stringify(title)})`),false);});
  test('si el estudio no confirma, no envía correo ni marca sugerencias como enviadas',()=>{const r=runtime();r.run("sincronizarEstudio_=()=>{throw new Error('No se confirmó el estudio')} ");assert.throws(()=>r.run('ejecutarRadar()'),/estudio/);assert.equal(r.emails.length,0);assert.deepEqual(JSON.parse(r.properties.RADAR_STATE).sent,[]);assert.equal(r.properties.RADAR_PENDING,undefined);});
 // The real Apps Script sync function must sign precisely the bytes sent to Netlify.
 import { createHmac } from 'node:crypto';
