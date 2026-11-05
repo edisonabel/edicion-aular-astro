@@ -7,15 +7,15 @@ El radar se migró el 30 de octubre de 2026 a un proyecto privado de Google Apps
 - Lunes y jueves, entre las 09:00 y las 10:00, America/Bogota. Apps Script no garantiza el minuto exacto.
 - Destinatario fijo: edicionaular@gmail.com. Un solo correo por revisión, como máximo tres temas nuevos.
 - Fuentes: RSS de tendencias actuales de Google Trends en Colombia y RSS oficiales de Google IA, n8n y OpenAI. Comprueba también el RSS del blog publicado.
-- Entrega: señal detectada, enlace de fuente, guía existente que conviene revisar, servicio relacionado y un borrador inicial por tema.
+- Entrega: señal detectada, enlace de fuente, guía existente que conviene revisar, servicio relacionado y una ficha con enfoque y comprobaciones por tema.
 - El usuario autorizó expresamente los permisos de conexión externa, envío de correo y ejecución programada de este proyecto propio, incluido el aviso de aplicación no verificada.
-- Dos activadores instalados; comprobación de fuentes sin errores y primer correo con tres borradores confirmado en Gmail. Los identificadores y comprobantes privados están fuera del repositorio.
+- Dos activadores instalados; comprobación inicial de fuentes sin errores y primer correo confirmado en Gmail. Los identificadores y comprobantes privados están fuera del repositorio.
 
-## Alcance de la selección y los borradores
+## Alcance de la selección y las fichas
 
 La selección utiliza reglas, no un modelo de IA. Filtra por temas de atención, automatización, diseño y herramientas aplicables; descarta investigación biológica, financiación y alianzas corporativas. Esta selección no sustituye el criterio editorial ni demuestra demanda comercial.
 
-Los borradores son una base estructurada: entrada, cambio que debe verificarse en la fuente, escenario ilustrativo, criterios de evaluación y llamada a la acción. Identifican claramente los campos pendientes. No inventan capacidades, cifras, casos ni resultados y no se publican automáticamente. Las piezas requieren completar la investigación y revisión antes de publicar. No son artículos originales terminados por un modelo.
+Las fichas contienen una propuesta de enfoque, la fuente detectada y las comprobaciones necesarias. Requieren leer la fuente, redactar una explicación propia y preparar una portada. No se presentan como artículos originales terminados. El radar no utiliza un modelo de IA; redactar piezas completas automáticamente sigue fuera de su alcance actual.
 
 El RSS de Trends refleja consultas presentes en tendencias actuales. No ofrece las comparaciones históricas de 30/90 días del radar asistido anterior ni una cobertura exhaustiva de todos los temas de IA. La API oficial de Trends sigue requiriendo acceso alfa. Las comparaciones históricas y la revisión específica de Claude/Kimi pueden continuar en sesiones editoriales.
 

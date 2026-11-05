@@ -32,3 +32,17 @@ test('el filtro comercial descarta investigación y alianzas, y conserva herrami
 
  test('descarta métricas comerciales de pilotos y casos empresariales como tendencias automáticas',()=>{const r=runtime();for(const title of ['Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot','DevRev delivers autonomous enterprise self-service with GPT-6.1 Sol'])assert.equal(r.run(`esTemaPertinente_(${JSON.stringify(title)})`),false);});
  test('si el estudio no confirma, no envía correo ni marca sugerencias como enviadas',()=>{const r=runtime();r.run("sincronizarEstudio_=()=>{throw new Error('No se confirmó el estudio')} ");assert.throws(()=>r.run('ejecutarRadar()'),/estudio/);assert.equal(r.emails.length,0);assert.deepEqual(JSON.parse(r.properties.RADAR_STATE).sent,[]);assert.equal(r.properties.RADAR_PENDING,undefined);});
+// The real Apps Script sync function must sign precisely the bytes sent to Netlify.
+import { createHmac } from 'node:crypto';
+test('la conexión real de Apps Script firma el cuerpo exacto y exige confirmación del estudio',()=>{
+  const source=code.slice(code.indexOf('function sincronizarEstudio_('),code.indexOf('function borradorTema_('));
+  const r=runtime();let captured;
+  r.ctx.Utilities.computeHmacSha256Signature=(message,key)=>Array.from(createHmac('sha256',key).update(message).digest());
+  r.properties.EDITORIAL_RADAR_SECRET='test-only';
+  r.ctx.UrlFetchApp={fetch:(url,options)=>{captured={url,options};return{getResponseCode:()=>200,getContentText:()=>'{"received":true}'};}};
+  vm.runInContext(source,r.ctx);r.run("sincronizarEstudio_([{key:'source',title:'WhatsApp Business',link:'https://blog.google/example/',date:'2026-11-05',source:'Google',kind:'official'}],'2026-11-05')");
+  assert.equal(captured.url,'https://edicionaular.com/api/editorial-radar');const options=captured.options;
+  assert.equal(options.headers['X-Radar-Signature'],createHmac('sha256','test-only').update(options.headers['X-Radar-Time']+'.'+options.payload).digest('hex'));
+  assert.equal(options.followRedirects,false);assert.equal(JSON.parse(options.payload).items.length,1);
+  r.ctx.UrlFetchApp.fetch=()=>({getResponseCode:()=>503});assert.throws(()=>r.run("sincronizarEstudio_([],'2026-11-05')"),/503/);
+});
