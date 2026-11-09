@@ -136,9 +136,10 @@ function sincronizarEstudio_(items,date) {
 function enviarAlEstudio_(payload) {
   const key=PropertiesService.getScriptProperties().getProperty('EDITORIAL_RADAR_SECRET');
   if(!key)throw new Error('Falta conectar el estudio editorial. No se envió un correo con un listado vacío.');
-  const raw=JSON.stringify(payload),time=String(Date.now());
+  // Firmar y transportar exactamente los mismos bytes, también con tildes y emojis.
+  const raw=JSON.stringify(payload).replace(/[\u007f-\uffff]/g,c=>'\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4)),time=String(Date.now());
   const signature=Utilities.computeHmacSha256Signature(time+'.'+raw,key).map(b=>('0'+((b+256)%256).toString(16)).slice(-2)).join('');
-  const response=UrlFetchApp.fetch('https://edicionaular.com/api/editorial-radar',{method:'post',contentType:'application/json',payload:raw,headers:{'X-Radar-Time':time,'X-Radar-Signature':signature},muteHttpExceptions:true,followRedirects:false});
+  const response=UrlFetchApp.fetch('https://edicionaular.com/api/editorial-radar',{method:'post',contentType:'application/json; charset=utf-8',payload:raw,headers:{'X-Radar-Time':time,'X-Radar-Signature':signature},muteHttpExceptions:true,followRedirects:false});
   if(response.getResponseCode()!==200)throw new Error('El estudio no confirmó las sugerencias (HTTP '+response.getResponseCode()+'). No se marcó el informe como enviado.');
   return JSON.parse(response.getContentText());
 }

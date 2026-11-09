@@ -44,3 +44,6 @@ Las pruebas de analítica, orientador y radar, junto con los auditores HTML/GEO,
 
 ### Corrección del 5/11/2026
 El correo enlazaba a un panel que no recibía sus sugerencias. La nueva conexión guarda las fichas en la bandeja privada Sugerencias antes del envío (ver `PANEL_EDITORIAL.md`). El informe deja de presentar una plantilla repetitiva como borrador desarrollado. Se excluyen automáticamente títulos sobre ROI, pilotos comerciales y enterprise self-service; no se considera una noticia oficial prueba de tendencia. El sistema sigue sin modelos de pago y la redacción de un artículo completo necesita desarrollo editorial.
+
+### Corrección del envío firmado · 9/11/2026
+La ejecución programada de las 09:00 falló con HTTP401 al entregar las fichas, antes de enviar correo. La sonda ASCII seguía autenticándose. El emisor ahora representa los caracteres no ASCII mediante escapes JSON y declara UTF-8: firma y transporte usan los mismos bytes para tildes, signos y emojis. Una prueba valida la igualdad exacta de la firma y la recuperación íntegra del texto. No cambia claves, permisos, destinatario, calendario ni publicación manual.

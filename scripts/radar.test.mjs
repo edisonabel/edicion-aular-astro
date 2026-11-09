@@ -46,3 +46,16 @@ test('la conexión real de Apps Script firma el cuerpo exacto y exige confirmaci
   assert.equal(options.followRedirects,false);assert.equal(JSON.parse(options.payload).items.length,1);
   r.ctx.UrlFetchApp.fetch=()=>({getResponseCode:()=>503});assert.throws(()=>r.run("sincronizarEstudio_([],'2026-11-05')"),/503/);
 });
+
+test('transporta tildes, signos y emojis sin cambiar los bytes firmados',()=>{
+  const r=runtime();let captured;const source=code.slice(code.indexOf('function enviarAlEstudio_('),code.indexOf('function borradorTema_('));
+  r.properties.EDITORIAL_RADAR_SECRET='test-only';
+  r.ctx.Utilities.computeHmacSha256Signature=(message,key)=>Array.from(createHmac('sha256',key).update(message).digest());
+  r.ctx.UrlFetchApp={fetch:(url,options)=>{captured=options;return{getResponseCode:()=>200,getContentText:()=>'{"received":true}'};}};
+  vm.runInContext(source,r.ctx);
+  r.run("enviarAlEstudio_({title:'Atención: ¿qué automatizar? 🤖',summary:'Diseño y recepción en Medellín'})");
+  assert.ok([...captured.payload].every(char=>char.charCodeAt(0)<128));
+  assert.equal(JSON.parse(captured.payload).title,'Atención: ¿qué automatizar? 🤖');
+  assert.equal(captured.contentType,'application/json; charset=utf-8');
+  assert.equal(captured.headers['X-Radar-Signature'],createHmac('sha256','test-only').update(captured.headers['X-Radar-Time']+'.'+captured.payload).digest('hex'));
+});
