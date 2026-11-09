@@ -28,7 +28,7 @@ El archivo `.netlify/editorial-workspace/snapshot.json` está ignorado por Git y
 
 Para cada pieza, desarrollar el enfoque con investigación primaria y aportación útil propia. Comprobar solapamiento con `src/data/blog.json`, fechas, enlaces, cifras atribuidas y ejemplos hipotéticos. Mantener la marca, no repetir portadas ni usar el rostro de Edison: el propietario pidió **personas distintas, no él** el 5/11/2026. No copiar las plantillas del radar como artículo terminado.
 
-Preparar un JSON privado con una lista de registros válidos: `{key, sourceKey, kind, targetSlug?, sources, post}`. `sourceKey` corresponde exactamente a una sugerencia. El artículo necesita título, resumen, HTML saneable, URL, portada local existente, descripción de imagen y etiquetas. Guardar las portadas en `public/img/blog/`; no guardar el JSON de borradores ni su texto en el repositorio público.
+Preparar un JSON privado con una lista de registros válidos: `{key, sourceKey?, kind, targetSlug?, sources, post}`. Si parte del radar, `sourceKey` corresponde exactamente a una sugerencia. Si el propietario lo encargó directamente en el chat, omitir `sourceKey`: no crear una ficha ficticia ni marcar el encargo como tendencia. El artículo aparecerá directamente en Pendientes. El artículo necesita título, resumen, HTML saneable, URL, portada local existente, descripción de imagen y etiquetas. Guardar las portadas en `public/img/blog/`; no guardar el JSON de borradores ni su texto en el repositorio público.
 
 ```powershell
 node scripts/editorial-workspace.mjs import C:/RUTA_PRIVADA/articulos.json

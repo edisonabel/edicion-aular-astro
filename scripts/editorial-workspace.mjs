@@ -30,12 +30,13 @@ if(command==='export'){
   const next=current.data.slice(),keys=new Set(),sources=new Set();
   for(const input of incoming){
     const draft=validateDraft(input);
-    if(keys.has(draft.key)||sources.has(draft.sourceKey))throw new Error('La importación contiene asociaciones duplicadas.');
-    keys.add(draft.key);sources.add(draft.sourceKey);
-    if(!draft.sourceKey||!radar?.items?.some(item=>item.key===draft.sourceKey))throw new Error('Falta vincular el artículo a una sugerencia existente.');
+    if(keys.has(draft.key)||(draft.sourceKey&&sources.has(draft.sourceKey)))throw new Error('La importación contiene asociaciones duplicadas.');
+    keys.add(draft.key);if(draft.sourceKey)sources.add(draft.sourceKey);
+    // Articles commissioned directly in the chat need no invented radar suggestion.
+    if(input.sourceKey&&(!draft.sourceKey||!radar?.items?.some(item=>item.key===draft.sourceKey)))throw new Error('La sugerencia indicada no existe.');
     await access(path.join(root,'public',draft.post.image));
     const index=next.findIndex(d=>d.key===draft.key);
-    const sameSource=next.find(d=>d.sourceKey===draft.sourceKey);
+    const sameSource=draft.sourceKey&&next.find(d=>d.sourceKey===draft.sourceKey);
     if(sameSource&&sameSource.key!==draft.key)throw new Error('Esta sugerencia ya tiene otro borrador.');
     if(index>=0&&next[index].post.slug!==draft.post.slug)throw new Error('No se permite cambiar la URL existente.');
     if(index<0&&next.some(d=>d.post.slug===draft.post.slug))throw new Error('La URL ya pertenece a otro borrador.');
