@@ -82,6 +82,28 @@ test('rechaza origen ajeno, revisión incompleta y versiones antiguas antes de e
   assert.equal((await f.request({...f.publish(),review:{sources:true}})).status,400);assert.equal(f.writes.length,0);
   assert.equal((await f.request({...f.publish(),post:{...drafts[0].post,title:'Un título modificado sin guardar'}})).status,409);assert.equal(f.writes.length,0);
 });
+
+test('cada aprobación es obligatoria y ninguna por separado publica un artículo',async()=>{
+  for(const missing of ['sources','content','image']){
+    const f=fixture(),body=f.publish();body.review[missing]=false;
+    assert.equal((await f.request(body)).status,400);assert.equal(f.writes.length,0);
+  }
+});
+
+test('el panel exige aprobar texto e imagen cargada antes de continuar y bloquea cambios sin guardar',()=>{
+  const source=readFileSync('src/lib/editorial-panel.js','utf8');
+  const check=source.slice(source.indexOf('function checkReview(){'),source.indexOf("for(const item of ['sources','content','image'])$('check-'+item).addEventListener"));
+  const elements=Object.fromEntries(['publish','review','check-content','check-image','check-sources','approval-status'].map(id=>[id,{checked:false,disabled:false,textContent:''}]));
+  const ctx=vm.createContext({$:id=>elements[id],selected:{published:false},busy:false,dirty:false,approvalImageReady:false});
+  vm.runInContext(check,ctx);const run=()=>vm.runInContext('checkReview()',ctx);
+  elements['check-content'].checked=true;elements['check-image'].checked=true;run();
+  assert.equal(elements.review.disabled,true);assert.equal(elements['check-image'].disabled,true);
+  ctx.approvalImageReady=true;run();assert.equal(elements.review.disabled,false);assert.equal(elements.publish.disabled,true);
+  elements['check-sources'].checked=true;run();assert.equal(elements.publish.disabled,false);
+  ctx.dirty=true;run();assert.equal(elements.review.disabled,true);assert.equal(elements.publish.disabled,true);
+  ctx.dirty=false;ctx.busy=true;run();assert.equal(elements.publish.disabled,true);
+  ctx.busy=false;ctx.selected.published=true;run();assert.equal(elements.review.disabled,true);
+});
 test('guardar borrador no altera el archivo publicado y retira HTML inseguro',async()=>{
   const f=fixture();const body=f.publish();body.action='save';body.post={...body.post,content:body.post.content+'<script>alert(1)</script>'};const r=await f.request(body);assert.equal(r.status,200);assert.equal((await r.json()).saved,true);assert.deepEqual(f.posts,originals);assert.equal(f.writes.length,0);assert.equal(f.draftWrites.length,1);assert.ok(!f.draftWrites[0][0].post.content.includes('<script>'));
 });

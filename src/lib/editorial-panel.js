@@ -8,6 +8,9 @@ let state=null, selected=null, dirty=false, busy=false, invitation=null, recover
 let libraryView='suggestions', verification=0, lastSent=null;
 const liveVersions=new Map();
 let previewObserver;
+let approvalImageReady=false;
+$('approval-image').addEventListener('load',()=>{approvalImageReady=true;$('approval-image-status').textContent='Imagen ilustrativa generada con IA.';checkReview();});
+$('approval-image').addEventListener('error',()=>{approvalImageReady=false;$('check-image').checked=false;$('approval-image-status').textContent='No se pudo cargar la portada. Actualiza el listado antes de aprobarla.';checkReview();});
 $('preview').addEventListener('load',()=>{previewObserver?.disconnect();const body=$('preview').contentDocument?.body;if(body){const resize=()=>{$('preview').style.height=Math.ceil(body.scrollHeight+48)+'px';};previewObserver=new ResizeObserver(resize);previewObserver.observe(body);resize();}});
 function setTheme(theme){ document.documentElement.dataset.theme=theme; $('theme').textContent=theme==='dark'?'Modo claro':'Modo oscuro'; $('theme').setAttribute('aria-label',theme==='dark'?'Cambiar a modo claro':'Cambiar a modo oscuro'); }
 let initialTheme;try{initialTheme=localStorage.getItem('theme');}catch{}
@@ -117,6 +120,12 @@ function choose(key,internal=false) {
   if(busy&&!internal)return;
   if(dirty&&!window.confirm('Hay cambios sin guardar. ¿Quieres descartarlos y abrir otro artículo?')){$('draft-picker').value=selected.key;return;}
   selected=state.drafts.find(d=>d.key===key);dirty=false;$('draft-picker').value=key;
+  for(const item of ['sources','content','image'])$('check-'+item).checked=false;
+  approvalImageReady=false;$('approval-image-status').textContent='Cargando portada…';
+  $('approval-image').alt=selected.post.imageAlt;$('approval-image').src=selected.post.image;
+  approvalImageReady=$('approval-image').complete&&$('approval-image').naturalWidth>0;
+  if(approvalImageReady)$('approval-image-status').textContent='Imagen ilustrativa generada con IA.';
+  $('approval-panel').hidden=selected.published;
   $('editor').hidden=false;$('editor-heading').textContent=selected.post.title;
   $('entry-kind').textContent=selected.published?'PUBLICACIÓN ENVIADA':selected.kind==='update'?'ACTUALIZAR · SE CONSERVA LA URL':'NUEVO ARTÍCULO';
   $('entry-status').textContent=selected.published?(isLive(selected)?'Publicado en la web. Esta versión ya está disponible para tus lectores.':'Envío confirmado. Comprobando que Netlify haya actualizado la web.'):'Borrador pendiente de envío.';
@@ -127,6 +136,7 @@ function choose(key,internal=false) {
   for(const source of selected.sources){const li=document.createElement('li'),a=document.createElement('a');a.textContent=source.title;a.href=source.url;a.target='_blank';a.rel='noopener noreferrer';li.append(a);$('source-list').append(li);}
   for(const button of $('draft-list').children)button.setAttribute('aria-current',String(button.dataset.key===key));
   tab('preview');
+  checkReview();
 }
 async function load(preferredKey) {
   lock(true);
@@ -137,7 +147,7 @@ async function load(preferredKey) {
   }catch(err){message(err.message,true);}finally{lock(false);}
 }
 $('draft-picker').addEventListener('change',()=>choose($('draft-picker').value));
-for(const id of ['post-title','post-excerpt','post-content'])$(id).addEventListener('input',()=>{dirty=true;$('dirty-note').textContent='Tienes cambios sin guardar. Guarda el borrador antes de enviarlo.';$('review').disabled=true;});
+for(const id of ['post-title','post-excerpt','post-content'])$(id).addEventListener('input',()=>{dirty=true;for(const item of ['sources','content','image'])$('check-'+item).checked=false;$('dirty-note').textContent='Tienes cambios sin guardar. Guarda el borrador y revisa de nuevo el artículo y la portada.';checkReview();});
 for(const name of ['preview','edit']) {
   $('tab-'+name).addEventListener('click',()=>tab(name));
   $('tab-'+name).addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const next=['ArrowLeft','Home'].includes(event.key)?'preview':'edit';tab(next);$('tab-'+next).focus();}});
@@ -147,12 +157,19 @@ $('save').addEventListener('click',async()=>{
   if(busy)return;lock(true);
   try{const result=await api({action:'save',key:selected.key,revision:state.revision,post:editedPost()});if(!result.saved)throw new Error('No se confirmó el guardado.');const key=selected.key;liveVersions.delete(key);dirty=false;const ok=await load(key);if(ok)message(selected?.published?'Esta versión ya coincide con el envío realizado.':'Los cambios están en Pendientes. Todavía no se enviaron a publicar.',false,'Borrador guardado');}catch(err){message(err.message,true);}finally{lock(false);}
 });
-function checkReview(){ $('publish').disabled=busy||!['sources','content','image'].every(x=>$('check-'+x).checked); }
+function checkReview(){
+  const unavailable=busy||!selected||selected.published||dirty;
+  $('check-content').disabled=unavailable;$('check-image').disabled=unavailable||!approvalImageReady;$('check-sources').disabled=unavailable;
+  const approved=$('check-content').checked&&$('check-image').checked&&approvalImageReady;
+  $('review').disabled=unavailable||!approved;
+  $('publish').disabled=unavailable||!approved||!$('check-sources').checked;
+  $('approval-status').textContent=dirty?'Guarda los cambios antes de aprobar.':approved?'Artículo e imagen aprobados para esta revisión. Puedes continuar a publicar.':$('check-content').checked?'Falta aprobar la imagen.':$('check-image').checked?'Falta aprobar el artículo.':'Falta aprobar el artículo y la imagen.';
+}
 for(const item of ['sources','content','image'])$('check-'+item).addEventListener('change',checkReview);
 $('review').addEventListener('click',()=>{
   if(dirty){message('Guarda primero el borrador para revisar y publicar exactamente esa versión.',true);return;}
-  if(!selected||selected.published)return;
-  preview();$('publish-error').hidden=true;for(const item of ['sources','content','image'])$('check-'+item).checked=false;
+  if(!selected||selected.published||!approvalImageReady||!$('check-content').checked||!$('check-image').checked)return;
+  preview();$('publish-error').hidden=true;$('check-sources').checked=false;
   $('publish-summary').textContent=selected.kind==='update'?'Se actualizará esta guía conservando su dirección y fecha de publicación original.':'Se añadirá este artículo al blog. Los artículos anteriores se conservan.';
   $('publish').textContent=selected.kind==='update'?'Publicar actualización':'Publicar artículo';checkReview();$('publish-dialog').showModal();
 });

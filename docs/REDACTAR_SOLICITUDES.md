@@ -8,7 +8,13 @@ El propietario eligió el 5/11/2026 **redactar los artículos en este chat**, si
 2. Escribe **«redacta mis solicitudes»** en este chat. No hace falta copiar fichas.
 3. El asistente recoge las solicitudes, consulta fuentes primarias, redacta el artículo completo y prepara una portada pertinente.
 4. El artículo queda en **Pendientes** y su sugerencia muestra **Revisar artículo**.
-5. El propietario lee la vista previa, puede guardar cambios y pulsa **Revisar y publicar**. Confirma fuentes, texto e imagen antes de aprobar. Se conserva el archivo público anterior.
+5. El propietario lee la vista previa, puede guardar cambios y marca **Aprobar artículo** y **Aprobar imagen** por separado. La segunda opción solo se habilita cuando carga la portada. Luego pulsa **Revisar y publicar**, confirma las fuentes y publica. Cambiar de artículo, recargar o editar reinicia las aprobaciones de esa revisión; no son una aprobación persistente. Se conserva el archivo público anterior.
+
+## Entrega editorial acordada el 9/11/2026
+
+Entregar artículos completos contrastados, con portada distinta, listos para revisión privada. Las fichas del radar son propuestas, no la entrega terminada. El propietario redacta con el asistente en este chat; no hay un modelo conectado al botón ni generación autónoma contratada. Al atender solicitudes, completar texto e imagen, no devolver otra ficha para desarrollar.
+
+Selección por tanda: **1–2 artículos de IA general y 3–4 del nicho de clínicas, consultorios y centros de estética**. Conservar las sugerencias generales. Distinguir anuncios oficiales de tendencias de búsqueda medidas; no atribuir volumen a Google Trends sin evidencia. No forzar aplicaciones clínicas a un anuncio de investigación. Las dos solicitudes del 9/11 son la parte general de la tanda, no una tanda completa del nicho.
 
 ## Preparación desde este repositorio
 
