@@ -1010,5 +1010,26 @@
     "readTime": "5 min",
     "id": 36,
     "date": "2026-11-09"
+  },
+  {
+    "slug": "businesses-chatgpt-negocios-colombia",
+    "title": "Businesses in ChatGPT: qué puede preparar tu negocio en Colombia",
+    "excerpt": "Qué cambia con Business Hub, en qué se diferencia de Business Agents y cómo preparar la información de tu empresa sin confundir visibilidad con ventas.",
+    "content": "<p>OpenAI presentó Businesses in ChatGPT en beta el 10 de noviembre de 2026. Para una empresa de Medellín, la pregunta útil es qué información puede mantener actualizada y qué funciones están disponibles para su cuenta. Gestionar una ficha comercial y habilitar un agente son cosas distintas.</p>\n<h2>Qué anunció OpenAI y qué significa para Colombia</h2>\n<p>Según el <a href=\"https://openai.com/index/introducing-businesses-chatgpt/\">anuncio oficial</a>, las empresas elegibles pueden reclamar su organización en Business Hub y, tras verificarla, gestionar información comercial. OpenAI también describe estadísticas agregadas de menciones, clics y temas de descubrimiento, sujetas a umbrales. La empresa no recibe las conversaciones privadas de sus visitantes.</p>\n<p>Business Agents tiene un alcance inicial más estrecho: el anuncio habla de comercios electrónicos y servicios en línea elegibles en Estados Unidos. Si tu negocio está en Colombia, comprueba qué opciones aparecen en tu cuenta antes de planificar un agente. Reclamar una empresa tampoco garantiza que ChatGPT la recomiende.</p>\n<h2>Prepara una ficha que tu equipo pueda mantener</h2>\n<p>Empieza por una página pública que responda las preguntas que hace una persona antes de contactar. Si vendes un servicio en Medellín, indica a quién atiendes, qué entregas y cómo se solicita una cotización. Aclara qué depende de una evaluación previa; evita publicar un precio ficticio para completar un campo.</p>\n<ul><li><strong>Identidad:</strong> comprueba que nombre, dominio y canal de contacto coincidan en tus perfiles públicos.</li><li><strong>Oferta:</strong> escribe qué problema resuelves, en qué zonas trabajas y cuándo una solicitud queda fuera de alcance.</li><li><strong>Evidencia:</strong> enlaza trabajos verificables e indica si una imagen o un recorrido son una demostración.</li><li><strong>Mantenimiento:</strong> asigna a alguien la revisión de horarios, enlaces y condiciones cuando cambien.</li></ul>\n<h2>Un ejemplo para una clínica</h2>\n<p>Una clínica puede explicar en su web qué citas recibe, cómo contacta recepción y en qué momento se confirma una reserva. Si el canal es WhatsApp, la página debe distinguir entre abrir el chat, enviar una consulta y recibir confirmación de la agenda. No hace falta publicar información de pacientes para explicar ese recorrido.</p>\n<p>Para probar el contenido, pide a alguien del equipo que responda con la página abierta: «¿Puedo pedir una cita fuera del horario de recepción?» y «¿Cómo sé que quedó confirmada?». Si debe adivinar, ajusta la explicación antes de replicarla en otros perfiles.</p>\n<h2>Mide por separado descubrimiento y contacto</h2>\n<p>Una mención indica que la marca apareció en una respuesta; un clic indica una visita potencial. Registra aparte las consultas recibidas y, cuando puedas atribuirlas con evidencia, las citas confirmadas. Si todavía no aparecen estadísticas en el panel, no interpretes su ausencia como cero interés: el anuncio describe umbrales para mostrar datos.</p>\n<h2>Preguntas frecuentes</h2>\n<h3>¿Businesses in ChatGPT es el plan ChatGPT Business?</h3><p>El anuncio trata de cómo las empresas gestionan su presencia comercial en ChatGPT. ChatGPT Business es el nombre de un plan de trabajo para equipos.</p>\n<h3>¿Necesito esperar al agente para mejorar mi presencia?</h3><p>No. Puedes revisar desde hoy tu identidad pública, las respuestas de tus páginas y el recorrido de contacto. Para clínicas, consulta nuestro <a href=\"/sistema-clinicas/\">sistema de atención y citas</a>.</p>",
+    "image": "/img/blog/businesses-chatgpt-negocios-colombia.webp",
+    "imageAlt": "Dos personas revisan información comercial en un portátil en una panadería.",
+    "imageWidth": 1536,
+    "imageHeight": 1024,
+    "imageCredit": "Imagen ilustrativa generada con IA.",
+    "author": "Edison Aular",
+    "category": "Marketing con IA",
+    "featured": false,
+    "tags": [
+      "Inteligencia artificial",
+      "Automatización"
+    ],
+    "readTime": "3 min",
+    "id": 37,
+    "date": "2026-11-12"
   }
 ]
